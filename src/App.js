@@ -1,42 +1,28 @@
-<<<<<<< HEAD
 import "./App.css";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-import NavBar from "./Componenets/NavBar";
-import HeroSection from "./Componenets/HeroSection";
-import Footer from "./Componenets/Footer";
-import Body from "./Componenets/Body";
 
-function App() {
-  return (
-    <>
-      {/* <div className="App"></div> */}
-      <NavBar />
-      <HeroSection />
-      <Body />
-      <Footer />
-    </>
-=======
-import logo from './logo.svg';
+import { Home } from "./Pages/Home";
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { TripList } from './Pages/TripList';
 import { CityDetailes } from './Pages/CityDetailes';
+import NavBar from "./Componants/NavBar";
 
 function App() {
   return (
     <BrowserRouter >
+    <NavBar />
     <Routes>
-      <Route path='/listtrips' element={<TripList />}  />
-      <Route path='/City/:id' element={<CityDetailes />}  />
+      <Route path='/listtrips' exact element={<TripList />}  />
+      <Route path='/City/:id'  exact element={<CityDetailes />}  />
+      <Route path="/" exact element={<Home />} />
 
 
     </Routes>
     </BrowserRouter>
-   
->>>>>>> listTrips
   );
 }
 

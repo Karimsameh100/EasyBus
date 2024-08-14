@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../logo/logo.jpg";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -29,7 +30,7 @@ const NavBar = () => {
                 <a
                   className="nav-link active me-3"
                   aria-current="page"
-                  href="#"
+                  href="/"
                 >
                   Home
                 </a>
@@ -44,6 +45,9 @@ const NavBar = () => {
                   About
                 </a>
               </li>
+              <Link to={"/listtrips"} className="text-center text-dark nav-link">
+               Trips
+              </Link>
             </ul>
 
             <ul className="navbar-nav ms-auto">

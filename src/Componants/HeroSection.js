@@ -3,6 +3,7 @@ import ph1 from "../logo/photo1.jpg";
 import ph2 from "../logo/photo2.jpg";
 import ph3 from "../logo/photo3.jpg";
 import ph4 from "../logo/photo4.jpg";
+import SearchComponent from "./Searh";
 
 const HeroSection = () => {
   return (
@@ -72,21 +73,20 @@ const HeroSection = () => {
           ></span>
           <span className="visually-hidden">Next</span>
         </button>
-        <div
-          className="carousel-caption d-none d-md-block"
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            color: "white",
-            backgroundColor: "rgba(0, 51, 102, 0.5)",
-            padding: "10px",
-            borderRadius: "5px",
-            textAlign: "center",
-          }}
-        >
-          <h1>Book Your Trip Now!</h1>
+        <div style={{ 
+                    position: "absolute", 
+                    top: "30%", 
+                    left: "20%",
+                    right : "20%",
+                    padding :"0px auto",
+                    backgroundColor: "rgba(255, 255, 255, 0.1)", 
+                    display: "block", 
+                    justifyContent: "center", 
+                    alignItems: "center",
+                    borderRadius : "10px" 
+                }}>
+          <h1 className="text-light">Book Your Trip Now!</h1>
+          <SearchComponent />
         </div>
       </div>
     </>
