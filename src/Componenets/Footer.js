@@ -1,13 +1,3 @@
-// import React from "react";
-
-// const Footer = () => {
-//   return <>
-
-//   </>;
-// };
-
-// export default Footer;
-
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import logo from "../logo/logo.jpg";
