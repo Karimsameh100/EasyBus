@@ -1,0 +1,53 @@
+/* .custom-navbar {
+    background-color: #003366 !important; 
+  }
+  
+  .custom-navbar .nav-link {
+    color: white; لون النص */
+  /* } */
+  
+  /* .custom-navbar .btn-outline-light { */
+    /* color: white; text color in btn */
+    /* border-color: white; layout color for btn */
+  /* } */
+/*  */
+
+
+
+  /* .custom-navbar .btn-outline-light:hover{
+
+   color:  #003366 ;
+  } */
+
+  .custom-navbar {
+    background-color: #003366 !important;
+    padding: 0.25rem 1rem; 
+    height: 100px;
+}
+
+.custom-navbar .nav-link {
+    color: white !important; 
+    padding: 0.5rem 0.75rem;
+}
+
+#navBTN {
+    color: white !important;
+    border-color: white !important;
+    padding: 0.5rem 2rem; /* تعديل الـ padding لجعل الكلمة في وسط الزر */
+    text-align: center; /* محاذاة النص في وسط الزر */
+    display: inline-block; /* التأكد من أن الزر يأخذ العرض المناسب للنص */
+}
+
+#navBTN:hover {
+    color: #003366 !important;
+    background-color: white !important;
+}
+
+/* .custom-navbar .navbar-nav.ms-auto .nav-item {
+    margin-right: 1px; /* تقليل المسافة بين الزرارين */
+/* } */
+
+
+
+
+   
