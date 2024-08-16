@@ -18,6 +18,7 @@ export function CityDetailes(){
                     left: "20%",
                     right : "20%",
                     padding :"0px auto",
+                    width : "100%",
                     backgroundColor: "rgba(255, 255, 255, 0.1)", 
                     display: "block", 
                     justifyContent: "between", 
