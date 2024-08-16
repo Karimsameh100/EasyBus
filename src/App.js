@@ -10,6 +10,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { TripList } from './Pages/TripList';
 import { CityDetailes } from './Pages/CityDetailes';
 import NavBar from "./Componants/NavBar";
+import TripTrackSignup from "./Pages/SignUp";
+import ClientSignup from "./Pages/client";
+import CompanySignup from "./Pages/Company";
+import CompleteComReg from "./Pages/CompleteComReg";
 
 function App() {
   return (
@@ -19,6 +23,10 @@ function App() {
       <Route path='/listtrips' exact element={<TripList />}  />
       <Route path='/City/:id'  exact element={<CityDetailes />}  />
       <Route path="/" exact element={<Home />} />
+      <Route path="/TripTrackSignup" exact element={<TripTrackSignup/>} />
+      <Route path="/client" element={<ClientSignup />} />
+      <Route path='/company' element={<CompanySignup/>} />
+      <Route path="/CompleteComReg" element={<CompleteComReg/>} /> 
 
 
     </Routes>

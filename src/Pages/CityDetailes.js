@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CityTrips from "../CityTrips.json"
 import { useParams } from "react-router-dom";
 import SearchComponent from "../Componants/Searh";
+import { Reviews } from "../Componants/Review";
 
 export function CityDetailes(){
     const params = useParams();
@@ -33,6 +34,9 @@ export function CityDetailes(){
             <div style={{display: "flex", alignItems: "center", margin: "20px"}}>
                 <img src={city.image} style={{width : "50%" , height : "50%" , objectFit : "cover", marginRight: "20px"}} />
                 <h4 style={{textAlign: "left"}}>{city.info}</h4>
+            </div>
+            <div>
+                <Reviews />
             </div>
         </>
     )
