@@ -7,19 +7,19 @@ import CityTrips from "../CityTrips.json"
 
 
 export function TripList() {
-    const [trips, setTrips] = useState(CityTrips);
+    const [trips, setTrips] = useState();
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(9);
 
-    // useEffect(() => {
-    //     axios
-    //       .get("CityTrips.json")
-    //       .then((res) => {
-    //         console.log(res.data)
-    //         setTrips(res.data);
-    //       })
-    //       .catch((err) => console.error('Error fetching products:', err));
-    //   }, []);
+    useEffect(() => {
+        axios
+          .get("http://localhost:4000/posts")
+          .then((res) => {
+            console.log(res.data)
+            setTrips(res.data);
+          })
+          .catch((err) => console.error('Error fetching products:', err));
+      }, []);
     
       const totalPages = Math.ceil(trips.length / itemsPerPage);
     
