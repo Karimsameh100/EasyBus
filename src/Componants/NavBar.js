@@ -56,11 +56,11 @@ const NavBar = () => {
                   Login
                 </button>
               </li>
-              <li className="nav-item">
-                <button type="button" className="btn btn-outline-dark">
+              <Link to={"/TripTrackSignup"} className="btn btn-outline-dark">
+                
                   Signup
-                </button>
-              </li>
+                
+              </Link>
             </ul>
           </div>
         </div>

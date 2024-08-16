@@ -4,12 +4,14 @@ import HeroSection from "../Componants/HeroSection";
 import Body from "../Componants/Body";
 import Footer from "../Componants/Footer";
 
+
 export function Home(){
     return (
         <>
         <HeroSection />
         <Body />
         <Footer />
+        
 
         </>
     )
