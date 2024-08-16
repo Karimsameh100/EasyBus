@@ -18,6 +18,7 @@ const NavBar = () => {
           </Link>
 
           <button
+            // id="navBTN"
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"

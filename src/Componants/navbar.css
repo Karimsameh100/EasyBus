@@ -40,9 +40,23 @@
 
 #navBTN:hover {
     color: #003366 !important;
-    background-color: white !important;
+    background-color:  white!important;
 }
 
+
+
+#infoBTN{
+  color: #003366 !important;
+  border-color: #003366 !important;
+  padding: 0.5rem 2rem; /* تعديل الـ padding لجعل الكلمة في وسط الزر */
+  text-align: center; /* محاذاة النص في وسط الزر */
+  display: inline-block; /* التأكد من أن الزر يأخذ العرض المناسب للنص */
+}
+
+#infoBTN:hover {
+  color: white !important;
+  background-color:#003366 !important;
+}
 /* .custom-navbar .navbar-nav.ms-auto .nav-item {
     margin-right: 1px; /* تقليل المسافة بين الزرارين */
 /* } */
