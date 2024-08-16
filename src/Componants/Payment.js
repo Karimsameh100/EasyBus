@@ -43,14 +43,14 @@ const Payment = () => {
             style={{
               display: "flex",
               flexWrap: "wrap",
-              gap: "20px", // تقليل المسافة بين الصور للتكيف مع الشاشات الصغيرة
-              justifyContent: "center", // توسيط الصور أفقياً
-              paddingTop: "20px", // تقليل المسافة بين النص والصور للتكيف مع الشاشات الصغيرة
+              gap: "20px", // space between words
+              justifyContent: "center",
+              paddingTop: "20px",
             }}
           >
             <img
               src={p1}
-              style={{ width: "120px", height: "auto" }} // تقليل عرض الصور للتكيف مع الشاشات الصغيرة
+              style={{ width: "120px", height: "auto" }}
               alt="Payment method 1"
             />
             <img

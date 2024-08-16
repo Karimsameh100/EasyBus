@@ -22,7 +22,7 @@ const Body = () => {
               height: "100%",
               zIndex: 1,
               padding: "20px",
-              backgroundColor: "rgba(0, 0, 0, 0.5)", // لتحسين وضوح النص
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
               borderRadius: "10px",
             }}
           >

@@ -6,14 +6,12 @@ const Info = () => {
   return (
     <div style={{ marginTop: "5vh" }} className="container-fluid py-5">
       <div className="row justify-content-center text-center">
-        {/* العنوان في الأعلى */}
         <div className="col-12">
           <h2 className="text-primary font-weight-bold">
             The Best Public Transportation in Egypt
           </h2>
         </div>
 
-        {/* النص الأيسر */}
         <div className="col-12 col-md-4 d-flex align-items-center justify-content-md-end text-md-end text-center mt-4 mt-md-0">
           <div className="p-3 p-md-4">
             <h3>Safe & Reliable</h3>
@@ -21,7 +19,6 @@ const Info = () => {
           </div>
         </div>
 
-        {/* الصورة في الوسط */}
         <div className="col-12 col-md-4 text-center mt-4 mt-md-0">
           <img
             src={infoImage}
@@ -31,7 +28,6 @@ const Info = () => {
           />
         </div>
 
-        {/* النص الأيمن */}
         <div className="col-12 col-md-4 d-flex align-items-center justify-content-md-start text-md-start text-center mt-4 mt-md-0">
           <div className="p-3 p-md-4">
             <h3 style={{ textTransform: "capitalize" }}>
@@ -45,7 +41,6 @@ const Info = () => {
           </div>
         </div>
 
-        {/* الأزرار */}
         <div className="col-12 mt-4">
           <div className="d-inline-block">
             <button
