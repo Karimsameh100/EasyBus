@@ -49,7 +49,7 @@ const SearchComponent = () => {
                         <Form.Control className="" type="date" value={departureDate} onChange={(e) => setDepartureDate(e.target.value)} />
                     </Form.Group>
 
-                    <Button variant="primary" className='d-inline-block' onClick={handleSearch}>
+                    <Button variant="primary" className='d-inline-block buttn1' onClick={handleSearch}>
                         Search
                     </Button>
                 </Form>
