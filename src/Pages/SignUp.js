@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function  TripTrackSignup() {
   const [selectedRole, setSelectedRole] = useState();
@@ -69,7 +69,7 @@ function  TripTrackSignup() {
       </Form>
 
       <p className="text-center mt-3">
-        Already have an account? <a href="#">Log In</a>
+        Already have an account? <Link to={"/login"}>Log In</Link>
       </p>
     </div>
   );
