@@ -158,7 +158,7 @@ const NavBar = () => {
 
             <ul className="navbar-nav ms-auto me-3">
               <li className="nav-item">
-                <Link to={"TripTrackSignup"}>
+                <Link to={""}>
                   <button id="navBTN" className="btn btn-outline-light me-3">
                     Login
                   </button>
