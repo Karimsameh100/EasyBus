@@ -1,6 +1,7 @@
 import React from "react";
 import infoImage from "../logo/infooo.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 import "./navbar.css";
 const Info = () => {
   return (
@@ -43,16 +44,27 @@ const Info = () => {
 
         <div className="col-12 mt-4">
           <div className="d-inline-block">
-            <button
+            {/* <button
               id="infoBTN"
               type="button"
               className="btn btn-outline-dark me-3"
             >
               Book Now
-            </button>
-            <button id="infoBTN" type="button" className="btn btn-outline-dark">
+            </button> */}
+            <Link to={"/TripTrackSignup"}>
+              <button id="infoBTN" className="btn  btn-outline-dark me-3">
+                Book Now
+              </button>
+            </Link>
+            {/* <button id="infoBTN" type="button" className="btn btn-outline-dark">
               Create Account
-            </button>
+            </button> */}
+
+            <Link to={"/TripTrackSignup"}>
+              <button id="infoBTN" className="btn  btn-outline-dark">
+                Create Account
+              </button>
+            </Link>
           </div>
         </div>
       </div>
