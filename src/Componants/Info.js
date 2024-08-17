@@ -4,6 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 const Info = () => {
+
+  const handleClick = () => {
+    window.location.hash = '#hero';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div style={{ marginTop: "5vh" }} className="container-fluid py-5">
       <div className="row justify-content-center text-center">
@@ -51,8 +57,8 @@ const Info = () => {
             >
               Book Now
             </button> */}
-            <Link to={"/TripTrackSignup"}>
-              <button id="infoBTN" className="btn  btn-outline-dark me-3">
+            <Link >
+              <button onClick={handleClick} id="infoBTN" className="btn  btn-outline-dark me-3">
                 Book Now
               </button>
             </Link>
