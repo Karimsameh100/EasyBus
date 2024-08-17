@@ -1,44 +1,31 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from "react-router-dom";
 
-export function Reviews({ id, image, city,info }) {
+export function Reviews({ customerImg, customerReview, customerName, customerRate }) {
+    const getStarRating = (rate) => {
+        let stars = '';
+        for (let i = 0; i < 5; i++) {
+            stars += i < rate ? '★' : '☆'; // Full star if i < rate, empty star otherwise
+        }
+        return stars;
+    };
+
     return (
 
-        <section class="bg-light py-3 py-md-5">
-            <div class="container">
-                <div class="row gy-5 gy-lg-0 align-items-center">
-                <div class="col-12 col-lg-4">
-                    <h2 class="display-5 mb-3 mb-xl-4">Our Clients</h2>
-                    <p class="lead mb-4 mb-xl-5">We believe in client satisfaction. Here are some testimonials by our worthy clients.</p>
-                    <a href="#!" class="btn bsb-btn-2xl btn-primary rounded-pill">More Testimonials</a>
-                </div>
-
-                <div class="col-12 col-lg-8">
-                    <div class="row justify-content-xl-end">
-                    <div class="col-12 col-xl-11">
-                        <div class="row gy-4">
-                        <div class="col-12 col-md-6">
-                            <div class="card border-0 border-bottom border-primary shadow-sm">
-                            <div class="card-body p-4 p-xxl-5">
-                                <figure>
-                                <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy" /* src={customerImg} */ alt="Luna Joh"/>
-                                <figcaption>
-                                    <blockquote class="bsb-blockquote-icon mb-4">{/* {customerReview} */} i'm bored !!!</blockquote>
-                                    <h4 class="mb-2">{/* {customerName} */} Afnan Mohamed</h4>
-                                    <h5 class="fs-6 text-secondary mb-0">{/* {customerJob} */} Web Zeft</h5>
-                                </figcaption>
-                                </figure>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
+                <div className="card border-0 border-bottom border-primary shadow-sm">
+                     <div className="position-absolute top-0 end-0 m-3 text-warning" style={{ fontSize: '1.5rem' }}>
+                        {getStarRating(parseInt(customerRate))}
                     </div>
+                    <div className="card-body p-4 p-xxl-5">
+                        <figure>
+                        <img className="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy" width={80} src={customerImg} alt="Luna Joh"/>
+                        <figcaption>
+                            <blockquote class="bsb-blockquote-icon mb-4">{customerReview}</blockquote>
+                            <h4 className="mb-2">{customerName}</h4>
+                        </figcaption>
+                        </figure>
                     </div>
                 </div>
-                </div>
-            </div>
-        </section>
 
     );
 }
