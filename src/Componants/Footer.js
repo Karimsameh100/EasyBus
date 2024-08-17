@@ -1,18 +1,15 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import logo from "../logo/logo.jpg";
-
+import logo from "../logo/neew llogo.png";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <footer className="bg-dark text-white py-4">
+    <footer style={{ backgroundColor: "#003366" }} className=" text-white py-4">
       <Container>
         <Row>
           <Col md={4}>
-            <img src={logo} width="100" />
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <img src={logo} width="200" />
+            {/* <h2 style={{ marginTop: "20px" }}>TRIP TRACK</h2> */}
           </Col>
           <Col md={4}>
             <h5>Quick Links</h5>
@@ -21,6 +18,10 @@ const Footer = () => {
                 <a href="#" className="text-white">
                   Home
                 </a>
+
+                {/* <Link to={"./HeroSection.js"} className="text-white">
+                  Home
+                </Link> */}
               </li>
               <li>
                 <a href="#" className="text-white">
@@ -33,7 +34,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white">
+                <a href="#3" className="text-white">
                   Contact
                 </a>
               </li>

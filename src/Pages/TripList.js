@@ -3,28 +3,30 @@ import { TripItem } from "../Componants/Trip";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState , useEffect } from "react";
 import axios from "axios";
-import CityTrips from "../CityTrips.json"
+//import CityTrips from "../CityTrips.json"
 
 
 export function TripList() {
-    const [trips, setTrips] = useState(CityTrips);
+    const [trips, setTrips] = useState();
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(9);
 
-    // useEffect(() => {
-    //     axios
-    //       .get("CityTrips.json")
-    //       .then((res) => {
-    //         console.log(res.data)
-    //         setTrips(res.data);
-    //       })
-    //       .catch((err) => console.error('Error fetching products:', err));
-    //   }, []);
+    useEffect(() => {
+        axios
+          .get("http://localhost:4001/posts")
+          .then((res) => {
+            console.log(res.data)
+            setTrips(res.data);
+          })
+          .catch((err) => console.error('Error fetching products:', err));
+      }, []);
     
-      const totalPages = Math.ceil(trips.length / itemsPerPage);
+      const totalPages = trips? Math.ceil(trips.length / itemsPerPage) : 0;
     
       const handlePageChange = (page) => {
-        setCurrentPage(page);
+        if (trips) {
+          setCurrentPage(page);
+        }
       };
     
       const handlePrevious = () => {
@@ -37,7 +39,7 @@ export function TripList() {
     
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
-      const currentPageItems = trips.slice(startIndex, endIndex);
+      const currentPageItems = trips ? trips.slice(startIndex, endIndex) : [];
     return (
         <div className="container-fluid p-4" style={{ width: "100%" }}>
           <div className="row justify-content-center mb-4">
