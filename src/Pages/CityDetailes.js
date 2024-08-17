@@ -25,24 +25,29 @@ export function CityDetailes(){
 
     return (
         <>
-            <div style={{ position: "relative" }}>
+            <div className="h-100" style={{ position: "relative" , height : "100vh",overflow: "hidden"}}>
                 <img src={city?.image} style={{width : "100%" , height : "100vh" , objectFit : "cover", opacity: 0.9 }} />
              
-                <div style={{ 
+                <div className="d-flex flex-column align-items-center justify-content-center" style={{ 
                     position: "absolute", 
-                    top: "30%", 
-                    left: "4%",
+                    top: "0%", 
+                    left: "0%",
                     right : "4%",
-                    padding :"0px 10px",
+                    padding :"10px",
+                    paddingBottom : "30px",
                     width : "100%",
                     height : "100%",
-                    backgroundColor: "rgba(255, 255, 255, 0.1)", 
+                    maxHeight: "100%", // add this to prevent height overflow
+                    maxWidth: "100%",
+                    backgroundColor: "rgba(128, 128, 128, 0.4)", 
                     display: "block", 
-                    justifyContent: "around", 
+                    textAlign: "center",
+                    justifyContent: "center", 
                     alignItems: "center",
-                    borderRadius : "10px" 
+                    borderRadius : "10px" ,
+                    boxSizing: "border-box"
                 }}>
-                     <h1 className="text-light text-center">Book your Tiket</h1>
+                     <h1 className="text-light  text-center">Book your Tiket</h1>
                     <SearchComponent />
                     <h2 className="text-light text-center">{city.city} City</h2>
                 </div>
