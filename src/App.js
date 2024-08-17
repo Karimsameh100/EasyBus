@@ -13,6 +13,7 @@ import TripTrackSignup from "./Pages/SignUp";
 import ClientSignup from "./Pages/client";
 import CompanySignup from "./Pages/Company";
 import CompleteComReg from "./Pages/CompleteComReg";
+import Login from "./Pages/Login";
 // import SignUp from "./Pages/SignUp";
 
 function App() {
@@ -23,9 +24,9 @@ function App() {
         <Route path="/listtrips" exact element={<TripList />} />
         <Route path="/City/:id" exact element={<CityDetailes />} />
         <Route path="/" exact element={<Home />} />
+        <Route path="/Login" exact element={<Login />} />
         <Route path="/TripTrackSignup" exact element={<TripTrackSignup />} />
         <Route path="/client" element={<ClientSignup />} />
-
         {/* <Route path="/register" element={<SignUp />} /> */}
         <Route path="/CompleteComReg" element={<CompleteComReg />} />
       </Routes>

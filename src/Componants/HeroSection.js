@@ -118,18 +118,24 @@ const HeroSection = () => {
         <source src={video} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      <div style={{ 
+      <div className="d-flex flex-column align-items-center justify-content-center" style={{ 
                     position: "absolute", 
-                    top: "30%", 
-                    left: "4%",
+                    top: "0%", 
+                    left: "0%",
                     right : "4%",
-                    padding :"0px 10px",
+                    padding :"10px",
+                    paddingBottom : "30px",
                     width : "100%",
-                    backgroundColor: "rgba(250, 250, 250, 0.1)", 
+                    height : "100%",
+                    maxHeight: "100%", // add this to prevent height overflow
+                    maxWidth: "100%",
+                    backgroundColor: "rgba(250, 250, 250, 0.0)", 
                     display: "block", 
-                    justifyContent: "between", 
-                    // alignItems: "center",
-                    borderRadius : "10px" 
+                    textAlign: "center",
+                    justifyContent: "center", 
+                    alignItems: "center",
+                    borderRadius : "10px" ,
+                    boxSizing: "border-box" 
                 }}>
         <h1 className="text-light text-center">Book Your Trip Now!</h1>
         <SearchComponent />
