@@ -63,12 +63,13 @@ function Login() {
 
 
     return (
-            <div className="container my-5">
-                <div className="row">
-                    <div className="col-lg-6">
-                        <img src={logo} alt="Blue Bus" className="img-fluid"/>
-                    </div>
-                    <div className="col-lg-6">
+        <div className="container my-5">
+            <div className="row">
+                <div className="col-lg-6">
+                    <img src={logo} alt="Blue Bus" className="img-fluid" />
+                </div>
+                <div className="col-lg-6">
+                    <h2 className="text-center">Login and enjoy your trip</h2>
                     <form onSubmit={handleLogin}>
                         <label className="fw-bold py-3">Email Address :</label>
                         <div className="form-floating mb-3">
@@ -104,10 +105,10 @@ function Login() {
                         )}
                         <button disabled={errors.passwordErr || errors.nameErr} type="submit" className="btn btn-dark mt-3">Submit</button>
                     </form>
-                    </div>
-                 
                 </div>
+
             </div>
+        </div>
 
     );
 }
