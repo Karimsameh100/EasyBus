@@ -5,6 +5,42 @@
             "city": "Cairo",
             "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/db/b7/85.jpg",
             "info": "Cairo is the capital of Egypt and is known for its rich history and cultural heritage. Visit the Pyramids of Giza, the Egyptian Museum, and Islamic Cairo.",
+           "company" :[
+            {
+              "id": 1,
+              "name": "go bus",
+              "image" : " ",
+              "about" : " ",
+              "Trips" : [{
+              "Trip Number" : "",
+              "Trip Date" : " ",
+              "Available Places" : " ",
+              "Departure Station" : " ",
+              "Stop Stations" : " ",
+              "Go In" : " ",
+              "Arrive At" : " ",
+              "Price" : " ",
+              "Book" : " " 
+              
+              },
+              {
+                "Trip Number" : "",
+                "Trip Date" : " ",
+                " Available Places" : " ",
+                "Departure Station" : " ",
+                "Stop Stations" : " ",
+                "Go In" : " ",
+                "Arrive At" : " ",
+                "Price" : " ",
+                " Book" : " "
+
+              }
+            ]
+
+            }
+           ],
+           
+           
             "Reviews": [
             {
                 "ReviewId": 1,
