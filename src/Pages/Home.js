@@ -13,7 +13,6 @@ export function Home() {
       <Info />
       <Body />
       <Payment />
-      <Footer />
     </>
   );
 }
