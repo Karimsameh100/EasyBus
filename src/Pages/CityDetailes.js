@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SearchComponent from "../Componants/Searh";
 import { Reviews } from "../Componants/Review";
+import gobus from "../logo/unnamed.png"
 import axios from "axios";
 
 export function CityDetailes() {
@@ -54,38 +55,23 @@ export function CityDetailes() {
             <div style={{ position: "relative" }}>
                 <img src={city?.image} style={{ width: "100%", height: "100vh", objectFit: "cover", opacity: 0.9 }} />
 
-<<<<<<< HEAD
-                <div style={{
+                <div className="d-flex flex-column align-items-center justify-content-center" style={{
                     position: "absolute",
-                    top: "30%",
-                    left: "4%",
-                    right: "4%",
-                    padding: "0px 10px",
+                    top: "0%",
+                    left: "0%",
+                    right: "0%",
+                    padding: "10px",
+                    paddingBottom: "30px",
                     width: "100%",
                     height: "100%",
-=======
-                <div className="d-flex flex-column align-items-center justify-content-center" style={{ 
-                    position: "absolute",
-                    top: "0%", 
-                    left: "0%",
-                    right : "0%",
-                    padding :"10px",
-                    paddingBottom : "30px",
-                    width : "100%",
-                    height : "100%",
                     maxHeight: "100%", // add this to prevent height overflow
                     maxWidth: "100%",
->>>>>>> fa3629432e65c014401014860dd6c7bf631f149f
-                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                    backgroundColor: "rgba(128, 128, 128, 0.4)",
                     display: "block",
                     justifyContent: "around",
                     alignItems: "center",
-<<<<<<< HEAD
-                    borderRadius: "10px"
-=======
                     borderRadius: "10px",
-                    boxSizing: "border-box" 
->>>>>>> fa3629432e65c014401014860dd6c7bf631f149f
+                    boxSizing: "border-box"
                 }}>
                     <h1 className="text-light text-center">Book your Ticket</h1>
                     <SearchComponent />
@@ -95,6 +81,156 @@ export function CityDetailes() {
             <div style={{ display: "flex", alignItems: "center", margin: "20px" }}>
                 <img src={city?.image} style={{ width: "50%", height: "50%", objectFit: "cover", marginRight: "20px" }} />
                 <h4 style={{ textAlign: "left" }}>{city.info}</h4>
+            </div>
+            <div class="container-fluid">
+                <h2 className="text-center m-5">Travel with go bus</h2>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-6 col-md-4">
+                        <img src={gobus} className="img-fluid mt-5 " alt="Image" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <table class="table table-striped table-bordered-bold">
+                            <thead>
+                                <tr>
+                                    <th>Trip Number</th>
+                                    <th style={{width : "15%"}}>Trip Date</th>
+                                    <th class="text-center" style={{ width: "10%" }}>Available Places</th>
+                                    <th class="text-center" style={{ width: "15%" }}>Departure Station</th>
+                                    <th class="text-center" style={{ width: "15%" }}>Stop Stations</th>
+                                    <th>Go In</th>
+                                    <th>Arrive At</th>
+                                    <th style={{ width: "7%" }}>Price</th>
+                                    <th class="text-center" style={{ width: "10%" }}>Book</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>TR001</td>
+                                    <td>2023-02-20</td>
+                                    <td>20</td>
+                                    <td>{city.city}</td>
+                                    <td>Los Angeles, Chicago</td>
+                                    <td>08:00 AM</td>
+                                    <td>10:00 AM</td>
+                                    <td>$100</td>
+                                    <td><button class="btn btn-success btn-sm w-100">Book</button></td>
+                                </tr>
+                                <tr>
+                                    <td>TR002</td>
+                                    <td>2023-02-22</td>
+                                    <td>15</td>
+                                    <td>{city.city}</td>
+                                    <td>Las Vegas, Phoenix</td>
+                                    <td>09:00 AM</td>
+                                    <td>11:00 AM</td>
+                                    <td>$120</td>
+                                    <td><button class="btn btn-success btn-sm w-100">Book</button></td>
+                                </tr>
+                                <tr>
+                                    <td>TR003</td>
+                                    <td>2023-02-24</td>
+                                    <td>25</td>
+                                    <td>{city.city}</td>
+                                    <td>Orlando, Tampa</td>
+                                    <td>10:00 AM</td>
+                                    <td>12:00 PM</td>
+                                    <td>$150</td>
+                                    <td><button class="btn btn-success btn-sm w-100">Book</button></td>
+                                </tr>
+                                <tr>
+                                    <td>TR004</td>
+                                    <td>2023-02-26</td>
+                                    <td>30</td>
+                                    <td>{city.city}</td>
+                                    <td>Houston, Austin</td>
+                                    <td>11:00 AM</td>
+                                    <td>01:00 PM</td>
+                                    <td>$180</td>
+                                    <td><button class="btn btn-success btn-sm w-100">Book</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid d-flex flex-column align-items-center">
+                <h2 class="text-center m-5">Travel with go bus</h2>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-sm-12 col-md-6 d-flex flex-column align-items-center">
+                        <h2>About Our Travel Company</h2>
+                        <p>Our travel company, XYZ Travels, is a leading provider of travel services that offers a unique and personalized experience to our customers. With years of experience in the industry, we have built a reputation for providing high-quality services that meet the needs of our clients. Our team of experts is dedicated to ensuring that every aspect of your trip is carefully planned and executed to perfection.</p>
+                        <p>We recommend our travel company because of our commitment to excellence, our attention to detail, and our passion for providing unforgettable experiences. Whether you're looking for a relaxing getaway or an adventure-filled trip, we have the expertise and resources to make it happen.</p>
+                    </div>
+                    <div class="col-sm-12 col-md-6 d-flex justify-content-center">
+                        <img src={gobus} class="img-fluid" alt="Image" />
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center w-100">
+                    <div class="col-sm-12 col-md-12">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Trip Number</th>
+                                    <th>Trip Date</th>
+                                    <th class="text-center" style={{ width: "15%" }}>Available Places</th>
+                                    <th class="text-center" style={{ width: "15%" }}>Departure Station</th>
+                                    <th class="text-center" style={{ width: "15%" }}>Stop Stations</th>
+                                    <th>Go In</th>
+                                    <th>Arrive At</th>
+                                    <th style={{ width: "7%" }}>Price</th>
+                                    <th class="text-center" style={{ width: "10%" }}>Book</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>TR001</td>
+                                    <td>2023-02-20</td>
+                                    <td>20</td>
+                                    <td>New York</td>
+                                    <td>Los Angeles, Chicago</td>
+                                    <td>08:00 AM</td>
+                                    <td>10:00 AM</td>
+                                    <td>$100</td>
+                                    <td><button class="btn btn-success btn-sm w-100">Book</button></td>
+                                </tr>
+                                <tr>
+                                    <td>TR002</td>
+                                    <td>2023-02-22</td>
+                                    <td>15</td>
+                                    <td>San Francisco</td>
+                                    <td>Las Vegas, Phoenix</td>
+                                    <td>09:00 AM</td>
+                                    <td>11:00 AM</td>
+                                    <td>$120</td>
+                                    <td><button class="btn btn-success btn-sm w-100">Book</button></td>
+                                </tr>
+                                <tr>
+                                    <td>TR003</td>
+                                    <td>2023-02-24</td>
+                                    <td>25</td>
+                                    <td>Miami</td>
+                                    <td>Orlando, Tampa</td>
+                                    <td>10:00 AM</td>
+                                    <td>12:00 PM</td>
+                                    <td>$150</td>
+                                    <td><button class="btn btn-success btn-sm w-100">Book</button></td>
+                                </tr>
+                                <tr>
+                                    <td>TR004</td>
+                                    <td>2023-02-26</td>
+                                    <td>30</td>
+                                    <td>Dallas</td>
+                                    <td>Houston, Austin</td>
+                                    <td>11:00 AM</td>
+                                    <td>01:00 PM</td>
+                                    <td>$180</td>
+                                    <td><button class="btn btn-success btn-sm w-100">Book</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <section className="bg-light py-3 py-md-5">
@@ -108,7 +244,7 @@ export function CityDetailes() {
                                     <button onClick={handleGoBack} className="btn btn-secondary rounded-pill me-2">Go Back</button>
                                 )}
                                 {hasMoreReviews && (
-                                    <button onClick={handleLoadMore} className="btn btn-primary rounded-pill">More Reviews</button>
+                                    <button onClick={handleLoadMore} className="btn btn-success rounded-pill">More Reviews</button>
                                 )}
                             </div>
                         </div>
