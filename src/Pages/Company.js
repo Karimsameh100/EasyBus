@@ -24,7 +24,7 @@ function CompanySignup() {
     const navigate = useNavigate();
 
     const emailReg = /^([a-z0-9]+)@(gmail|yahoo)\.(com|eg)$/;
-    const phoneReg = /^(\+201|01|00201)[0-2,5]{1}[0-9]{8}/;
+    const phoneReg = /^(\+201|01|00201)[0-2,5]{1}[0-9]{8}$/;
     const passReg = /^[0-9]{8,}/;
     const nameReg = /^[a-zA-Z]{3,}$/;
 
@@ -64,7 +64,7 @@ function CompanySignup() {
             if (value.length === 0) {
                 return "Please enter your phone number";
             } else if (!phoneReg.test(value)) {
-                return "Enter a valid 10-digit phone number";
+                return "Enter a valid 11-digit phone number";
             }
         } else if (name === 'email') {
             return value.length === 0 ? "Please enter your email" :
@@ -85,6 +85,14 @@ function CompanySignup() {
 
         if (userInputs.name && userInputs.phone && userInputs.email && userInputs.password && userInputs.Repass &&
             !errors.nameErr && !errors.phoneErr && !errors.emailErr && !errors.passwordErr && !errors.RepassErr) {
+
+
+             localStorage.setItem('userInputs', JSON.stringify({
+                 name: userInputs.name,
+                 email: userInputs.email,
+                 phone: userInputs.phone,
+                 password: userInputs.password
+             }));
 
             console.log("Form Data Submitted:", userInputs);
 

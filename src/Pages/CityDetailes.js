@@ -54,6 +54,7 @@ export function CityDetailes() {
             <div style={{ position: "relative" }}>
                 <img src={city?.image} style={{ width: "100%", height: "100vh", objectFit: "cover", opacity: 0.9 }} />
 
+<<<<<<< HEAD
                 <div style={{
                     position: "absolute",
                     top: "30%",
@@ -62,11 +63,29 @@ export function CityDetailes() {
                     padding: "0px 10px",
                     width: "100%",
                     height: "100%",
+=======
+                <div className="d-flex flex-column align-items-center justify-content-center" style={{ 
+                    position: "absolute",
+                    top: "0%", 
+                    left: "0%",
+                    right : "0%",
+                    padding :"10px",
+                    paddingBottom : "30px",
+                    width : "100%",
+                    height : "100%",
+                    maxHeight: "100%", // add this to prevent height overflow
+                    maxWidth: "100%",
+>>>>>>> fa3629432e65c014401014860dd6c7bf631f149f
                     backgroundColor: "rgba(255, 255, 255, 0.1)",
                     display: "block",
                     justifyContent: "around",
                     alignItems: "center",
+<<<<<<< HEAD
                     borderRadius: "10px"
+=======
+                    borderRadius: "10px",
+                    boxSizing: "border-box" 
+>>>>>>> fa3629432e65c014401014860dd6c7bf631f149f
                 }}>
                     <h1 className="text-light text-center">Book your Ticket</h1>
                     <SearchComponent />

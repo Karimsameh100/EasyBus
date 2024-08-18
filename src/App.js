@@ -26,6 +26,8 @@ function App() {
         <Route path="/" exact element={<Home />} />
         <Route path="/Login" exact element={<Login />} />
         <Route path="/TripTrackSignup" exact element={<TripTrackSignup />} />
+        <Route path="/CompanySignup" exact element={<CompanySignup/>} />
+        <Route path="/CompleteComReg" exact element={<CompleteComReg/>} /> 
         <Route path="/client" element={<ClientSignup />} />
         {/* <Route path="/register" element={<SignUp />} /> */}
         <Route path="/CompleteComReg" element={<CompleteComReg />} />

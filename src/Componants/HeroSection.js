@@ -107,7 +107,7 @@ const HeroSection = () => {
   // const HeroSection = () => {
   // console.log("HeroSection rendered");
   return (
-    <div style={{ position: "relative", height: "90vh", overflow: "hidden" }}>
+    <div id="hero" style={{ position: "relative", height: "90vh", overflow: "hidden" }}>
       <video
         autoPlay
         loop
