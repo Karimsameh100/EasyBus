@@ -14,6 +14,7 @@ import ClientSignup from "./Pages/client";
 import CompanySignup from "./Pages/Company";
 import CompleteComReg from "./Pages/CompleteComReg";
 import Login from "./Pages/Login";
+import Footer from "./Componants/Footer";
 // import SignUp from "./Pages/SignUp";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         {/* <Route path="/register" element={<SignUp />} /> */}
         <Route path="/CompleteComReg" element={<CompleteComReg />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
