@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function  TripTrackSignup() {
   const [selectedRole, setSelectedRole] = useState();
@@ -16,7 +16,7 @@ function  TripTrackSignup() {
     if (selectedRole === 'client') {
       navigate('/client');  
     } else if (selectedRole === 'company') {
-      navigate('/Company');  
+      navigate('/CompanySignup');  
     }
   };
 
@@ -37,6 +37,7 @@ function  TripTrackSignup() {
                     checked={selectedRole === 'client'}
                     onChange={handleRoleChange}
                   />
+                  <br/>
                   <span>I'm a client, appling for job</span>
                 </Form.Label>
               </Form.Group>
@@ -54,6 +55,7 @@ function  TripTrackSignup() {
                     checked={selectedRole === 'company'}
                     onChange={handleRoleChange}
                   />
+                  <br/>
                   <span>I'm a company, looking for work</span>
                 </Form.Label>
               </Form.Group>
@@ -69,7 +71,7 @@ function  TripTrackSignup() {
       </Form>
 
       <p className="text-center mt-3">
-        Already have an account? <a href="#">Log In</a>
+        Already have an account? <Link to={"/Login"}>Log In</Link>
       </p>
     </div>
   );
