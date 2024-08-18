@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import logo from "../logo/bus.png"
+import logo from "../logo/triptrack.jpeg"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ClientSignup() {
@@ -25,7 +25,7 @@ function ClientSignup() {
     const navagite = useNavigate();
 
     const emailReg = /^[a-z0-9]+@(gmail|yahoo)\.(com)$/;
-    const phoneReg = /^(\+201|01|00201)[0-2,5]{1}[0-9]{8}/;
+    const phoneReg = /^(\+201|01|00201)[0-2,5]{1}[0-9]{8}$/;
     const passReg = /^[0-9]{8,}/;
 
     const validateField = (name, value) => {
@@ -43,7 +43,7 @@ function ClientSignup() {
             if (value.length === 0) {
                 return "Please enter your phone number";
             } else if (!phoneReg.test(value)) {
-                return "Enter a valid 10-digit phone number";
+                return "Enter a valid 11-digit phone number";
             }
         } else if (name === 'email') {
             if (value.length === 0) {
@@ -87,7 +87,12 @@ function ClientSignup() {
         if (userInputs.name && userInputs.phone && userInputs.email && userInputs.password && userInputs.Repass &&
             !errors.nameErr && !errors.phoneErr && !errors.emailErr && !errors.passwordErr && !errors.RepassErr) {
 
-
+                localStorage.setItem('userInputs', JSON.stringify({
+                    name: userInputs.name,
+                    email: userInputs.email,
+                    phone: userInputs.phone,
+                    password: userInputs.password
+                }));
             console.log("Form Data Submitted:", userInputs);
 
 

@@ -16,7 +16,7 @@ function  TripTrackSignup() {
     if (selectedRole === 'client') {
       navigate('/client');  
     } else if (selectedRole === 'company') {
-      navigate('/Company');  
+      navigate('/CompanySignup');  
     }
   };
 
@@ -37,6 +37,7 @@ function  TripTrackSignup() {
                     checked={selectedRole === 'client'}
                     onChange={handleRoleChange}
                   />
+                  <br/>
                   <span>I'm a client, appling for job</span>
                 </Form.Label>
               </Form.Group>
@@ -54,6 +55,7 @@ function  TripTrackSignup() {
                     checked={selectedRole === 'company'}
                     onChange={handleRoleChange}
                   />
+                  <br/>
                   <span>I'm a company, looking for work</span>
                 </Form.Label>
               </Form.Group>
@@ -69,7 +71,11 @@ function  TripTrackSignup() {
       </Form>
 
       <p className="text-center mt-3">
+<<<<<<< HEAD
         Already have an account? <Link to={"/login"}>Log In</Link>
+=======
+        Already have an account? <Link to={"/Login"}>Log In</Link>
+>>>>>>> fa3629432e65c014401014860dd6c7bf631f149f
       </p>
     </div>
   );

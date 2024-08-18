@@ -28,7 +28,7 @@ function CompleteComReg() {
 
         if (type === 'file') {
             // Check file type
-            const validFileTypes = ['application/pdf', 'image/jpeg', 'image/png'];
+            const validFileTypes = ['application/pdf'];
             const file = files[0];
 
             setUserInputs({
@@ -39,7 +39,7 @@ function CompleteComReg() {
             setErrors({
                 ...errors,
                 [`${name}Err`]: !file ? "Please upload a file" :
-                    !validFileTypes.includes(file.type) ? "Only PDF files and image files are allowed" : ""
+                    !validFileTypes.includes(file.type) ? "Only PDF files are allowed" : ""
             });
         } else {
             setUserInputs({
@@ -70,9 +70,13 @@ function CompleteComReg() {
             userInputs.file1 && userInputs.file2 && userInputs.file3 &&
             !errors.file1Err && !errors.file2Err && !errors.file3Err) {
 
+            localStorage.setItem('file1', userInputs.file1);
+            localStorage.setItem('file2', userInputs.file2);
+            localStorage.setItem('file3', userInputs.file3);
+
             console.log("Form Data Submitted:", userInputs);
 
-            navigate('/'); 
+            navigate('/Login'); 
         }
     };
 
