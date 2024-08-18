@@ -71,11 +71,8 @@ function  TripTrackSignup() {
       </Form>
 
       <p className="text-center mt-3">
-<<<<<<<<< Temporary merge branch 1
-        Already have an account? <Link to={"/Login"}>Log In</Link>
-=========
+
         Already have an account? <Link to={"/login"}>Log In</Link>
->>>>>>>>> Temporary merge branch 2
       </p>
     </div>
   );
