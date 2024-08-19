@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "city": "Cairo",
+        "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/db/b7/85.jpg",
+        "info": "Cairo is the capital of Egypt and is known for its rich history and cultural heritage. Visit the Pyramids of Giza, the Egyptian Museum, and Islamic Cairo."
+    },
+    {
+        "id": 2,
+        "city": "Giza",
+        "image": "https://thealtruistictraveller.com/wp-content/uploads/2022/10/cairo-pyramids.jpg",
+        "info": "Giza is a city on the outskirts of Cairo, famous for its ancient pyramids and temples. Visit the Great Pyramid of Khufu, the Pyramid of Khafre, and the Sphinx."
+    },
+    {
+        "id": 3,
+        "city": "Alexandria",
+        "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/fe/0e/2b.jpg",
+        "info": "Alexandria is a coastal city in Egypt, known for its rich history and cultural heritage. Visit the Library of Alexandria, the Citadel of Qaitbay, and the Roman Amphitheater."
+    },
+    {
+        "id": 4,
+        "city": "Port Said",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Port_said_egypt_%286%29.JPG/1200px-Port_said_egypt_%286%29.JPG",
+        "info": "Port Said is a coastal city in Egypt, known for its beautiful beaches and historic landmarks. Visit the Port Said Lighthouse, the Museum of Modern Art, and the Suez Canal."
+    },
+    {
+        "id": 5,
+        "city": "Suez",
+        "image": "https://pohcdn.com/guide/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Suez.jpg",
+        "info": "Suez is a city in Egypt, located on the Suez Canal. Visit the Suez Canal Museum, the Port of Suez, and the Suez Oil Refinery."
+    },
+    {
+        "id": 6,
+        "city": "Aswan",
+        "image": "https://www.af1-2019.aswanforum.org/images/ab_asw_img_1.jpg",
+        "info": "Aswan is a city in southern Egypt, known for its beautiful Nile River views and ancient temples. Visit the Temple of Isis, the Unfinished Obelisk, and the Nubian Museum."
+    },
+    {
+        "id": 7,
+        "city": "Luxor",
+        "image": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0a/45/3a/0f.jpg",
+        "info": "Luxor is a city in southern Egypt, known for its ancient temples and tombs. Visit the Valley of the Kings, the Temple of Karnak, and the Luxor Temple."
+    },
+    {
+        "id": 8,
+        "city": "Hurghada",
+        "image": "https://imagedelivery.net/0LMYosKeo5o-LXOCjdKUuA/tourscanner.com/2022/07/fun-things-to-do-in-Hurghada-Egypt.jpg/w=1200",
+        "info": "Hurghada is a coastal city in Egypt, known for its beautiful beaches and water sports. Visit the Hurghada Marina, the Giftun Islands, and the Makadi Bay."
+    },
+    {
+        "id": 9,
+        "city": "Sharm El-Sheikh",
+        "image": "https://media.istockphoto.com/id/524390404/photo/egyptian-paradise.jpg?s=612x612&w=0&k=20&c=76jpjkkQADDo3pGsOtgjsGPZPMgtNPTS4Xuki_QNw50=",
+        "info": "Sharm El-Sheikh is a coastal city in Egypt, known for its beautiful beaches and coral reefs. Visit the Naama Bay, the Ras Mohammed National Park, and the Sharm El-Sheikh Museum."
+    },
+    {
+        "id": 10,
+        "city": "Ismailia",
+        "image": "https://www.ibisegypttours.com/images/Ismailia.jpg",
+        "info": "Ismailia is a city in Egypt, located on the Suez Canal. Visit the Ismailia Museum, the Port of Ismailia, and the Suez Canal University."
+    },
+    {
+        "id": 11,
+        "city": "Mansoura",
+        "image": "https://www.shutterstock.com/image-photo/el-mansoura-egypt-7-sep-260nw-1774525088.jpg",
+        "info": "Mansoura is a city in Egypt, known for its rich history and cultural heritage. Visit the Mansoura University, the Mansoura Museum, and the Nile River views."
+    },
+    {
+        "id": 12,
+        "city": "Tanta",
+        "image": "https://images.squarespace-cdn.com/content/v1/6057ea63deb56a28d188d74e/1627172319337-89RQ9N38061X6T8M4AR1/60fcad931f6af.jpg",
+        "info": "Tanta is a city in Egypt, known for its beautiful mosques and historic landmarks. Visit the Mosque of Sayyid Ahmed al-Badawi, the Tanta Museum, and the Nile River views."
+    },
+    {
+        "id": 13,
+        "city": "El Mahalla El Kubra",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/f/f1/El-Mahalla_El-Kubra-art.JPG",
+        "info": "El Mahalla El Kubra is a city in Egypt, known for its rich history and cultural heritage. Visit the El Mahalla El Kubra Museum, the Mosque of El Mahalla El Kubra, and the Nile River views."
+    },
+    {
+        "id": 14,
+        "city": "Asyut",
+        "image": " https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs6cWy2OQirOTo8seEp7lSWc_6TDrt6QodKA&s",
+        "info": "Asyut is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Wadi el-Hitan, the Asyut Museum, and the Nile River views."
+    },
+    {
+        "id": 15,
+        "city": "Sohag",
+        "image": "https://d3rr2gvhjw0wwy.cloudfront.net/uploads/mandators/49581/file-manager/sohag,-sohag-city,-sohag-travel.jpg",
+        "info": "Sohag is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Akhmim, the Sohag Museum, and the Nile River views."
+    },
+    {
+        "id": 16,
+        "city": "Qena",
+        "image": "https://www.shutterstock.com/image-photo/dendera-egypt-november-17-2021-260nw-2157108441.jpg",
+        "info": "Qena is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Dendera, the Qena Museum, and the Nile River views."
+    },
+    {
+        "id": 17,
+        "city": "Beni Suef",
+        "image": "https://image.free-apply.com/gallery/l/uni/gallery/lg/1081800020/7bd443f04900ea67f7dfde593c9259a648261c6f.jpg?s=640",
+        "info": "Beni Suef is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Beni Suef, the Beni Suef Museum, and the Nile River views."
+    },
+    {
+        "id": 18,
+        "city": "Faiyum",
+        "image": " https://images.memphistours.com/large/696953448_DSC_0290.jpg",
+        "info": "Faiyum is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Faiyum, the Faiyum Museum, and the Nile River views."
+    },
+    {
+        "id": 19,
+        "city": "Minya",
+        "image": "https://scoopempire.com/wp-content/uploads/2017/05/ElMinya.jpg",
+        "info": "Minya is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Minya, the Minya Museum, and the Nile River views."
+    },
+    {
+        "id": 20,
+        "city": "Marsa Matruh",
+        "image": "https://www.etltravel.com/wp-content/uploads/2021/09/agiba-beach-marsa-matrouh-050.jpg",
+        "info": "Marsa Matruh is a coastal city in Egypt, known for its beautiful beaches and water sports. Visit the Agiba Beach, the Marsa Matruh Museum, and the Roman ruins."
+    }
+]
