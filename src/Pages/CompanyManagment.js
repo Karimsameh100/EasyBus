@@ -3,18 +3,24 @@ import axios from 'axios';
 import { Container, Row, Col, Button, Table } from 'react-bootstrap';
 
 const CompanyManagement = () => {
-  const [companies, setCompanies] = useState([]);
-  const [selectedCompany, setSelectedCompany] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get('http://localhost:4001/posts');
-      const companiesData = response.data.filter(item => item.type === 'company');
-      setCompanies(companiesData);
-    };
-
-    fetchData();
-  }, []);
+    const [companies, setCompanies] = useState([]);
+    const [selectedCompany, setSelectedCompany] = useState(null);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('http://localhost:4001/posts');
+          console.log('Response:', response.data);
+          const companiesData = response.data.filter(item => item.type === 'company');
+          console.log('Companies Data:', companiesData);
+          setCompanies(companiesData);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+  
+      fetchData();
+    }, []);
 
   const handleCompanySelect = (company) => {
     setSelectedCompany(company);
