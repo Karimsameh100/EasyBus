@@ -5,9 +5,11 @@
       "city": "Cairo",
       "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/db/b7/85.jpg",
       "info": "Cairo is the capital of Egypt and is known for its rich history and cultural heritage. Visit the Pyramids of Giza, the Egyptian Museum, and Islamic Cairo.",
-      "companyOne": [
+      "company": [
         {
           "id": 1,
+          
+           "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -48,6 +50,8 @@
       "companyThree": [
         {
           "id": 1,
+          
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -152,6 +156,7 @@
       "companyThree": [
         {
           "id": 1,
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -192,6 +197,8 @@
       "companyOne": [
         {
           "id": 1,
+          
+           "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -296,6 +303,8 @@
       "companyThree": [
         {
           "id": 1,
+          
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -336,6 +345,8 @@
       "companyTwo": [
         {
           "id": 1,
+          
+           "type": "company",
           "name": "Amwag",
           "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
@@ -440,6 +451,8 @@
       "companyThree": [
         {
           "id": 1,
+          
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -480,6 +493,8 @@
       "companyTwo": [
         {
           "id": 1,
+          
+           "type": "company",
           "name": "Amwag",
           "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
@@ -584,6 +599,8 @@
       "companyTwo": [
         {
           "id": 1,
+          
+           "type": "company",
           "name": "Amwag",
           "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
@@ -624,6 +641,8 @@
       "companyOne": [
         {
           "id": 1,
+          
+           "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -728,6 +747,8 @@
       "companyTwo": [
         {
           "id": 1,
+          
+           "type": "company",
           "name": "Amwag",
           "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
@@ -768,6 +789,8 @@
       "companyOne": [
         {
           "id": 1,
+          
+           "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -872,6 +895,8 @@
       "companyThree": [
         {
           "id": 1,
+          
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -912,6 +937,8 @@
       "companyOne": [
         {
           "id": 1,
+          
+           "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -1016,6 +1043,8 @@
       "companyThree": [
         {
           "id": 1,
+          
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -1056,6 +1085,7 @@
       "companyOne": [
         {
           "id": 1,
+          "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -1160,6 +1190,7 @@
       "companyThree": [
         {
           "id": 1,
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -1200,6 +1231,7 @@
       "companyOne": [
         {
           "id": 1,
+          "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -1304,6 +1336,7 @@
       "companyTwo": [
         {
           "id": 1,
+          "type": "company",
           "name": "Amwag",
           "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
@@ -1344,6 +1377,7 @@
       "companyOne": [
         {
           "id": 1,
+           "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -1449,6 +1483,7 @@
       "companyOne": [
         {
           "id": 1,
+           "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -1489,6 +1524,7 @@
       "companyTwo": [
         {
           "id": 1,
+           "type": "company",
           "name": "Amwag",
           "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
@@ -1593,6 +1629,7 @@
       "companyOne": [
         {
           "id": 1,
+           "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -1633,6 +1670,7 @@
       "companyTwo": [
         {
           "id": 1,
+           "type": "company",
           "name": "Amwag",
           "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
@@ -1737,6 +1775,7 @@
       "companyThree": [
         {
           "id": 1,
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -1777,6 +1816,7 @@
       "companyTwo": [
         {
           "id": 1,
+           "type": "company",
           "name": "Amwag",
           "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
@@ -1881,6 +1921,7 @@
       "companyThree": [
         {
           "id": 1,
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -1921,6 +1962,7 @@
       "companyTwo": [
         {
           "id": 1,
+           "type": "company",
           "name": "Amwag",
           "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
@@ -2025,6 +2067,7 @@
       "companyTwo": [
         {
           "id": 1,
+           "type": "company",
           "name": "Amwag",
           "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
@@ -2065,6 +2108,7 @@
       "companyThree": [
         {
           "id": 1,
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -2169,6 +2213,7 @@
       "companyOne": [
         {
           "id": 1,
+           "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -2209,6 +2254,7 @@
       "companyThree": [
         {
           "id": 1,
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -2314,6 +2360,7 @@
       "companyOne": [
         {
           "id": 1,
+           "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -2354,6 +2401,7 @@
       "companyThree": [
         {
           "id": 1,
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -2458,6 +2506,7 @@
       "companyOne": [
         {
           "id": 1,
+           "type": "company",
           "name": "EG bus",
           "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
@@ -2498,6 +2547,7 @@
       "companyThree": [
         {
           "id": 1,
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -2603,6 +2653,7 @@
       "companyTwo": [
         {
           "id": 1,
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -2643,6 +2694,7 @@
       "companyThree": [
         {
           "id": 1,
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -2748,6 +2800,7 @@
       "companyThree": [
         {
           "id": 1,
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
@@ -2788,6 +2841,7 @@
       "companyTwo": [
         {
           "id": 1,
+          "type": "company",
           "name": "go bus",
           "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
