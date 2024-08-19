@@ -5,7 +5,47 @@
       "city": "Cairo",
       "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/db/b7/85.jpg",
       "info": "Cairo is the capital of Egypt and is known for its rich history and cultural heritage. Visit the Pyramids of Giza, the Egyptian Museum, and Islamic Cairo.",
-      "company": [
+      "companyOne": [
+        {
+          "id": 1,
+          "name": "EG bus",
+          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+          "Trips": [
+            {
+              "Trip Number": "4007",
+              "Trip Date": "10/9/2024",
+              "Available Places": "2",
+              "Departure Station": "Menofia",
+              "Stop Stations": "Cairo",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "300 EGP"
+            },
+            {
+              "Trip Number": "4008",
+              "Trip Date": "16/9/2024",
+              " Available Places": "5",
+              "Departure Station": "Minya",
+              "Stop Stations": "Cairo",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "8pm",
+              "Price": "500 EGP"
+            } ,
+            {
+              "Trip Number": "4009",
+              "Trip Date": "2/11/2024",
+              " Available Places": "12",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Cairo",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "7pm",
+              "Price": "450 EGP"
+            }
+          ]
+        }
+      ],
+      "companyThree": [
         {
           "id": 1,
           "name": "go bus",
@@ -13,7 +53,7 @@
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "4000",
               "Trip Date": "20/9/2024",
               "Available Places": "9",
               "Departure Station": "Minya",
@@ -23,17 +63,17 @@
               "Price": "300 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "4001",
               "Trip Date": "10/9/2024",
               " Available Places": "3",
               "Departure Station": "Minya",
-              "Stop Stations": "Giza",
+              "Stop Stations": "Cairo",
               "Departure Time" : "2pm" ,
               "Arrived time" : "6pm",
               "Price": "500 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "4002",
               "Trip Date": "2/9/2024",
               " Available Places": "12",
               "Departure Station": "Sohag",
@@ -109,7 +149,47 @@
       "city": "Giza",
       "image": "https://thealtruistictraveller.com/wp-content/uploads/2022/10/cairo-pyramids.jpg",
       "info": "Giza is a city on the outskirts of Cairo, famous for its ancient pyramids and temples. Visit the Great Pyramid of Khufu, the Pyramid of Khafre, and the Sphinx.",
-      "company": [
+      "companyThree": [
+        {
+          "id": 1,
+          "name": "go bus",
+          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "Trips": [
+            {
+              "Trip Number": "3004",
+              "Trip Date": "20/9/2024",
+              "Available Places": "9",
+              "Departure Station": "Minya",
+              "Stop Stations": "Giza",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "300 EGP"
+            },
+            {
+              "Trip Number": "3005",
+              "Trip Date": "10/9/2024",
+              " Available Places": "3",
+              "Departure Station": "Minya",
+              "Stop Stations": "Giza",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "500 EGP"
+            } ,
+            {
+              "Trip Number": "3006",
+              "Trip Date": "2/9/2024",
+              " Available Places": "12",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Monib",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "450 EGP"
+            }
+          ]
+        }
+      ],
+      "companyOne": [
         {
           "id": 1,
           "name": "EG bus",
@@ -117,7 +197,7 @@
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "3000",
               "Trip Date": "10/9/2024",
               "Available Places": "2",
               "Departure Station": "Menofia",
@@ -127,7 +207,7 @@
               "Price": "300 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "3001",
               "Trip Date": "16/9/2024",
               " Available Places": "5",
               "Departure Station": "Minya",
@@ -137,7 +217,7 @@
               "Price": "500 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "3002",
               "Trip Date": "2/11/2024",
               " Available Places": "12",
               "Departure Station": "Sohag",
@@ -213,7 +293,47 @@
       "city": "Alexandria",
       "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/fe/0e/2b.jpg",
       "info": "Alexandria is a coastal city in Egypt, known for its rich history and cultural heritage. Visit the Library of Alexandria, the Citadel of Qaitbay, and the Roman Amphitheater.",
-      "company": [
+      "companyThree": [
+        {
+          "id": 1,
+          "name": "go bus",
+          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "Trips": [
+            {
+              "Trip Number": "2099",
+              "Trip Date": "20/9/2024",
+              "Available Places": "9",
+              "Departure Station": "Bani Suef",
+              "Stop Stations": "Alexandria",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "300 EGP"
+            },
+            {
+              "Trip Number": "2095",
+              "Trip Date": "10/9/2024",
+              " Available Places": "3",
+              "Departure Station": "Ismailia",
+              "Stop Stations": "Alexandria",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "500 EGP"
+            } ,
+            {
+              "Trip Number": "2096",
+              "Trip Date": "2/9/2024",
+              " Available Places": "12",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Alexandria",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "1450 EGP"
+            }
+          ]
+        }
+      ],
+      "companyTwo": [
         {
           "id": 1,
           "name": "Amwag",
@@ -221,7 +341,7 @@
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "2090",
               "Trip Date": "10/9/2024",
               "Available Places": "2",
               "Departure Station": "Minya",
@@ -231,7 +351,7 @@
               "Price": "300 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "2091",
               "Trip Date": "16/9/2024",
               " Available Places": "5",
               "Departure Station": "Cairo",
@@ -241,7 +361,7 @@
               "Price": "500 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "2092",
               "Trip Date": "2/11/2024",
               " Available Places": "12",
               "Departure Station": "Sohag",
@@ -317,7 +437,47 @@
       "city": "Port Said",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Port_said_egypt_%286%29.JPG/1200px-Port_said_egypt_%286%29.JPG",
       "info": "Port Said is a coastal city in Egypt, known for its beautiful beaches and historic landmarks. Visit the Port Said Lighthouse, the Museum of Modern Art, and the Suez Canal.",
-      "company": [
+      "companyThree": [
+        {
+          "id": 1,
+          "name": "go bus",
+          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "Trips": [
+            {
+              "Trip Number": "2085",
+              "Trip Date": "20/9/2024",
+              "Available Places": "9",
+              "Departure Station": "Minya",
+              "Stop Stations": "Port Said",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "30 EGP"
+            },
+            {
+              "Trip Number": "2086",
+              "Trip Date": "10/9/2024",
+              " Available Places": "3",
+              "Departure Station": "Minya",
+              "Stop Stations": "Port Said",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "50 EGP"
+            } ,
+            {
+              "Trip Number": "2088",
+              "Trip Date": "2/9/2024",
+              " Available Places": "12",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Port Said",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "750 EGP"
+            }
+          ]
+        }
+      ],
+      "companyTwo": [
         {
           "id": 1,
           "name": "Amwag",
@@ -325,7 +485,7 @@
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "2080",
               "Trip Date": "10/9/2024",
               "Available Places": "2",
               "Departure Station": "Minya",
@@ -335,7 +495,7 @@
               "Price": "300 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "2081",
               "Trip Date": "16/9/2024",
               " Available Places": "5",
               "Departure Station": "Cairo",
@@ -345,7 +505,7 @@
               "Price": "500 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "2082",
               "Trip Date": "2/11/2024",
               " Available Places": "12",
               "Departure Station": "Sohag",
@@ -421,7 +581,47 @@
       "city": "Suez",
       "image": "https://pohcdn.com/guide/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Suez.jpg",
       "info": "Suez is a city in Egypt, located on the Suez Canal. Visit the Suez Canal Museum, the Port of Suez, and the Suez Oil Refinery.",
-      "company": [
+      "companyTwo": [
+        {
+          "id": 1,
+          "name": "Amwag",
+          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+          "Trips": [
+            {
+              "Trip Number": "2079",
+              "Trip Date": "1/5/2024",
+              "Available Places": "2",
+              "Departure Station": "Marsa Matrouh",
+              "Stop Stations": "Suez",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "300 EGP"
+            },
+            {
+              "Trip Number": "2074",
+              "Trip Date": "3/12/2024",
+              " Available Places": "5",
+              "Departure Station": "Bani Suef",
+              "Stop Stations": "Suez",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "7pm",
+              "Price": "500 EGP"
+            } ,
+            {
+              "Trip Number": "2073",
+              "Trip Date": "2/8/2024",
+              " Available Places": "12",
+              "Departure Station": "Bani Suef",
+              "Stop Stations": "Suez",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "9pm",
+              "Price": "450 EGP"
+            }
+          ]
+        }
+      ],
+      "companyOne": [
         {
           "id": 1,
           "name": "EG bus",
@@ -429,7 +629,7 @@
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "2070",
               "Trip Date": "10/9/2024",
               "Available Places": "2",
               "Departure Station": "Menofia",
@@ -439,7 +639,7 @@
               "Price": "300 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "2071",
               "Trip Date": "26/9/2024",
               " Available Places": "5",
               "Departure Station": "Minya",
@@ -449,7 +649,7 @@
               "Price": "500 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "2072",
               "Trip Date": "2/1/2024",
               " Available Places": "12",
               "Departure Station": "Sohag",
@@ -525,7 +725,47 @@
       "city": "Aswan",
       "image": "https://www.af1-2019.aswanforum.org/images/ab_asw_img_1.jpg",
       "info": "Aswan is a city in southern Egypt, known for its beautiful Nile River views and ancient temples. Visit the Temple of Isis, the Unfinished Obelisk, and the Nubian Museum.",
-      "company": [
+      "companyTwo": [
+        {
+          "id": 1,
+          "name": "Amwag",
+          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+          "Trips": [
+            {
+              "Trip Number": "2057",
+              "Trip Date": "1/1/2024",
+              "Available Places": "2",
+              "Departure Station": "Menofia",
+              "Stop Stations": "Aswan",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "300 EGP"
+            },
+            {
+              "Trip Number": "2056",
+              "Trip Date": "3/1/2024",
+              " Available Places": "5",
+              "Departure Station": "Gharbia",
+              "Stop Stations": "Aswan",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "7pm",
+              "Price": "500 EGP"
+            } ,
+            {
+              "Trip Number": "2055",
+              "Trip Date": "2/1/2024",
+              " Available Places": "12",
+              "Departure Station": "Bani Suef",
+              "Stop Stations": "Aswan",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "9pm",
+              "Price": "450 EGP"
+            }
+          ]
+        }
+      ],
+      "companyOne": [
         {
           "id": 1,
           "name": "EG bus",
@@ -533,7 +773,7 @@
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "2050",
               "Trip Date": "10/9/2024",
               "Available Places": "2",
               "Departure Station": "Menofia",
@@ -543,7 +783,7 @@
               "Price": "300 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "2051",
               "Trip Date": "26/9/2024",
               " Available Places": "5",
               "Departure Station": "Bani Suef",
@@ -553,7 +793,7 @@
               "Price": "500 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "2052",
               "Trip Date": "2/1/2024",
               " Available Places": "12",
               "Departure Station": "Alexandria",
@@ -629,7 +869,47 @@
       "city": "Luxor",
       "image": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0a/45/3a/0f.jpg",
       "info": "Luxor is a city in southern Egypt, known for its ancient temples and tombs. Visit the Valley of the Kings, the Temple of Karnak, and the Luxor Temple.",
-      "company": [
+      "companyThree": [
+        {
+          "id": 1,
+          "name": "go bus",
+          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "Trips": [
+            {
+              "Trip Number": "1080",
+              "Trip Date": "20/9/2024",
+              "Available Places": "9",
+              "Departure Station": "Minya",
+              "Stop Stations": "Luxor",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "300 EGP"
+            },
+            {
+              "Trip Number": "1081",
+              "Trip Date": "10/9/2024",
+              " Available Places": "3",
+              "Departure Station": "Minya",
+              "Stop Stations": "Luxor",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "500 EGP"
+            } ,
+            {
+              "Trip Number": "1082",
+              "Trip Date": "2/9/2024",
+              " Available Places": "12",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Luxor",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "450 EGP"
+            }
+          ]
+        }
+      ],
+      "companyOne": [
         {
           "id": 1,
           "name": "EG bus",
@@ -637,7 +917,7 @@
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "1083",
               "Trip Date": "10/9/2024",
               "Available Places": "2",
               "Departure Station": "Minya",
@@ -647,7 +927,7 @@
               "Price": "300 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "1084",
               "Trip Date": "26/9/2024",
               " Available Places": "5",
               "Departure Station": "Marsa Matrouh",
@@ -657,7 +937,7 @@
               "Price": "500 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "1085",
               "Trip Date": "2/1/2024",
               " Available Places": "12",
               "Departure Station": "Alexandria",
@@ -733,7 +1013,47 @@
       "city": "Hurghada",
       "image": "https://imagedelivery.net/0LMYosKeo5o-LXOCjdKUuA/tourscanner.com/2022/07/fun-things-to-do-in-Hurghada-Egypt.jpg/w=1200",
       "info": "Hurghada is a coastal city in Egypt, known for its beautiful beaches and water sports. Visit the Hurghada Marina, the Giftun Islands, and the Makadi Bay.",
-      "company": [
+      "companyThree": [
+        {
+          "id": 1,
+          "name": "go bus",
+          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "Trips": [
+            {
+              "Trip Number": "1095",
+              "Trip Date": "20/12/2024",
+              "Available Places": "9",
+              "Departure Station": "Minya",
+              "Stop Stations": "Hurghada",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "200 EGP"
+            },
+            {
+              "Trip Number": "1096",
+              "Trip Date": "10/12/2024",
+              " Available Places": "3",
+              "Departure Station": "Minya",
+              "Stop Stations": "Hurghada",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "700 EGP"
+            } ,
+            {
+              "Trip Number": "1098",
+              "Trip Date": "2/12/2024",
+              " Available Places": "12",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Hurghada",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "850 EGP"
+            }
+          ]
+        }
+      ],
+      "companyOne": [
         {
           "id": 1,
           "name": "EG bus",
@@ -741,7 +1061,7 @@
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "1090",
               "Trip Date": "10/9/2024",
               "Available Places": "2",
               "Departure Station": "Menofia",
@@ -751,7 +1071,7 @@
               "Price": "300 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "1091",
               "Trip Date": "26/9/2024",
               " Available Places": "5",
               "Departure Station": "Cairo",
@@ -761,8 +1081,8 @@
               "Price": "300 EGP"
             } ,
             {
-              "Trip Number": "3",
-              "Trip Date": "2/1/2024",
+              "Trip Number": "1092",
+              "Trip Date": "10/9/2024",
               " Available Places": "12",
               "Departure Station": "Alexandria",
               "Stop Stations": "Hurghada",
@@ -837,7 +1157,47 @@
       "city": "Sharm El-Sheikh",
       "image": "https://media.istockphoto.com/id/524390404/photo/egyptian-paradise.jpg?s=612x612&w=0&k=20&c=76jpjkkQADDo3pGsOtgjsGPZPMgtNPTS4Xuki_QNw50=",
       "info": "Sharm El-Sheikh is a coastal city in Egypt, known for its beautiful beaches and coral reefs. Visit the Naama Bay, the Ras Mohammed National Park, and the Sharm El-Sheikh Museum.",
-      "company": [
+      "companyThree": [
+        {
+          "id": 1,
+          "name": "go bus",
+          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "Trips": [
+            {
+              "Trip Number": "2005",
+              "Trip Date": "3/10/2024",
+              "Available Places": "9",
+              "Departure Station": "Minya",
+              "Stop Stations": "Sharm El-Sheikh",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "300 EGP"
+            },
+            {
+              "Trip Number": "2004",
+              "Trip Date": "2/10/2024",
+              " Available Places": "3",
+              "Departure Station": "Minya",
+              "Stop Stations": "Sharm El-Sheikh",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "500 EGP"
+            } ,
+            {
+              "Trip Number": "2003",
+              "Trip Date": "1/10/2024",
+              " Available Places": "12",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Sharm El-Sheikh",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "450 EGP"
+            }
+          ]
+        }
+      ],
+      "companyOne": [
         {
           "id": 1,
           "name": "EG bus",
@@ -845,7 +1205,7 @@
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "2000",
               "Trip Date": "14/9/2024",
               "Available Places": "2",
               "Departure Station": "Menofia",
@@ -855,7 +1215,7 @@
               "Price": "600 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "2001",
               "Trip Date": "22/9/2024",
               " Available Places": "5",
               "Departure Station": "Cairo",
@@ -865,7 +1225,7 @@
               "Price": "300 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "2002",
               "Trip Date": "2/11/2024",
               " Available Places": "12",
               "Departure Station": "Minya",
@@ -941,7 +1301,47 @@
       "city": "Ismailia",
       "image": "https://www.ibisegypttours.com/images/Ismailia.jpg",
       "info": "Ismailia is a city in Egypt, located on the Suez Canal. Visit the Ismailia Museum, the Port of Ismailia, and the Suez Canal University.",
-      "company": [
+      "companyTwo": [
+        {
+          "id": 1,
+          "name": "Amwag",
+          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+          "Trips": [
+            {
+              "Trip Number": "2010",
+              "Trip Date": "7/11/2024",
+              "Available Places": "2",
+              "Departure Station": "Minya",
+              "Stop Stations": "Ismailia",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "300 EGP"
+            },
+            {
+              "Trip Number": "2011",
+              "Trip Date": "6/11/2024",
+              " Available Places": "5",
+              "Departure Station": "Cairo",
+              "Stop Stations": "Ismailia",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "7pm",
+              "Price": "500 EGP"
+            } ,
+            {
+              "Trip Number": "2012",
+              "Trip Date": "5/11/2024",
+              " Available Places": "12",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Ismailia",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "9pm",
+              "Price": "450 EGP"
+            }
+          ]
+        }
+      ],
+      "companyOne": [
         {
           "id": 1,
           "name": "EG bus",
@@ -949,7 +1349,7 @@
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "2013",
               "Trip Date": "14/9/2024",
               "Available Places": "2",
               "Departure Station": "Menofia",
@@ -959,7 +1359,7 @@
               "Price": "600 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "2014",
               "Trip Date": "22/9/2024",
               " Available Places": "5",
               "Departure Station": "Cairo",
@@ -969,7 +1369,7 @@
               "Price": "300 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "2015",
               "Trip Date": "2/11/2024",
               " Available Places": "12",
               "Departure Station": "Minya",
@@ -1044,8 +1444,49 @@
       "id": 11,
       "city": "Mansoura",
       "image": "https://www.shutterstock.com/image-photo/el-mansoura-egypt-7-sep-260nw-1774525088.jpg",
+     
       "info": "Mansoura is a city in Egypt, known for its rich history and cultural heritage. Visit the Mansoura University, the Mansoura Museum, and the Nile River views.",
-      "company": [
+      "companyOne": [
+        {
+          "id": 1,
+          "name": "EG bus",
+          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+          "Trips": [
+            {
+              "Trip Number": "2046",
+              "Trip Date": "6/3/2024",
+              "Available Places": "2",
+              "Departure Station": "Menofia",
+              "Stop Stations": "Mansoura",
+              "Departure Time" : "1am" ,
+              "Arrived time" : "3pm",
+              "Price": "390 EGP"
+            },
+            {
+              "Trip Number": "2045",
+              "Trip Date": "1/3/2024",
+              " Available Places": "6",
+              "Departure Station": "Minya",
+              "Stop Stations": "Mansoura",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "8pm",
+              "Price": "590 EGP"
+            } ,
+            {
+              "Trip Number": "2044",
+              "Trip Date": "2/3/2024",
+              " Available Places": "22",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Mansoura",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "9pm",
+              "Price": "610 EGP"
+            }
+          ]
+        }
+      ],
+      "companyTwo": [
         {
           "id": 1,
           "name": "Amwag",
@@ -1053,7 +1494,7 @@
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "2040",
               "Trip Date": "11/9/2024",
               "Available Places": "2",
               "Departure Station": "Cairo",
@@ -1063,7 +1504,7 @@
               "Price": "700 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "2041",
               "Trip Date": "16/9/2024",
               " Available Places": "5",
               "Departure Station": "Qena",
@@ -1073,7 +1514,7 @@
               "Price": "400 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "2042",
               "Trip Date": "2/11/2024",
               " Available Places": "12",
               "Departure Station": "Sohag",
@@ -1149,7 +1590,47 @@
       "city": "Tanta",
       "image": "https://images.squarespace-cdn.com/content/v1/6057ea63deb56a28d188d74e/1627172319337-89RQ9N38061X6T8M4AR1/60fcad931f6af.jpg",
       "info": "Tanta is a city in Egypt, known for its beautiful mosques and historic landmarks. Visit the Mosque of Sayyid Ahmed al-Badawi, the Tanta Museum, and the Nile River views.",
-      "company": [
+      "companyOne": [
+        {
+          "id": 1,
+          "name": "EG bus",
+          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+          "Trips": [
+            {
+              "Trip Number": "2035",
+              "Trip Date": "1/8/2024",
+              "Available Places": "2",
+              "Departure Station": "Menofia",
+              "Stop Stations": "Tanta",
+              "Departure Time" : "1am" ,
+              "Arrived time" : "3pm",
+              "Price": "380 EGP"
+            },
+            {
+              "Trip Number": "2034",
+              "Trip Date": "2/8/2024",
+              " Available Places": "6",
+              "Departure Station": "Minya",
+              "Stop Stations": "Tanta",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "8pm",
+              "Price": "290 EGP"
+            } ,
+            {
+              "Trip Number": "2033",
+              "Trip Date": "3/8/2024",
+              " Available Places": "22",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Tanta",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "9pm",
+              "Price": "610 EGP"
+            }
+          ]
+        }
+      ],
+      "companyTwo": [
         {
           "id": 1,
           "name": "Amwag",
@@ -1157,7 +1638,7 @@
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "2031",
               "Trip Date": "10/9/2024",
               "Available Places": "2",
               "Departure Station": "Bani Suef",
@@ -1167,7 +1648,7 @@
               "Price": "300 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "2030",
               "Trip Date": "16/9/2024",
               " Available Places": "5",
               "Departure Station": "Alexandria",
@@ -1177,7 +1658,7 @@
               "Price": "500 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "2032",
               "Trip Date": "2/11/2024",
               " Available Places": "12",
               "Departure Station": "Sohag",
@@ -1253,7 +1734,47 @@
       "city": "El Mahalla El Kubra",
       "image": "https://upload.wikimedia.org/wikipedia/commons/f/f1/El-Mahalla_El-Kubra-art.JPG",
       "info": "El Mahalla El Kubra is a city in Egypt, known for its rich history and cultural heritage. Visit the El Mahalla El Kubra Museum, the Mosque of El Mahalla El Kubra, and the Nile River views.",
-      "company": [
+      "companyThree": [
+        {
+          "id": 1,
+          "name": "go bus",
+          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "Trips": [
+            {
+              "Trip Number": "1066",
+              "Trip Date": "11/9/2024",
+              "Available Places": "9",
+              "Departure Station": "Alexandria",
+              "Stop Stations": "El Mahalla El Kubra",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "100 EGP"
+            },
+            {
+              "Trip Number": "1065",
+              "Trip Date": "20/1/2024",
+              " Available Places": "3",
+              "Departure Station": "Gharbia",
+              "Stop Stations": "El Mahalla El Kubra",
+              "Departure Time" : "3pm" ,
+              "Arrived time" : "9pm",
+              "Price": "400 EGP"
+            } ,
+            {
+              "Trip Number": "1064",
+              "Trip Date": "6/8/2024",
+              " Available Places": "12",
+              "Departure Station": "Marsa Matrouh",
+              "Stop Stations": "El Mahalla El Kubra",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "10pm",
+              "Price": "900 EGP"
+            }
+          ]
+        }
+      ], 
+      "companyTwo": [
         {
           "id": 1,
           "name": "Amwag",
@@ -1261,7 +1782,7 @@
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "1060",
               "Trip Date": "10/9/2024",
               "Available Places": "2",
               "Departure Station": "Cairo",
@@ -1271,7 +1792,7 @@
               "Price": "500 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "1061",
               "Trip Date": "16/9/2024",
               " Available Places": "5",
               "Departure Station": "Menofia",
@@ -1281,7 +1802,7 @@
               "Price": "700 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "1062",
               "Trip Date": "2/11/2024",
               " Available Places": "12",
               "Departure Station": "Minya",
@@ -1357,7 +1878,47 @@
       "city": "Asyut",
       "image": " https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs6cWy2OQirOTo8seEp7lSWc_6TDrt6QodKA&s",
       "info": "Asyut is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Wadi el-Hitan, the Asyut Museum, and the Nile River views.",
-      "company": [
+      "companyThree": [
+        {
+          "id": 1,
+          "name": "go bus",
+          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "Trips": [
+            {
+              "Trip Number": "1050",
+              "Trip Date": "11/9/2024",
+              "Available Places": "9",
+              "Departure Station": "Alexandria",
+              "Stop Stations": "Asyut",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "9pm",
+              "Price": "300 EGP"
+            },
+            {
+              "Trip Number": "1051",
+              "Trip Date": "24/9/2024",
+              " Available Places": "3",
+              "Departure Station": "Gharbia",
+              "Stop Stations": "Asyut",
+              "Departure Time" : "3pm" ,
+              "Arrived time" : "8pm",
+              "Price": "500 EGP"
+            } ,
+            {
+              "Trip Number": "1052",
+              "Trip Date": "20/8/2024",
+              " Available Places": "12",
+              "Departure Station": "Marsa Matrouh",
+              "Stop Stations": "Asyut",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "900 EGP"
+            }
+          ]
+        }
+      ], 
+      "companyTwo": [
         {
           "id": 1,
           "name": "Amwag",
@@ -1365,7 +1926,7 @@
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "1053",
               "Trip Date": "10/9/2024",
               "Available Places": "2",
               "Departure Station": "Cairo",
@@ -1375,7 +1936,7 @@
               "Price": "500 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "1054",
               "Trip Date": "16/9/2024",
               " Available Places": "5",
               "Departure Station": "Menofia",
@@ -1385,7 +1946,7 @@
               "Price": "700 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "1055",
               "Trip Date": "2/11/2024",
               " Available Places": "12",
               "Departure Station": "Minya",
@@ -1461,7 +2022,47 @@
       "city": "Sohag",
       "image": "https://d3rr2gvhjw0wwy.cloudfront.net/uploads/mandators/49581/file-manager/sohag,-sohag-city,-sohag-travel.jpg",
       "info": "Sohag is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Akhmim, the Sohag Museum, and the Nile River views.",
-      "company": [
+      "companyTwo": [
+        {
+          "id": 1,
+          "name": "Amwag",
+          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+          "Trips": [
+            {
+              "Trip Number": "1046",
+              "Trip Date": "10/9/2024",
+              "Available Places": "2",
+              "Departure Station": "Cairo",
+              "Stop Stations": "Sohag",
+              "Departure Time" : "6pm" ,
+              "Arrived time" : "11pm",
+              "Price": "500 EGP"
+            },
+            {
+              "Trip Number": "1045",
+              "Trip Date": "16/9/2024",
+              " Available Places": "5",
+              "Departure Station": "Menofia",
+              "Stop Stations": "Sohag",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "12pm",
+              "Price": "700 EGP"
+            } ,
+            {
+              "Trip Number": "1044",
+              "Trip Date": "2/11/2024",
+              " Available Places": "12",
+              "Departure Station": "Minya",
+              "Stop Stations": "Sohag",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "9pm",
+              "Price": "650 EGP"
+            }
+          ]
+        }
+      ],
+      "companyThree": [
         {
           "id": 1,
           "name": "go bus",
@@ -1469,7 +2070,7 @@
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "1040",
               "Trip Date": "10/9/2024",
               "Available Places": "9",
               "Departure Station": "Alexandria",
@@ -1479,7 +2080,7 @@
               "Price": "500 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "1041",
               "Trip Date": "14/9/2024",
               " Available Places": "3",
               "Departure Station": "Gharbia",
@@ -1489,7 +2090,7 @@
               "Price": "400 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "1042",
               "Trip Date": "30/8/2024",
               " Available Places": "12",
               "Departure Station": "Marsa Matrouh",
@@ -1565,7 +2166,47 @@
       "city": "Qena",
       "image": "https://www.shutterstock.com/image-photo/dendera-egypt-november-17-2021-260nw-2157108441.jpg",
       "info": "Qena is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Dendera, the Qena Museum, and the Nile River views.",
-      "company": [
+      "companyOne": [
+        {
+          "id": 1,
+          "name": "EG bus",
+          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+          "Trips": [
+            {
+              "Trip Number": "1035",
+              "Trip Date": "1/8/2024",
+              "Available Places": "2",
+              "Departure Station": "Menofia",
+              "Stop Stations": "Qena",
+              "Departure Time" : "1am" ,
+              "Arrived time" : "3pm",
+              "Price": "380 EGP"
+            },
+            {
+              "Trip Number": "1034",
+              "Trip Date": "18/7/2024",
+              " Available Places": "6",
+              "Departure Station": "Minya",
+              "Stop Stations": "Qena",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "8pm",
+              "Price": "290 EGP"
+            } ,
+            {
+              "Trip Number": "1033",
+              "Trip Date": "2/1/2024",
+              " Available Places": "22",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Qena",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "9pm",
+              "Price": "610 EGP"
+            }
+          ]
+        }
+      ],
+      "companyThree": [
         {
           "id": 1,
           "name": "go bus",
@@ -1573,7 +2214,7 @@
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "1030",
               "Trip Date": "20/9/2024",
               "Available Places": "9",
               "Departure Station": "Alexandria",
@@ -1583,7 +2224,7 @@
               "Price": "350 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "1031",
               "Trip Date": "14/9/2024",
               " Available Places": "3",
               "Departure Station": "Gharbia",
@@ -1593,7 +2234,7 @@
               "Price": "400 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "1032",
               "Trip Date": "30/8/2024",
               " Available Places": "12",
               "Departure Station": "Sohag",
@@ -1668,8 +2309,49 @@
       "id": 17,
       "city": "Beni Suef",
       "image": "https://image.free-apply.com/gallery/l/uni/gallery/lg/1081800020/7bd443f04900ea67f7dfde593c9259a648261c6f.jpg?s=640",
+     
       "info": "Beni Suef is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Beni Suef, the Beni Suef Museum, and the Nile River views.",
-      "company": [
+      "companyOne": [
+        {
+          "id": 1,
+          "name": "EG bus",
+          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+          "Trips": [
+            {
+              "Trip Number": "1022",
+              "Trip Date": "1/9/2024",
+              "Available Places": "2",
+              "Departure Station": "Menofia",
+              "Stop Stations": "Beni Suef",
+              "Departure Time" : "1pm" ,
+              "Arrived time" : "9pm",
+              "Price": "380 EGP"
+            },
+            {
+              "Trip Number": "1023",
+              "Trip Date": "18/9/2024",
+              " Available Places": "6",
+              "Departure Station": "Minya",
+              "Stop Stations": "Beni Suef",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "8pm",
+              "Price": "590 EGP"
+            } ,
+            {
+              "Trip Number": "1024",
+              "Trip Date": "2/5/2024",
+              " Available Places": "22",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Beni Suef",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "9pm",
+              "Price": "650 EGP"
+            }
+          ]
+        }
+      ],
+      "companyThree": [
         {
           "id": 1,
           "name": "go bus",
@@ -1677,7 +2359,7 @@
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "1019",
               "Trip Date": "10/9/2024",
               "Available Places": "9",
               "Departure Station": "Alexandria",
@@ -1687,7 +2369,7 @@
               "Price": "500 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "1020",
               "Trip Date": "14/9/2024",
               " Available Places": "3",
               "Departure Station": "Gharbia",
@@ -1697,7 +2379,7 @@
               "Price": "400 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "1021",
               "Trip Date": "30/8/2024",
               " Available Places": "12",
               "Departure Station": "Sohag",
@@ -1773,7 +2455,47 @@
       "city": "Faiyum",
       "image": " https://images.memphistours.com/large/696953448_DSC_0290.jpg",
       "info": "Faiyum is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Faiyum, the Faiyum Museum, and the Nile River views.",
-      "company": [
+      "companyOne": [
+        {
+          "id": 1,
+          "name": "EG bus",
+          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+          "Trips": [
+            {
+              "Trip Number": "1009",
+              "Trip Date": "10/9/2024",
+              "Available Places": "2",
+              "Departure Station": "Menofia",
+              "Stop Stations": "Faiyum",
+              "Departure Time" : "1pm" ,
+              "Arrived time" : "4pm",
+              "Price": "300 EGP"
+            },
+            {
+              "Trip Number": "1010",
+              "Trip Date": "16/9/2024",
+              " Available Places": "6",
+              "Departure Station": "Minya",
+              "Stop Stations": "Faiyum",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "8pm",
+              "Price": "500 EGP"
+            } ,
+            {
+              "Trip Number": "1011",
+              "Trip Date": "2/2/2024",
+              " Available Places": "22",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Faiyum",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "9pm",
+              "Price": "450 EGP"
+            }
+          ]
+        }
+      ],
+      "companyThree": [
         {
           "id": 1,
           "name": "go bus",
@@ -1781,7 +2503,7 @@
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "1012",
               "Trip Date": "30/9/2024",
               "Available Places": "9",
               "Departure Station": "Alexandria",
@@ -1791,7 +2513,7 @@
               "Price": "500 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "1013",
               "Trip Date": "10/9/2024",
               " Available Places": "3",
               "Departure Station": "Menofia",
@@ -1801,7 +2523,7 @@
               "Price": "400 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "1014",
               "Trip Date": "6/9/2024",
               " Available Places": "12",
               "Departure Station": "Bani Suef",
@@ -1876,8 +2598,9 @@
       "id": 19,
       "city": "Minya",
       "image": "https://scoopempire.com/wp-content/uploads/2017/05/ElMinya.jpg",
+      
       "info": "Minya is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Minya, the Minya Museum, and the Nile River views.",
-      "company": [
+      "companyTwo": [
         {
           "id": 1,
           "name": "go bus",
@@ -1885,7 +2608,47 @@
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "Trips": [
             {
-              "Trip Number": "1",
+              "Trip Number": "1006",
+              "Trip Date": "20/9/2024",
+              "Available Places": "9",
+              "Departure Station": "Minya",
+              "Stop Stations": "Minya",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "300 EGP"
+            },
+            {
+              "Trip Number": "1007",
+              "Trip Date": "10/9/2024",
+              " Available Places": "3",
+              "Departure Station": "Minya",
+              "Stop Stations": "Minya",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "500 EGP"
+            } ,
+            {
+              "Trip Number": "1008",
+              "Trip Date": "2/9/2024",
+              " Available Places": "12",
+              "Departure Station": "Sohag",
+              "Stop Stations": "Malawi",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "450 EGP"
+            }
+          ]
+        }
+      ],
+      "companyThree": [
+        {
+          "id": 1,
+          "name": "go bus",
+          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "Trips": [
+            {
+              "Trip Number": "1015",
               "Trip Date": "30/9/2024",
               "Available Places": "19",
               "Departure Station": "Marsa Matrouh",
@@ -1895,7 +2658,7 @@
               "Price": "300 EGP"
             },
             {
-              "Trip Number": "2",
+              "Trip Number": "1016",
               "Trip Date": "10/9/2024",
               " Available Places": "7",
               "Departure Station": "Cairo",
@@ -1905,7 +2668,7 @@
               "Price": "500 EGP"
             } ,
             {
-              "Trip Number": "3",
+              "Trip Number": "1017",
               "Trip Date": "6/9/2024",
               " Available Places": "2",
               "Departure Station": "Bani Suef",
@@ -1982,7 +2745,7 @@
       "image": "https://www.etltravel.com/wp-content/uploads/2021/09/agiba-beach-marsa-matrouh-050.jpg",
       
       "info": "Marsa Matruh is a coastal city in Egypt, known for its beautiful beaches and water sports. Visit the Agiba Beach, the Marsa Matruh Museum, and the Roman ruins.",
-      "company": [
+      "companyThree": [
         {
           "id": 1,
           "name": "go bus",
@@ -2014,6 +2777,46 @@
               "Trip Date": "6/9/2024",
               " Available Places": "12",
               "Departure Station": "Bani Suef",
+              "Stop Stations": "Marsa Matruh",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "450 EGP"
+            }
+          ]
+        }
+      ],
+      "companyTwo": [
+        {
+          "id": 1,
+          "name": "go bus",
+          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "Trips": [
+            {
+              "Trip Number": "1005",
+              "Trip Date": "20/9/2024",
+              "Available Places": "9",
+              "Departure Station": "Minya",
+              "Stop Stations": "Marsa Matruh",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "300 EGP"
+            },
+            {
+              "Trip Number": "1004",
+              "Trip Date": "10/9/2024",
+              " Available Places": "3",
+              "Departure Station": "Minya",
+              "Stop Stations": "Marsa Matruh",
+              "Departure Time" : "2pm" ,
+              "Arrived time" : "6pm",
+              "Price": "500 EGP"
+            } ,
+            {
+              "Trip Number": "1003",
+              "Trip Date": "2/9/2024",
+              " Available Places": "12",
+              "Departure Station": "Sohag",
               "Stop Stations": "Marsa Matruh",
               "Departure Time" : "2pm" ,
               "Arrived time" : "6pm",
