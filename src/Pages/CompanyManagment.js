@@ -7,43 +7,27 @@ const CompanyManagement = () => {
   const [selectedCompany, setSelectedCompany] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:4001/companies')
-      .then(response => {
-        setCompanies(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    const fetchData = async () => {
+      const response = await axios.get('http://localhost:4001/posts');
+      const companiesData = response.data.filter(item => item.type === 'company');
+      setCompanies(companiesData);
+    };
+
+    fetchData();
   }, []);
 
-  const handleCompanySelect = (companyId) => {
-    axios.get(`http://localhost:4001/companies/${companyId}`)
-      .then(response => {
-        setSelectedCompany(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  const handleCompanySelect = (company) => {
+    setSelectedCompany(company);
   };
 
   const handleCompanyDelete = (companyId) => {
-    axios.delete(`http://localhost:4001/companies/${companyId}`)
-      .then(response => {
-        setCompanies(companies.filter(company => company.id !== companyId));
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    axios.delete(`http://localhost:4001/posts/${companyId}`);
+    setCompanies(companies.filter(company => company.id !== companyId));
   };
 
   const handleCompanyEdit = (companyId, updatedCompany) => {
-    axios.put(`http://localhost:4001/companies/${companyId}`, updatedCompany)
-      .then(response => {
-        setCompanies(companies.map(company => company.id === companyId ? updatedCompany : company));
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    axios.put(`http://localhost:4001/posts/${companyId}`, updatedCompany);
+    setCompanies(companies.map(company => company.id === companyId ? updatedCompany : company));
   };
 
   return (
@@ -63,7 +47,7 @@ const CompanyManagement = () => {
                 <tr key={company.id}>
                   <td>{company.name}</td>
                   <td>
-                    <Button variant="primary" onClick={() => handleCompanySelect(company.id)}>Select</Button>
+                    <Button variant="primary" onClick={() => handleCompanySelect(company)}>Select</Button>
                     <Button variant="danger" onClick={() => handleCompanyDelete(company.id)}>Delete</Button>
                   </td>
                 </tr>
@@ -83,22 +67,27 @@ const CompanyManagement = () => {
                     <th>Available Places</th>
                     <th>Departure Station</th>
                     <th>Stop Stations</th>
+                    <th>Departure Time</th>
+                    <th>Arrived time</th>
                     <th>Price</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {selectedCompany.trips.map((trip) => (
+                  {selectedCompany.Trips.map((trip) => (
                     <tr key={trip.TripNumber}>
                       <td>{trip.TripNumber}</td>
                       <td>{trip.TripDate}</td>
                       <td>{trip.AvailablePlaces}</td>
                       <td>{trip.DepartureStation}</td>
                       <td>{trip.StopStations}</td>
+                      <td>{trip.DepartureTime}</td>
+                      <td>{trip.ArrivedTime}</td>
                       <td>{trip.Price}</td>
                     </tr>
                   ))}
                 </tbody>
               </Table>
+              <Button variant="secondary" onClick={() => setSelectedCompany(null)}>Back</Button>
             </div>
           )}
         </Col>
