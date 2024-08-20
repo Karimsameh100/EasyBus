@@ -11,6 +11,8 @@ export function CityDetailes() {
     const [currentPage, setCurrentPage] = useState(1);
     const reviewsPerPage = 4;
     const [hasMoreReviews, setHasMoreReviews] = useState(true);
+    const [companiess, setCompanies] = useState([]);
+    const [trips, setTrips] = useState([]);
 
     useEffect(() => {
         axios
@@ -18,6 +20,8 @@ export function CityDetailes() {
             .then((res) => {
                 setCity(res.data);
                 setHasMoreReviews(res.data.Reviews.length > reviewsPerPage);
+                setCompanies(res.data.companies || []); // add default value
+                setTrips(res.data.companies && res.data.companies.trips || []); // add default value
             })
             .catch((err) => console.error('Error fetching products:', err));
     }, [params.id, reviewsPerPage]);
@@ -83,77 +87,49 @@ export function CityDetailes() {
                 <h4 style={{ textAlign: "left" }}>{city.info}</h4>
             </div>
             <div class="container-fluid">
-                <h2 className="text-center m-5">Travel with go bus</h2>
-                <div class="row d-flex justify-content-center">
-                    <div class="col-sm-6 col-md-4">
-                        <img src={gobus} className="img-fluid mt-5 " alt="Image" />
+                {companiess.map((company) => (
+                    <div key={company.id} class="row d-flex justify-content-center mb-5">
+                        <h2 className="text-center m-5">Travel with {company.name}</h2>
+                        <div class="col-sm-6 col-md-4">
+                            <img src={company.image} className="img-fluid mt-5 " alt="Image" />
+                        </div>
+                        <div class="col-sm-6 col-md-8">
+                            <table class="table table-striped table-bordered-bold">
+                                <thead>
+                                    <tr>
+                                        <th>Trip Number</th>
+                                        <th style={{ width: "15%" }}>Trip Date</th>
+                                        <th class="text-center" style={{ width: "8%" }}>Available Places</th>
+                                        <th class="text-center" style={{ width: "15%" }}>Departure Station</th>
+                                        <th class="text-center" style={{ width: "10%" }}>Stop Stations</th>
+                                        <th style={{width : "10%"}}>Go In</th>
+                                        <th style={{width : "10%"}}>Arrive At</th>
+                                        <th style={{ width: "10%" }}>Price</th>
+                                        <th class="text-center" style={{ width: "10%" }}>Book</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {company.trips.map((trip) => (
+                                        <tr key={trip.tripNumber}>
+                                            <td>{trip.tripNumber}</td>
+                                            <td>{trip.tripDate}</td>
+                                            <td>{trip.availablePlaces}</td>
+                                            <td>{trip.departureStation}</td>
+                                            <td>{trip.stopStations}</td>
+                                            <td>{trip.departureTime}</td>
+                                            <td>{trip.arrivedTime}</td>
+                                            <td>{trip.price}</td>
+                                            <td>
+                                                <button class="btn btn-success btn-sm w-100">Book</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="col-sm-6 col-md-8">
-                        <table class="table table-striped table-bordered-bold">
-                            <thead>
-                                <tr>
-                                    <th>Trip Number</th>
-                                    <th style={{width : "15%"}}>Trip Date</th>
-                                    <th class="text-center" style={{ width: "10%" }}>Available Places</th>
-                                    <th class="text-center" style={{ width: "15%" }}>Departure Station</th>
-                                    <th class="text-center" style={{ width: "15%" }}>Stop Stations</th>
-                                    <th>Go In</th>
-                                    <th>Arrive At</th>
-                                    <th style={{ width: "7%" }}>Price</th>
-                                    <th class="text-center" style={{ width: "10%" }}>Book</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>TR001</td>
-                                    <td>2023-02-20</td>
-                                    <td>20</td>
-                                    <td>{city.city}</td>
-                                    <td>Los Angeles, Chicago</td>
-                                    <td>08:00 AM</td>
-                                    <td>10:00 AM</td>
-                                    <td>$100</td>
-                                    <td><button class="btn btn-success btn-sm w-100">Book</button></td>
-                                </tr>
-                                <tr>
-                                    <td>TR002</td>
-                                    <td>2023-02-22</td>
-                                    <td>15</td>
-                                    <td>{city.city}</td>
-                                    <td>Las Vegas, Phoenix</td>
-                                    <td>09:00 AM</td>
-                                    <td>11:00 AM</td>
-                                    <td>$120</td>
-                                    <td><button class="btn btn-success btn-sm w-100">Book</button></td>
-                                </tr>
-                                <tr>
-                                    <td>TR003</td>
-                                    <td>2023-02-24</td>
-                                    <td>25</td>
-                                    <td>{city.city}</td>
-                                    <td>Orlando, Tampa</td>
-                                    <td>10:00 AM</td>
-                                    <td>12:00 PM</td>
-                                    <td>$150</td>
-                                    <td><button class="btn btn-success btn-sm w-100">Book</button></td>
-                                </tr>
-                                <tr>
-                                    <td>TR004</td>
-                                    <td>2023-02-26</td>
-                                    <td>30</td>
-                                    <td>{city.city}</td>
-                                    <td>Houston, Austin</td>
-                                    <td>11:00 AM</td>
-                                    <td>01:00 PM</td>
-                                    <td>$180</td>
-                                    <td><button class="btn btn-success btn-sm w-100">Book</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                ))}
             </div>
-
             <section className="bg-light py-3 py-md-5">
                 <div className="container">
                     <div className="row gy-5 gy-lg-0 align-items-center">
