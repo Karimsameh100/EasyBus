@@ -147,7 +147,7 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link me-3" to="#">
+                <Link to={"/About"} className="nav-link me-3">
                   About
                 </Link>
               </li>
