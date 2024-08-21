@@ -7,10 +7,10 @@
       "info": "Cairo, Egypt’s sprawling capital, is set on the Nile River. At its heart is Tahrir Square and the vast Egyptian Museum, a trove of antiquities including royal mummies and gilded King Tutankhamun artifacts. Nearby, Giza is the site of the iconic pyramids and Great Sphinx, dating to the 26th century BC. In Gezira Island’s leafy Zamalek district, 187m Cairo Tower affords panoramic city views.",
       "companies": [
         {
-          "id": "1",
+          "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -19,8 +19,8 @@
               "availablePlaces": "9",
               "departureStation": "Minya",
               "stopStations": "Cairo",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -29,8 +29,8 @@
               "availablePlaces": "3",
               "departureStation": "Minya",
               "stopStations": "Cairo",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "500 EGP"
             },
             {
@@ -39,17 +39,17 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Monib",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "450 EGP"
             }
           ]
         },
         {
-          "id": "2",
+         "id": 2,
           "type": "company",
           "name": "EG bus",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "trips": [
             {
@@ -58,8 +58,8 @@
               "availablePlaces": "2",
               "departureStation": "Menofia",
               "stopStations": "Cairo",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -68,8 +68,8 @@
               "availablePlaces": "5",
               "departureStation": "Minya",
               "stopStations": "Cairo",
-              "departureTime": "2pm",
-              "arrivedTime": "8pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "500 EGP"
             },
             {
@@ -78,8 +78,8 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Cairo",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -91,7 +91,7 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate":5
         },
         {
           "ReviewId": 2,
@@ -141,13 +141,6 @@
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
           "ReviewCutomerRate": 3
-        },
-        {
-          "ReviewId": 9,
-          "RevCustomerImage": "https://i.pinimg.com/564x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
-          "Review": "dodododod",
-          "ReviewCustomerName": "Dima",
-          "ReviewCutomerRate": 5
         }
       ]
     },
@@ -158,10 +151,10 @@
       "info": "Giza is an Egyptian city on the west bank of the Nile, near Cairo. The Giza Plateau is home to iconic Egyptian monuments, including 3 tall pyramids built as royal mausoleums around the 26th century B.C. The largest, the Great Pyramid, is King Khufu’s tomb. The Great Sphinx is a vast sculpture of a man’s head on a lion’s body. The Solar Boat Museum displays a restored cedar barge found buried near the Great Pyramid",
       "companies": [
         {
-          "id": "1",
+          "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -170,8 +163,8 @@
               "availablePlaces": "9",
               "departureStation": "Minya",
               "stopStations": "Giza",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -180,8 +173,8 @@
               "availablePlaces": "3",
               "departureStation": "Minya",
               "stopStations": "Giza",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "500 EGP"
             },
             {
@@ -190,18 +183,18 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Giza",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "450 EGP"
             }
           ]
         },
         {
-          "id": "3",
+         "id": 3,
           "type": "company",
           "name": "Amwag",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
-          "about": "Amwag Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
+          "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "trips": [
             {
               "tripNumber": "4007",
@@ -209,8 +202,8 @@
               "availablePlaces": "2",
               "departureStation": "Menofia",
               "stopStations": "Giza",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -219,8 +212,8 @@
               "availablePlaces": "5",
               "departureStation": "Minya",
               "stopStations": "Giza",
-              "departureTime": "2pm",
-              "arrivedTime": "8pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "500 EGP"
             },
             {
@@ -229,8 +222,8 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Giza",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -296,7 +289,7 @@
       ]
     },
     {
-      "id": "3",
+      "id": 3,
       "city": "Alexandria",
       "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/fe/0e/2b.jpg",
       "info": "Alexandria is a coastal city in Egypt, known for its rich history and cultural heritage. Visit the Library of Alexandria, the Citadel of Qaitbay, and the Roman Amphitheater.",
@@ -305,7 +298,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -314,8 +307,8 @@
               "availablePlaces": "9",
               "departureStation": "Bani Suef",
               "stopStations": "Alexandria",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -324,8 +317,8 @@
               "availablePlaces": "3",
               "departureStation": "Ismailia",
               "stopStations": "Alexandria",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "500 EGP"
             },
             {
@@ -334,17 +327,17 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Alexandria",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "1450 EGP"
             }
           ]
         },
         {
-          "id": 3,
+          "id": 1,
           "type": "company",
           "name": "Amwag",
-          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "trips": [
             {
@@ -353,8 +346,8 @@
               "availablePlaces": "2",
               "departureStation": "Minya",
               "stopStations": "Alexandria",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -363,8 +356,8 @@
               "availablePlaces": "5",
               "departureStation": "Cairo",
               "stopStations": "Alexandria",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "500 EGP"
             },
             {
@@ -373,8 +366,8 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Alexandria",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -449,7 +442,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -458,8 +451,8 @@
               "availablePlaces": "9",
               "departureStation": "Minya",
               "stopStations": "Port Said",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "30 EGP"
             },
             {
@@ -468,8 +461,8 @@
               "availablePlaces": "3",
               "departureStation": "Minya",
               "stopStations": "Port Said",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "50 EGP"
             },
             {
@@ -478,8 +471,8 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Port Said",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "750 EGP"
             }
           ]
@@ -488,7 +481,7 @@
           "id": 3,
           "type": "company",
           "name": "Amwag",
-          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "trips": [
             {
@@ -497,8 +490,8 @@
               "availablePlaces": "2",
               "departureStation": "Minya",
               "stopStations": "Port Said",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -507,8 +500,8 @@
               "availablePlaces": "5",
               "departureStation": "Cairo",
               "stopStations": "Port Said",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "500 EGP"
             },
             {
@@ -517,8 +510,8 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Port Said",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -593,7 +586,7 @@
           "id": 3,
           "type": "company",
           "name": "Amwag",
-          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "trips": [
             {
@@ -602,8 +595,8 @@
               "availablePlaces": "2",
               "departureStation": "Marsa Matrouh",
               "stopStations": "Suez",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -612,8 +605,8 @@
               "availablePlaces": "5",
               "departureStation": "Bani Suef",
               "stopStations": "Suez",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "500 EGP"
             },
             {
@@ -622,8 +615,8 @@
               "availablePlaces": "12",
               "departureStation": "Bani Suef",
               "stopStations": "Suez",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -632,7 +625,7 @@
           "id": 2,
           "type": "company",
           "name": "EG bus",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "trips": [
             {
@@ -641,8 +634,8 @@
               "availablePlaces": "2",
               "departureStation": "Menofia",
               "stopStations": "Suez",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -651,8 +644,8 @@
               "availablePlaces": "5",
               "departureStation": "Minya",
               "stopStations": "Suez",
-              "departureTime": "2pm",
-              "arrivedTime": "8pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "500 EGP"
             },
             {
@@ -661,14 +654,14 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Suez",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "450 EGP"
             }
           ]
         }
       ],
-     "Reviews": [
+      "Reviews": [
         {
           "ReviewId": 1,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
@@ -737,7 +730,7 @@
           "id": 3,
           "type": "company",
           "name": "Amwag",
-          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "trips": [
             {
@@ -746,8 +739,8 @@
               "availablePlaces": "2",
               "departureStation": "Menofia",
               "stopStations": "Aswan",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -756,8 +749,8 @@
               "availablePlaces": "5",
               "departureStation": "Gharbia",
               "stopStations": "Aswan",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "500 EGP"
             },
             {
@@ -766,8 +759,8 @@
               "availablePlaces": "12",
               "departureStation": "Bani Suef",
               "stopStations": "Aswan",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -776,7 +769,7 @@
           "id": 2,
           "type": "company",
           "name": "EG bus",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "trips": [
             {
@@ -785,8 +778,8 @@
               "availablePlaces": "2",
               "departureStation": "Menofia",
               "stopStations": "Aswan",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -795,8 +788,8 @@
               "availablePlaces": "5",
               "departureStation": "Bani Suef",
               "stopStations": "Aswan",
-              "departureTime": "2pm",
-              "arrivedTime": "8pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "500 EGP"
             },
             {
@@ -805,8 +798,8 @@
               "availablePlaces": "12",
               "departureStation": "Alexandria",
               "stopStations": "Aswan",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -881,7 +874,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -890,8 +883,8 @@
               "availablePlaces": "9",
               "departureStation": "Minya",
               "stopStations": "Luxor",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -900,8 +893,8 @@
               "availablePlaces": "3",
               "departureStation": "Minya",
               "stopStations": "Luxor",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "500 EGP"
             },
             {
@@ -910,8 +903,8 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Luxor",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -920,7 +913,7 @@
           "id": 2,
           "type": "company",
           "name": "EG bus",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "trips": [
             {
@@ -929,8 +922,8 @@
               "availablePlaces": "2",
               "departureStation": "Minya",
               "stopStations": "Luxor",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -939,8 +932,8 @@
               "availablePlaces": "5",
               "departureStation": "Marsa Matrouh",
               "stopStations": "Luxor",
-              "departureTime": "2pm",
-              "arrivedTime": "8pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "500 EGP"
             },
             {
@@ -949,14 +942,14 @@
               "availablePlaces": "12",
               "departureStation": "Alexandria",
               "stopStations": "Luxor",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "450 EGP"
             }
           ]
         }
       ],
-     "Reviews": [
+      "Reviews": [
         {
           "ReviewId": 1,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
@@ -1025,7 +1018,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -1034,8 +1027,8 @@
               "availablePlaces": "9",
               "departureStation": "Minya",
               "stopStations": "Hurghada",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "200 EGP"
             },
             {
@@ -1044,8 +1037,8 @@
               "availablePlaces": "3",
               "departureStation": "Minya",
               "stopStations": "Hurghada",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "700 EGP"
             },
             {
@@ -1054,8 +1047,8 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Hurghada",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "850 EGP"
             }
           ]
@@ -1064,7 +1057,7 @@
           "id": 2,
           "type": "company",
           "name": "EG bus",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "trips": [
             {
@@ -1074,7 +1067,7 @@
               "departureStation": "Menofia",
               "stopStations": "Hurghada",
               "departureTime": "11am",
-              "arrivedTime": "3pm",
+              "arrivedTime": "3:00 PM",
               "price": "300 EGP"
             },
             {
@@ -1083,8 +1076,8 @@
               "availablePlaces": "5",
               "departureStation": "Cairo",
               "stopStations": "Hurghada",
-              "departureTime": "12pm",
-              "arrivedTime": "8pm",
+              "departureTime": "12:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "300 EGP"
             },
             {
@@ -1093,8 +1086,8 @@
               "availablePlaces": "12",
               "departureStation": "Alexandria",
               "stopStations": "Hurghada",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "550 EGP"
             }
           ]
@@ -1169,7 +1162,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -1178,8 +1171,8 @@
               "availablePlaces": "9",
               "departureStation": "Minya",
               "stopStations": "Sharm El-Sheikh",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -1188,8 +1181,8 @@
               "availablePlaces": "3",
               "departureStation": "Minya",
               "stopStations": "Sharm El-Sheikh",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "500 EGP"
             },
             {
@@ -1198,8 +1191,8 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Sharm El-Sheikh",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -1208,7 +1201,7 @@
           "id": 2,
           "type": "company",
           "name": "EG bus",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "trips": [
             {
@@ -1218,7 +1211,7 @@
               "departureStation": "Menofia",
               "stopStations": "Sharm El-Sheikh",
               "departureTime": "11am",
-              "arrivedTime": "3pm",
+              "arrivedTime": "3:00 PM",
               "price": "600 EGP"
             },
             {
@@ -1227,8 +1220,8 @@
               "availablePlaces": "5",
               "departureStation": "Cairo",
               "stopStations": "Sharm El-Sheikh",
-              "departureTime": "12pm",
-              "arrivedTime": "8pm",
+              "departureTime": "12:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "300 EGP"
             },
             {
@@ -1238,7 +1231,7 @@
               "departureStation": "Minya",
               "stopStations": "Sharm El-Sheikh",
               "departureTime": "2am",
-              "arrivedTime": "7pm",
+              "arrivedTime": "7:00 PM",
               "price": "900 EGP"
             }
           ]
@@ -1313,7 +1306,7 @@
           "id": 3,
           "type": "company",
           "name": "Amwag",
-          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "trips": [
             {
@@ -1322,8 +1315,8 @@
               "availablePlaces": "2",
               "departureStation": "Minya",
               "stopStations": "Ismailia",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -1332,8 +1325,8 @@
               "availablePlaces": "5",
               "departureStation": "Cairo",
               "stopStations": "Ismailia",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "500 EGP"
             },
             {
@@ -1342,8 +1335,8 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Ismailia",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -1352,7 +1345,7 @@
           "id": 2,
           "type": "company",
           "name": "EG bus",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "trips": [
             {
@@ -1371,8 +1364,8 @@
               "availablePlaces": "5",
               "departureStation": "Cairo",
               "stopStations": "Ismailia",
-              "departureTime": "12pm",
-              "arrivedTime": "6pm",
+              "departureTime": "12:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -1382,13 +1375,13 @@
               "departureStation": "Minya",
               "stopStations": "Ismailia",
               "departureTime": "2am",
-              "arrivedTime": "7pm",
+              "arrivedTime": "7:00 PM",
               "price": "900 EGP"
             }
           ]
         }
       ],
-     "Reviews": [
+      "Reviews": [
         {
           "ReviewId": 1,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
@@ -1457,7 +1450,7 @@
           "id": 2,
           "type": "company",
           "name": "EG bus",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "trips": [
             {
@@ -1467,7 +1460,7 @@
               "departureStation": "Menofia",
               "stopStations": "Mansoura",
               "departureTime": "1am",
-              "arrivedTime": "3pm",
+              "arrivedTime": "3:00 PM",
               "price": "390 EGP"
             },
             {
@@ -1476,8 +1469,8 @@
               "availablePlaces": "6",
               "departureStation": "Minya",
               "stopStations": "Mansoura",
-              "departureTime": "2pm",
-              "arrivedTime": "8pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "590 EGP"
             },
             {
@@ -1486,8 +1479,8 @@
               "availablePlaces": "22",
               "departureStation": "Sohag",
               "stopStations": "Mansoura",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "610 EGP"
             }
           ]
@@ -1496,7 +1489,7 @@
           "id": 3,
           "type": "company",
           "name": "Amwag",
-          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "trips": [
             {
@@ -1515,8 +1508,8 @@
               "availablePlaces": "5",
               "departureStation": "Qena",
               "stopStations": "Mansoura",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "400 EGP"
             },
             {
@@ -1601,7 +1594,7 @@
           "id": 2,
           "type": "company",
           "name": "EG bus",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "trips": [
             {
@@ -1611,7 +1604,7 @@
               "departureStation": "Menofia",
               "stopStations": "Tanta",
               "departureTime": "1am",
-              "arrivedTime": "3pm",
+              "arrivedTime": "3:00 PM",
               "price": "380 EGP"
             },
             {
@@ -1620,8 +1613,8 @@
               "availablePlaces": "6",
               "departureStation": "Minya",
               "stopStations": "Tanta",
-              "departureTime": "2pm",
-              "arrivedTime": "8pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "290 EGP"
             },
             {
@@ -1630,8 +1623,8 @@
               "availablePlaces": "22",
               "departureStation": "Sohag",
               "stopStations": "Tanta",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "610 EGP"
             }
           ]
@@ -1640,7 +1633,7 @@
           "id": 3,
           "type": "company",
           "name": "Amwag",
-          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "trips": [
             {
@@ -1649,8 +1642,8 @@
               "availablePlaces": "2",
               "departureStation": "Bani Suef",
               "stopStations": "Tanta",
-              "departureTime": "6pm",
-              "arrivedTime": "10pm",
+              "departureTime": "6:00 PM",
+              "arrivedTime": "10:00 PM",
               "price": "300 EGP"
             },
             {
@@ -1659,8 +1652,8 @@
               "availablePlaces": "5",
               "departureStation": "Alexandria",
               "stopStations": "Tanta",
-              "departureTime": "2pm",
-              "arrivedTime": "12pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "12:00 PM",
               "price": "500 EGP"
             },
             {
@@ -1669,8 +1662,8 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Tanta",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -1745,7 +1738,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -1754,8 +1747,8 @@
               "availablePlaces": "9",
               "departureStation": "Alexandria",
               "stopStations": "El Mahalla El Kubra",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "100 EGP"
             },
             {
@@ -1764,8 +1757,8 @@
               "availablePlaces": "3",
               "departureStation": "Gharbia",
               "stopStations": "El Mahalla El Kubra",
-              "departureTime": "3pm",
-              "arrivedTime": "9pm",
+              "departureTime": "3:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "400 EGP"
             },
             {
@@ -1774,8 +1767,8 @@
               "availablePlaces": "12",
               "departureStation": "Marsa Matrouh",
               "stopStations": "El Mahalla El Kubra",
-              "departureTime": "2pm",
-              "arrivedTime": "10pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "10:00 PM",
               "price": "900 EGP"
             }
           ]
@@ -1784,7 +1777,7 @@
           "id": 3,
           "type": "company",
           "name": "Amwag",
-          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "trips": [
             {
@@ -1793,8 +1786,8 @@
               "availablePlaces": "2",
               "departureStation": "Cairo",
               "stopStations": "El Mahalla El Kubra",
-              "departureTime": "6pm",
-              "arrivedTime": "11pm",
+              "departureTime": "6:00 PM",
+              "arrivedTime": "11:00 PM",
               "price": "500 EGP"
             },
             {
@@ -1803,8 +1796,8 @@
               "availablePlaces": "5",
               "departureStation": "Menofia",
               "stopStations": "El Mahalla El Kubra",
-              "departureTime": "2pm",
-              "arrivedTime": "12pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "12:00 PM",
               "price": "700 EGP"
             },
             {
@@ -1813,14 +1806,14 @@
               "availablePlaces": "12",
               "departureStation": "Minya",
               "stopStations": "El Mahalla El Kubra",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "650 EGP"
             }
           ]
         }
       ],
-     "Reviews": [
+      "Reviews": [
         {
           "ReviewId": 1,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
@@ -1889,7 +1882,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -1898,8 +1891,8 @@
               "availablePlaces": "9",
               "departureStation": "Alexandria",
               "stopStations": "Asyut",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "300 EGP"
             },
             {
@@ -1908,8 +1901,8 @@
               "availablePlaces": "3",
               "departureStation": "Gharbia",
               "stopStations": "Asyut",
-              "departureTime": "3pm",
-              "arrivedTime": "8pm",
+              "departureTime": "3:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "500 EGP"
             },
             {
@@ -1918,8 +1911,8 @@
               "availablePlaces": "12",
               "departureStation": "Marsa Matrouh",
               "stopStations": "Asyut",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "900 EGP"
             }
           ]
@@ -1928,7 +1921,7 @@
           "id": 3,
           "type": "company",
           "name": "Amwag",
-          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "trips": [
             {
@@ -1937,8 +1930,8 @@
               "availablePlaces": "2",
               "departureStation": "Cairo",
               "stopStations": "Asyut",
-              "departureTime": "6pm",
-              "arrivedTime": "11pm",
+              "departureTime": "6:00 PM",
+              "arrivedTime": "11:00 PM",
               "price": "500 EGP"
             },
             {
@@ -1947,8 +1940,8 @@
               "availablePlaces": "5",
               "departureStation": "Menofia",
               "stopStations": "Asyut",
-              "departureTime": "2pm",
-              "arrivedTime": "12pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "12:00 PM",
               "price": "700 EGP"
             },
             {
@@ -1957,8 +1950,8 @@
               "availablePlaces": "12",
               "departureStation": "Minya",
               "stopStations": "Asyut",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "650 EGP"
             }
           ]
@@ -2033,7 +2026,7 @@
           "id": 3,
           "type": "company",
           "name": "Amwag",
-          "image": "https://images.app.goo.gl/eHBktcKgfXZtK7Qd6",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
           "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
           "trips": [
             {
@@ -2042,8 +2035,8 @@
               "availablePlaces": "2",
               "departureStation": "Cairo",
               "stopStations": "Sohag",
-              "departureTime": "6pm",
-              "arrivedTime": "11pm",
+              "departureTime": "6:00 PM",
+              "arrivedTime": "11:00 PM",
               "price": "500 EGP"
             },
             {
@@ -2052,8 +2045,8 @@
               "availablePlaces": "5",
               "departureStation": "Menofia",
               "stopStations": "Sohag",
-              "departureTime": "2pm",
-              "arrivedTime": "12pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "12:00 PM",
               "price": "700 EGP"
             },
             {
@@ -2062,8 +2055,8 @@
               "availablePlaces": "12",
               "departureStation": "Minya",
               "stopStations": "Sohag",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "650 EGP"
             }
           ]
@@ -2072,7 +2065,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -2081,8 +2074,8 @@
               "availablePlaces": "9",
               "departureStation": "Alexandria",
               "stopStations": "Sohag",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "500 EGP"
             },
             {
@@ -2091,8 +2084,8 @@
               "availablePlaces": "3",
               "departureStation": "Gharbia",
               "stopStations": "Sohag",
-              "departureTime": "1pm",
-              "arrivedTime": "8pm",
+              "departureTime": "1:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "400 EGP"
             },
             {
@@ -2101,8 +2094,8 @@
               "availablePlaces": "12",
               "departureStation": "Marsa Matrouh",
               "stopStations": "Sohag",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -2177,7 +2170,7 @@
           "id": 2,
           "type": "company",
           "name": "EG bus",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "trips": [
             {
@@ -2187,7 +2180,7 @@
               "departureStation": "Menofia",
               "stopStations": "Qena",
               "departureTime": "1am",
-              "arrivedTime": "3pm",
+              "arrivedTime": "3:00 PM",
               "price": "380 EGP"
             },
             {
@@ -2196,8 +2189,8 @@
               "availablePlaces": "6",
               "departureStation": "Minya",
               "stopStations": "Qena",
-              "departureTime": "2pm",
-              "arrivedTime": "8pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "290 EGP"
             },
             {
@@ -2206,8 +2199,8 @@
               "availablePlaces": "22",
               "departureStation": "Sohag",
               "stopStations": "Qena",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "610 EGP"
             }
           ]
@@ -2216,7 +2209,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -2225,8 +2218,8 @@
               "availablePlaces": "9",
               "departureStation": "Alexandria",
               "stopStations": "Qena",
-              "departureTime": "2pm",
-              "arrivedTime": "7pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "7:00 PM",
               "price": "350 EGP"
             },
             {
@@ -2235,8 +2228,8 @@
               "availablePlaces": "3",
               "departureStation": "Gharbia",
               "stopStations": "Qena",
-              "departureTime": "2pm",
-              "arrivedTime": "8pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "400 EGP"
             },
             {
@@ -2245,14 +2238,14 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Qena",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "220 EGP"
             }
           ]
         }
       ],
-       "Reviews": [
+      "Reviews": [
         {
           "ReviewId": 1,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
@@ -2321,7 +2314,7 @@
           "id": 2,
           "type": "company",
           "name": "EG bus",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "trips": [
             {
@@ -2330,8 +2323,8 @@
               "availablePlaces": "2",
               "departureStation": "Menofia",
               "stopStations": "Beni Suef",
-              "departureTime": "1pm",
-              "arrivedTime": "9pm",
+              "departureTime": "1:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "380 EGP"
             },
             {
@@ -2340,8 +2333,8 @@
               "availablePlaces": "6",
               "departureStation": "Minya",
               "stopStations": "Beni Suef",
-              "departureTime": "2pm",
-              "arrivedTime": "8pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "590 EGP"
             },
             {
@@ -2350,8 +2343,8 @@
               "availablePlaces": "22",
               "departureStation": "Sohag",
               "stopStations": "Beni Suef",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "650 EGP"
             }
           ]
@@ -2360,7 +2353,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -2369,8 +2362,8 @@
               "availablePlaces": "9",
               "departureStation": "Alexandria",
               "stopStations": "Beni Suef",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "500 EGP"
             },
             {
@@ -2379,8 +2372,8 @@
               "availablePlaces": "3",
               "departureStation": "Gharbia",
               "stopStations": "Beni Suef",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "400 EGP"
             },
             {
@@ -2389,14 +2382,14 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Beni Suef",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "450 EGP"
             }
           ]
         }
       ],
-     "Reviews": [
+      "Reviews": [
         {
           "ReviewId": 1,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
@@ -2465,7 +2458,7 @@
           "id": 2,
           "type": "company",
           "name": "EG bus",
-          "image": "https://images.app.goo.gl/y2sbZUuTt5mSsAnM8",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
           "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
           "trips": [
             {
@@ -2474,8 +2467,8 @@
               "availablePlaces": "2",
               "departureStation": "Menofia",
               "stopStations": "Faiyum",
-              "departureTime": "1pm",
-              "arrivedTime": "4pm",
+              "departureTime": "1:00 PM",
+              "arrivedTime": "4:00 PM",
               "price": "300 EGP"
             },
             {
@@ -2484,8 +2477,8 @@
               "availablePlaces": "6",
               "departureStation": "Minya",
               "stopStations": "Faiyum",
-              "departureTime": "2pm",
-              "arrivedTime": "8pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "8:00 PM",
               "price": "500 EGP"
             },
             {
@@ -2494,8 +2487,8 @@
               "availablePlaces": "22",
               "departureStation": "Sohag",
               "stopStations": "Faiyum",
-              "departureTime": "2pm",
-              "arrivedTime": "9pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "9:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -2504,7 +2497,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -2513,8 +2506,8 @@
               "availablePlaces": "9",
               "departureStation": "Alexandria",
               "stopStations": "Faiyum",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "500 EGP"
             },
             {
@@ -2523,8 +2516,8 @@
               "availablePlaces": "3",
               "departureStation": "Menofia",
               "stopStations": "Faiyum",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "400 EGP"
             },
             {
@@ -2533,14 +2526,14 @@
               "availablePlaces": "12",
               "departureStation": "Bani Suef",
               "stopStations": "Faiyum",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "450 EGP"
             }
           ]
         }
       ],
-     "Reviews": [
+      "Reviews": [
         {
           "ReviewId": 1,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
@@ -2609,7 +2602,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -2618,8 +2611,8 @@
               "availablePlaces": "9",
               "departureStation": "Minya",
               "stopStations": "Minya",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -2628,8 +2621,8 @@
               "availablePlaces": "3",
               "departureStation": "Minya",
               "stopStations": "Minya",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "500 EGP"
             },
             {
@@ -2638,8 +2631,8 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Malawi",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -2648,7 +2641,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -2657,8 +2650,8 @@
               "availablePlaces": "19",
               "departureStation": "Marsa Matrouh",
               "stopStations": "Bani Mazar",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -2667,8 +2660,8 @@
               "availablePlaces": "7",
               "departureStation": "Cairo",
               "stopStations": "Maghagha",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "500 EGP"
             },
             {
@@ -2677,8 +2670,8 @@
               "availablePlaces": "2",
               "departureStation": "Bani Suef",
               "stopStations": "Minya",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -2753,7 +2746,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -2762,8 +2755,8 @@
               "availablePlaces": "9",
               "departureStation": "Minya",
               "stopStations": "Marsa Matruh",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -2772,8 +2765,8 @@
               "availablePlaces": "3",
               "departureStation": "Cairo",
               "stopStations": "Marsa Matruh",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "500 EGP"
             },
             {
@@ -2782,8 +2775,8 @@
               "availablePlaces": "12",
               "departureStation": "Bani Suef",
               "stopStations": "Marsa Matruh",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "450 EGP"
             }
           ]
@@ -2792,7 +2785,7 @@
           "id": 1,
           "type": "company",
           "name": "go bus",
-          "image": "https://images.app.goo.gl/Je9vsnaxYwxWczdv8",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
@@ -2801,8 +2794,8 @@
               "availablePlaces": "9",
               "departureStation": "Minya",
               "stopStations": "Marsa Matruh",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "300 EGP"
             },
             {
@@ -2811,8 +2804,8 @@
               "availablePlaces": "3",
               "departureStation": "Minya",
               "stopStations": "Marsa Matruh",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "500 EGP"
             },
             {
@@ -2821,14 +2814,14 @@
               "availablePlaces": "12",
               "departureStation": "Sohag",
               "stopStations": "Marsa Matruh",
-              "departureTime": "2pm",
-              "arrivedTime": "6pm",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
               "price": "450 EGP"
             }
           ]
         }
       ],
-     "Reviews": [
+      "Reviews": [
         {
           "ReviewId": 1,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
