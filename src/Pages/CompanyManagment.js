@@ -166,7 +166,6 @@
 // export default CompanyManagement;
 
 
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Button, Table, Form } from 'react-bootstrap';
@@ -177,6 +176,7 @@ const CompanyManagement = () => {
     const [error, setError] = useState(null);
     const [allCities, setAllCities] = useState([]);
     const [editingCompany, setEditingCompany] = useState(null);
+    const [data ,setData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -192,6 +192,7 @@ const CompanyManagement = () => {
                     }, []);
                     setCompanies(allCompanies);
                     setAllCities(response.data);
+                    setData(response.data);
                 } else {
                     setError('No data returned from API');
                 }
@@ -210,13 +211,24 @@ const CompanyManagement = () => {
 
     const handleCompanyDelete = async (companyId) => {
         try {
-            await axios.delete(`http://localhost:4001/posts/${companyId}`);
-            setCompanies(companies.filter(company => company.id !== companyId));
+          const citiesToUpdate = data.filter(city => city.companies.some(company => company.id === companyId));
+          const promises = citiesToUpdate.map(async (city) => {
+            const updatedCity = { ...city };
+            updatedCity.companies = updatedCity.companies.filter(company => company.id !== companyId);
+            const response = await axios.put(`http://localhost:4001/posts/${city.id}`, updatedCity);
+            return response.data;
+          });
+          const updatedCities = await Promise.all(promises);
+          setData(data.map((city) => {
+            const updatedCity = updatedCities.find((uc) => uc.id === city.id);
+            return updatedCity || city;
+          }));
+          setCompanies(data.reduce((acc, city) => [...acc, ...city.companies], []));
         } catch (error) {
-            console.error('Error deleting company:', error);
-            setError(error.message);
+          console.error('Error deleting company:', error);
+          setError(error.message);
         }
-    };
+      };
 
     const handleCompanyEdit = async (companyId, updatedCompany) => {
         try {
