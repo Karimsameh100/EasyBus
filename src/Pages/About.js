@@ -84,7 +84,7 @@ const About = () => {
           </div>
         </div>
         <div className="text-center mt-4">
-          <Link to={"/"}>
+          <Link to={"/ "}>
             <button
               // onClick={handleClick}
               id="infoBTN"
