@@ -16,10 +16,10 @@ import CompleteComReg from "./Pages/CompleteComReg";
 import Login from "./Pages/Login";
 import Footer from "./Componants/Footer";
 import CompanyManagement from "./Pages/CompanyManagment";
-
 import ReviewForm from "./Pages/CreateReview";
 import About from "./Pages/About";
-
+import ReviewForm from "./Pages/CreateReview";
+import About from "./Pages/About";
 // import SignUp from "./Pages/SignUp";
 
 function App() {
