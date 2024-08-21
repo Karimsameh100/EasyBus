@@ -16,6 +16,7 @@ import CompleteComReg from "./Pages/CompleteComReg";
 import Login from "./Pages/Login";
 import Footer from "./Componants/Footer";
 import CompanyManagement from "./Pages/CompanyManagment";
+import ReviewForm from "./Pages/CreateReview";
 // import SignUp from "./Pages/SignUp";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/CompanyManag" element={<CompanyManagement />} />
         {/* <Route path="/register" element={<SignUp />} /> */}
         <Route path="/CompleteComReg" element={<CompleteComReg />} />
+        <Route path="/create/:id" element={<ReviewForm />} />
       </Routes>
       <Footer />
     </BrowserRouter>
