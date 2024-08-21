@@ -1,0 +1,3534 @@
+
+
+
+
+{
+    "posts": [
+      {
+        "id": "1",
+        "city": "Cairo",
+        "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/ca/4a/3b.jpg",
+        "info": "Cairo, Egypt’s sprawling capital, is set on the Nile River. At its heart is Tahrir Square and the vast Egyptian Museum, a trove of antiquities including royal mummies and gilded King Tutankhamun artifacts. Nearby, Giza is the site of the iconic pyramids and Great Sphinx, dating to the 26th century BC. In Gezira Island’s leafy Zamalek district, 187m Cairo Tower affords panoramic city views.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "4000",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Minya",
+                "stopStations": "Cairo",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "4001",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Minya",
+                "stopStations": "Cairo",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "4002",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Monib",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "company",
+            "name": "EG bus",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
+            "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+            "trips": [
+              {
+                "tripNumber": "4007",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Cairo",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "4008",
+                "tripDate": "16/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Minya",
+                "stopStations": "Cairo",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "4009",
+                "tripDate": "2/11/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Cairo",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "7:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "city": "Giza",
+        "image": "https://thealtruistictraveller.com/wp-content/uploads/2022/10/cairo-pyramids.jpg",
+        "info": "Giza is an Egyptian city on the west bank of the Nile, near Cairo. The Giza Plateau is home to iconic Egyptian monuments, including 3 tall pyramids built as royal mausoleums around the 26th century B.C. The largest, the Great Pyramid, is King Khufu’s tomb. The Great Sphinx is a vast sculpture of a man’s head on a lion’s body. The Solar Boat Museum displays a restored cedar barge found buried near the Great Pyramid",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "4000",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Minya",
+                "stopStations": "Giza",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "4001",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Minya",
+                "stopStations": "Giza",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "4002",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Giza",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "type": "company",
+            "name": "Amwag",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
+            "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+            "trips": [
+              {
+                "tripNumber": "4007",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Giza",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "4008",
+                "tripDate": "16/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Minya",
+                "stopStations": "Giza",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "4009",
+                "tripDate": "2/11/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Giza",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "7:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "city": "Alexandria",
+        "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/fe/0e/2b.jpg",
+        "info": "Alexandria is a coastal city in Egypt, known for its rich history and cultural heritage. Visit the Library of Alexandria, the Citadel of Qaitbay, and the Roman Amphitheater.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "type": "company",
+            "name": "Amwag",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
+            "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+            "trips": [
+              {
+                "tripNumber": "2090",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Minya",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2091",
+                "tripDate": "16/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Cairo",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "7:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2092",
+                "tripDate": "2/11/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "city": "Suez",
+        "image": "https://pohcdn.com/guide/sites/default/files/styles/paragraph__live_banner__lb_image__1880bp/public/live_banner/Suez.jpg",
+        "info": "Suez is a city in Egypt, located on the Suez Canal. Visit the Suez Canal Museum, the Port of Suez, and the Suez Oil Refinery.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "type": "company",
+            "name": "Amwag",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
+            "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+            "trips": [
+              {
+                "tripNumber": "2079",
+                "tripDate": "1/5/2024",
+                "availablePlaces": "2",
+                "departureStation": "Marsa Matrouh",
+                "stopStations": "Suez",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2074",
+                "tripDate": "3/12/2024",
+                "availablePlaces": "5",
+                "departureStation": "Bani Suef",
+                "stopStations": "Suez",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "7:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2073",
+                "tripDate": "2/8/2024",
+                "availablePlaces": "12",
+                "departureStation": "Bani Suef",
+                "stopStations": "Suez",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "company",
+            "name": "EG bus",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
+            "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+            "trips": [
+              {
+                "tripNumber": "2070",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Suez",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2071",
+                "tripDate": "26/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Minya",
+                "stopStations": "Suez",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2072",
+                "tripDate": "2/1/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Suez",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "7:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "city": "Aswan",
+        "image": "https://www.af1-2019.aswanforum.org/images/ab_asw_img_1.jpg",
+        "info": "Aswan is a city in southern Egypt, known for its beautiful Nile River views and ancient temples. Visit the Temple of Isis, the Unfinished Obelisk, and the Nubian Museum.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "type": "company",
+            "name": "Amwag",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
+            "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+            "trips": [
+              {
+                "tripNumber": "2057",
+                "tripDate": "1/1/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Aswan",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2056",
+                "tripDate": "3/1/2024",
+                "availablePlaces": "5",
+                "departureStation": "Gharbia",
+                "stopStations": "Aswan",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "7:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2055",
+                "tripDate": "2/1/2024",
+                "availablePlaces": "12",
+                "departureStation": "Bani Suef",
+                "stopStations": "Aswan",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "company",
+            "name": "EG bus",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
+            "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+            "trips": [
+              {
+                "tripNumber": "2050",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Aswan",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2051",
+                "tripDate": "26/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Bani Suef",
+                "stopStations": "Aswan",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2052",
+                "tripDate": "2/1/2024",
+                "availablePlaces": "12",
+                "departureStation": "Alexandria",
+                "stopStations": "Aswan",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "7:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "city": "Luxor",
+        "image": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0a/45/3a/0f.jpg",
+        "info": "Luxor is a city in southern Egypt, known for its ancient temples and tombs. Visit the Valley of the Kings, the Temple of Karnak, and the Luxor Temple.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "1080",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Minya",
+                "stopStations": "Luxor",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "1081",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Minya",
+                "stopStations": "Luxor",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1082",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Luxor",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "company",
+            "name": "EG bus",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
+            "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+            "trips": [
+              {
+                "tripNumber": "1083",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Minya",
+                "stopStations": "Luxor",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "1084",
+                "tripDate": "26/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Marsa Matrouh",
+                "stopStations": "Luxor",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1085",
+                "tripDate": "2/1/2024",
+                "availablePlaces": "12",
+                "departureStation": "Alexandria",
+                "stopStations": "Luxor",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "7:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 9,
+            "RevCustomerImage": "https://i.pinimg.com/564x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "nice one",
+            "ReviewCustomerName": "karim",
+            "ReviewCutomerRate": 4
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "city": "Hurghada",
+        "image": "https://imagedelivery.net/0LMYosKeo5o-LXOCjdKUuA/tourscanner.com/2022/07/fun-things-to-do-in-Hurghada-Egypt.jpg/w=1200",
+        "info": "Hurghada is a coastal city in Egypt, known for its beautiful beaches and water sports. Visit the Hurghada Marina, the Giftun Islands, and the Makadi Bay.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "1095",
+                "tripDate": "20/12/2024",
+                "availablePlaces": "9",
+                "departureStation": "Minya",
+                "stopStations": "Hurghada",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "200 EGP"
+              },
+              {
+                "tripNumber": "1096",
+                "tripDate": "10/12/2024",
+                "availablePlaces": "3",
+                "departureStation": "Minya",
+                "stopStations": "Hurghada",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "700 EGP"
+              },
+              {
+                "tripNumber": "1098",
+                "tripDate": "2/12/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Hurghada",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "850 EGP"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "company",
+            "name": "EG bus",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
+            "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+            "trips": [
+              {
+                "tripNumber": "1090",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Hurghada",
+                "departureTime": "11am",
+                "arrivedTime": "3:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "1091",
+                "tripDate": "26/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Cairo",
+                "stopStations": "Hurghada",
+                "departureTime": "12:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "1092",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Alexandria",
+                "stopStations": "Hurghada",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "7:00 PM",
+                "price": "550 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "9",
+        "city": "Sharm El-Sheikh",
+        "image": "https://media.istockphoto.com/id/524390404/photo/egyptian-paradise.jpg?s=612x612&w=0&k=20&c=76jpjkkQADDo3pGsOtgjsGPZPMgtNPTS4Xuki_QNw50=",
+        "info": "Sharm El-Sheikh is a coastal city in Egypt, known for its beautiful beaches and coral reefs. Visit the Naama Bay, the Ras Mohammed National Park, and the Sharm El-Sheikh Museum.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2005",
+                "tripDate": "3/10/2024",
+                "availablePlaces": "9",
+                "departureStation": "Minya",
+                "stopStations": "Sharm El-Sheikh",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2004",
+                "tripDate": "2/10/2024",
+                "availablePlaces": "3",
+                "departureStation": "Minya",
+                "stopStations": "Sharm El-Sheikh",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2003",
+                "tripDate": "1/10/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Sharm El-Sheikh",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "company",
+            "name": "EG bus",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
+            "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+            "trips": [
+              {
+                "tripNumber": "2000",
+                "tripDate": "14/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Sharm El-Sheikh",
+                "departureTime": "11am",
+                "arrivedTime": "3:00 PM",
+                "price": "600 EGP"
+              },
+              {
+                "tripNumber": "2001",
+                "tripDate": "22/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Cairo",
+                "stopStations": "Sharm El-Sheikh",
+                "departureTime": "12:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2002",
+                "tripDate": "2/11/2024",
+                "availablePlaces": "12",
+                "departureStation": "Minya",
+                "stopStations": "Sharm El-Sheikh",
+                "departureTime": "2am",
+                "arrivedTime": "7:00 PM",
+                "price": "900 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "10",
+        "city": "Ismailia",
+        "image": "https://www.ibisegypttours.com/images/Ismailia.jpg",
+        "info": "Ismailia is a city in Egypt, located on the Suez Canal. Visit the Ismailia Museum, the Port of Ismailia, and the Suez Canal University.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "type": "company",
+            "name": "Amwag",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
+            "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+            "trips": [
+              {
+                "tripNumber": "2010",
+                "tripDate": "7/11/2024",
+                "availablePlaces": "2",
+                "departureStation": "Minya",
+                "stopStations": "Ismailia",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2011",
+                "tripDate": "6/11/2024",
+                "availablePlaces": "5",
+                "departureStation": "Cairo",
+                "stopStations": "Ismailia",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "7:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2012",
+                "tripDate": "5/11/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Ismailia",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "company",
+            "name": "EG bus",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
+            "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+            "trips": [
+              {
+                "tripNumber": "2013",
+                "tripDate": "14/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Ismailia",
+                "departureTime": "1am",
+                "arrivedTime": "6am",
+                "price": "600 EGP"
+              },
+              {
+                "tripNumber": "2014",
+                "tripDate": "22/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Cairo",
+                "stopStations": "Ismailia",
+                "departureTime": "12:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2015",
+                "tripDate": "2/11/2024",
+                "availablePlaces": "12",
+                "departureStation": "Minya",
+                "stopStations": "Ismailia",
+                "departureTime": "2am",
+                "arrivedTime": "7:00 PM",
+                "price": "900 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "11",
+        "city": "Mansoura",
+        "image": "https://www.shutterstock.com/image-photo/el-mansoura-egypt-7-sep-260nw-1774525088.jpg",
+        "info": "Mansoura is a city in Egypt, known for its rich history and cultural heritage. Visit the Mansoura University, the Mansoura Museum, and the Nile River views.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "company",
+            "name": "EG bus",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
+            "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+            "trips": [
+              {
+                "tripNumber": "2046",
+                "tripDate": "6/3/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Mansoura",
+                "departureTime": "1am",
+                "arrivedTime": "3:00 PM",
+                "price": "390 EGP"
+              },
+              {
+                "tripNumber": "2045",
+                "tripDate": "1/3/2024",
+                "availablePlaces": "6",
+                "departureStation": "Minya",
+                "stopStations": "Mansoura",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "590 EGP"
+              },
+              {
+                "tripNumber": "2044",
+                "tripDate": "2/3/2024",
+                "availablePlaces": "22",
+                "departureStation": "Sohag",
+                "stopStations": "Mansoura",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "610 EGP"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "type": "company",
+            "name": "Amwag",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
+            "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+            "trips": [
+              {
+                "tripNumber": "2040",
+                "tripDate": "11/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Cairo",
+                "stopStations": "Mansoura",
+                "departureTime": "2am",
+                "arrivedTime": "6am",
+                "price": "700 EGP"
+              },
+              {
+                "tripNumber": "2041",
+                "tripDate": "16/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Qena",
+                "stopStations": "Mansoura",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "7:00 PM",
+                "price": "400 EGP"
+              },
+              {
+                "tripNumber": "2042",
+                "tripDate": "2/11/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Mansoura",
+                "departureTime": "2am",
+                "arrivedTime": "9am",
+                "price": "550 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "12",
+        "city": "Tanta",
+        "image": "https://images.squarespace-cdn.com/content/v1/6057ea63deb56a28d188d74e/1627172319337-89RQ9N38061X6T8M4AR1/60fcad931f6af.jpg",
+        "info": "Tanta is a city in Egypt, known for its beautiful mosques and historic landmarks. Visit the Mosque of Sayyid Ahmed al-Badawi, the Tanta Museum, and the Nile River views.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "company",
+            "name": "EG bus",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
+            "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+            "trips": [
+              {
+                "tripNumber": "2035",
+                "tripDate": "1/8/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Tanta",
+                "departureTime": "1am",
+                "arrivedTime": "3:00 PM",
+                "price": "380 EGP"
+              },
+              {
+                "tripNumber": "2034",
+                "tripDate": "2/8/2024",
+                "availablePlaces": "6",
+                "departureStation": "Minya",
+                "stopStations": "Tanta",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "290 EGP"
+              },
+              {
+                "tripNumber": "2033",
+                "tripDate": "3/8/2024",
+                "availablePlaces": "22",
+                "departureStation": "Sohag",
+                "stopStations": "Tanta",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "610 EGP"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "type": "company",
+            "name": "Amwag",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
+            "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+            "trips": [
+              {
+                "tripNumber": "2031",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Bani Suef",
+                "stopStations": "Tanta",
+                "departureTime": "6:00 PM",
+                "arrivedTime": "10:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2030",
+                "tripDate": "16/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Alexandria",
+                "stopStations": "Tanta",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "12:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2032",
+                "tripDate": "2/11/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Tanta",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "13",
+        "city": "El Mahalla El Kubra",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/f/f1/El-Mahalla_El-Kubra-art.JPG",
+        "info": "El Mahalla El Kubra is a city in Egypt, known for its rich history and cultural heritage. Visit the El Mahalla El Kubra Museum, the Mosque of El Mahalla El Kubra, and the Nile River views.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "1066",
+                "tripDate": "11/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Alexandria",
+                "stopStations": "El Mahalla El Kubra",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "100 EGP"
+              },
+              {
+                "tripNumber": "1065",
+                "tripDate": "20/1/2024",
+                "availablePlaces": "3",
+                "departureStation": "Gharbia",
+                "stopStations": "El Mahalla El Kubra",
+                "departureTime": "3:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "400 EGP"
+              },
+              {
+                "tripNumber": "1064",
+                "tripDate": "6/8/2024",
+                "availablePlaces": "12",
+                "departureStation": "Marsa Matrouh",
+                "stopStations": "El Mahalla El Kubra",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "10:00 PM",
+                "price": "900 EGP"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "type": "company",
+            "name": "Amwag",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
+            "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+            "trips": [
+              {
+                "tripNumber": "1060",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Cairo",
+                "stopStations": "El Mahalla El Kubra",
+                "departureTime": "6:00 PM",
+                "arrivedTime": "11:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1061",
+                "tripDate": "16/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Menofia",
+                "stopStations": "El Mahalla El Kubra",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "12:00 PM",
+                "price": "700 EGP"
+              },
+              {
+                "tripNumber": "1062",
+                "tripDate": "2/11/2024",
+                "availablePlaces": "12",
+                "departureStation": "Minya",
+                "stopStations": "El Mahalla El Kubra",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "650 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "14",
+        "city": "Asyut",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs6cWy2OQirOTo8seEp7lSWc_6TDrt6QodKA&s",
+        "info": "Asyut is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Wadi el-Hitan, the Asyut Museum, and the Nile River views.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "1050",
+                "tripDate": "11/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Alexandria",
+                "stopStations": "Asyut",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "1051",
+                "tripDate": "24/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Gharbia",
+                "stopStations": "Asyut",
+                "departureTime": "3:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1052",
+                "tripDate": "20/8/2024",
+                "availablePlaces": "12",
+                "departureStation": "Marsa Matrouh",
+                "stopStations": "Asyut",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "900 EGP"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "type": "company",
+            "name": "Amwag",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
+            "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+            "trips": [
+              {
+                "tripNumber": "1053",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Cairo",
+                "stopStations": "Asyut",
+                "departureTime": "6:00 PM",
+                "arrivedTime": "11:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1054",
+                "tripDate": "16/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Menofia",
+                "stopStations": "Asyut",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "12:00 PM",
+                "price": "700 EGP"
+              },
+              {
+                "tripNumber": "1055",
+                "tripDate": "2/11/2024",
+                "availablePlaces": "12",
+                "departureStation": "Minya",
+                "stopStations": "Asyut",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "650 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "15",
+        "city": "Sohag",
+        "image": "https://d3rr2gvhjw0wwy.cloudfront.net/uploads/mandators/49581/file-manager/sohag,-sohag-city,-sohag-travel.jpg",
+        "info": "Sohag is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Akhmim, the Sohag Museum, and the Nile River views.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "type": "company",
+            "name": "Amwag",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
+            "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
+            "trips": [
+              {
+                "tripNumber": "1046",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Cairo",
+                "stopStations": "Sohag",
+                "departureTime": "6:00 PM",
+                "arrivedTime": "11:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1045",
+                "tripDate": "16/9/2024",
+                "availablePlaces": "5",
+                "departureStation": "Menofia",
+                "stopStations": "Sohag",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "12:00 PM",
+                "price": "700 EGP"
+              },
+              {
+                "tripNumber": "1044",
+                "tripDate": "2/11/2024",
+                "availablePlaces": "12",
+                "departureStation": "Minya",
+                "stopStations": "Sohag",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "650 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "1040",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Alexandria",
+                "stopStations": "Sohag",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1041",
+                "tripDate": "14/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Gharbia",
+                "stopStations": "Sohag",
+                "departureTime": "1:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "400 EGP"
+              },
+              {
+                "tripNumber": "1042",
+                "tripDate": "30/8/2024",
+                "availablePlaces": "12",
+                "departureStation": "Marsa Matrouh",
+                "stopStations": "Sohag",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "16",
+        "city": "Qena",
+        "image": "https://www.shutterstock.com/image-photo/dendera-egypt-november-17-2021-260nw-2157108441.jpg",
+        "info": "Qena is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Dendera, the Qena Museum, and the Nile River views.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "company",
+            "name": "EG bus",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
+            "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+            "trips": [
+              {
+                "tripNumber": "1035",
+                "tripDate": "1/8/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Qena",
+                "departureTime": "1am",
+                "arrivedTime": "3:00 PM",
+                "price": "380 EGP"
+              },
+              {
+                "tripNumber": "1034",
+                "tripDate": "18/7/2024",
+                "availablePlaces": "6",
+                "departureStation": "Minya",
+                "stopStations": "Qena",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "290 EGP"
+              },
+              {
+                "tripNumber": "1033",
+                "tripDate": "2/1/2024",
+                "availablePlaces": "22",
+                "departureStation": "Sohag",
+                "stopStations": "Qena",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "610 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "1030",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Alexandria",
+                "stopStations": "Qena",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "7:00 PM",
+                "price": "350 EGP"
+              },
+              {
+                "tripNumber": "1031",
+                "tripDate": "14/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Gharbia",
+                "stopStations": "Qena",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "400 EGP"
+              },
+              {
+                "tripNumber": "1032",
+                "tripDate": "30/8/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Qena",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "220 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "17",
+        "city": "Beni Suef",
+        "image": "https://image.free-apply.com/gallery/l/uni/gallery/lg/1081800020/7bd443f04900ea67f7dfde593c9259a648261c6f.jpg?s=640",
+        "info": "Beni Suef is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Beni Suef, the Beni Suef Museum, and the Nile River views.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "company",
+            "name": "EG bus",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
+            "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+            "trips": [
+              {
+                "tripNumber": "1022",
+                "tripDate": "1/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Beni Suef",
+                "departureTime": "1:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "380 EGP"
+              },
+              {
+                "tripNumber": "1023",
+                "tripDate": "18/9/2024",
+                "availablePlaces": "6",
+                "departureStation": "Minya",
+                "stopStations": "Beni Suef",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "590 EGP"
+              },
+              {
+                "tripNumber": "1024",
+                "tripDate": "2/5/2024",
+                "availablePlaces": "22",
+                "departureStation": "Sohag",
+                "stopStations": "Beni Suef",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "650 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "1019",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Alexandria",
+                "stopStations": "Beni Suef",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1020",
+                "tripDate": "14/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Gharbia",
+                "stopStations": "Beni Suef",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "400 EGP"
+              },
+              {
+                "tripNumber": "1021",
+                "tripDate": "30/8/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Beni Suef",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "18",
+        "city": "Faiyum",
+        "image": "https://images.memphistours.com/large/696953448_DSC_0290.jpg",
+        "info": "Faiyum is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Faiyum, the Faiyum Museum, and the Nile River views.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "type": "company",
+            "name": "EG bus",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
+            "about": "EG Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2002.",
+            "trips": [
+              {
+                "tripNumber": "1009",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Menofia",
+                "stopStations": "Faiyum",
+                "departureTime": "1:00 PM",
+                "arrivedTime": "4:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "1010",
+                "tripDate": "16/9/2024",
+                "availablePlaces": "6",
+                "departureStation": "Minya",
+                "stopStations": "Faiyum",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "8:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1011",
+                "tripDate": "2/2/2024",
+                "availablePlaces": "22",
+                "departureStation": "Sohag",
+                "stopStations": "Faiyum",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "9:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "1012",
+                "tripDate": "30/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Alexandria",
+                "stopStations": "Faiyum",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1013",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Menofia",
+                "stopStations": "Faiyum",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "400 EGP"
+              },
+              {
+                "tripNumber": "1014",
+                "tripDate": "6/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Bani Suef",
+                "stopStations": "Faiyum",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "19",
+        "city": "Minya",
+        "image": "https://scoopempire.com/wp-content/uploads/2017/05/ElMinya.jpg",
+        "info": "Minya is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Minya, the Minya Museum, and the Nile River views.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "1006",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Minya",
+                "stopStations": "Minya",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "1007",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Minya",
+                "stopStations": "Minya",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1008",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Malawi",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "1015",
+                "tripDate": "30/9/2024",
+                "availablePlaces": "19",
+                "departureStation": "Marsa Matrouh",
+                "stopStations": "Bani Mazar",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "1016",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "7",
+                "departureStation": "Cairo",
+                "stopStations": "Maghagha",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1017",
+                "tripDate": "6/9/2024",
+                "availablePlaces": "2",
+                "departureStation": "Bani Suef",
+                "stopStations": "Minya",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      },
+      {
+        "id": "20",
+        "city": "Marsa Matruh",
+        "image": "https://www.etltravel.com/wp-content/uploads/2021/09/agiba-beach-marsa-matrouh-050.jpg",
+        "info": "Marsa Matruh is a coastal city in Egypt, known for its beautiful beaches and water sports. Visit the Agiba Beach, the Marsa Matruh Museum, and the Roman ruins.",
+        "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "1",
+                "tripDate": "30/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Minya",
+                "stopStations": "Marsa Matruh",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Cairo",
+                "stopStations": "Marsa Matruh",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "3",
+                "tripDate": "6/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Bani Suef",
+                "stopStations": "Marsa Matruh",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          },
+          {
+            "id": 1,
+            "type": "company",
+            "name": "go bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "1005",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Minya",
+                "stopStations": "Marsa Matruh",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "1004",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Minya",
+                "stopStations": "Marsa Matruh",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "1003",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Marsa Matruh",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "450 EGP"
+              }
+            ]
+          }
+        ],
+        "Reviews": [
+          {
+            "ReviewId": 1,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": "The trip was very comfortable, and the bus was clean.",
+            "ReviewCustomerName": "John Doe",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 2,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The service was greate ! , but the bus arrived late.",
+            "ReviewCustomerName": "Jane Smith",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 3,
+            "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+            "Review": "The seats were uncomfortable, and the bus was noisy.",
+            "ReviewCustomerName": "Alice Johnson",
+            "ReviewCutomerRate": "2"
+          },
+          {
+            "ReviewId": 4,
+            "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
+            "Review": " driver was very Excellent and  a smooth ride.",
+            "ReviewCustomerName": "Michael Brown",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 5,
+            "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
+            "Review": "The bus was too crowded, and the air conditioning was not working properly.",
+            "ReviewCustomerName": "Emily Davis",
+            "ReviewCutomerRate": "3"
+          },
+          {
+            "ReviewId": 6,
+            "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
+            "Review": "The trip was Punctual and a reliable service.",
+            "ReviewCustomerName": "Robert Wilson",
+            "ReviewCutomerRate": "5"
+          },
+          {
+            "ReviewId": 7,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The journey was long and tiring, but the staff was friendly.",
+            "ReviewCustomerName": "Laura Martin",
+            "ReviewCutomerRate": "4"
+          },
+          {
+            "ReviewId": 8,
+            "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
+            "Review": "The bus was clean, but the Wi-Fi was slow.",
+            "ReviewCustomerName": "David Lee",
+            "ReviewCutomerRate": "3"
+          }
+        ]
+      }
+    ],
+    "companies": [
+          {
+            "id": 4,
+            "type": "company",
+            "name": "CoCo bus",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+            "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+            "trips": [
+              {
+                "tripNumber": "2099",
+                "tripDate": "20/9/2024",
+                "availablePlaces": "9",
+                "departureStation": "Bani Suef",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "300 EGP"
+              },
+              {
+                "tripNumber": "2095",
+                "tripDate": "10/9/2024",
+                "availablePlaces": "3",
+                "departureStation": "Ismailia",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "500 EGP"
+              },
+              {
+                "tripNumber": "2096",
+                "tripDate": "2/9/2024",
+                "availablePlaces": "12",
+                "departureStation": "Sohag",
+                "stopStations": "Alexandria",
+                "departureTime": "2:00 PM",
+                "arrivedTime": "6:00 PM",
+                "price": "1450 EGP"
+              }
+            ]
+          }
+  ]
+  
+  }

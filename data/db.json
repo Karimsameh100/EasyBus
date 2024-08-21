@@ -46,7 +46,7 @@
           ]
         },
         {
-         "id": 2,
+          "id": 2,
           "type": "company",
           "name": "EG bus",
           "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/EG_BUS.jpg",
@@ -91,56 +91,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate":5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -190,7 +190,7 @@
           ]
         },
         {
-         "id": 3,
+          "id": 3,
           "type": "company",
           "name": "Amwag",
           "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
@@ -235,61 +235,61 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "city": "Alexandria",
       "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/fe/0e/2b.jpg",
       "info": "Alexandria is a coastal city in Egypt, known for its rich history and cultural heritage. Visit the Library of Alexandria, the Citadel of Qaitbay, and the Roman Amphitheater.",
@@ -334,7 +334,7 @@
           ]
         },
         {
-          "id": 1,
+          "id": 3,
           "type": "company",
           "name": "Amwag",
           "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
@@ -379,200 +379,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
-        }
-      ]
-    },
-    {
-      "id": "4",
-      "city": "Port Said",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Port_said_egypt_%286%29.JPG/1200px-Port_said_egypt_%286%29.JPG",
-      "info": "Port Said is a coastal city in Egypt, known for its beautiful beaches and historic landmarks. Visit the Port Said Lighthouse, the Museum of Modern Art, and the Suez Canal.",
-      "companies": [
-        {
-          "id": 1,
-          "type": "company",
-          "name": "go bus",
-          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
-          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
-          "trips": [
-            {
-              "tripNumber": "2085",
-              "tripDate": "20/9/2024",
-              "availablePlaces": "9",
-              "departureStation": "Minya",
-              "stopStations": "Port Said",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "30 EGP"
-            },
-            {
-              "tripNumber": "2086",
-              "tripDate": "10/9/2024",
-              "availablePlaces": "3",
-              "departureStation": "Minya",
-              "stopStations": "Port Said",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "50 EGP"
-            },
-            {
-              "tripNumber": "2088",
-              "tripDate": "2/9/2024",
-              "availablePlaces": "12",
-              "departureStation": "Sohag",
-              "stopStations": "Port Said",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "750 EGP"
-            }
-          ]
-        },
-        {
-          "id": 3,
-          "type": "company",
-          "name": "Amwag",
-          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTpfWihNOepF5iUSjAmhb1TPsGzh4loTT8JDAFs1F8bTShvM03fRwZZiq3hOPWMX3_ggI&usqp=CAU",
-          "about": "Amwag is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 2012.",
-          "trips": [
-            {
-              "tripNumber": "2080",
-              "tripDate": "10/9/2024",
-              "availablePlaces": "2",
-              "departureStation": "Minya",
-              "stopStations": "Port Said",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "300 EGP"
-            },
-            {
-              "tripNumber": "2081",
-              "tripDate": "16/9/2024",
-              "availablePlaces": "5",
-              "departureStation": "Cairo",
-              "stopStations": "Port Said",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "7:00 PM",
-              "price": "500 EGP"
-            },
-            {
-              "tripNumber": "2082",
-              "tripDate": "2/11/2024",
-              "availablePlaces": "12",
-              "departureStation": "Sohag",
-              "stopStations": "Port Said",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "9:00 PM",
-              "price": "450 EGP"
-            }
-          ]
-        }
-      ],
-      "Reviews": [
-        {
-          "ReviewId": 1,
-          "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
-          "Review": "The trip was very comfortable, and the bus was clean.",
-          "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
-        },
-        {
-          "ReviewId": 2,
-          "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
-          "Review": "The service was greate ! , but the bus arrived late.",
-          "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
-        },
-        {
-          "ReviewId": 3,
-          "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
-          "Review": "The seats were uncomfortable, and the bus was noisy.",
-          "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
-        },
-        {
-          "ReviewId": 4,
-          "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
-          "Review": " driver was very Excellent and  a smooth ride.",
-          "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
-        },
-        {
-          "ReviewId": 5,
-          "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
-          "Review": "The bus was too crowded, and the air conditioning was not working properly.",
-          "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
-        },
-        {
-          "ReviewId": 6,
-          "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
-          "Review": "The trip was Punctual and a reliable service.",
-          "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
-        },
-        {
-          "ReviewId": 7,
-          "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
-          "Review": "The journey was long and tiring, but the staff was friendly.",
-          "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
-        },
-        {
-          "ReviewId": 8,
-          "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
-          "Review": "The bus was clean, but the Wi-Fi was slow.",
-          "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -667,56 +523,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -811,56 +667,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -955,56 +811,63 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
+        },
+        {
+          "ReviewId": 9,
+          "RevCustomerImage": "https://i.pinimg.com/564x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+          "Review": "nice one",
+          "ReviewCustomerName": "karim",
+          "ReviewCutomerRate": 4
         }
       ]
     },
@@ -1099,56 +962,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -1243,56 +1106,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -1387,56 +1250,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -1531,56 +1394,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -1675,56 +1538,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -1819,56 +1682,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -1963,56 +1826,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -2107,56 +1970,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -2251,56 +2114,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -2395,56 +2258,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -2539,56 +2402,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -2683,56 +2546,56 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         }
       ]
     },
@@ -2827,56 +2690,97 @@
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": "The trip was very comfortable, and the bus was clean.",
           "ReviewCustomerName": "John Doe",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 2,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The service was greate ! , but the bus arrived late.",
           "ReviewCustomerName": "Jane Smith",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 3,
           "RevCustomerImage": "https://i.pinimg.com/736x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
           "Review": "The seats were uncomfortable, and the bus was noisy.",
           "ReviewCustomerName": "Alice Johnson",
-          "ReviewCutomerRate": 2
+          "ReviewCutomerRate": "2"
         },
         {
           "ReviewId": 4,
           "RevCustomerImage": "https://i.pinimg.com/564x/7e/92/2c/7e922c7e6a92015cd82d147588b69522.jpg",
           "Review": " driver was very Excellent and  a smooth ride.",
           "ReviewCustomerName": "Michael Brown",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 5,
           "RevCustomerImage": "https://i.pinimg.com/564x/e7/e3/25/e7e32523c50acef03a08c5cd7b8f9954.jpg",
           "Review": "The bus was too crowded, and the air conditioning was not working properly.",
           "ReviewCustomerName": "Emily Davis",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
         },
         {
           "ReviewId": 6,
           "RevCustomerImage": "https://i.pinimg.com/564x/c8/cc/7e/c8cc7e37e6b2fff29aa50bbdd13c5da7.jpg",
           "Review": "The trip was Punctual and a reliable service.",
           "ReviewCustomerName": "Robert Wilson",
-          "ReviewCutomerRate": 5
+          "ReviewCutomerRate": "5"
         },
         {
           "ReviewId": 7,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The journey was long and tiring, but the staff was friendly.",
           "ReviewCustomerName": "Laura Martin",
-          "ReviewCutomerRate": 4
+          "ReviewCutomerRate": "4"
         },
         {
           "ReviewId": 8,
           "RevCustomerImage": "https://i.pinimg.com/564x/12/94/c1/1294c12866fa5bf7df16943a308b01ff.jpg",
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
-          "ReviewCutomerRate": 3
+          "ReviewCutomerRate": "3"
+        }
+      ]
+    }
+  ],
+  "companies": [
+    {
+      "id": 4,
+      "type": "company",
+      "name": "CoCo bus",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+      "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+      "trips": [
+        {
+          "tripNumber": "2099",
+          "tripDate": "20/9/2024",
+          "availablePlaces": "9",
+          "departureStation": "Bani Suef",
+          "stopStations": "Alexandria",
+          "departureTime": "2:00 PM",
+          "arrivedTime": "6:00 PM",
+          "price": "300 EGP"
+        },
+        {
+          "tripNumber": "2095",
+          "tripDate": "10/9/2024",
+          "availablePlaces": "3",
+          "departureStation": "Ismailia",
+          "stopStations": "Alexandria",
+          "departureTime": "2:00 PM",
+          "arrivedTime": "6:00 PM",
+          "price": "500 EGP"
+        },
+        {
+          "tripNumber": "2096",
+          "tripDate": "2/9/2024",
+          "availablePlaces": "12",
+          "departureStation": "Sohag",
+          "stopStations": "Alexandria",
+          "departureTime": "2:00 PM",
+          "arrivedTime": "6:00 PM",
+          "price": "1450 EGP"
         }
       ]
     }
