@@ -39,15 +39,26 @@
 //         setSelectedCompany(company);
 //     };
 
-//     const handleCompanyDelete = async (companyId) => {
-//         try {
-//             await axios.delete(`http://localhost:4001/posts/${companyId}`);
-//             setCompanies(companies.filter(company => company.id !== companyId));
-//         } catch (error) {
-//             console.error('Error deleting company:', error);
-//             setError(error.message);
-//         }
-//     };
+//       const handleCompanyDelete = async (companyId) => {
+// try {
+//     const citiesToUpdate = data.filter(city => city.companies.some(company => company.id === companyId));
+//     const promises = citiesToUpdate.map(async (city) => {
+//       const updatedCity = { ...city };
+//       updatedCity.companies = updatedCity.companies.filter(company => company.id !== companyId);
+//       const response = await axios.put(`http://localhost:4001/posts/${city.id}`, updatedCity);
+//       return response.data;
+//     });
+//     const updatedCities = await Promise.all(promises);
+//     setData(data.map((city) => {
+//       const updatedCity = updatedCities.find((uc) => uc.id === city.id);
+//       return updatedCity || city;
+//     }));
+//     setCompanies(data.reduce((acc, city) => [...acc, ...city.companies], []));
+//   } catch (error) {
+//     console.error('Error deleting company:', error);
+//     setError(error.message);
+//   }
+// };
 
 //     const handleCompanyEdit = async (companyId, updatedCompany) => {
 //         try {
@@ -168,7 +179,8 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Button, Table, Form } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card, Image, Form, Table } from 'react-bootstrap';
+
 
 const CompanyManagement = () => {
     const [companies, setCompanies] = useState([]);
@@ -176,7 +188,7 @@ const CompanyManagement = () => {
     const [error, setError] = useState(null);
     const [allCities, setAllCities] = useState([]);
     const [editingCompany, setEditingCompany] = useState(null);
-    const [data ,setData] = useState([]);
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -184,10 +196,10 @@ const CompanyManagement = () => {
                 const response = await axios.get('http://localhost:4001/posts');
                 if (response.data) {
                     const allCompanies = response.data.reduce((acc, city) => {
-                        if (city.companies) { // Add this check
+                        if (city.companies) {
                             return [...acc, ...city.companies.filter(item => item.type === 'company')];
                         } else {
-                            return acc; // Return the accumulator if city.companies is null or undefined
+                            return acc;
                         }
                     }, []);
                     setCompanies(allCompanies);
@@ -211,29 +223,29 @@ const CompanyManagement = () => {
 
     const handleCompanyDelete = async (companyId) => {
         try {
-          const citiesToUpdate = data.filter(city => city.companies.some(company => company.id === companyId));
-          const promises = citiesToUpdate.map(async (city) => {
-            const updatedCity = { ...city };
-            updatedCity.companies = updatedCity.companies.filter(company => company.id !== companyId);
-            const response = await axios.put(`http://localhost:4001/posts/${city.id}`, updatedCity);
-            return response.data;
-          });
-          const updatedCities = await Promise.all(promises);
-          setData(data.map((city) => {
-            const updatedCity = updatedCities.find((uc) => uc.id === city.id);
-            return updatedCity || city;
-          }));
-          setCompanies(data.reduce((acc, city) => [...acc, ...city.companies], []));
+            const citiesToUpdate = data.filter(city => city.companies.some(company => company.id === companyId));
+            const promises = citiesToUpdate.map(async (city) => {
+                const updatedCity = { ...city };
+                updatedCity.companies = updatedCity.companies.filter(company => company.id !== companyId);
+                const response = await axios.put(`http://localhost:4001/posts/${city.id}`, updatedCity);
+                return response.data;
+            });
+            const updatedCities = await Promise.all(promises);
+            setData(data && data.map((city) => {
+                const updatedCity = updatedCities.find((uc) => uc.id === city.id);
+                return updatedCity || city;
+            }));
+            setCompanies(data.reduce((acc, city) => [...acc, ...city.companies], []));
         } catch (error) {
-          console.error('Error deleting company:', error);
-          setError(error.message);
+            console.error('Error deleting company:', error);
+            setError(error.message);
         }
-      };
+    };
 
     const handleCompanyEdit = async (companyId, updatedCompany) => {
         try {
             await axios.put(`http://localhost:4001/posts/${companyId}`, updatedCompany);
-            setCompanies(companies.map(company => company.id === companyId ? updatedCompany : company));
+            setCompanies(companies && companies.map(company => company.id === companyId ? updatedCompany : company));
             setEditingCompany(null);
         } catch (error) {
             console.error('Error editing company:', error);
@@ -249,98 +261,111 @@ const CompanyManagement = () => {
         setEditingCompany(null);
     };
 
+    console.log('companies:', companies);
+    console.log('allCities:', allCities);
+    //console.log('city.companies:', city.companies);
+
+
+
     return (
         <Container>
-            <Row>
-                <Col md={4}>
-                    <h2>Companies</h2>
-                    {error ? (
-                        <p>Error: {error}</p>
-                    ) : (
-                        <Table striped bordered hover>
-                            <thead>
+        <Row>
+          <Col md={12} className="text-center">
+            <h2>Companies</h2>
+            {error ? (
+              <p>Error: {error}</p>
+            ) : (
+                <Row>
+                {companies && Array.from(new Set(companies.map(company => company.id))).map((companyId) => {
+                  const company = companies.find(c => c.id === companyId);
+                  const companyCities = allCities.filter((city) => city.companies.some((c) => c.id === companyId));
+                  const companyTrips = (company.trips ? company.trips.length : 0)*companyCities.length;
+                  return (
+                    <Col md={4} key={companyId} className="mx-auto">
+                      <Card className='h-100'>
+                        <Card.Img variant="top" src={company.image} className='h-50 object-contain pt-1' />
+                        <Card.Body>
+                          <Card.Title>{company.name}</Card.Title>
+                          <Card.Text>
+                            Number of cities: {companyCities.length}
+                            <br />
+                            Number of trips: {companyTrips}
+                          </Card.Text>
+                          <Button className='mr-3'  variant="primary" onClick={() => handleCompanySelect(company)}>Select</Button>
+                          <Button className='mr-3' variant="danger" onClick={() => handleCompanyDelete(company.id)}>Delete</Button>
+                          <Button className='mr-2' variant="secondary" onClick={() => handleEditClick(company)}>Edit</Button>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  );
+                })}
+              </Row>
+            )}
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            {selectedCompany && (
+              <div>
+                <h2>{selectedCompany.name}</h2>
+                {editingCompany ? (
+                  <Form>
+                    <Form.Group controlId="companyName">
+                      <Form.Label>Company Name</Form.Label>
+                      <Form.Control type="text" value={editingCompany.name} onChange={(e) => setEditingCompany({ ...editingCompany, name: e.target.value })} />
+                    </Form.Group>
+                    <Button variant="primary" onClick={() => handleCompanyEdit(editingCompany.id, editingCompany)}>Save</Button>
+                    <Button variant="secondary" onClick={handleCancelEdit}>Cancel</Button>
+                  </Form>
+                ) : (
+                  <div>
+                    {allCities ? allCities.map((city) => {
+                      const cityTrips = city && city.companies ? city.companies.find((company) => company.id === selectedCompany.id) : null;
+                      if (cityTrips) {
+                        return (
+                          <div key={city.id}>
+                            <h3>{city.city}</h3>
+                            <Table striped bordered hover>
+                              <thead>
                                 <tr>
-                                    <th>Company Name</th>
-                                    <th>Actions</th>
+                                  <th>Trip Number</th>
+                                  <th>Trip Date</th>
+                                  <th>Available Places</th>
+                                  <th>Departure Station</th>
+                                  <th>Stop Stations</th>
+                                  <th>Departure Time</th>
+                                  <th>Arrived time</th>
+                                  <th>Price</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {[...new Set(companies.map(company => company.name))].map((companyName, index) => (
-                                    <tr key={index}>
-                                        <td>{companyName}</td>
-                                        <td>
-                                            <Button variant="primary" onClick={() => handleCompanySelect(companies.find(company => company.name === companyName))}>Select</Button>
-                                            <Button variant="danger" onClick={() => handleCompanyDelete(companies.find(company => company.name === companyName).id)}>Delete</Button>
-                                            <Button variant="secondary" onClick={() => handleEditClick(companies.find(company => company.name === companyName))}>Edit</Button>
-                                        </td>
-                                    </tr>
+                              </thead>
+                              <tbody>
+                                {cityTrips.trips.map((trip) => (
+                                  <tr key={trip.tripNumber}>
+                                    <td>{trip.tripNumber}</td>
+                                    <td>{trip.tripDate}</td>
+                                    <td>{trip.availablePlaces}</td>
+                                    <td>{trip.departureStation}</td>
+                                    <td>{trip.stopStations}</td>
+                                    <td>{trip.departureTime}</td>
+                                    <td>{trip.arrivedTime}</td>
+                                    <td>{trip.price}</td>
+                                  </tr>
                                 ))}
-                            </tbody>
-                        </Table>
-                    )}
-                </Col>
-                <Col md={8}>
-                    {selectedCompany && (
-                        <div>
-                            <h2>{selectedCompany.name}</h2>
-                            {editingCompany ? (
-                                <Form>
-                                    <Form.Group controlId="companyName">
-                                        <Form.Label>Company Name</Form.Label>
-                                        <Form.Control type="text" value={editingCompany.name} onChange={(e) => setEditingCompany({ ...editingCompany, name: e.target.value })} />
-                                    </Form.Group>
-                                    <Button variant="primary" onClick={() => handleCompanyEdit(editingCompany.id, editingCompany)}>Save</Button>
-                                    <Button variant="secondary" onClick={handleCancelEdit}>Cancel</Button>
-                                </Form>
-                            ) : (
-                                <div>
-                                    {allCities.map((city) => {
-                                        const cityTrips = city && city.companies ? city.companies.find((company) => company.id === selectedCompany.id) : null;
-                                        if (cityTrips) {
-                                            return (
-                                                <div key={city.id}>
-                                                    <h3>{city.city}</h3>
-                                                    <Table striped bordered hover>
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Trip Number</th>
-                                                                <th>Trip Date</th>
-                                                                <th>Available Places</th>
-                                                                <th>Departure Station</th>
-                                                                <th>Stop Stations</th>
-                                                                <th>Departure Time</th>
-                                                                <th>Arrived time</th>
-                                                                <th>Price</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            {cityTrips.trips.map((trip) => (
-                                                                <tr key={trip.tripNumber}>
-                                                                    <td>{trip.tripNumber}</td>
-                                                                    <td>{trip.tripDate}</td>
-                                                                    <td>{trip.availablePlaces}</td>
-                                                                    <td>{trip.departureStation}</td>
-                                                                    <td>{trip.stopStations}</td>
-                                                                    <td>{trip.departureTime}</td>
-                                                                    <td>{trip.arrivedTime}</td>
-                                                                    <td>{trip.price}</td>
-                                                                </tr>
-                                                            ))}
-                                                        </tbody>
-                                                    </Table>
-                                                </div>
-                                            );
-                                        }
-                                        return null;
-                                    })}
-                                    <Button variant="secondary" onClick={() => setSelectedCompany(null)}>Back</Button>
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </Col>
-            </Row>
-        </Container>
+                              </tbody>
+                            </Table>
+                          </div>
+                        );
+                      }
+                      return null;
+                    }) : <div>Loading...</div>}
+                    <Button variant="secondary" onClick={() => setSelectedCompany(null)}>Back</Button>
+                  </div>
+                )}
+              </div>
+            )}
+          </Col>
+        </Row>
+      </Container>
     );
 };
 
