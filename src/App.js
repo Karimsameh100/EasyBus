@@ -18,6 +18,11 @@ import Footer from "./Componants/Footer";
 import CompanyManagement from "./Pages/CompanyManagment";
 import ReviewForm from "./Pages/CreateReview";
 import About from "./Pages/About";
+// <<<<<<< HEAD
+// =======
+import UserProfile from "./Pages/UserProfile";
+
+// >>>>>>> userprofile
 // import SignUp from "./Pages/SignUp";
 
 function App() {
@@ -35,6 +40,7 @@ function App() {
         <Route path="/client" element={<ClientSignup />} />
         <Route path="/CompanyManag" element={<CompanyManagement />} />
         <Route path="/about" exact element={<About />} />
+        <Route path="/userprofile" exact element={<UserProfile />} />
         {/* <Route path="/register" element={<SignUp />} /> */}
         <Route path="/CompleteComReg" element={<CompleteComReg />} />
         <Route path="/create/:id" element={<ReviewForm />} />

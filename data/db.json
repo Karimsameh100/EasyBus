@@ -2755,7 +2755,7 @@
   ],
   "companies": [
     {
-      "id": 4,
+      "id": "4",
       "type": "company",
       "name": "CoCo bus",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
@@ -2794,7 +2794,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "type": "company",
       "name": "CoCo bus",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
@@ -2833,7 +2833,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "type": "company",
       "name": "CoCo bus",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
@@ -2872,7 +2872,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": "4",
       "type": "company",
       "name": "CoCo bus",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
