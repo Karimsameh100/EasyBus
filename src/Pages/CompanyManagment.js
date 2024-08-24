@@ -179,7 +179,7 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Button, Card, Image, Form, Table } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card, Image, Form, Table, Modal } from 'react-bootstrap';
 
 const CompanyManagement = () => {
   const [companies, setCompanies] = useState([]);
@@ -190,20 +190,31 @@ const CompanyManagement = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [tripsPerPage, setTripsPerPage] = useState(2);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [confirmMessage, setConfirmMessage] = useState('');
+  const [confirmButtonType, setConfirmButtonType] = useState('');
+  const [showEdit,setShowEdit]=useState(false);
+  const [disableConfirmButton, setDisableConfirmButton] = useState(false);
 
-  const filteredCities = allCities.filter((city) => {
-    let cityTrips = city && city.companies ? city.companies.find((company) => company.id === selectedCompany?.id) : null;
-    return cityTrips !== null;
-  });
 
-  const totalPages = Math.ceil(filteredCities.length / 2);
-  const startIndex = (currentPage - 1) * 2;
-  const endIndex = startIndex + 2;
+
+  const filteredCities = useMemo(() => {
+    return allCities.filter((city) => {
+      return city.companies.some((c) => c.id === selectedCompany?.id);
+    });
+  }, [allCities, selectedCompany]);
+
+  const totalPages = useMemo(() => {
+    return Math.ceil(filteredCities.length / tripsPerPage);
+  }, [filteredCities, tripsPerPage]);
+
+  const startIndex = (currentPage - 1) * tripsPerPage;
+  const endIndex = startIndex + tripsPerPage;
   const paginatedCities = filteredCities.slice(startIndex, endIndex);
 
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo(0, 0); // add this line to scroll to the top of the page
+    // add this line to scroll to the top of the page
   };
 
   useEffect(() => {
@@ -252,17 +263,30 @@ const CompanyManagement = () => {
         return updatedCity || city;
       }));
       setCompanies(data.reduce((acc, city) => [...acc, ...city.companies], []));
+      setShowConfirmModal(true);
+      setConfirmMessage('Company deleted successfully!');
     } catch (error) {
       console.error('Error deleting company:', error);
       setError(error.message);
     }
   };
 
+
   const handleCompanyEdit = async (companyId, updatedCompany) => {
     try {
-      await axios.put(`http://localhost:4001/posts/${companyId}`, updatedCompany);
-      setCompanies(companies && companies.map((company) => company.id === companyId ? updatedCompany : company));
-      setEditingCompany(null);
+      const postToUpdate = data.find((post) => post.companies.some((company) => company.id === companyId));
+      if (postToUpdate) {
+        const updatedPost = { ...postToUpdate };
+        const companyIndex = updatedPost.companies.findIndex((company) => company.id === companyId);
+        updatedPost.companies[companyIndex] = updatedCompany;
+        await axios.put(`http://localhost:4001/posts/${postToUpdate.id}`, updatedPost);
+        setData(data.map((post) => (post.id === postToUpdate.id ? updatedPost : post)));
+        setCompanies(data.reduce((acc, post) => [...acc, ...post.companies], []));
+        setEditingCompany(null);
+        setShowConfirmModal(true);
+        setConfirmMessage('Company updated successfully!');
+        setShowEdit(false);
+      }
     } catch (error) {
       console.error('Error editing company:', error);
       setError(error.message);
@@ -271,10 +295,16 @@ const CompanyManagement = () => {
 
   const handleEditClick = (company) => {
     setEditingCompany(company);
+    setShowEdit(true);
   };
 
   const handleCancelEdit = () => {
     setEditingCompany(null);
+  };
+
+
+  const handleConfirmModalClose = () => {
+    setShowConfirmModal(false);
   };
 
   console.log('companies:', companies);
@@ -306,8 +336,8 @@ const CompanyManagement = () => {
                             Number of trips: {companyTrips}
                           </Card.Text>
                           <Button className='mr-3' variant="primary" onClick={() => handleCompanySelect(company)}>Select</Button>
-                          <Button className='mr-3' variant="danger" onClick={() => handleCompanyDelete(company.id)}>Delete</Button>
-                          <Button className='mr-2' variant="secondary" onClick={() => handleEditClick(company)}>Edit</Button>
+                          <Button className='mr-3' variant="danger" onClick={() => {setShowConfirmModal(true),setConfirmButtonType('danger'),setConfirmMessage("you are going to delete this company with all related data with it and although it's trips are you sure you want delete it?"),setDisableConfirmButton(false);}}>Delete</Button>
+                          <Button className='mr-2' variant="secondary" onClick={() => {handleEditClick(company),handleCompanySelect(company), setShowEdit(true),setDisableConfirmButton(false);}}>Edit</Button>
                         </Card.Body>
                       </Card>
                     </Col>
@@ -323,14 +353,24 @@ const CompanyManagement = () => {
             <div>
               <h2>{selectedCompany.name}</h2>
               {editingCompany ? (
+               showEdit && (
                 <Form>
                   <Form.Group controlId="companyName">
                     <Form.Label>Company Name</Form.Label>
                     <Form.Control type="text" value={editingCompany.name} onChange={(e) => setEditingCompany({ ...editingCompany, name: e.target.value })} />
                   </Form.Group>
-                  <Button variant="primary" onClick={() => handleCompanyEdit(editingCompany.id, editingCompany)}>Save</Button>
+                  <Form.Group controlId="companyImage">
+                    <Form.Label>Company Image</Form.Label>
+                    <Form.Control type="text" value={editingCompany.image} onChange={(e) => setEditingCompany({ ...editingCompany, image: e.target.value })} />
+                  </Form.Group>
+                  <Form.Group controlId="companyAbout">
+                    <Form.Label>Company About</Form.Label>
+                    <Form.Control as="textarea" value={editingCompany.about} onChange={(e) => setEditingCompany({ ...editingCompany, about: e.target.value })} />
+                  </Form.Group>
+                  <Button variant="primary" onClick={() =>{ setShowConfirmModal(true),setConfirmButtonType('success'),setConfirmMessage("This update will effect on your company data in all places you used this data are you sure you want it ?")} }>Save</Button>
                   <Button variant="secondary" onClick={handleCancelEdit}>Cancel</Button>
                 </Form>
+              )
               ) : (
                 <div>
                   {allCities ? paginatedCities.map((city) => {
@@ -371,23 +411,8 @@ const CompanyManagement = () => {
                               ))}
                             </tbody>
                           </Table>
-                          <nav aria-label="Pagination">
-                            <ul className="pagination">
-                              {Array(totalPages)
-                                .fill(0)
-                                .map((_, index) => (
-                                  <li key={index} className={`page-item ${index + 1 === currentPage ? 'active' : ''}`}>
-                                    <a
-                                      className="page-link"
-                                      onClick={() => handlePageClick(index + 1)}
-                                    >
-                                      {index + 1}
-                                    </a>
-                                  </li>
-                                ))}
-                            </ul>
-                          </nav>
                         </div>
+
                       );
                     }
                     return null;
@@ -395,10 +420,63 @@ const CompanyManagement = () => {
                   <Button className='d-flex float-right justify-content-center btn-dark bg-gradient btn btn-md px-5 my-3' variant="secondary" onClick={() => setSelectedCompany(null)}>Back</Button>
                 </div>
               )}
+              <nav aria-label="Pagination">
+                <ul className="pagination justify-content-center">
+                  <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                    <a className="page-link text-light bg-dark bg-gradient" tabIndex="-1" aria-disabled="true" onClick={() => handlePageClick(currentPage - 1)}>
+                      <i className="fas fa-chevron-left"></i>
+                      Previous
+                    </a>
+                  </li>
+                  {Array(totalPages)
+                    .fill(0)
+                    .map((_, index) => (
+                      <li key={index} className={`page-item ${index + 1 === currentPage ? 'active' : ''}`}>
+                        <a className="page-link text-light bg-dark bg-gradient" onClick={() => handlePageClick(index + 1)}>
+                          {index + 1}
+                        </a>
+                      </li>
+                    ))}
+                  <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                    <a className="page-link text-light bg-dark bg-gradient" onClick={() => handlePageClick(currentPage + 1)}>
+                      Next
+                      <i className="fas fa-chevron-right"></i>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
             </div>
           )}
         </Col>
       </Row>
+      <Modal show={showConfirmModal} onHide={handleConfirmModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <i className={`fas fa-${confirmButtonType === 'success' ? 'check-circle' : 'exclamation-triangle'}`} /> Changes going to happan !!
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>{confirmMessage}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleConfirmModalClose}>
+            Close
+          </Button>
+          <Button variant={confirmButtonType} onClick={() => {
+            if (confirmButtonType === 'success') {
+              handleCompanyEdit(editingCompany.id, editingCompany);
+              setDisableConfirmButton(false);
+            } else if (confirmButtonType === 'danger') {
+              handleCompanyDelete(selectedCompany.id);
+              
+            }
+            handleConfirmModalClose();
+            setDisableConfirmButton(true);
+          }} disabled={disableConfirmButton}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
