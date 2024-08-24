@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate} from "react-router-dom";
 import SearchComponent from "../Componants/Searh";
 import { Reviews } from "../Componants/Reviews/Review";
 import gobus from "../logo/unnamed.png"
@@ -8,11 +8,13 @@ import axios from "axios";
 export function CityDetailes() {
     const params = useParams();
     const [city, setCity] = useState();
+    const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
     const reviewsPerPage = 4;
     const [hasMoreReviews, setHasMoreReviews] = useState(true);
     const [companiess, setCompanies] = useState([]);
     const [trips, setTrips] = useState([]);
+    const currentUserId = 1; 
 
     useEffect(() => {
         axios
@@ -53,6 +55,28 @@ export function CityDetailes() {
     if (!city) {
         return <div>Loading...</div>;
     }
+
+    const handleDeleteReview = (reviewId) => {
+        axios.get(`http://localhost:4001/posts/${params.id}`)
+            .then(res => {
+                const updatedReviews = res.data.Reviews.filter(r => r.ReviewId !== reviewId);
+                axios.put(`http://localhost:4001/posts/${params.id}`, {
+                    ...res.data,
+                    Reviews: updatedReviews
+                }).then(() => {
+                    setCity(prevCity => ({
+                        ...prevCity,
+                        Reviews: updatedReviews
+                    }));
+                });
+            })
+            .catch(err => console.error('Error deleting review:', err));
+    };
+    
+    
+    const handleEditReview = (reviewId) => {
+        navigate(`/edit/${params.id}/${reviewId}`);
+    };
 
     return (
         <>
@@ -154,7 +178,12 @@ export function CityDetailes() {
                                             customerReview={review.Review}
                                             customerName={review.ReviewCustomerName}
                                             customerRate={review.ReviewCutomerRate}
-                                        />
+                                            onEdit={() => handleEditReview(review.ReviewId)}
+                                            onDelete={() => handleDeleteReview(review.ReviewId)}
+                                            isAuthor={review.UserId === currentUserId}
+                                        
+                                    />
+            
                                     </div>
                                 ))}
                                 <Link to={`/create/${params.id}`} className="btn btn-secondary rounded-pill"> Share Your Review</Link>

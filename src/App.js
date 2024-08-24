@@ -38,6 +38,7 @@ function App() {
         {/* <Route path="/register" element={<SignUp />} /> */}
         <Route path="/CompleteComReg" element={<CompleteComReg />} />
         <Route path="/create/:id" element={<ReviewForm />} />
+        <Route path="/edit/:id/:reviewId" element={<ReviewForm />} />
       </Routes>
 
       <Footer />
