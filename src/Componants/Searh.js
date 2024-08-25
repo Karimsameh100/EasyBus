@@ -1,62 +1,82 @@
-import React, { useState } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
-import cities from '../CityTrips.json';
-import "./search.css"
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import search from "./search.css"
+import { Container, Form, FormGroup, FormControl, Button } from 'react-bootstrap';
 
-const SearchComponent = () => {
-    const [fromCity, setFromCity] = useState('');
-    const [toCity, setToCity] = useState('');
-    const [departureDate, setDepartureDate] = useState('');
+const Search = () => {
+    const [departureStation, setDepartureStation] = useState('');
+    const [arrivalStation, setArrivalStation] = useState('');
+    const [tripDate, setTripDate] = useState('');
+    const [trips, setTrips] = useState([]);
+    const navigate = useNavigate();
 
-    const handleSearch = () => {
-        // TO DO: implement search logic here
-        console.log('Search button clicked!');
+    useEffect(() => {
+        axios.get('http://localhost:4001/posts')
+            .then(response => {
+                const allTrips = response.data.reduce((acc, city) => {
+                    city.companies.forEach(company => {
+                        company.trips.forEach(trip => {
+                            acc.push({ ...trip, companyName: company.name });
+                        });
+                    });
+                    return acc;
+                }, []);
+                setTrips(allTrips);
+            })
+            .catch(error => console.error(error));
+    }, []);
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const filteredTrips = trips.filter((trip) => {
+            return (
+                trip.departureStation === departureStation &&
+                trip.stopStations === arrivalStation
+            );
+        });
+        navigate('/search-results', { state: { filteredTrips } });
+        console.log(filteredTrips)
     };
 
+
     return (
-        <>
-          
-
             <Container className="search-container d-flex justify-content-center align-items-center">
-
-                <Form className="search-form d-flex flex-wrap justify-content-center w-100">
-                    <Form.Group className=" form-groub mr-3" controlId="fromCity">
-                        <Form.Label>From:</Form.Label>
-                        <Form.Control className="border-right " as="select" value={fromCity} onChange={(e) => setFromCity(e.target.value)}>
-                            <option value="">Select city</option>
-                            {cities.map((city) => (
-                                <option key={city.id} value={city.city}>
-                                    {city.city}
-                                </option>
-                            ))}
-                        </Form.Control>
+                <form className="search-form d-flex flex-wrap justify-content-center w-100" onSubmit={handleSubmit}>
+                    <Form.Group className="form-groub mr-3" controlId="departureStation">
+                        <Form.Label>Departure Station:</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={departureStation}
+                            onChange={(event) => setDepartureStation(event.target.value)}
+                        />
                     </Form.Group>
 
-                    <Form.Group className="form-groub " controlId="toCity">
-                        <Form.Label>To:</Form.Label>
-                        <Form.Control className="" as="select" value={toCity} onChange={(e) => setToCity(e.target.value)}>
-                            <option value="">Select city</option>
-                            {cities.map((city) => (
-                                <option key={city.id} value={city.city}>
-                                    {city.city}
-                                </option>
-                            ))}
-                        </Form.Control>
+                    <Form.Group className="form-groub mr-3" controlId="arrivalStation">
+                        <Form.Label>Arrival Station:</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={arrivalStation}
+                            onChange={(event) => setArrivalStation(event.target.value)}
+                        />
                     </Form.Group>
 
-                    <Form.Group className="form-groub" controlId="departureDate">
-                        <Form.Label>Departure Date:</Form.Label>
-                        <Form.Control className="" type="date" value={departureDate} onChange={(e) => setDepartureDate(e.target.value)} />
+                    <Form.Group className="form-groub mr-3" controlId="tripDate">
+                        <Form.Label>Trip Date:</Form.Label>
+                        <Form.Control
+                            type="date"
+                            value={tripDate}
+                            onChange={(event) => setTripDate(event.target.value)}
+                        />
                     </Form.Group>
 
-                    <Button variant="primary" className='d-inline-block buttn1 flex-wrap' onClick={handleSearch}>
+                    <Button variant="primary" className='d-inline-block buttn1 flex-wrap' type="submit">
                         Search
                     </Button>
-                </Form>
+                </form>
             </Container>
-          
-        </>
     );
 };
 
-export default SearchComponent;
+export default Search;

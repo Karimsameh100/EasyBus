@@ -22,6 +22,7 @@ import About from "./Pages/About";
 // =======
 import UserProfile from "./Pages/UserProfile.js";
 import AddTrip from "./Pages/addtrip.js";
+import SearchResults from "./Pages/SearchPage.js";
 
 // >>>>>>> userprofile
 // import SignUp from "./Pages/SignUp";
@@ -47,6 +48,7 @@ function App() {
         <Route path="/create/:id" element={<ReviewForm />} />
         <Route path="/edit/:id/:reviewId" element={<ReviewForm />} />
         <Route path="/AddTrip" element={<AddTrip />} />
+        <Route path="/search-results" element={<SearchResults/>} />
       </Routes>
 
       <Footer />
