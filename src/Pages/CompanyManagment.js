@@ -242,7 +242,7 @@ const CompanyManagement = () => {
     };
 
     fetchData();
-  }, []);
+  }, [companies,editingCompany,showConfirmModal]);
 
   const handleCompanySelect = (companyName) => {
     setSelectedCompany(companyName);

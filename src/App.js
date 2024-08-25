@@ -20,7 +20,7 @@ import ReviewForm from "./Pages/CreateReview";
 import About from "./Pages/About";
 // <<<<<<< HEAD
 // =======
-import UserProfile from "./Pages/UserProfile";
+import UserProfile from "./Pages/UserProfile.js";
 
 // >>>>>>> userprofile
 // import SignUp from "./Pages/SignUp";
