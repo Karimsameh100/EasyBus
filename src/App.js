@@ -21,6 +21,7 @@ import About from "./Pages/About";
 // <<<<<<< HEAD
 // =======
 import UserProfile from "./Pages/UserProfile.js";
+import AddTrip from "./Pages/addtrip.js";
 
 // >>>>>>> userprofile
 // import SignUp from "./Pages/SignUp";
@@ -45,6 +46,7 @@ function App() {
         <Route path="/CompleteComReg" element={<CompleteComReg />} />
         <Route path="/create/:id" element={<ReviewForm />} />
         <Route path="/edit/:id/:reviewId" element={<ReviewForm />} />
+        <Route path="/AddTrip" element={<AddTrip />} />
       </Routes>
 
       <Footer />
