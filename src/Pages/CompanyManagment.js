@@ -193,14 +193,15 @@ const CompanyManagement = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [confirmMessage, setConfirmMessage] = useState('');
   const [confirmButtonType, setConfirmButtonType] = useState('');
-  const [showEdit,setShowEdit]=useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [disableConfirmButton, setDisableConfirmButton] = useState(false);
 
 
 
   const filteredCities = useMemo(() => {
+    if (!allCities || !selectedCompany) return [];
     return allCities.filter((city) => {
-      return city.companies.some((c) => c.id === selectedCompany?.id);
+      return city?.companies?.some((c) => c.id === selectedCompany?.id);
     });
   }, [allCities, selectedCompany]);
 
@@ -242,7 +243,7 @@ const CompanyManagement = () => {
     };
 
     fetchData();
-  }, [companies,editingCompany,showConfirmModal]);
+  }, [companies, editingCompany, showConfirmModal]);
 
   const handleCompanySelect = (companyName) => {
     setSelectedCompany(companyName);
@@ -322,7 +323,7 @@ const CompanyManagement = () => {
               {companies &&
                 Array.from(new Set(companies.map((company) => company.id))).map((companyId) => {
                   const company = companies.find((c) => c && c.id === companyId);
-                  const companyCities = allCities.filter((city) => city.companies.some((c) => c.id === companyId));
+                  const companyCities = allCities.filter((city) => city?.companies?.some((c) => c.id === companyId));
                   const companyTrips = (company?.trips ? company.trips.length : 0) * companyCities.length;
                   return (
                     <Col md={4} key={companyId} className="mx-auto">
@@ -336,8 +337,8 @@ const CompanyManagement = () => {
                             Number of trips: {companyTrips}
                           </Card.Text>
                           <Button className='mr-3' variant="primary" onClick={() => handleCompanySelect(company)}>Select</Button>
-                          <Button className='mr-3' variant="danger" onClick={() => {setShowConfirmModal(true),setConfirmButtonType('danger'),setConfirmMessage("you are going to delete this company with all related data with it and although it's trips are you sure you want delete it?"),setDisableConfirmButton(false);}}>Delete</Button>
-                          <Button className='mr-2' variant="secondary" onClick={() => {handleEditClick(company),handleCompanySelect(company), setShowEdit(true),setDisableConfirmButton(false);}}>Edit</Button>
+                          <Button className='mr-3' variant="danger" onClick={() => { setShowConfirmModal(true), setConfirmButtonType('danger'), setConfirmMessage("you are going to delete this company with all related data with it and although it's trips are you sure you want delete it?"), setDisableConfirmButton(false); }}>Delete</Button>
+                          <Button className='mr-2' variant="secondary" onClick={() => { handleEditClick(company), handleCompanySelect(company), setShowEdit(true), setDisableConfirmButton(false); }}>Edit</Button>
                         </Card.Body>
                       </Card>
                     </Col>
@@ -353,30 +354,30 @@ const CompanyManagement = () => {
             <div>
               <h2>{selectedCompany.name}</h2>
               {editingCompany ? (
-               showEdit && (
-                <Form>
-                  <Form.Group controlId="companyName">
-                    <Form.Label>Company Name</Form.Label>
-                    <Form.Control type="text" value={editingCompany.name} onChange={(e) => setEditingCompany({ ...editingCompany, name: e.target.value })} />
-                  </Form.Group>
-                  <Form.Group controlId="companyImage">
-                    <Form.Label>Company Image</Form.Label>
-                    <Form.Control type="text" value={editingCompany.image} onChange={(e) => setEditingCompany({ ...editingCompany, image: e.target.value })} />
-                  </Form.Group>
-                  <Form.Group controlId="companyAbout">
-                    <Form.Label>Company About</Form.Label>
-                    <Form.Control as="textarea" value={editingCompany.about} onChange={(e) => setEditingCompany({ ...editingCompany, about: e.target.value })} />
-                  </Form.Group>
-                  <Button variant="primary" onClick={() =>{ setShowConfirmModal(true),setConfirmButtonType('success'),setConfirmMessage("This update will effect on your company data in all places you used this data are you sure you want it ?")} }>Save</Button>
-                  <Button variant="secondary" onClick={handleCancelEdit}>Cancel</Button>
-                </Form>
-              )
+                showEdit && (
+                  <Form>
+                    <Form.Group controlId="companyName">
+                      <Form.Label>Company Name</Form.Label>
+                      <Form.Control type="text" value={editingCompany.name} onChange={(e) => setEditingCompany({ ...editingCompany, name: e.target.value })} />
+                    </Form.Group>
+                    <Form.Group controlId="companyImage">
+                      <Form.Label>Company Image</Form.Label>
+                      <Form.Control type="text" value={editingCompany.image} onChange={(e) => setEditingCompany({ ...editingCompany, image: e.target.value })} />
+                    </Form.Group>
+                    <Form.Group controlId="companyAbout">
+                      <Form.Label>Company About</Form.Label>
+                      <Form.Control as="textarea" value={editingCompany.about} onChange={(e) => setEditingCompany({ ...editingCompany, about: e.target.value })} />
+                    </Form.Group>
+                    <Button variant="primary" onClick={() => { setShowConfirmModal(true), setConfirmButtonType('success'), setConfirmMessage("This update will effect on your company data in all places you used this data are you sure you want it ?") }}>Save</Button>
+                    <Button variant="secondary" onClick={handleCancelEdit}>Cancel</Button>
+                  </Form>
+                )
               ) : (
                 <div>
                   {allCities ? paginatedCities.map((city) => {
                     let cityTrips = null;
                     if (city && city.companies) {
-                      cityTrips = city.companies.find((company) => company && company.id === selectedCompany?.id);
+                      cityTrips = city?.companies?.find((company) => company && company?.id === selectedCompany?.id);
                     }
                     if (cityTrips) {
                       const currentTrips = cityTrips?.trips ?? [];
@@ -412,7 +413,6 @@ const CompanyManagement = () => {
                             </tbody>
                           </Table>
                         </div>
-
                       );
                     }
                     return null;
@@ -468,7 +468,7 @@ const CompanyManagement = () => {
               setDisableConfirmButton(false);
             } else if (confirmButtonType === 'danger') {
               handleCompanyDelete(selectedCompany.id);
-              
+
             }
             handleConfirmModalClose();
             setDisableConfirmButton(true);

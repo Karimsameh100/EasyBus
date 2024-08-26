@@ -9,7 +9,7 @@ const SearchResults = () => {
 
     if (!filteredTrips || filteredTrips.length === 0) {
         return <div>No trips found</div>;
-    }
+    } 
 
 
     return (
