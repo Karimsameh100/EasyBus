@@ -336,7 +336,7 @@ const CompanyManagement = () => {
                             <br />
                             Number of trips: {companyTrips}
                           </Card.Text>
-                          <Button className='mr-3' variant="primary" onClick={() => handleCompanySelect(company)}>Select</Button>
+                          <Button className='mr-3' variant="primary" onClick={() => handleCompanySelect(company)}>View</Button>
                           <Button className='mr-3' variant="danger" onClick={() => { setShowConfirmModal(true), setConfirmButtonType('danger'), setConfirmMessage("you are going to delete this company with all related data with it and although it's trips are you sure you want delete it?"), setDisableConfirmButton(false); }}>Delete</Button>
                           <Button className='mr-2' variant="secondary" onClick={() => { handleEditClick(company), handleCompanySelect(company), setShowEdit(true), setDisableConfirmButton(false); }}>Edit</Button>
                         </Card.Body>
