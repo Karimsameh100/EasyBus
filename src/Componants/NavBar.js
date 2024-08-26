@@ -151,6 +151,7 @@ const NavBar = () => {
                   About
                 </Link>
               </li>
+         
               <Link to={"/listtrips"} className="nav-link me-3">
                 Trips
               </Link>

@@ -17,7 +17,9 @@ import Login from "./Pages/Login";
 import Footer from "./Componants/Footer";
 import CompanyManagement from "./Pages/CompanyManagment";
 import ReviewForm from "./Pages/CreateReview";
+import DisplayTripsByComp from "./Pages/DisplayTripsByComp.js";
 import About from "./Pages/About";
+
 // <<<<<<< HEAD
 // =======
 import UserProfile from "./Pages/UserProfile.js";
@@ -33,6 +35,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/listtrips" exact element={<TripList />} />
+        <Route path="/displaytrips" exact element={<DisplayTripsByComp />} />
         <Route path="/City/:id" exact element={<CityDetailes />} />
         <Route path="/" exact element={<Home />} />
         <Route path="/Login" exact element={<Login />} />
@@ -45,6 +48,7 @@ function App() {
         <Route path="/userprofile" exact element={<UserProfile />} />
         {/* <Route path="/register" element={<SignUp />} /> */}
         <Route path="/CompleteComReg" element={<CompleteComReg />} />
+      
         <Route path="/create/:id" element={<ReviewForm />} />
         <Route path="/edit/:id/:reviewId" element={<ReviewForm />} />
         <Route path="/AddTrip" element={<AddTrip />} />
