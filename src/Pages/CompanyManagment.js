@@ -251,7 +251,7 @@ const CompanyManagement = () => {
 
   const handleCompanyDelete = async (companyId) => {
     try {
-      const citiesToUpdate = data.filter((city) => city.companies.some((company) => company.id === companyId));
+      const citiesToUpdate = data.filter((city) => city?.companies?.some((company) => company.id === companyId));
       const promises = citiesToUpdate.map(async (city) => {
         const updatedCity = { ...city };
         updatedCity.companies = updatedCity.companies.filter((company) => company.id !== companyId);

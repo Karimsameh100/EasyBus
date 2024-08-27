@@ -628,7 +628,7 @@ const AddTripForm = () => {
                 onChange={handleInputChange}
               >
                 <option value="">Select City</option>
-                {cities.map(city => (
+                {data.map(city => (
                   <option key={`city-${city.id}`} value={city.id}>
                     {city.city}
                   </option>

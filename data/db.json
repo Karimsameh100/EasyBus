@@ -7,6 +7,45 @@
       "info": "Cairo, Egypt’s sprawling capital, is set on the Nile River. At its heart is Tahrir Square and the vast Egyptian Museum, a trove of antiquities including royal mummies and gilded King Tutankhamun artifacts. Nearby, Giza is the site of the iconic pyramids and Great Sphinx, dating to the 26th century BC. In Gezira Island’s leafy Zamalek district, 187m Cairo Tower affords panoramic city views.",
       "companies": [
         {
+          "id": 4,
+          "type": "company",
+          "name": "eagel bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
+        {
           "id": 1,
           "type": "company",
           "name": "go bus",
@@ -160,6 +199,45 @@
       "info": "Giza is an Egyptian city on the west bank of the Nile, near Cairo. The Giza Plateau is home to iconic Egyptian monuments, including 3 tall pyramids built as royal mausoleums around the 26th century B.C. The largest, the Great Pyramid, is King Khufu’s tomb. The Great Sphinx is a vast sculpture of a man’s head on a lion’s body. The Solar Boat Museum displays a restored cedar barge found buried near the Great Pyramid",
       "companies": [
         {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
+        {
           "id": 1,
           "type": "company",
           "name": "go bus",
@@ -303,6 +381,45 @@
       "image": "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/fe/0e/2b.jpg",
       "info": "Alexandria is a coastal city in Egypt, known for its rich history and cultural heritage. Visit the Library of Alexandria, the Citadel of Qaitbay, and the Roman Amphitheater.",
       "companies": [
+        {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
         {
           "id": 1,
           "type": "company",
@@ -448,6 +565,45 @@
       "info": "Suez is a city in Egypt, located on the Suez Canal. Visit the Suez Canal Museum, the Port of Suez, and the Suez Oil Refinery.",
       "companies": [
         {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
+        {
           "id": 3,
           "type": "company",
           "name": "Amwag",
@@ -592,6 +748,45 @@
       "info": "Aswan is a city in southern Egypt, known for its beautiful Nile River views and ancient temples. Visit the Temple of Isis, the Unfinished Obelisk, and the Nubian Museum.",
       "companies": [
         {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
+        {
           "id": 3,
           "type": "company",
           "name": "Amwag",
@@ -735,6 +930,45 @@
       "image": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0a/45/3a/0f.jpg",
       "info": "Luxor is a city in southern Egypt, known for its ancient temples and tombs. Visit the Valley of the Kings, the Temple of Karnak, and the Luxor Temple.",
       "companies": [
+        {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
         {
           "id": 1,
           "type": "company",
@@ -887,6 +1121,45 @@
       "info": "Hurghada is a coastal city in Egypt, known for its beautiful beaches and water sports. Visit the Hurghada Marina, the Giftun Islands, and the Makadi Bay.",
       "companies": [
         {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
+        {
           "id": 1,
           "type": "company",
           "name": "go bus",
@@ -1030,6 +1303,45 @@
       "image": "https://media.istockphoto.com/id/524390404/photo/egyptian-paradise.jpg?s=612x612&w=0&k=20&c=76jpjkkQADDo3pGsOtgjsGPZPMgtNPTS4Xuki_QNw50=",
       "info": "Sharm El-Sheikh is a coastal city in Egypt, known for its beautiful beaches and coral reefs. Visit the Naama Bay, the Ras Mohammed National Park, and the Sharm El-Sheikh Museum.",
       "companies": [
+        {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
         {
           "id": 1,
           "type": "company",
@@ -1175,6 +1487,45 @@
       "info": "Ismailia is a city in Egypt, located on the Suez Canal. Visit the Ismailia Museum, the Port of Ismailia, and the Suez Canal University.",
       "companies": [
         {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
+        {
           "id": 3,
           "type": "company",
           "name": "Amwag",
@@ -1318,6 +1669,45 @@
       "image": "https://www.shutterstock.com/image-photo/el-mansoura-egypt-7-sep-260nw-1774525088.jpg",
       "info": "Mansoura is a city in Egypt, known for its rich history and cultural heritage. Visit the Mansoura University, the Mansoura Museum, and the Nile River views.",
       "companies": [
+        {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
         {
           "id": 2,
           "type": "company",
@@ -1463,6 +1853,45 @@
       "info": "Tanta is a city in Egypt, known for its beautiful mosques and historic landmarks. Visit the Mosque of Sayyid Ahmed al-Badawi, the Tanta Museum, and the Nile River views.",
       "companies": [
         {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
+        {
           "id": 2,
           "type": "company",
           "name": "EG bus",
@@ -1606,6 +2035,45 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/f/f1/El-Mahalla_El-Kubra-art.JPG",
       "info": "El Mahalla El Kubra is a city in Egypt, known for its rich history and cultural heritage. Visit the El Mahalla El Kubra Museum, the Mosque of El Mahalla El Kubra, and the Nile River views.",
       "companies": [
+        {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
         {
           "id": 1,
           "type": "company",
@@ -1751,6 +2219,45 @@
       "info": "Asyut is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Wadi el-Hitan, the Asyut Museum, and the Nile River views.",
       "companies": [
         {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
+        {
           "id": 1,
           "type": "company",
           "name": "go bus",
@@ -1894,6 +2401,45 @@
       "image": "https://d3rr2gvhjw0wwy.cloudfront.net/uploads/mandators/49581/file-manager/sohag,-sohag-city,-sohag-travel.jpg",
       "info": "Sohag is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Akhmim, the Sohag Museum, and the Nile River views.",
       "companies": [
+        {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
         {
           "id": 3,
           "type": "company",
@@ -2039,6 +2585,45 @@
       "info": "Qena is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Dendera, the Qena Museum, and the Nile River views.",
       "companies": [
         {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
+        {
           "id": 2,
           "type": "company",
           "name": "EG bus",
@@ -2182,6 +2767,45 @@
       "image": "https://image.free-apply.com/gallery/l/uni/gallery/lg/1081800020/7bd443f04900ea67f7dfde593c9259a648261c6f.jpg?s=640",
       "info": "Beni Suef is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Beni Suef, the Beni Suef Museum, and the Nile River views.",
       "companies": [
+        {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
         {
           "id": 2,
           "type": "company",
@@ -2327,6 +2951,45 @@
       "info": "Faiyum is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Faiyum, the Faiyum Museum, and the Nile River views.",
       "companies": [
         {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
+        {
           "id": 2,
           "type": "company",
           "name": "EG bus",
@@ -2470,6 +3133,45 @@
       "image": "https://scoopempire.com/wp-content/uploads/2017/05/ElMinya.jpg",
       "info": "Minya is a city in Egypt, known for its ancient temples and tombs. Visit the Temple of Minya, the Minya Museum, and the Nile River views.",
       "companies": [
+        {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
         {
           "id": 1,
           "type": "company",
@@ -2615,6 +3317,45 @@
       "info": "Marsa Matruh is a coastal city in Egypt, known for its beautiful beaches and water sports. Visit the Agiba Beach, the Marsa Matruh Museum, and the Roman ruins.",
       "companies": [
         {
+          "id": 4,
+          "type": "company",
+          "name": "CoCo bus",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+          "trips": [
+            {
+              "tripNumber": "2099",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Bani Suef",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
+            },
+            {
+              "tripNumber": "2095",
+              "tripDate": "10/9/2024",
+              "availablePlaces": "3",
+              "departureStation": "Ismailia",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "500 EGP"
+            },
+            {
+              "tripNumber": "2096",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Alexandria",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "1450 EGP"
+            }
+          ]
+        },
+        {
           "id": 1,
           "type": "company",
           "name": "go bus",
@@ -2757,6 +3498,45 @@
     }
   ],
   "companies": [
+    {
+      "id": 4,
+      "type": "company",
+      "name": "CoCo bus",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
+      "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
+      "trips": [
+        {
+          "tripNumber": "2099",
+          "tripDate": "20/9/2024",
+          "availablePlaces": "9",
+          "departureStation": "Bani Suef",
+          "stopStations": "Alexandria",
+          "departureTime": "2:00 PM",
+          "arrivedTime": "6:00 PM",
+          "price": "300 EGP"
+        },
+        {
+          "tripNumber": "2095",
+          "tripDate": "10/9/2024",
+          "availablePlaces": "3",
+          "departureStation": "Ismailia",
+          "stopStations": "Alexandria",
+          "departureTime": "2:00 PM",
+          "arrivedTime": "6:00 PM",
+          "price": "500 EGP"
+        },
+        {
+          "tripNumber": "2096",
+          "tripDate": "2/9/2024",
+          "availablePlaces": "12",
+          "departureStation": "Sohag",
+          "stopStations": "Alexandria",
+          "departureTime": "2:00 PM",
+          "arrivedTime": "6:00 PM",
+          "price": "1450 EGP"
+        }
+      ]
+    },
     {
       "id": "4",
       "type": "company",
