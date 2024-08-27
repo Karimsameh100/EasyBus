@@ -117,7 +117,7 @@ export function CityDetailes() {
                         <div class="col-sm-6 col-md-4">
                             <img src={company.image} className="img-fluid mt-5 " alt="Image" />
                         </div>
-                        <div class="col-sm-6 col-md-8">
+                        <div class=" table-responsive col-sm-6 col-md-8">
                             <table class="table table-striped table-bordered-bold">
                                 <thead>
                                     <tr>

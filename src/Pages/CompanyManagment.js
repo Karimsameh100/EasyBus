@@ -326,18 +326,18 @@ const CompanyManagement = () => {
                   const companyCities = allCities.filter((city) => city?.companies?.some((c) => c.id === companyId));
                   const companyTrips = (company?.trips ? company.trips.length : 0) * companyCities.length;
                   return (
-                    <Col md={4} key={companyId} className="mx-auto">
+                    <Col sm={6} md={4} key={companyId} className="mx-auto">
                       <Card className='h-100'>
                         <Card.Img variant="top" src={company.image} className='h-50 object-contain pt-1' />
-                        <Card.Body>
+                        <Card.Body className='text-left'>
                           <Card.Title>{company.name}</Card.Title>
                           <Card.Text>
                             Number of cities: {companyCities.length}
                             <br />
                             Number of trips: {companyTrips}
                           </Card.Text>
-                          <Button className='mr-3' variant="primary" onClick={() => handleCompanySelect(company)}>Select</Button>
-                          <Button className='mr-3' variant="danger" onClick={() => { setShowConfirmModal(true), setConfirmButtonType('danger'), setConfirmMessage("you are going to delete this company with all related data with it and although it's trips are you sure you want delete it?"), setDisableConfirmButton(false); }}>Delete</Button>
+                          <Button className='mr-4' variant="primary" onClick={() => handleCompanySelect(company)}>View</Button>
+                          <Button className='mr-4' variant="danger" onClick={() => { setShowConfirmModal(true), setConfirmButtonType('danger'), setConfirmMessage("you are going to delete this company with all related data with it and although it's trips are you sure you want delete it?"), setDisableConfirmButton(false); }}>Delete</Button>
                           <Button className='mr-2' variant="secondary" onClick={() => { handleEditClick(company), handleCompanySelect(company), setShowEdit(true), setDisableConfirmButton(false); }}>Edit</Button>
                         </Card.Body>
                       </Card>
@@ -382,7 +382,7 @@ const CompanyManagement = () => {
                     if (cityTrips) {
                       const currentTrips = cityTrips?.trips ?? [];
                       return (
-                        <div key={city.id}>
+                        <div key={city.id} className='table-responsive'>
                           <h3>{selectedCompany?.name}-&gt;{city.city}</h3>
                           <Table striped bordered hover>
                             <thead>
@@ -417,11 +417,11 @@ const CompanyManagement = () => {
                     }
                     return null;
                   }) : <div>Loading...</div>}
-                  <Button className='d-flex float-right justify-content-center btn-dark bg-gradient btn btn-md px-5 my-3' variant="secondary" onClick={() => setSelectedCompany(null)}>Back</Button>
+                  <Button className='d-flex float-right justify-content-center btn-dark bg-gradient btn btn-md px-5 my-5' variant="secondary" onClick={() => setSelectedCompany(null)}>Back</Button>
                 </div>
               )}
               <nav aria-label="Pagination">
-                <ul className="pagination justify-content-center">
+                <ul className="pagination justify-content-center my-1">
                   <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
                     <a className="page-link text-light bg-dark bg-gradient" tabIndex="-1" aria-disabled="true" onClick={() => handlePageClick(currentPage - 1)}>
                       <i className="fas fa-chevron-left"></i>
