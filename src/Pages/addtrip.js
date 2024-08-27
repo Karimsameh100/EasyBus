@@ -317,7 +317,7 @@ const AddTripForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:4001/posts');
+        const response = await axios.get('http://localhost:4002/companies');
         if (response.data) {
           setData(response.data)
           console.log('Fetched data:', response.data);
@@ -455,7 +455,7 @@ const AddTripForm = () => {
 
       console.log('Updated Entity:', updatedEntity); // Debug: Check updatedEntity
 
-      await axios.put(`http://localhost:4001/posts/${selectedEntityId}`, updatedEntity);
+      await axios.put(`http://localhost:4002/companies/${selectedEntityId}`, updatedEntity);
 
       // Reset form
       setTripNumber("");
