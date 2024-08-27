@@ -13,7 +13,7 @@ const SearchResults = () => {
 
 
     return (
-        <div className="container mt-5">
+        <div className="table-responsive container mt-5">
         <h1 className="text-center mb-4">Search Results</h1>
         <table className="table table-striped table-bordered">
           <thead className="thead-dark">
