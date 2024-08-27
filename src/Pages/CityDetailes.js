@@ -45,6 +45,11 @@ export function CityDetailes() {
         }
     };
 
+    const handleBookTrip = (trip,company) => {
+        // Navigate to the Booking page and pass the trip data as a prop
+        navigate(`/booking/${trip.tripNumber}`, { state: { trip,company } });
+      };
+
     const handleGoBack = () => {
         // Go back to previous page if possible
         if (currentPage > 1) {
@@ -144,7 +149,7 @@ export function CityDetailes() {
                                             <td>{trip.arrivedTime}</td>
                                             <td>{trip.price}</td>
                                             <td>
-                                                <button class="btn btn-success btn-sm w-100">Book</button>
+                                                <button class="btn btn-success btn-sm w-100"  onClick={() => handleBookTrip(trip,company)}>Book</button>
                                             </td>
                                         </tr>
                                     ))}

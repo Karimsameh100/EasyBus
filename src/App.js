@@ -19,15 +19,11 @@ import CompanyManagement from "./Pages/CompanyManagment";
 import ReviewForm from "./Pages/CreateReview";
 import DisplayTripsByComp from "./Pages/DisplayTripsByComp.js";
 import About from "./Pages/About";
-
-// <<<<<<< HEAD
-// =======
 import UserProfile from "./Pages/UserProfile.js";
 import AddTrip from "./Pages/addtrip.js";
 import SearchResults from "./Pages/SearchPage.js";
+import BookingPage from "./Pages/Book.js";
 
-// >>>>>>> userprofile
-// import SignUp from "./Pages/SignUp";
 
 function App() {
   return (
@@ -48,6 +44,7 @@ function App() {
         <Route path="/userprofile" exact element={<UserProfile />} />
         {/* <Route path="/register" element={<SignUp />} /> */}
         <Route path="/CompleteComReg" element={<CompleteComReg />} />
+        <Route path="/booking/:tripnumber" element={<BookingPage />} />
       
         <Route path="/create/:id" element={<ReviewForm />} />
         <Route path="/edit/:id/:reviewId" element={<ReviewForm />} />
