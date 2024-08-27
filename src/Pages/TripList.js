@@ -51,7 +51,7 @@ export function TripList() {
               ))
             ) : (
               <div className="text-center text-muted">
-                <p>No products found for the selected filters.</p>
+                <p>No cities found for the selected filters.</p>
               </div>
             )}
           </div>
