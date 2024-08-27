@@ -68,17 +68,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// The path to your API endpoint
-const API_URL = "../data/companiesTrips.json";
-
 const DisplayTripsByComp = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [tripsPerPage] = useState(5); // Number of trips per page
+
   useEffect(() => {
     // Fetch data from the API
-    axios.get(API_URL)
+    axios.get("http://localhost:4002/companies")
       .then(response => {
         setData(response.data);
         setLoading(false);
@@ -98,21 +99,29 @@ const DisplayTripsByComp = () => {
     return <div className='d-flex justify-content-center align-items-center fs-5'>{error}</div>;
   }
 
-  if (!data || !data.companies || !Array.isArray(data.companies)) {
-    return <div className='d-flex justify-content-center align-items-center fs-5'>No data available.</div>;
-  }
+  // Function to paginate trips
+  const paginateTrips = (trips) => {
+    const indexOfLastTrip = currentPage * tripsPerPage;
+    const indexOfFirstTrip = indexOfLastTrip - tripsPerPage;
+    return trips.slice(indexOfFirstTrip, indexOfLastTrip);
+  };
+
+  // Function to handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div>
       <h1 className='text-center'>Company Trips</h1>
-      {data.companies.map(company => (
-        <div key={company.id}>
-          <h2>{company.name}</h2>
-          <img src={company.image} alt={company.name} style={{ width: '200px', height: '100px' }} />
-          <p>{company.about}</p>
+      {data && data.map(company => (
+        <div className='text-center' key={company.id} style={{ marginBottom: '40px' }}>
+          <h2 className='bg-black text-light py-2 my-3 '>{company.name}</h2>
+          <img src={company.image} alt={company.name} style={{ width: '1000px', height: '300px' }} />
+          <h3 className='py-5'>{company.about}</h3>
           <table border="1" style={{ marginBottom: '20px', width: '100%' }}>
             <thead>
-              <tr>
+              <tr style={{backgroundColor: 'grey'}}>
                 <th>Trip Number</th>
                 <th>Trip Date</th>
                 <th>Available Places</th>
@@ -124,7 +133,7 @@ const DisplayTripsByComp = () => {
               </tr>
             </thead>
             <tbody>
-              {company.trips.map(trip => (
+              {paginateTrips(company.trips).map(trip => (
                 <tr key={trip.tripNumber}>
                   <td>{trip.tripNumber}</td>
                   <td>{trip.tripDate}</td>
@@ -138,6 +147,19 @@ const DisplayTripsByComp = () => {
               ))}
             </tbody>
           </table>
+
+          {/* Pagination Controls */}
+          <div className='text-center'>
+            {Array.from({ length: Math.ceil(company.trips.length / tripsPerPage) }, (_, index) => (
+              <button
+                key={index + 1}
+                onClick={() => handlePageChange(index + 1)}
+                style={{ margin: '0 5px' }}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
         </div>
       ))}
     </div>
