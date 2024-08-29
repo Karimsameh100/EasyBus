@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form, Button, Modal } from 'react-bootstrap';
 
 const BookingPage = () => {
@@ -7,19 +7,37 @@ const BookingPage = () => {
     const trip = location.state.trip;
     const company = location.state.company;
 
-    const [numPlaces, setNumPlaces] = useState(0);
+    const [numPlaces, setNumPlaces] = useState(1); // default value to 1
     const [showModal, setShowModal] = useState(false);
     const [totalCost, setTotalCost] = useState(0);
+    const [subTotal, setSubTotal] = useState(0);
+    const [tax, setTax] = useState(0);
+    const [discount, setDiscount] = useState(0);
+    const [discountAmount, setDiscountAmount] = useState(0);
+    const [paymentMethod, setPaymentMethod] = useState('');
 
-    const handleInputChange = (e) => {
-        const value = parseInt(e.target.value, 10);
-        if (value > parseInt(trip.availablePlaces, 10)) {
-            setShowModal(true);
+    useEffect(() => {
+        const tripPrice = parseFloat(trip.price.replace(/[^\d\.]/g, '')); // extract numeric value from string
+        const subTotal = numPlaces * tripPrice;
+        const discountAmount = subTotal * 0.10; // 10% discount
+        const tax = (subTotal - discountAmount) * 0.14;
+        setSubTotal(subTotal);
+        setDiscountAmount(discountAmount);
+        setTax(tax);
+        setTotalCost(subTotal - discountAmount + tax);
+    }, [numPlaces, trip.price]);
+
+    const handleIncrement = () => {
+        if (numPlaces < trip.availablePlaces) {
+            setNumPlaces(numPlaces + 1);
         } else {
-            setNumPlaces(value);
-            const total = value * (trip.price || 0); // ensure trip.price is a number
-            const tax = total * 0.14;
-            setTotalCost(total + tax);
+            setShowModal(true);
+        }
+    };
+
+    const handleDecrement = () => {
+        if (numPlaces > 1) {
+            setNumPlaces(numPlaces - 1);
         }
     };
 
@@ -41,20 +59,33 @@ const BookingPage = () => {
                         <Card.Body className="px-4 py-3">
                             <h5 className="mb-3">Trip Details</h5>
                             <ul className="list-unstyled">
-                                <li>
-                                    <span className="font-weight-bold">Trip Date:</span> {trip.tripDate}
+                                <li className="d-flex justify-content-between">
+                                    <strong className='fs-5'>Your Trip Number:</strong>
+                                    <span className='fs-5'>{trip.tripNumber}</span>
                                 </li>
-                                <li>
-                                    <span className="font-weight-bold">Departure Station:</span> {trip.departureStation}
+                                <li className="d-flex justify-content-between">
+                                    <span className="font-weight-bold fs-5">Trip Date:</span>
+                                    <span className='fs-5'>{trip.tripDate}</span>
                                 </li>
-                                <li>
-                                    <span className="font-weight-bold">Stop Stations:</span> {trip.stopStations}
+                                <li className="d-flex justify-content-between">
+                                    <span className="font-weight-bold fs-5">Departure Station:</span>
+                                    <span className='fs-5'>{trip.departureStation}</span>
                                 </li>
-                                <li>
-                                    <span className="font-weight-bold">Departure Time:</span> {trip.departureTime}
+                                <li className="d-flex justify-content-between">
+                                    <span className="font-weight-bold fs-5">Stop Stations:</span>
+                                    <span className='fs-5'>{trip.stopStations}</span>
                                 </li>
-                                <li>
-                                    <span className="font-weight-bold">Arrival Time:</span> {trip.arrivedTime}
+                                <li className="d-flex justify-content-between">
+                                    <span className="font-weight-bold fs-5">Departure Time:</span>
+                                    <span className='fs-5'>{trip.departureTime}</span>
+                                </li>
+                                <li className="d-flex justify-content-between">
+                                    <span className="font-weight-bold fs-5">Arrival Time:</span>
+                                    <span className='fs-5'>{trip.arrivedTime}</span>
+                                </li>
+                                <li className="d-flex justify-content-between">
+                                    <span className="font-weight-bold fs-5">Trip Price:</span>
+                                    <span className='fs-5'>{trip.price}</span>
                                 </li>
                             </ul>
                         </Card.Body>
@@ -68,12 +99,81 @@ const BookingPage = () => {
                             <Form>
                                 <Form.Group controlId="numPlaces">
                                     <Form.Label>Number of Places:</Form.Label>
-                                    <Form.Control type="number" value={numPlaces} onChange={handleInputChange} />
+                                    <div className="input-group">
+                                        <Button variant="secondary" onClick={handleDecrement} disabled={numPlaces === 1}>
+                                            -
+                                        </Button>
+                                        <Form.Control type="text" value={numPlaces} readOnly />
+                                        <Button variant="secondary" onClick={handleIncrement} disabled={numPlaces === trip.availablePlaces}>
+                                            +
+                                        </Button>
+                                    </div>
                                 </Form.Group>
-                                <p className="text-muted">Total Cost: {totalCost.toFixed(2)}</p>
-                                <Button variant="primary" type="submit">
-                                    Book Now
-                                </Button>
+                                <ul className="list-unstyled p-2">
+                                    <li className="d-flex justify-content-between">
+                                        <strong className='fs-6'>Sup Total:</strong>
+                                        <span className='fs-5'>{subTotal.toFixed(2)}</span>
+                                    </li>
+                                    <li className="d-flex justify-content-between">
+                                        <strong className='fs-6'>Discount (10%):</strong>
+                                        <span className='fs-5'>-{discountAmount.toFixed(2)}</span>
+                                    </li>
+                                    <li className="d-flex justify-content-between">
+                                        <strong className='fs-6'>Tax (14%):</strong>
+                                        <span className='fs-5'>{tax.toFixed(2)}</span>
+                                    </li>
+                                    <hr />
+                                    <li className="d-flex justify-content-between">
+                                        <strong className='fs-6'>Total:</strong>
+                                        <span className='fs-5'>{totalCost.toFixed(2)}</span>
+                                    </li>
+                                </ul>
+
+                                <Form.Group controlId="paymentMethod" className="text-center">
+                                    <Form.Label>Payment Method:</Form.Label>
+                                    <div className="d-flex justify-content-between">
+                                        <div>
+                                        <Form.Check type="radio" label="Pay Online" name="paymentMethod" id="payOnline" onChange={(e) => setPaymentMethod('payOnline')} />
+                                        </div>
+                                        <div>
+                                        <Form.Check type="radio" label="Pay Cash" name="paymentMethod" id="payCash" onChange={(e) => setPaymentMethod('payCash')} />
+                                        </div>
+                                    </div>
+                                </Form.Group>
+
+                                {paymentMethod === 'payOnline' && (
+                                    <div className=" p-3">
+                                        <h5 className="">Online Payment Methods:</h5>
+                                        <ul className="list-unstyled">
+                                            <li>
+                                                <Form.Check type="checkbox" label="Visa" id="visa" />
+                                            </li>
+                                            <li>
+                                                <Form.Check type="checkbox" label="Mastercard" id="mastercard" />
+                                            </li>
+                                            <li>
+                                                <Form.Check type="checkbox" label="PayPal" id="paypal" />
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
+
+                                {paymentMethod === 'payCash' && (
+                                    <div className=" p-3">
+                                        <h5 className=" fs-5">Pay Cash:</h5>
+                                        <p className="">You need to pay a deposit of 20% of the total cost.</p>
+                                        <Form.Group controlId="deposit">
+                                            <Form.Check type="checkbox" label="I agree to pay the deposit" id="deposit" />
+                                        </Form.Group>
+                                        <p className="fs-5 text-danger">Deposit amount: {totalCost * 0.20}</p>
+                                    </div>
+                                )}
+
+                                {paymentMethod && (
+                                    <Button variant="primary" type="submit" className="mt-3">
+                                        Book Now
+                                    </Button>
+                                )}
                             </Form>
                         </Card.Body>
                     </Card>
