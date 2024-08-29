@@ -1,0 +1,11 @@
+
+
+.w-50 {
+    border: none;
+  }
+  
+  .w-50 input[type="radio"]:checked + div {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 10px;
+  }

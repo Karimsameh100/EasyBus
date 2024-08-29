@@ -11,18 +11,20 @@ import { CityDetailes } from "./Pages/CityDetailes";
 import NavBar from "./Componants/NavBar";
 import TripTrackSignup from "./Pages/SignUp";
 import ClientSignup from "./Pages/client";
-import CompanySignup from "./Pages/Company";
+import CompanySignup from "./Pages/CompanySignup.js";
 import CompleteComReg from "./Pages/CompleteComReg";
 import Login from "./Pages/Login";
 import Footer from "./Componants/Footer";
 import CompanyManagement from "./Pages/CompanyManagment";
 import ReviewForm from "./Pages/CreateReview";
-import DisplayTripsByComp from "./Pages/DisplayTripsByComp.js";
+// import DisplayTripsByComp from "./Pages/DisplayTripsByComp.js";
 import About from "./Pages/About";
 import UserProfile from "./Pages/UserProfile.js";
 import AddTrip from "./Pages/addtrip.js";
 import SearchResults from "./Pages/SearchPage.js";
 import BookingPage from "./Pages/Book.js";
+import CompanyLogin from "./Pages/CompanyLogin.js" ;
+import DisplayTrips from "./Pages/DisplayTrips.js"
 
 
 function App() {
@@ -31,7 +33,8 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/listtrips" exact element={<TripList />} />
-        <Route path="/displaytrips" exact element={<DisplayTripsByComp />} />
+        <Route path="/CompanyLogin" exact element={<CompanyLogin />} />
+        <Route path="/DisplayTrips" exact element={<DisplayTrips />} />
         <Route path="/City/:id" exact element={<CityDetailes />} />
         <Route path="/" exact element={<Home />} />
         <Route path="/Login" exact element={<Login />} />
