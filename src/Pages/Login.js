@@ -48,7 +48,13 @@ function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    const storedUserInputs = JSON.parse(localStorage.getItem("userInputs"));
+    // const storedUserInputs = JSON.parse(localStorage.getItem("userInputs"));---//------------users not user inputs------
+
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const storedUserInputs = storedUsers.find(
+      (user) =>
+        user.email === userInputs.name && user.password === userInputs.password
+    );
 
     if (storedUserInputs) {
       if (
