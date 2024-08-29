@@ -4,7 +4,7 @@ import SearchComponent from "../Componants/Searh";
 import { Reviews } from "../Componants/Reviews/Review";
 import gobus from "../logo/unnamed.png"
 import axios from "axios";
-import { Modal, ModalTitle, ModalHeader, ModalBody, ModalFooter } from 'react-bootstrap';
+import { Modal, ModalTitle, ModalHeader, ModalBody, ModalFooter,Button } from 'react-bootstrap';
 import ReviewForm from "./CreateReview";
 
 export function CityDetailes() {
