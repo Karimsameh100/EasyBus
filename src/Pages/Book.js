@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form, Button, Modal } from 'react-bootstrap';
+import "../Componants/bookstyle.css"
 
 const BookingPage = () => {
     const location = useLocation();
@@ -48,7 +49,7 @@ const BookingPage = () => {
     return (
         <Container>
             <Row className="justify-content-center">
-                <Col md={8} className="left-col">
+                <Col md={8} className="left-col py-2">
                     {/* Left column content */}
                     <Card className="shadow-sm">
                         <Card.Header className="text-center">
@@ -91,7 +92,7 @@ const BookingPage = () => {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col md={4} className="right-col">
+                <Col md={4} className="right-col py-2">
                     {/* Right column content */}
                     <Card>
                         <Card.Body>
@@ -128,19 +129,29 @@ const BookingPage = () => {
                                         <span className='fs-5'>{totalCost.toFixed(2)}</span>
                                     </li>
                                 </ul>
+                                <hr />
 
                                 <Form.Group controlId="paymentMethod" className="text-center">
-                                    <Form.Label>Payment Method:</Form.Label>
+                                    <Form.Label className='fs-5'>Payment Method:</Form.Label>
                                     <div className="d-flex justify-content-between">
-                                        <div>
-                                        <Form.Check type="radio" label="Pay Online" name="paymentMethod" id="payOnline" onChange={(e) => setPaymentMethod('payOnline')} />
+                                        <div className='d-flex flex-column justify-content-center w-50'>
+                                            <div  className="px-auto py-2 ">
+                                                <Form.Check type="radio" className='border-primary' name="paymentMethod" id="payOnline" onChange={(e) => setPaymentMethod('payOnline')} />
+                                            </div>
+                                            <div className='px-auto py-3'>
+                                                <b className='fs-5'>Pay Online</b>
+                                            </div>
                                         </div>
-                                        <div>
-                                        <Form.Check type="radio" label="Pay Cash" name="paymentMethod" id="payCash" onChange={(e) => setPaymentMethod('payCash')} />
+                                        <div className='d-flex flex-column justify-content-center w-50 border-2'>
+                                            <div className='px-auto py-2'>
+                                                <Form.Check type="radio" name="paymentMethod" id="payCash" onChange={(e) => setPaymentMethod('payCash')} />
+                                            </div>
+                                            <div className='px-auto py-3'> 
+                                                <b className='fs-5'>Pay Cash</b>
+                                            </div>
                                         </div>
                                     </div>
                                 </Form.Group>
-
                                 {paymentMethod === 'payOnline' && (
                                     <div className=" p-3">
                                         <h5 className="">Online Payment Methods:</h5>

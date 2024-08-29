@@ -12,38 +12,7 @@
           "name": "CoCo bus",
           "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
-          "trips": [
-            {
-              "tripNumber": "2099",
-              "tripDate": "20/9/2024",
-              "availablePlaces": "9",
-              "departureStation": "Bani Suef",
-              "stopStations": "Alexandria",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "300 EGP"
-            },
-            {
-              "tripNumber": "2095",
-              "tripDate": "10/9/2024",
-              "availablePlaces": "3",
-              "departureStation": "Ismailia",
-              "stopStations": "Alexandria",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "500 EGP"
-            },
-            {
-              "tripNumber": "2096",
-              "tripDate": "2/9/2024",
-              "availablePlaces": "12",
-              "departureStation": "Sohag",
-              "stopStations": "Alexandria",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "1450 EGP"
-            }
-          ]
+          "trips": []
         },
         {
           "id": 1,
@@ -112,14 +81,14 @@
               "price": "500 EGP"
             },
             {
-              "tripNumber": "4009",
-              "tripDate": "2/11/2024",
-              "availablePlaces": "12",
-              "departureStation": "Sohag",
+              "tripNumber": "4000",
+              "tripDate": "20/9/2024",
+              "availablePlaces": "9",
+              "departureStation": "Minya",
               "stopStations": "Cairo",
               "departureTime": "2:00 PM",
-              "arrivedTime": "7:00 PM",
-              "price": "450 EGP"
+              "arrivedTime": "6:00 PM",
+              "price": "300 EGP"
             }
           ]
         }
@@ -3499,7 +3468,7 @@
   ],
   "companies": [
     {
-      "id": 4,
+      "id": "4",
       "type": "company",
       "name": "CoCo bus",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
