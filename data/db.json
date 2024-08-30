@@ -32,6 +32,16 @@
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
               "price": "500 EGP"
+            },
+            {
+              "tripNumber": "4002",
+              "tripDate": "2/9/2024",
+              "availablePlaces": "12",
+              "departureStation": "Sohag",
+              "stopStations": "Giza",
+              "departureTime": "2:00 PM",
+              "arrivedTime": "6:00 PM",
+              "price": "450 EGP"
             }
           ]
         },
@@ -178,13 +188,14 @@
             },
             {
               "tripNumber": "4002",
-              "tripDate": "2/9/2024",
-              "availablePlaces": "12",
+              "tripDate": "2024-08-30",
+              "availablePlaces": "12134",
               "departureStation": "Sohag",
               "stopStations": "Giza",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "450 EGP"
+              "departureTime": "14:33",
+              "arrivedTime": "05:53",
+              "price": "1450 EGP",
+              "arrivedStation": "Cairo"
             }
           ]
         },
