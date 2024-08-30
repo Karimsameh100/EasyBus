@@ -21,8 +21,7 @@
               "stopStations": "Cairo",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "300 EGP",
-              "companyId": 1
+              "price": "300 EGP"
             },
             {
               "tripNumber": "4001",
@@ -32,8 +31,7 @@
               "stopStations": "Cairo",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "500 EGP",
-              "companyId": 1
+              "price": "500 EGP"
             },
             {
               "tripNumber": "4002",
@@ -43,8 +41,7 @@
               "stopStations": "Giza",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "450 EGP",
-              "companyId": 1
+              "price": "450 EGP"
             }
           ]
         },
@@ -63,8 +60,7 @@
               "stopStations": "Cairo",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "300 EGP",
-              "companyId": 2
+              "price": "300 EGP"
             },
             {
               "tripNumber": "4008",
@@ -74,8 +70,7 @@
               "stopStations": "Cairo",
               "departureTime": "2:00 PM",
               "arrivedTime": "8:00 PM",
-              "price": "500 EGP",
-              "companyId": 2
+              "price": "500 EGP"
             },
             {
               "tripNumber": "4000",
@@ -85,8 +80,7 @@
               "stopStations": "Cairo",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "300 EGP",
-              "companyId": 2
+              "price": "300 EGP"
             }
           ]
         }
@@ -166,48 +160,6 @@
       "info": "Giza is an Egyptian city on the west bank of the Nile, near Cairo. The Giza Plateau is home to iconic Egyptian monuments, including 3 tall pyramids built as royal mausoleums around the 26th century B.C. The largest, the Great Pyramid, is King Khufu’s tomb. The Great Sphinx is a vast sculpture of a man’s head on a lion’s body. The Solar Boat Museum displays a restored cedar barge found buried near the Great Pyramid",
       "companies": [
         {
-          "id": 4,
-          "type": "company",
-          "name": "CoCo bus",
-          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOqpCFHp538tkm939kilPyGI01av-cTEcI2Q&s",
-          "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
-          "trips": [
-            {
-              "tripNumber": "2099",
-              "tripDate": "20/9/2024",
-              "availablePlaces": "9",
-              "departureStation": "Bani Suef",
-              "stopStations": "Giza",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "300 EGP",
-              "companyId": 4
-            },
-            {
-              "tripNumber": "2095",
-              "tripDate": "10/9/2024",
-              "availablePlaces": "3",
-              "departureStation": "Ismailia",
-              "stopStations": "Giza",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "500 EGP",
-              "companyId": 2
-            },
-            {
-              "tripNumber": "2096",
-              "tripDate": "2/9/2024",
-              "availablePlaces": "12",
-              "departureStation": "Sohag",
-              "stopStations": "Giza",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "1450 EGP",
-              "companyId": 2
-            }
-          ]
-        },
-        {
           "id": 1,
           "type": "company",
           "name": "go bus",
@@ -222,8 +174,7 @@
               "stopStations": "Giza",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "300 EGP",
-              "companyId": 1
+              "price": "300 EGP"
             },
             {
               "tripNumber": "4001",
@@ -233,8 +184,7 @@
               "stopStations": "Giza",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "500 EGP",
-              "companyId": 1
+              "price": "500 EGP"
             },
             {
               "tripNumber": "4002",
@@ -264,8 +214,7 @@
               "stopStations": "Giza",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "300 EGP",
-              "companyId": 3
+              "price": "300 EGP"
             },
             {
               "tripNumber": "4008",
@@ -275,8 +224,7 @@
               "stopStations": "Giza",
               "departureTime": "2:00 PM",
               "arrivedTime": "8:00 PM",
-              "price": "500 EGP",
-              "companyId": 3
+              "price": "500 EGP"
             },
             {
               "tripNumber": "4009",
@@ -286,8 +234,7 @@
               "stopStations": "Giza",
               "departureTime": "2:00 PM",
               "arrivedTime": "7:00 PM",
-              "price": "450 EGP",
-              "companyId": 3
+              "price": "450 EGP"
             }
           ]
         }
@@ -372,8 +319,7 @@
               "stopStations": "Alexandria",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "300 EGP",
-              "companyId": 1
+              "price": "300 EGP"
             },
             {
               "tripNumber": "2095",
@@ -383,8 +329,7 @@
               "stopStations": "Alexandria",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "500 EGP",
-              "companyId": 1
+              "price": "500 EGP"
             },
             {
               "tripNumber": "2096",
@@ -394,8 +339,7 @@
               "stopStations": "Alexandria",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "1450 EGP",
-              "companyId": 1
+              "price": "1450 EGP"
             }
           ]
         },
@@ -414,8 +358,7 @@
               "stopStations": "Alexandria",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "300 EGP",
-              "companyId": 3
+              "price": "300 EGP"
             },
             {
               "tripNumber": "2091",
@@ -425,8 +368,7 @@
               "stopStations": "Alexandria",
               "departureTime": "2:00 PM",
               "arrivedTime": "7:00 PM",
-              "price": "500 EGP",
-              "companyId": 3
+              "price": "500 EGP"
             },
             {
               "tripNumber": "2092",
@@ -436,8 +378,7 @@
               "stopStations": "Alexandria",
               "departureTime": "2:00 PM",
               "arrivedTime": "9:00 PM",
-              "price": "450 EGP",
-              "companyId": 3
+              "price": "450 EGP"
             }
           ]
         }
@@ -522,8 +463,7 @@
               "stopStations": "Suez",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "300 EGP",
-              "companyId": 3
+              "price": "300 EGP"
             },
             {
               "tripNumber": "2074",
@@ -533,8 +473,7 @@
               "stopStations": "Suez",
               "departureTime": "2:00 PM",
               "arrivedTime": "7:00 PM",
-              "price": "500 EGP",
-              "companyId": 3
+              "price": "500 EGP"
             },
             {
               "tripNumber": "2073",
@@ -544,8 +483,7 @@
               "stopStations": "Suez",
               "departureTime": "2:00 PM",
               "arrivedTime": "9:00 PM",
-              "price": "450 EGP",
-              "companyId": 3
+              "price": "450 EGP"
             }
           ]
         },
@@ -564,8 +502,7 @@
               "stopStations": "Suez",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "300 EGP",
-              "companyId": 2
+              "price": "300 EGP"
             },
             {
               "tripNumber": "2071",
@@ -575,8 +512,7 @@
               "stopStations": "Suez",
               "departureTime": "2:00 PM",
               "arrivedTime": "8:00 PM",
-              "price": "500 EGP",
-              "companyId": 2
+              "price": "500 EGP"
             },
             {
               "tripNumber": "2072",
@@ -586,8 +522,7 @@
               "stopStations": "Suez",
               "departureTime": "2:00 PM",
               "arrivedTime": "7:00 PM",
-              "price": "450 EGP",
-              "companyId": 2
+              "price": "450 EGP"
             }
           ]
         }
@@ -672,8 +607,7 @@
               "stopStations": "Aswan",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "300 EGP",
-              "companyId": 3
+              "price": "300 EGP"
             },
             {
               "tripNumber": "2056",
@@ -683,8 +617,7 @@
               "stopStations": "Aswan",
               "departureTime": "2:00 PM",
               "arrivedTime": "7:00 PM",
-              "price": "500 EGP",
-              "companyId": 3
+              "price": "500 EGP"
             },
             {
               "tripNumber": "2055",
@@ -694,8 +627,7 @@
               "stopStations": "Aswan",
               "departureTime": "2:00 PM",
               "arrivedTime": "9:00 PM",
-              "price": "450 EGP",
-              "companyId": 3
+              "price": "450 EGP"
             }
           ]
         },
@@ -714,8 +646,7 @@
               "stopStations": "Aswan",
               "departureTime": "2:00 PM",
               "arrivedTime": "6:00 PM",
-              "price": "300 EGP",
-              "companyId": 2
+              "price": "300 EGP"
             },
             {
               "tripNumber": "2051",
@@ -725,8 +656,7 @@
               "stopStations": "Aswan",
               "departureTime": "2:00 PM",
               "arrivedTime": "8:00 PM",
-              "price": "500 EGP",
-              "companyId": 2
+              "price": "500 EGP"
             },
             {
               "tripNumber": "2052",
@@ -736,8 +666,7 @@
               "stopStations": "Aswan",
               "departureTime": "2:00 PM",
               "arrivedTime": "7:00 PM",
-              "price": "450 EGP",
-              "companyId": 2
+              "price": "450 EGP"
             }
           ]
         }
