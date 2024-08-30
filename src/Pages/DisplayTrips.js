@@ -10,6 +10,99 @@ function DisplayTrips() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 7; // Adjust this number based on how many items you want per page
 
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [formData, setFormData] = useState({}); // Initialize formData state
+    const [editTrip, setEditTrip] = useState(null); // Initialize editTrip state
+    const [company, setCompany] = useState(null); // Initialize company state
+    const [showModal, setShowModal] = useState(false);
+
+    // const handleEditTrip = (trip, company) => {
+    //     setEditTrip(trip);
+    //     setCompany(company);
+    //     setFormData({
+    //         tripNumber: trip.tripNumber,
+    //         tripDate: trip.tripDate,
+    //         availablePlaces: trip.availablePlaces,
+    //         departureStation: trip.departureStation,
+    //         stopStations: trip.stopStations,
+    //         departureTime: trip.departureTime,
+    //         arrivedTime: trip.arrivedTime,
+    //         price: trip.price,
+    //     });
+    //     setShowEditModal(true);
+    // };
+
+    // const handleChange = (event) => {
+    //     setFormData({
+    //         ...formData,
+    //         [event.target.name]: event.target.value,
+    //     });
+    // };
+
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     // Update the trip in the JSON data
+    //     axios.put(`http://localhost:4001/posts/${params.id}`, {
+    //         ...city,
+    //         companies: city.companies.map((c) => {
+    //             if (c.id === company.id) {
+    //                 return {
+    //                     ...c,
+    //                     trips: c.trips.map((t) => {
+    //                         if (t.tripNumber === editTrip.tripNumber) {
+    //                             return {
+    //                                 ...formData,
+    //                                 id: t.id,
+    //                             };
+    //                         }
+    //                         return t;
+    //                     }),
+    //                 };
+    //             }
+    //             return c;
+    //         }),
+    //     })
+    //         .then((res) => {
+    //             setCity(res.data);
+    //             setShowEditModal(false); // Hide the modal after update
+    //         })
+    //         .catch((err) => console.error('Error updating trip:', err));
+    // };
+
+    // const handleDeleteTrip = (trip, company) => {
+    //     setEditTrip(trip);
+    //     setCompany(company);
+    //     setShowDeleteModal(true);
+    // };
+
+    // const confirmDelete = () => {
+    //     // Delete the trip from the JSON data
+    //     axios
+    //         .put(`http://localhost:4001/posts/${params.id}`, {
+    //             ...city,
+    //             companies: city.companies.map((c) => {
+    //                 if (c.id === company.id) {
+    //                     return {
+    //                         ...c,
+    //                         trips: c.trips.filter((t) => t.tripNumber !== editTrip.tripNumber),
+    //                     };
+    //                 }
+    //                 return c;
+    //             }),
+    //         })
+    //         .then((res) => {
+    //             setCity(res.data);
+    //             setShowDeleteModal(false); // Hide the modal after deletion
+    //         })
+    //         .catch((err) => console.error("Error deleting trip:", err));
+    // };
+
+    // const cancelDelete = () => {
+    //     setShowDeleteModal(false); // Hide the modal on cancel
+    // };
+
+
     useEffect(() => {
         const fetchTrips = async () => {
             try {

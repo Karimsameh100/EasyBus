@@ -4,8 +4,8 @@ import SearchComponent from "../Componants/Searh";
 import { Reviews } from "../Componants/Reviews/Review";
 import gobus from "../logo/unnamed.png"
 import axios from "axios";
-import { Modal, ModalTitle, ModalHeader, ModalBody, ModalFooter } from 'react-bootstrap';
-
+import { Modal, ModalTitle, ModalHeader, ModalBody, ModalFooter,Button } from 'react-bootstrap';
+import ReviewForm from "./CreateReview";
 
 export function CityDetailes() {
     const params = useParams();
@@ -23,6 +23,10 @@ export function CityDetailes() {
     const [formData, setFormData] = useState({}); // Initialize formData state
     const [editTrip, setEditTrip] = useState(null); // Initialize editTrip state
     const [company, setCompany] = useState(null); // Initialize company state
+    const [showModal, setShowModal] = useState(false);
+    const [reviewToDelete, setReviewToDelete] = useState(null);
+    const [showReviewForm, setShowReviewForm] = useState(false);  // State to control the ReviewForm modal
+    const [editReviewId, setEditReviewId] = useState(null); // State to control edit mode
 
     const handleEditTrip = (trip, company) => {
         setEditTrip(trip);
@@ -157,26 +161,53 @@ export function CityDetailes() {
         return <div>Loading...</div>;
     }
 
-    const handleDeleteReview = (reviewId) => {
-        axios.get(`http://localhost:4001/posts/${params.id}`)
-            .then(res => {
-                const updatedReviews = res.data.Reviews.filter(r => r.ReviewId !== reviewId);
-                axios.put(`http://localhost:4001/posts/${params.id}`, {
-                    ...res.data,
-                    Reviews: updatedReviews
-                }).then(() => {
-                    setCity(prevCity => ({
-                        ...prevCity,
-                        Reviews: updatedReviews
-                    }));
-                });
-            })
-            .catch(err => console.error('Error deleting review:', err));
+    const confirmDeleteReview = (reviewId) => {
+        setReviewToDelete(reviewId);
+        setShowModal(true);
+    };
+
+    const handleDeleteReview = () => {
+        if (!reviewToDelete) return;
+    
+        // Optimistically update the UI
+        const updatedReviews = city.Reviews.filter(r => r.ReviewId !== reviewToDelete);
+        setCity(prevCity => ({
+            ...prevCity,
+            Reviews: updatedReviews
+        }));
+    
+        // Make the API call to update the server
+        axios.put(`http://localhost:4001/posts/${params.id}`, {
+            ...city,
+            Reviews: updatedReviews
+        }).then(() => {
+            // Reset modal and state after successful deletion
+            setShowModal(false);
+            setReviewToDelete(null);
+        }).catch(err => {
+            console.error('Error deleting review:', err);
+            // If the API call fails, revert the optimistic update
+            setCity(prevCity => ({
+                ...prevCity,
+                Reviews: [...prevCity.Reviews, reviewToDelete] // Add back the deleted review
+            }));
+            // Show an error message or handle the error appropriately
+        });
     };
 
 
     const handleEditReview = (reviewId) => {
-        navigate(`/edit/${params.id}/${reviewId}`);
+        setEditReviewId(reviewId);
+        setShowReviewForm(true);  // Open the modal in edit mode
+    };
+
+    const handleOpenReviewForm = () => {
+        setEditReviewId(null);  // Reset the edit mode
+        setShowReviewForm(true);  // Open the modal for a new review
+    };
+
+    const handleReviewSubmit = (updatedReviews) => {
+        setCity(prevCity => ({ ...prevCity, Reviews: updatedReviews }));
     };
 
     return (
@@ -299,17 +330,42 @@ export function CityDetailes() {
                                             customerImg={review.RevCustomerImage}
                                             customerReview={review.Review}
                                             customerName={review.ReviewCustomerName}
-                                            customerRate={review.ReviewCutomerRate}
+                                            customerRate={review.ReviewCustomerRate}
                                             onEdit={() => handleEditReview(review.ReviewId)}
-                                            onDelete={() => handleDeleteReview(review.ReviewId)}
+                                            onDelete={() => confirmDeleteReview(review.ReviewId)}
                                             isAuthor={review.UserId === currentUserId}
 
                                         />
 
                                     </div>
                                 ))}
-                                <Link to={`/create/${params.id}`} className="btn btn-secondary rounded-pill"> Share Your Review</Link>
+                              <Button className="btn btn-success rounded-pill" onClick={handleOpenReviewForm}>
+                                    Share Your Review
+                                </Button>
                             </div>
+
+                             {/* Review Form Modal */}
+                            <Modal show={showReviewForm} onHide={() => setShowReviewForm(false)}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>{editReviewId ? "Edit Your Review" : "Share Your Review"}</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <ReviewForm id={params.id} reviewId={editReviewId} onClose={() => setShowReviewForm(false)}
+                        onSubmit={handleReviewSubmit} />
+                                </Modal.Body>
+                            </Modal>
+                            
+                            {/* Confirmation Modal */}
+                            <Modal show={showModal} onHide={() => setShowModal(false)}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Confirm Deletion</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>Are you sure you want to delete this review?</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={() => setShowModal(false)}>Cancel</Button>
+                                    <Button variant="danger" onClick={handleDeleteReview}>Delete</Button>
+                                </Modal.Footer>
+                            </Modal>
                         </div>
                     </div>
                 </div>
