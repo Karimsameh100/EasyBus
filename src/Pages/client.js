@@ -740,6 +740,8 @@
 // ------------------------------kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert"; // استيراد مكون تأكيد الرياكت
+import "react-confirm-alert/src/react-confirm-alert.css"; // استيراد التنسيقات الافتراضية
 import logo from "../logo/triptrack.jpeg";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -877,8 +879,27 @@ function ClientSignup() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("users");
-    navigate("/Home");
+    confirmAlert({
+      title: "Confirm to Logout",
+      message: "Are you sure you want to logout?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            localStorage.removeItem("users");
+            navigate("/");
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+      closeOnEscape: true,
+      closeOnClickOutside: true,
+      overlayClassName: "custom-overlay",
+      className: "custom-ui",
+    });
   };
 
   return (
