@@ -1,10 +1,10 @@
-// // CompanyLogin.js
+
 // import React, { useState } from "react";
 // import { useNavigate } from 'react-router-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 // function CompanyLogin() {
-//     const [loginInputs, setLoginInputs] = useState({ email: "", password: "" });
+//     const [loginInputs, setLoginInputs] = useState({ id: "", name: "" });
 //     const [loginError, setLoginError] = useState("");
 //     const navigate = useNavigate();
 
@@ -16,20 +16,24 @@
 //     const handleLogin = (e) => {
 //         e.preventDefault();
 
-//         // Retrieve company data from localStorage
-//         const storedData = JSON.parse(localStorage.getItem('userInputs'));
+//         // Retrieve registered company data from localStorage
+//         const storedData = JSON.parse(localStorage.getItem('registeredCompanies')) || [];
 
-//         // Check if stored data matches login inputs
-//         if (storedData && storedData.email === loginInputs.email && storedData.password === loginInputs.password) {
-//             console.log("Login successful");
+//         // Check if a company matches the entered ID and name
+//         const matchedCompany = storedData.find(company =>
+//             company.id === Number(loginInputs.id) && company.name.toLowerCase() === loginInputs.name.toLowerCase()
+//         );
 
-//             // Save logged-in company details (You can add ID or other info here if needed)
-//             localStorage.setItem('loggedInCompany', JSON.stringify(storedData));
+//         if (matchedCompany) {
+//             console.log("Login successful:", matchedCompany);
+
+//             // Save the logged-in company's details
+//             localStorage.setItem('loggedInCompany', JSON.stringify(matchedCompany));
 
 //             // Redirect to display trips component
 //             navigate('/DisplayTrips');
 //         } else {
-//             setLoginError("Invalid email or password");
+//             setLoginError("Invalid company ID or name");
 //         }
 //     };
 
@@ -39,25 +43,25 @@
 //             <form onSubmit={handleLogin}>
 //                 <div className="form-floating mb-3">
 //                     <input
-//                         type="email"
+//                         type="text"
 //                         className="form-control"
-//                         placeholder="Enter your company email"
-//                         name="email"
-//                         value={loginInputs.email}
+//                         placeholder="Enter your company ID"
+//                         name="id"
+//                         value={loginInputs.id}
 //                         onChange={handleLoginChange}
 //                     />
-//                     <label>Email</label>
+//                     <label>ID</label>
 //                 </div>
 //                 <div className="form-floating mb-3">
 //                     <input
-//                         type="password"
+//                         type="text"
 //                         className="form-control"
-//                         placeholder="Enter your password"
-//                         name="password"
-//                         value={loginInputs.password}
+//                         placeholder="Enter your company name"
+//                         name="name"
+//                         value={loginInputs.name}
 //                         onChange={handleLoginChange}
 //                     />
-//                     <label>Password</label>
+//                     <label>Name</label>
 //                 </div>
 //                 <p className="text-danger">{loginError}</p>
 //                 <button type="submit" className="btn btn-primary">Login</button>
@@ -69,15 +73,16 @@
 // export default CompanyLogin;
 
 
-// CompanyLogin.js
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from '../Componants/NavBar'; // Assuming NavBar is imported
 
 function CompanyLogin() {
     const [loginInputs, setLoginInputs] = useState({ id: "", name: "" });
     const [loginError, setLoginError] = useState("");
     const navigate = useNavigate();
+    const [loggedIn, setLoggedIn] = useState(false);
 
     const handleLoginChange = (e) => {
         const { name, value } = e.target;
@@ -87,21 +92,15 @@ function CompanyLogin() {
     const handleLogin = (e) => {
         e.preventDefault();
 
-        // Retrieve registered company data from localStorage
         const storedData = JSON.parse(localStorage.getItem('registeredCompanies')) || [];
-
-        // Check if a company matches the entered ID and name
         const matchedCompany = storedData.find(company =>
             company.id === Number(loginInputs.id) && company.name.toLowerCase() === loginInputs.name.toLowerCase()
         );
 
         if (matchedCompany) {
             console.log("Login successful:", matchedCompany);
-
-            // Save the logged-in company's details
             localStorage.setItem('loggedInCompany', JSON.stringify(matchedCompany));
-
-            // Redirect to display trips component
+            setLoggedIn(true);  // Update the logged-in state
             navigate('/DisplayTrips');
         } else {
             setLoginError("Invalid company ID or name");
@@ -110,6 +109,7 @@ function CompanyLogin() {
 
     return (
         <div className="container">
+            <NavBar loggedIn={loggedIn} /> {/* Pass loggedIn state to NavBar */}
             <h2 className="mt-5 mb-3 text-center">Company Login</h2>
             <form onSubmit={handleLogin}>
                 <div className="form-floating mb-3">
