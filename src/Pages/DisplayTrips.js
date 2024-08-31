@@ -37,8 +37,9 @@ const DisplayTrips = () => {
       }
   }, []);
 
+  const storedCompany = JSON.parse(localStorage.getItem('loggedInCompany'));
+
   function getCompaniesTrips(data) {
-      const storedCompany = JSON.parse(localStorage.getItem('loggedInCompany'));
       const allTrips = [];
       data.forEach((items) => {
           items?.companies?.forEach((company) => {
@@ -51,6 +52,8 @@ const DisplayTrips = () => {
       });
       setTrips(allTrips);
   }
+
+  console.log(storedCompany.id)
 
   // Pagination logic
   const totalPages = Math.ceil(trips.length / itemsPerPage);
@@ -77,7 +80,8 @@ const DisplayTrips = () => {
   };
 
   const handleEditClick = (trip) => {
-    setSelectedTrip(trip);
+    setSelectedTrip({ ...trip, companyId: storedCompany.id });
+
     setFormData({
         tripNumber: trip.tripNumber,
         tripDate: trip.tripDate,
@@ -98,11 +102,15 @@ const DisplayTrips = () => {
     });
 };
 
-  const handleDeleteClick = (trip) => {
+const handleDeleteClick = (trip) => {
+    if (storedCompany && storedCompany.id) {
+      setSelectedTrip({ ...trip, companyId: storedCompany.id });
+    } else {
+      console.warn('No logged-in company found or company has no id property.');
+    }
     setSelectedTrip(trip);
     setShowDeleteModal(true);
   };
-
   const cancelDelete =()=>{
     setShowDeleteModal(false);
   }
@@ -111,53 +119,86 @@ const DisplayTrips = () => {
     // Add your logic to handle the closing of the modal dialog
     console.log("Modal closed");
   };
+
   
   const handleUpdateTrip = (updatedTrip) => {
+    console.log('Updating trip:', updatedTrip);
     axios.get('http://localhost:4001/posts')
       .then((response) => {
-        const updatedPosts = response.data.map((post) => {
-          post.companies.forEach((company) => {
-            company.trips = company.trips.map((trip) => {
-              if (trip.tripNumber === updatedTrip.tripNumber) {
-                return updatedTrip; // Return the updated trip
+        if (response.data) { // Add this null check
+          const updatedPosts = response.data.map((post) => {
+            post.companies.forEach((company) => {
+              if (company.id === selectedTrip.companyId) {
+                company.trips = company.trips.map((trip) => {
+                  if (trip.tripNumber === updatedTrip.tripNumber) {
+                    return updatedTrip; // Return the updated trip
+                  }
+                  return trip;
+                });
               }
-              return trip;
             });
+            return post;
           });
-          return post;
-        });
-        axios.put('http://localhost:4001/posts', updatedPosts) // Pass the updated posts
-          .then((response) => {
-            console.log('Trips updated successfully!');
-            setTrips(updatedTrips);
-            setShowEditModal(false);
-          })
-          .catch((error) => {
-            console.error('Error updating trips:', error);
-          });
+          console.log('Updated posts:', updatedPosts);
+          axios.put('http://localhost:4001/posts', updatedPosts)
+            .then((response) => {
+              console.log('Response from server:', response);
+              console.log('Trips updated successfully!');
+              console.log('Response:', response);
+              // Update the trips state with the updated trips
+              axios.get('http://localhost:4001/posts')
+                .then((response) => {
+                  console.log('Got updated trips:', response);
+                  getCompaniesTrips(response.data);
+                })
+                .catch((error) => {
+                  console.error('Error fetching trips:', error);
+                });
+              setShowEditModal(false);
+            })
+            .catch((error) => {
+              console.error('Error updating trips:', error);
+            });
+        } else {
+          console.error('Error fetching posts:', response);
+        }
       })
       .catch((error) => {
         console.error('Error fetching posts:', error);
       });
   };
-
+  
   const handleDeleteTrip = (trip) => {
+    console.log('Deleting trip:', trip);
     axios.get('http://localhost:4001/posts')
       .then((response) => {
         const updatedPosts = response.data.map((post) => {
           post.companies.forEach((company) => {
-            company.trips = company.trips.filter((t) => t.tripNumber !== trip.tripNumber);
+            if (company.id === selectedTrip.companyId) {
+              company.trips = company.trips.filter((trip) => trip.tripNumber !== selectedTrip.tripNumber);
+            }
           });
           return post;
         });
+        console.log('Updated posts:', updatedPosts); // <--- Add this log statement
         axios.put('http://localhost:4001/posts', updatedPosts) // Pass the updated posts
           .then((response) => {
-            console.log('Trip deleted successfully!');
-            setTrips(updatedTrips);
+            console.log('Response from server:', response); // <--- Add this log statement
+            console.log('Trips deleted successfully!');
+            console.log('Response:', response);
+            // Update the trips state with the updated trips
+            axios.get('http://localhost:4001/posts')
+              .then((response) => {
+                console.log('Got updated trips:', response);
+                getCompaniesTrips(response.data);
+              })
+              .catch((error) => {
+                console.error('Error fetching trips:', error);
+              });
             setShowDeleteModal(false);
           })
           .catch((error) => {
-            console.error('Error deleting trip:', error);
+            console.error('Error deleting trips:', error);
           });
       })
       .catch((error) => {
@@ -195,8 +236,8 @@ const DisplayTrips = () => {
                 <td>{trip.arrivedTime}</td>
                 <td>{trip.price}</td>
                 <td>
-                  <button onClick={() => handleEditClick(trip)}>Edit</button>
-                  <button onClick={() => handleDeleteClick(trip)}>Delete</button>
+                  <button className='btn btn-outline-info btn-sm mx-1' onClick={() => handleEditClick(trip)}>Edit</button>
+                  <button className='btn btn-outline-danger btn-sm mx-1' onClick={() => handleDeleteClick(trip)}>Delete</button>
                 </td>
               </tr>
             ))}
@@ -236,6 +277,7 @@ const DisplayTrips = () => {
                             <div className="form-group">
                                 <label>Trip Number:</label>
                                 <input
+                                    required
                                     type="text"
                                     name="tripNumber"
                                     value={formData.tripNumber}
@@ -246,6 +288,7 @@ const DisplayTrips = () => {
                             <div className="form-group">
                                 <label>Trip Date:</label>
                                 <input
+                                    required
                                     type="date"
                                     name="tripDate"
                                     value={formData.tripDate}
@@ -256,6 +299,7 @@ const DisplayTrips = () => {
                             <div className="form-group">
                                 <label>Available Places:</label>
                                 <input
+                                    required
                                     type="number"
                                     name="availablePlaces"
                                     value={formData.availablePlaces}
@@ -277,6 +321,7 @@ const DisplayTrips = () => {
                                 <label>Arrived Station:</label>
                                 <input
                                     type="text"
+                                    required
                                     name="arrivedStation"
                                     value={formData.arrivedStation}
                                     onChange={handleChange}
@@ -297,6 +342,7 @@ const DisplayTrips = () => {
                                 <label>Arrived Time:</label>
                                 <input
                                     type="time"
+                                    required
                                     name="arrivedTime"
                                     value={formData.arrivedTime}
                                     onChange={handleChange}
@@ -307,6 +353,7 @@ const DisplayTrips = () => {
                                 <label>Price:</label>
                                 <input
                                     type="text"
+                                    required
                                     name="price"
                                     value={formData.price}
                                     onChange={handleChange}
