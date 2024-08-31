@@ -151,7 +151,7 @@
 //                   About
 //                 </Link>
 //               </li>
-         
+
 //               <Link to={"/listtrips"} className="nav-link me-3">
 //                 Trips
 //               </Link>
@@ -189,9 +189,14 @@ import logo from "../logo/neew llogo.png";
 import "./navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 
-const NavBar = ({ loggedIn }) => {
+const NavBar = ({ loggedIn, onLogout }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(loggedIn);
   const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    onLogout();
+    navigate('/CompanySignup');
+  };
 
   useEffect(() => {
     // Check if the user is logged in by checking the localStorage
@@ -203,7 +208,7 @@ const NavBar = ({ loggedIn }) => {
     // Clear the logged-in data and navigate to the login page
     localStorage.removeItem('loggedInCompany');
     setIsLoggedIn(false);
-    navigate('/Login');
+    navigate('/CompanyLogin');
   };
 
   return (
@@ -253,32 +258,19 @@ const NavBar = ({ loggedIn }) => {
               </Link>
             </ul>
 
-            <ul className="navbar-nav ms-auto me-3">
-              {isLoggedIn ? (
-                <li className="nav-item">
-                  <button
-                    id="navBTN"
-                    className="btn btn-outline-danger me-3"
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </button>
-                </li>
+            <ul className="navbar-nav ml-auto">
+              {loggedIn ? (
+                <>
+                  <li className="nav-item">
+                  <button onClick={handleLogoutClick}>Logout</button>                  </li>
+                </>
               ) : (
                 <>
                   <li className="nav-item">
-                    <Link to="/Login">
-                      <button id="navBTN" className="btn btn-outline-light me-3">
-                        Login
-                      </button>
-                    </Link>
+                    <Link className="nav-link" to="/CompanyLogin">Login</Link>
                   </li>
-                  <li className="nav-item me-3">
-                    <Link to="/TripTrackSignup">
-                      <button id="navBTN" className="btn btn-outline-dark">
-                        SignUp
-                      </button>
-                    </Link>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/CompanySignup">Signup</Link>
                   </li>
                 </>
               )}
@@ -291,3 +283,6 @@ const NavBar = ({ loggedIn }) => {
 };
 
 export default NavBar;
+
+
+
