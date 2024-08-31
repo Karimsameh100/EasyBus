@@ -16,12 +16,13 @@
             {
               "tripNumber": "4000",
               "tripDate": "20/9/2024",
-              "availablePlaces": "9",
+              "availablePlaces": "912",
               "departureStation": "Minya",
               "stopStations": "Cairo",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "300 EGP"
+              "departureTime": "10:23",
+              "arrivedTime": "15:09",
+              "price": "1300 EGP",
+              "arrivedStation": "Cairo"
             },
             {
               "tripNumber": "4001",

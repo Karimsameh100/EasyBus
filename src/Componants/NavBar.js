@@ -238,7 +238,7 @@ const NavBar = ({ loggedIn }) => {
               </Link>
             </ul>
 
-            {!isUserProfile && (
+            {/* {!isUserProfile && (
               <ul className="navbar-nav ms-auto me-3">
                 <li className="nav-item">
                   <Link to={"/Login"}>
@@ -255,7 +255,7 @@ const NavBar = ({ loggedIn }) => {
                   </Link>
                 </li>
               </ul>
-            )}
+            )} */}
             <ul className="navbar-nav ms-auto me-3">
               {isLoggedIn ? (
                 <li className="nav-item">
