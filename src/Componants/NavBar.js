@@ -233,16 +233,11 @@ const NavBar = ({ loggedIn }) => {
                 </Link>
               </li>
 
-<<<<<<< HEAD
               <Link to={"/listtrips"} className="nav-link me-3">
-=======
-              <Link to="/listtrips" className="nav-link me-3">
->>>>>>> b3085a41ff6284dd85f3d8f6af8a4d295c0a3e88
                 Trips
               </Link>
             </ul>
 
-<<<<<<< HEAD
             {!isUserProfile && (
               <ul className="navbar-nav ms-auto me-3">
                 <li className="nav-item">
@@ -261,7 +256,6 @@ const NavBar = ({ loggedIn }) => {
                 </li>
               </ul>
             )}
-=======
             <ul className="navbar-nav ms-auto me-3">
               {isLoggedIn ? (
                 <li className="nav-item">
@@ -292,7 +286,6 @@ const NavBar = ({ loggedIn }) => {
                 </>
               )}
             </ul>
->>>>>>> b3085a41ff6284dd85f3d8f6af8a4d295c0a3e88
           </div>
         </div>
       </nav>
