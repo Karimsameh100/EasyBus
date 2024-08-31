@@ -203,6 +203,12 @@ function DisplayTrips() {
     return (
         <div className="container mt-5">
             <h2 className="text-center mb-4">Trips of {companyName}</h2>
+            {/* ///////add trip */}
+            <div className="mb-3">
+        <Link to="/add-trip">
+          <button className="btn btn-primary">Add New Trip</button>
+        </Link>
+      </div>
             {filteredTrips.length > 0 ? (
                 <table className="table table-striped">
                     <thead>
