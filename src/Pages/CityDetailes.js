@@ -4,7 +4,7 @@ import SearchComponent from "../Componants/Searh";
 import { Reviews } from "../Componants/Reviews/Review";
 import gobus from "../logo/unnamed.png"
 import axios from "axios";
-import { Modal, ModalTitle, ModalHeader, ModalBody, ModalFooter,Button } from 'react-bootstrap';
+import { Modal, ModalTitle, ModalHeader, ModalBody, ModalFooter, Button } from 'react-bootstrap';
 import ReviewForm from "./CreateReview";
 
 export function CityDetailes() {
@@ -20,6 +20,7 @@ export function CityDetailes() {
 
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showLoginModal,setShowLoginModal] = useState(false);
     const [formData, setFormData] = useState({}); // Initialize formData state
     const [editTrip, setEditTrip] = useState(null); // Initialize editTrip state
     const [company, setCompany] = useState(null); // Initialize company state
@@ -126,7 +127,7 @@ export function CityDetailes() {
                 setTrips(res.data.companies && res.data.companies.trips || []); // add default value
             })
             .catch((err) => console.error('Error fetching products:', err));
-    }, [params.id, reviewsPerPage,showEditModal,showDeleteModal]);
+    }, [params.id, reviewsPerPage, showEditModal, showDeleteModal]);
 
     const indexOfLastReview = currentPage * reviewsPerPage;
     const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
@@ -145,11 +146,39 @@ export function CityDetailes() {
         }
     };
 
-    const handleBookTrip = (trip, company) => {
-        // Navigate to the Booking page and pass the trip data as a prop
-        navigate(`/booking/${trip.tripNumber}`, { state: { trip, company } });
-    };
+    //     userName	Karim Sameh	
+    // userEmail	karimsameh807@gmail.com	
+    // isLoggedIn	true	
 
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+      if (isLoggedIn === "true") {
+        setIsLoggedIn(true);
+      }
+    }, []);
+    
+    const handleLogin = () => {
+      // login logic here
+      localStorage.setItem("isLoggedIn", "true");
+      setIsLoggedIn(true);
+    };
+    
+    const handleLogout = () => {
+      // logout logic here
+      localStorage.setItem("isLoggedIn", "false");
+      setIsLoggedIn(false);
+    };
+    
+    const handleBookTrip = (trip, company) => {
+      if (!isLoggedIn) {
+        setShowLoginModal(true);
+      } else {
+        navigate(`/booking/${trip.tripNumber}`, { state: { trip, company } });
+      }
+    };
     const handleGoBack = () => {
         // Go back to previous page if possible
         if (currentPage > 1) {
@@ -168,14 +197,14 @@ export function CityDetailes() {
 
     const handleDeleteReview = () => {
         if (!reviewToDelete) return;
-    
+
         // Optimistically update the UI
         const updatedReviews = city.Reviews.filter(r => r.ReviewId !== reviewToDelete);
         setCity(prevCity => ({
             ...prevCity,
             Reviews: updatedReviews
         }));
-    
+
         // Make the API call to update the server
         axios.put(`http://localhost:4001/posts/${params.id}`, {
             ...city,
@@ -276,7 +305,7 @@ export function CityDetailes() {
                                             <td>{trip.arrivedTime}</td>
                                             <td>{trip.price}</td>
                                             <td>
-                                                <button class="btn btn-success btn-sm" style={{ width: "33%" }} onClick={() => handleBookTrip(trip, company)}>Book</button>
+                                                <button class="btn btn-success btn-sm" style={{ width: "33%" }} onClick={() => isLoggedIn ? handleBookTrip(trip, company) : setShowLoginModal(true)}>Book</button>
                                                 <button
                                                     className="btn btn-primary btn-sm"
                                                     style={{ width: "33%" }}
@@ -339,22 +368,22 @@ export function CityDetailes() {
 
                                     </div>
                                 ))}
-                              <Button className="btn btn-success rounded-pill" onClick={handleOpenReviewForm}>
+                                <Button className="btn btn-success rounded-pill" onClick={handleOpenReviewForm}>
                                     Share Your Review
                                 </Button>
                             </div>
 
-                             {/* Review Form Modal */}
+                            {/* Review Form Modal */}
                             <Modal show={showReviewForm} onHide={() => setShowReviewForm(false)}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>{editReviewId ? "Edit Your Review" : "Share Your Review"}</Modal.Title>
                                 </Modal.Header>
                                 <Modal.Body>
                                     <ReviewForm id={params.id} reviewId={editReviewId} onClose={() => setShowReviewForm(false)}
-                        onSubmit={handleReviewSubmit} />
+                                        onSubmit={handleReviewSubmit} />
                                 </Modal.Body>
                             </Modal>
-                            
+
                             {/* Confirmation Modal */}
                             <Modal show={showModal} onHide={() => setShowModal(false)}>
                                 <Modal.Header closeButton>
@@ -486,6 +515,30 @@ export function CityDetailes() {
                     </ModalFooter>
                 </Modal>
             )}
+
+           {showLoginModal && (
+  <Modal id="login-book-modal" show={showLoginModal} onHide={() => setShowLoginModal(false)}>
+    <ModalHeader closeButton>
+      <ModalTitle>Login To Book The Trip</ModalTitle>
+    </ModalHeader>
+    <ModalBody>
+      You need to Login to complete Booking !!
+    </ModalBody>
+    <ModalFooter className="d-flex justify-content-center">
+      <button type="button" className="btn btn-primary w-50" onClick={() => {
+        navigate('/Login/');
+        setIsLoggedIn(true);
+        setShowLoginModal(false);
+      }}>
+       go to Login
+      </button>
+      <button type="button" className="btn btn-secondary justify-content-end" onClick={() => setShowLoginModal(false)}>
+        Cancel
+      </button>
+    </ModalFooter>
+  </Modal>
+)}
+
 
         </>
     );
