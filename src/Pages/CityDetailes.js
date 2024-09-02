@@ -517,7 +517,7 @@ export function CityDetailes() {
             )}
 
            {showLoginModal && (
-  <Modal id="login-book-modal" show={showLoginModal} onHide={() => setShowLoginModal(false)}>
+  <Modal id="login-book-modal" show={showLoginModal} onHide={() => setShowLoginModal(false)} className="dialog-modal-centered align-content-center">
     <ModalHeader closeButton>
       <ModalTitle>Login To Book The Trip</ModalTitle>
     </ModalHeader>

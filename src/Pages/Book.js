@@ -2,10 +2,11 @@ import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form, Button, Modal } from 'react-bootstrap';
 import "../Componants/bookstyle.css"
+import logo from "../logo/neew llogo.png"
 
 const BookingPage = () => {
     const location = useLocation();
-    const trip = location.state.trip;
+    const trip = location.state?.trip;
     const company = location.state.company;
 
     const [numPlaces, setNumPlaces] = useState(1); // default value to 1
@@ -16,6 +17,15 @@ const BookingPage = () => {
     const [discount, setDiscount] = useState(0);
     const [discountAmount, setDiscountAmount] = useState(0);
     const [paymentMethod, setPaymentMethod] = useState('');
+    const [onlinePaymentMethod, setOnlinePaymentMethod] = useState('');
+    const [agreeToPayDeposit, setAgreeToPayDeposit] = useState(false);
+    const [showTicketModal, setShowTicketModal] = useState(false);
+    const [bookingData, setBookingData] = useState({});
+    const [userName, setUserName] = useState('');
+    const [bookedTrips, setBookedTrips] = useState([]);
+
+
+
 
     useEffect(() => {
         const tripPrice = parseFloat(trip.price.replace(/[^\d\.]/g, '')); // extract numeric value from string
@@ -44,6 +54,55 @@ const BookingPage = () => {
 
     const handleModalClose = () => {
         setShowModal(false);
+    };
+
+    const handleOnlinePaymentMethodChange = (e) => {
+        setOnlinePaymentMethod(e.target.id);
+    };
+
+    const handleAgreeToPayDepositChange = (e) => {
+        setAgreeToPayDeposit(e.target.checked);
+    };
+
+
+
+    useEffect(() => {
+        const storedUserName = localStorage.getItem('userName');
+        const storedBookedTrips = localStorage.getItem('bookedTrips');
+        if (storedUserName) {
+            setUserName(storedUserName);
+        }
+        if (storedBookedTrips) {
+            setBookedTrips(JSON.parse(storedBookedTrips));
+        }
+    }, []);
+
+    const handleBookNow = () => {
+        if (paymentMethod && (paymentMethod === 'payOnline' && onlinePaymentMethod) || (paymentMethod === 'payCash' && agreeToPayDeposit)) {
+            const tripInfo = {
+                tripNumber: trip.tripNumber,
+                tripDate: trip.tripDate,
+                departureStation: trip.departureStation,
+                stopStations: trip.stopStations,
+                departureTime: trip.departureTime,
+                arrivedTime: trip.arrivedTime,
+                tripPrice: trip.price,
+                company: company.name,
+                userName: userName,
+                totalCost: totalCost,
+                numPlaces: numPlaces,
+            };
+
+            const newBookedTrips = [...bookedTrips, tripInfo];
+            setBookedTrips(newBookedTrips);
+
+            localStorage.setItem('bookedTrips', JSON.stringify(newBookedTrips));
+            setPaymentMethod('');
+            setBookingData(tripInfo);
+            setOnlinePaymentMethod('');
+            setAgreeToPayDeposit(false);
+            setShowTicketModal(true)
+        }
     };
 
     return (
@@ -135,7 +194,7 @@ const BookingPage = () => {
                                     <Form.Label className='fs-5'>Payment Method:</Form.Label>
                                     <div className="d-flex justify-content-between">
                                         <div className='d-flex flex-column justify-content-center w-50'>
-                                            <div  className="px-auto py-2 ">
+                                            <div className="px-auto py-2 ">
                                                 <Form.Check type="radio" className='border-primary' name="paymentMethod" id="payOnline" onChange={(e) => setPaymentMethod('payOnline')} />
                                             </div>
                                             <div className='px-auto py-3'>
@@ -146,7 +205,7 @@ const BookingPage = () => {
                                             <div className='px-auto py-2'>
                                                 <Form.Check type="radio" name="paymentMethod" id="payCash" onChange={(e) => setPaymentMethod('payCash')} />
                                             </div>
-                                            <div className='px-auto py-3'> 
+                                            <div className='px-auto py-3'>
                                                 <b className='fs-5'>Pay Cash</b>
                                             </div>
                                         </div>
@@ -157,13 +216,16 @@ const BookingPage = () => {
                                         <h5 className="">Online Payment Methods:</h5>
                                         <ul className="list-unstyled">
                                             <li>
-                                                <Form.Check type="checkbox" label="Visa" id="visa" />
+                                                <Form.Check type="checkbox" label="Visa" id="visa"
+                                                    onChange={handleOnlinePaymentMethodChange} />
                                             </li>
                                             <li>
-                                                <Form.Check type="checkbox" label="Mastercard" id="mastercard" />
+                                                <Form.Check type="checkbox" label="Mastercard" id="mastercard"
+                                                    onChange={handleOnlinePaymentMethodChange} />
                                             </li>
                                             <li>
-                                                <Form.Check type="checkbox" label="PayPal" id="paypal" />
+                                                <Form.Check type="checkbox" label="PayPal" id="paypal"
+                                                    onChange={handleOnlinePaymentMethodChange} />
                                             </li>
                                         </ul>
                                     </div>
@@ -174,20 +236,80 @@ const BookingPage = () => {
                                         <h5 className=" fs-5">Pay Cash:</h5>
                                         <p className="">You need to pay a deposit of 20% of the total cost.</p>
                                         <Form.Group controlId="deposit">
-                                            <Form.Check type="checkbox" label="I agree to pay the deposit" id="deposit" />
+                                            <Form.Check type="checkbox" label="I agree to pay the deposit" id="deposit" onChange={handleAgreeToPayDepositChange} />
                                         </Form.Group>
                                         <p className="fs-5 text-danger">Deposit amount: {totalCost * 0.20}</p>
                                     </div>
                                 )}
 
                                 {paymentMethod && (
-                                    <Button variant="primary" type="submit" className="mt-3">
+                                    <Button
+                                        variant="primary"
+                                        type="submit"
+                                        onClick={handleBookNow}
+                                        className="mt-3 d-flex mx-auto justify-content-center w-75"
+                                        disabled={!paymentMethod ||
+                                            (paymentMethod === 'payOnline' && !onlinePaymentMethod) ||
+                                            (paymentMethod === 'payCash' && !agreeToPayDeposit)}
+                                    >
                                         Book Now
                                     </Button>
                                 )}
                             </Form>
                         </Card.Body>
                     </Card>
+
+                    <Modal show={showTicketModal} onHide={() => setShowTicketModal(false)} className='w-100 m-auto'>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Tick your Ticket</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body className=' d-flex'>
+                            <div className='bg-dark w-25 d-flex flex-column rounded-3'>
+                                <img src={logo} className='w-100 px-1 my-auto h-50' />
+                            </div>
+                            <div className='custom-dashed-border'></div>
+                            <div className="ticket-container bg-dark-subtle w-100 rounded-3">
+                                <div className="ticket-header d-flex justify-content-between">
+                                    <h5>Mr/Ms.{userName}</h5>
+                                    <h5>{company.name}</h5>
+                                </div>
+                                <div className="ticket-body">
+                                    <ul>
+                                        <li>
+                                            <strong>Trip Number:</strong> {bookingData.tripNumber}
+                                        </li>
+                                        <li>
+                                            <strong>Trip Date:</strong> {bookingData.tripDate}
+                                        </li>
+                                        <li>
+                                            <strong>Departure Station:</strong> {bookingData.departureStation}
+                                        </li>
+                                        <li>
+                                            <strong>Stop Stations:</strong> {bookingData.stopStations}
+                                        </li>
+                                        <li>
+                                            <strong>Departure Time:</strong> {bookingData.departureTime}
+                                        </li>
+                                        <li>
+                                            <strong>Arrival Time:</strong> {bookingData.arrivedTime}
+                                        </li>
+                                        <li>
+                                            <strong>Number of Places:</strong> {bookingData.numPlaces}
+                                        </li>
+                                        <li>
+                                            <strong>Total Cost:</strong> {bookingData.totalCost ? bookingData.totalCost.toFixed(2) : ''}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="primary" onClick={() => setShowTicketModal(false)}>
+                                Close
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+
                     <Modal show={showModal} onHide={handleModalClose}>
                         <Modal.Header closeButton>
                             <Modal.Title>Out of Places</Modal.Title>
