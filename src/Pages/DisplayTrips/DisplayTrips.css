@@ -1,0 +1,22 @@
+/* DisplayTrips.css */
+.list-group-item.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .list-group-item {
+    cursor: pointer;
+  }
+  
+  .table td, .table th {
+    vertical-align: middle;
+  }
+  
+  .table {
+    margin-bottom: 0;
+  }
+  
+  .pagination {
+    margin-top: 1rem;
+  }
+  

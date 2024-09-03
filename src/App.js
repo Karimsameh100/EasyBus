@@ -105,7 +105,7 @@ import AddTrip from "./Pages/addtrip.js";
 import SearchResults from "./Pages/SearchPage.js";
 import BookingPage from "./Pages/Book.js";
 import CompanyLogin from "./Pages/CompanyLogin.js";
-import DisplayTrips from "./Pages/DisplayTrips.js";
+import DisplayTrips from "./Pages/DisplayTrips/DisplayTrips.js";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
