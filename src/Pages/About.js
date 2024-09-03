@@ -111,8 +111,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import aboutImg from "../logo/about.jpg";
-import img3 from "../logo/DALL·E 2024-08-22 00.11.23 - A modern and well-maintained public transportation service, featuring a fleet of buses traveling across various Egyptian governorates. The image shoul.webp";
-import img1 from "../logo/DALL·E 2024-08-22 00.10.15 - A modern, comfortable bus interior with plush, blue leather seats and large windows, showing a clean and organized setting. The image should convey a .webp";
+import img3 from "../logo/Dall1.webp";
+import img1 from "../logo/Dall2.webp";
 import img2 from "../logo/about1.jfif";
 
 const About = () => {

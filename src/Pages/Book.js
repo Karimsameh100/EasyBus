@@ -259,47 +259,55 @@ const BookingPage = () => {
                         </Card.Body>
                     </Card>
 
-                    <Modal show={showTicketModal} onHide={() => setShowTicketModal(false)} className='w-100 m-auto'>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Tick your Ticket</Modal.Title>
+                    <Modal size='lg' show={showTicketModal} onHide={() => setShowTicketModal(false)} className='w-100 m-auto'>
+                        <Modal.Header className='text-center' closeButton>
+                            <Modal.Title >Tick your Ticket</Modal.Title>
                         </Modal.Header>
                         <Modal.Body className=' d-flex'>
                             <div className='bg-dark w-25 d-flex flex-column rounded-3'>
-                                <img src={logo} className='w-100 px-1 my-auto h-50' />
+                                <img src={logo} className='w-100  my-auto h-100 rounded-3' />
                             </div>
                             <div className='custom-dashed-border'></div>
-                            <div className="ticket-container bg-dark-subtle w-100 rounded-3">
+                            <div className="ticket-container bg-dark-subtle w-100 rounded-3 p-2">
                                 <div className="ticket-header d-flex justify-content-between">
-                                    <h5>Mr/Ms.{userName}</h5>
-                                    <h5>{company.name}</h5>
+                                    <div>
+                                        <h4>Mr/Ms.{userName}</h4>
+                                        <strong>Trip Number:</strong> {bookingData.tripNumber}
+                                    </div>
+                                    <div>
+                                    <h4 className='text-end'>{company.name}</h4>
+                                    <strong>Trip Date:</strong> {bookingData.tripDate}
+
+                                    </div>
                                 </div>
+                                <hr/>
                                 <div className="ticket-body">
-                                    <ul>
-                                        <li>
-                                            <strong>Trip Number:</strong> {bookingData.tripNumber}
-                                        </li>
-                                        <li>
-                                            <strong>Trip Date:</strong> {bookingData.tripDate}
-                                        </li>
-                                        <li>
-                                            <strong>Departure Station:</strong> {bookingData.departureStation}
-                                        </li>
-                                        <li>
-                                            <strong>Stop Stations:</strong> {bookingData.stopStations}
-                                        </li>
-                                        <li>
-                                            <strong>Departure Time:</strong> {bookingData.departureTime}
-                                        </li>
-                                        <li>
-                                            <strong>Arrival Time:</strong> {bookingData.arrivedTime}
-                                        </li>
-                                        <li>
-                                            <strong>Number of Places:</strong> {bookingData.numPlaces}
-                                        </li>
-                                        <li>
-                                            <strong>Total Cost:</strong> {bookingData.totalCost ? bookingData.totalCost.toFixed(2) : ''}
-                                        </li>
-                                    </ul>
+                                <ul className="list-unstyled">
+                                <li className="d-flex justify-content-between">
+                                    <strong className="font-weight-bold fs-5">Departure Station:</strong>
+                                    <span className='fs-5'>{bookingData.departureStation}</span>
+                                </li>
+                                <li className="d-flex justify-content-between">
+                                    <strong className="font-weight-bold fs-5">Stop Stations:</strong>
+                                    <span className='fs-5'>{bookingData.stopStations}</span>
+                                </li>
+                                <li className="d-flex justify-content-between">
+                                    <strong className="font-weight-bold fs-5">Departure Time:</strong>
+                                    <span className='fs-5'>{bookingData.departureTime}</span>
+                                </li>
+                                <li className="d-flex justify-content-between">
+                                    <strong className="font-weight-bold fs-5">Arrival Time:</strong>
+                                    <span className='fs-5'>{bookingData.arrivedTime}</span>
+                                </li>
+                                <li className="d-flex justify-content-between">
+                                    <strong className="font-weight-bold fs-5">Number of places:</strong>
+                                    <span className='fs-5'>{bookingData.numPlaces}</span>
+                                </li>
+                                <li className="d-flex justify-content-between">
+                                    <strong className="font-weight-bold fs-5">Trip Cost:</strong>
+                                    <span className='fs-5'>{bookingData.totalCost}</span>
+                                </li>
+                            </ul>
                                 </div>
                             </div>
                         </Modal.Body>
