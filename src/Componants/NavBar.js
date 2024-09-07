@@ -78,33 +78,57 @@ export function NavBar() {
               </Link>
             </ul>
 
-            {!isUserProfile && (
-              <ul className="navbar-nav ms-auto me-3">
-                <li className="nav-item">
-                  <Link to={"/TripTrackLogin"}>
-                    <button id="navBTN" className="btn btn-outline-light me-3">
-                      Login
-                    </button>
-                  </Link>
-                </li>
+            {isLoggedIn ? (
+              <ul className="navbar-nav ms-auto d-flex align-items-center">
                 <li className="nav-item me-3">
-                  <Link to={"TripTrackSignup"}>
-                    <button id="navBTN" className="btn btn-outline-dark">
-                      SignUp
-                    </button>
-                  </Link>
+                  <img
+                    src={profilePic || "https://via.placeholder.com/50"}
+                    alt="Profile"
+                    className="rounded-circle"
+                    style={{ width: "50px", height: "50px", cursor: "pointer" }}
+                    onClick={() => navigate("/UserProfile")}
+                  />
+                </li>
+                <li className="nav-item">
+                  <button
+                    id="navBTN"
+                    className="btn btn-outline-light"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
                 </li>
               </ul>
+            ) : (
+              !isUserProfile && (
+                <ul className="navbar-nav ms-auto">
+                  <li className="nav-item">
+                    <Link to={"/TripTrackLogin"}>
+                      <button
+                        id="navBTN"
+                        className="btn btn-outline-light me-3"
+                      >
+                        Login
+                      </button>
+                    </Link>
+                  </li>
+                  <li className="nav-item me-3">
+                    <Link to={"TripTrackSignup"}>
+                      <button id="navBTN" className="btn btn-outline-dark">
+                        SignUp
+                      </button>
+                    </Link>
+                  </li>
+                </ul>
+              )
             )}
-
           </div>
         </div>
       </nav>
     </>
   );
-};
+}
 
 export default NavBar;
-
 
 
