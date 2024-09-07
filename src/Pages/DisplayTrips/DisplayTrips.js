@@ -57,6 +57,23 @@ const DisplayTrips = () => {
     setUserBookings(companyBookings);
   };
 
+  // handle accept/reject status
+  const handleBookingStatus = (booking, status) => {
+    const updatedBooking = { ...booking, status };
+    const updatedBookings = userBookings.map((b) =>
+      b.tripNumber === booking.tripNumber ? updatedBooking : b
+    );
+    setUserBookings(updatedBookings);
+
+    // Save the updated bookings to local storage
+    const allBookings = JSON.parse(localStorage.getItem('bookedTrips')) || [];
+    const newBookings = allBookings.map((b) =>
+      b.tripNumber === booking.tripNumber ? updatedBooking : b
+    );
+    localStorage.setItem('bookedTrips', JSON.stringify(newBookings));
+  };
+
+
   // Pagination logic
   const totalPages = Math.ceil(trips.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -274,6 +291,8 @@ const DisplayTrips = () => {
                         <th>Arrival Station</th>
                         <th>Seats Booked</th>
                         <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -286,6 +305,21 @@ const DisplayTrips = () => {
                             <td>{booking.stopStations}</td>
                             <td>{booking.numPlaces}</td>
                             <td>{booking.tripPrice}</td>
+                            <td>{booking.status || 'Pending'}</td>
+                            <td>
+                              <button
+                               className="btn btn-success btn-sm mx-1"
+                               onClick={() => handleBookingStatus(booking, 'Accepted')}
+                              >
+                               Accept
+                              </button>
+                              <button
+                               className="btn btn-danger btn-sm mx-1"
+                               onClick={() => handleBookingStatus(booking, 'Rejected')}
+                              >
+                               Reject
+                              </button>
+                             </td>
                         </tr>
                     ))}
                   </tbody>
