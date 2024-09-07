@@ -3,11 +3,22 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../logo/neew llogo.png";
 import "./navbar.css";
+import { useEffect, useState } from "react";
+import { Badge } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
-const NavBar = () => {
-  const location = useLocation();
 
+
+// const NavBar = ({ favoritesCount }) => {
+export function NavBar() {
+
+  const location = useLocation();
+  const [favoritesCount, setFavoritesCount] = useState(0);
+
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    setFavoritesCount(storedFavorites.length);
+  }, []);
   // تحقق مما إذا كان المستخدم في صفحة الملف الشخصي
   const isUserProfile = location.pathname === "/UserProfile";
 
@@ -52,6 +63,11 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link className="nav-link" to="/favorites">
+                  Favorites <span className="badge badge-pill badge-primary">{favoritesCount}</span>
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to={"/About"} className="nav-link me-3">
                   About
                 </Link>
@@ -80,7 +96,7 @@ const NavBar = () => {
                 </li>
               </ul>
             )}
-         
+
           </div>
         </div>
       </nav>

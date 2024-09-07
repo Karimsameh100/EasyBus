@@ -20,7 +20,7 @@ export function CityDetailes() {
 
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [showLoginModal,setShowLoginModal] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
     const [formData, setFormData] = useState({}); // Initialize formData state
     const [editTrip, setEditTrip] = useState(null); // Initialize editTrip state
     const [company, setCompany] = useState(null); // Initialize company state
@@ -28,6 +28,39 @@ export function CityDetailes() {
     const [reviewToDelete, setReviewToDelete] = useState(null);
     const [showReviewForm, setShowReviewForm] = useState(false);  // State to control the ReviewForm modal
     const [editReviewId, setEditReviewId] = useState(null); // State to control edit mode
+    const [favoritesCount, setFavoritesCount] = useState(0);
+
+
+    
+    // ------------------Favourites-----------START---------------------//
+
+
+
+    useEffect(() => {
+        axios.get(`http://localhost:4001/posts/${params.id}`)
+            .then((res) => setCity(res.data))
+            .catch((err) => console.error('Error fetching city:', err));
+
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        if (isLoggedIn === "true") {
+            setIsLoggedIn(true);
+        }
+
+        const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        setFavoritesCount(storedFavorites.length);
+    }, [params.id]);
+
+    const handleAddToFavorites = (trip, company) => {
+        const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const newFavorite = { ...trip, companyName: company.name };
+        storedFavorites.push(newFavorite);
+        localStorage.setItem('favorites', JSON.stringify(storedFavorites));
+        setFavoritesCount(storedFavorites.length);
+    };
+
+
+    // ------------------Favourites-----------END---------------------//
+
 
     const handleEditTrip = (trip, company) => {
         setEditTrip(trip);
@@ -153,31 +186,31 @@ export function CityDetailes() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    useEffect(() => {
-      const isLoggedIn = localStorage.getItem("isLoggedIn");
-      if (isLoggedIn === "true") {
-        setIsLoggedIn(true);
-      }
-    }, []);
-    
+    // useEffect(() => {
+    //     const isLoggedIn = localStorage.getItem("isLoggedIn");
+    //     if (isLoggedIn === "true") {
+    //         setIsLoggedIn(true);
+    //     }
+    // }, []);
+
     const handleLogin = () => {
-      // login logic here
-      localStorage.setItem("isLoggedIn", "true");
-      setIsLoggedIn(true);
+        // login logic here
+        localStorage.setItem("isLoggedIn", "true");
+        setIsLoggedIn(true);
     };
-    
+
     const handleLogout = () => {
-      // logout logic here
-      localStorage.setItem("isLoggedIn", "false");
-      setIsLoggedIn(false);
+        // logout logic here
+        localStorage.setItem("isLoggedIn", "false");
+        setIsLoggedIn(false);
     };
-    
+
     const handleBookTrip = (trip, company) => {
-      if (!isLoggedIn) {
-        setShowLoginModal(true);
-      } else {
-        navigate(`/booking/${trip.tripNumber}`, { state: { trip, company } });
-      }
+        if (!isLoggedIn) {
+            setShowLoginModal(true);
+        } else {
+            navigate(`/booking/${trip.tripNumber}`, { state: { trip, company } });
+        }
     };
     const handleGoBack = () => {
         // Go back to previous page if possible
@@ -239,6 +272,7 @@ export function CityDetailes() {
         setCity(prevCity => ({ ...prevCity, Reviews: updatedReviews }));
     };
 
+
     return (
         <>
             <div style={{ position: "relative" }}>
@@ -272,25 +306,47 @@ export function CityDetailes() {
                 <h4 style={{ textAlign: "left" }}>{city.info}</h4>
             </div>
             <div class="container-fluid">
-                {companiess.map((company) => (
+                {city && city.companies.map((company) => (
                     <div key={company.id} class="row d-flex justify-content-center mb-5">
                         <h2 className="text-center m-5">Travel with {company.name}</h2>
                         <div class="col-sm-6 col-md-4">
                             <img src={company.image} className="img-fluid mt-5 " alt="Image" />
                         </div>
-                        <div class=" table-responsive col-sm-6 col-md-8">
+                        {/* <div class=" table-responsive col-sm-6 col-md-8">
                             <table class="table table-striped table-bordered-bold">
+                             
+                                <tbody>
+                                    {company.trips.map((trip) => (
+                                        <tr key={trip.tripNumber}>
+                                            <td>{trip.tripNumber}</td>
+                                            <td>{trip.tripDate}</td>
+                                            <td>{trip.availablePlaces}</td>
+                                            <td>{trip.departureStation}</td>
+                                            <td>{trip.stopStations}</td>
+                                            <td>{trip.departureTime}</td>
+                                            <td>{trip.arrivedTime}</td>
+                                            <td>{trip.price}</td>
+                                            <td>
+                                               
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div> */}
+                        <div className="table-responsive col-sm-6 col-md-8">
+                            <table className="table table-striped table-bordered-bold">
                                 <thead>
                                     <tr>
                                         <th>Trip Number</th>
-                                        <th style={{ width: "15%" }}>Trip Date</th>
-                                        <th class="text-center" style={{ width: "8%" }}>Available Places</th>
-                                        <th class="text-center" style={{ width: "15%" }}>Departure Station</th>
-                                        <th class="text-center" style={{ width: "10%" }}>Stop Stations</th>
-                                        <th style={{ width: "10%" }}>Go In</th>
-                                        <th style={{ width: "10%" }}>Arrive At</th>
-                                        <th style={{ width: "10%" }}>Price</th>
-                                        <th class="text-center" style={{ width: "20%" }}>Book</th>
+                                        <th>Trip Date</th>
+                                        <th>Available Places</th>
+                                        <th>Departure Station</th>
+                                        <th>Stop Stations</th>
+                                        <th>Go In</th>
+                                        <th>Arrive At</th>
+                                        <th>Price</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -305,7 +361,7 @@ export function CityDetailes() {
                                             <td>{trip.arrivedTime}</td>
                                             <td>{trip.price}</td>
                                             <td>
-                                                <button class="btn btn-success btn-sm" style={{ width: "33%" }} onClick={() => isLoggedIn ? handleBookTrip(trip, company) : setShowLoginModal(true)}>Book</button>
+                                            <button class="btn btn-success btn-sm" style={{ width: "33%" }} onClick={() => isLoggedIn ? handleBookTrip(trip, company) : setShowLoginModal(true)}>Book</button>
                                                 <button
                                                     className="btn btn-primary btn-sm"
                                                     style={{ width: "33%" }}
@@ -326,6 +382,12 @@ export function CityDetailes() {
                                                     }}
                                                 >
                                                     Delete
+                                                </button>
+                                                <button
+                                                    className="btn btn-success btn-sm"
+                                                    onClick={() => isLoggedIn ? handleAddToFavorites(trip, company) : setShowLoginModal(true)}
+                                                >
+                                                    Add to Favorites
                                                 </button>
                                             </td>
                                         </tr>
@@ -516,29 +578,46 @@ export function CityDetailes() {
                 </Modal>
             )}
 
-           {showLoginModal && (
-  <Modal id="login-book-modal" show={showLoginModal} onHide={() => setShowLoginModal(false)} className="dialog-modal-centered align-content-center">
-    <ModalHeader closeButton>
-      <ModalTitle>Login To Book The Trip</ModalTitle>
-    </ModalHeader>
-    <ModalBody>
-      You need to Login to complete Booking !!
-    </ModalBody>
-    <ModalFooter className="d-flex justify-content-center">
-      <button type="button" className="btn btn-primary w-50" onClick={() => {
-        navigate('/Login/');
-        setIsLoggedIn(true);
-        setShowLoginModal(false);
-      }}>
-       go to Login
-      </button>
-      <button type="button" className="btn btn-secondary justify-content-end" onClick={() => setShowLoginModal(false)}>
-        Cancel
-      </button>
-    </ModalFooter>
-  </Modal>
-)}
+            {showLoginModal && (
+                <Modal id="login-book-modal" show={showLoginModal} onHide={() => setShowLoginModal(false)} className="dialog-modal-centered align-content-center">
+                    <ModalHeader closeButton>
+                        <ModalTitle>Login To Book The Trip</ModalTitle>
+                    </ModalHeader>
+                    <ModalBody>
+                        You need to Login to complete Booking !!
+                    </ModalBody>
+                    <ModalFooter className="d-flex justify-content-center">
+                        <button type="button" className="btn btn-primary w-50" onClick={() => {
+                            navigate('/Login/');
+                            setIsLoggedIn(true);
+                            setShowLoginModal(false);
+                        }}>
+                            go to Login
+                        </button>
+                        <button type="button" className="btn btn-secondary justify-content-end" onClick={() => setShowLoginModal(false)}>
+                            Cancel
+                        </button>
+                    </ModalFooter>
+                </Modal>
+            )}
 
+            {showLoginModal && (
+                <Modal show={showLoginModal} onHide={() => setShowLoginModal(false)}>
+                    <ModalHeader closeButton>
+                        <ModalTitle>Login To Add to Favorites</ModalTitle>
+                    </ModalHeader>
+                    <ModalBody>
+                        You need to login to add trips to your favorites.
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button onClick={() => {
+                            navigate('/login');
+                            setShowLoginModal(false);
+                        }}>Go to Login</Button>
+                        <Button variant="secondary" onClick={() => setShowLoginModal(false)}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
+            )}
 
         </>
     );
