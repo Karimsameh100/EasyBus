@@ -135,7 +135,7 @@ export function NavBar() {
               !isUserProfile && (
                 <ul className="navbar-nav ms-auto">
                   <li className="nav-item">
-                    <Link to={"/Login"}>
+                    <Link to={"/TripTrackLogin"}>
                       <button
                         id="navBTN"
                         className="btn btn-outline-light me-3"
