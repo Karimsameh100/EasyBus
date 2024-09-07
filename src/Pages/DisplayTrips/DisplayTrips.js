@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Modal, ModalTitle, ModalHeader, ModalBody, ModalFooter, Button } from 'react-bootstrap';
 import './DisplayTrips.css'; // Import the CSS file for styling
+import AddTripForm from '../addtrip' ;
 
 const DisplayTrips = () => {
   const [trips, setTrips] = useState([]);
   const [userBookings, setUserBookings] = useState([]);
+  const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedTrip, setSelectedTrip] = useState(null);
@@ -224,7 +226,10 @@ const DisplayTrips = () => {
           <h2 className="text-center mb-4">{view === 'trips' ? `Trips of ${companyName}` : `Bookings for ${companyName}`}</h2>
           {view === 'trips' && (
             <>
+            <div className='text-center'><button className="btn btn-primary center" onClick={() => setShowAddModal(true)}>Add Trip</button>
+            </div>
               {currentPageItems.length ? (
+                <div className="table-responsive col-sm-6 col-md-12">
                 <table className="table table-striped">
                   <thead>
                     <tr>
@@ -258,6 +263,7 @@ const DisplayTrips = () => {
                     ))}
                   </tbody>
                 </table>
+                </div>
               ) : (
                 <p className="text-center">No trips found for this company.</p>
               )}
@@ -281,6 +287,7 @@ const DisplayTrips = () => {
           {view === 'bookings' && (
             <>
               {userBookings.length ? (
+                <div className="table-responsive col-sm-6 col-md-12">
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -324,6 +331,7 @@ const DisplayTrips = () => {
                     ))}
                   </tbody>
                 </table>
+                </div>
               ) : (
                 <p className="text-center">No bookings found for this company.</p>
               )}
@@ -449,6 +457,18 @@ const DisplayTrips = () => {
           <Button variant="danger" onClick={() => handleDeleteTrip(selectedTrip)}>Delete</Button>
         </ModalFooter>
       </Modal>
+      <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
+            <ModalHeader closeButton>
+              <ModalTitle>Add Trip</ModalTitle>
+            </ModalHeader>
+            <ModalBody>
+              <AddTripForm />
+            </ModalBody>
+            <ModalFooter>
+              <Button variant="secondary" onClick={() => setShowAddModal(false)}>Close</Button>
+            </ModalFooter>
+          </Modal>
+
     </div>
   );
 };

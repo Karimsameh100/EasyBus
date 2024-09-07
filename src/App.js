@@ -26,6 +26,7 @@ import FavoritesPage from './Pages/FavoritesPage.js'
 import BookingPage from "./Pages/Book.js";
 import CompanyLogin from "./Pages/CompanyLogin.js";
 import DisplayTrips from "./Pages/DisplayTrips/DisplayTrips.js";
+import TripTrackLogin from "./Pages/TripTrackLogin.js";
 
 function App() {
   
@@ -69,6 +70,7 @@ function App() {
         <Route path="/edit/:id/:reviewId" exact element={<ReviewForm />} />
         <Route path="/AddTrip" exact element={<AddTrip />} />
         <Route path="/search-results" exact element={<SearchResults />} />
+        <Route path="/TripTrackLogin" exact element={<TripTrackLogin/>}/>
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -742,7 +742,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert"; // استيراد مكون تأكيد الرياكت
 import "react-confirm-alert/src/react-confirm-alert.css"; // استيراد التنسيقات الافتراضية
-import logo from "../logo/triptrack.jpeg";
+import logo from "../logo/trip.jpeg";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function ClientSignup() {
@@ -911,7 +911,7 @@ function ClientSignup() {
 
         <div className="col md-6">
           <h2 className="mb-4 text-center">
-            {isEditMode ? "Edit Info" : "Register as client"}
+            {isEditMode ? "Edit Info" : "Register as passanger"}
           </h2>
           <form onSubmit={submitForm}>
             <div className="form-floating mb-3">
