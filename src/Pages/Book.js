@@ -160,11 +160,11 @@ const BookingPage = () => {
                                 <Form.Group controlId="numPlaces">
                                     <Form.Label>Number of Places:</Form.Label>
                                     <div className="input-group">
-                                        <Button variant="secondary" onClick={handleDecrement} disabled={numPlaces === 1}>
+                                        <Button variant="secondary" className='w-25' onClick={handleDecrement} disabled={numPlaces === 1}>
                                             -
                                         </Button>
-                                        <Form.Control type="text" value={numPlaces} readOnly />
-                                        <Button variant="secondary" onClick={handleIncrement} disabled={numPlaces === trip.availablePlaces}>
+                                        <Form.Control type="text" className='text-center' value={numPlaces} readOnly />
+                                        <Button variant="secondary" className='w-25 btn btn-lg' onClick={handleIncrement} disabled={numPlaces === trip.availablePlaces}>
                                             +
                                         </Button>
                                     </div>
