@@ -168,16 +168,6 @@
           "about": "Go Bus is an Egyptian shareholding company working in the field of public transport under the supervision of the Ministry of Transport since 1998.",
           "trips": [
             {
-              "tripNumber": "4000",
-              "tripDate": "20/9/2024",
-              "availablePlaces": "9",
-              "departureStation": "Minya",
-              "stopStations": "Giza",
-              "departureTime": "2:00 PM",
-              "arrivedTime": "6:00 PM",
-              "price": "300 EGP"
-            },
-            {
               "tripNumber": "4001",
               "tripDate": "10/9/2024",
               "availablePlaces": "3",
@@ -728,6 +718,15 @@
           "Review": "The bus was clean, but the Wi-Fi was slow.",
           "ReviewCustomerName": "David Lee",
           "ReviewCustomerRate": "3"
+        },
+        {
+          "ReviewId": 9,
+          "RevCustomerImage": "https://i.pinimg.com/564x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg",
+          "Review": "mmmmmmm nnnnn",
+          "ReviewCustomerName": "enas",
+          "ReviewCustomerRate": 0,
+          "UserId": 1,
+          "UserName": "Afnan"
         }
       ]
     },
