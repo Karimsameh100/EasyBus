@@ -205,10 +205,10 @@ function CompanySignup() {
 
     // Predefined companies with IDs
     const companies = [
-        { id: 1, name: "go bus company" },
-        { id: 2, name: "eg bus company" },
-        { id: 3, name: "amwag company" },
-        { id: 4, name: "coco company" }
+        { id: 1, name: "go bus" },
+        { id: 2, name: "EG bus" },
+        { id: 3, name: "Amwag Company" },
+        { id: 4, name: "coco " }
     ];
 
     const setData = (e) => {
