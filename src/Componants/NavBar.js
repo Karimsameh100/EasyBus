@@ -1,155 +1,53 @@
-<<<<<<< HEAD
-// ---------------------------------------------------------1
-// import React from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import logo from "../logo/neew llogo.png";
-// import "./navbar.css";
-// import { Link, useLocation } from "react-router-dom";
-
-// const NavBar = () => {
-//   const location = useLocation();
-
-//   const isUserProfile = location.pathname === "/UserProfile";
-
-//   return (
-//     <>
-//       <nav className="navbar navbar-expand-lg custom-navbar">
-//         <div className="container-fluid">
-//           <Link className="navbar-brand" to="#">
-//             <img
-//               src={logo}
-//               alt="Logo"
-//               style={{ width: "110px", marginLeft: "50px" }}
-//             />
-//           </Link>
-
-//           <button
-//             className="navbar-toggler"
-//             type="button"
-//             data-bs-toggle="collapse"
-//             data-bs-target="#navbarNav"
-//             aria-controls="navbarNav"
-//             aria-expanded="false"
-//             aria-label="Toggle navigation"
-//           >
-//             <span className="navbar-toggler-icon"></span>
-//           </button>
-
-//           <div className="collapse navbar-collapse" id="navbarNav">
-//             <ul className="navbar-nav mx-auto d-flex justify-content-center">
-//               <li className="nav-item">
-//                 <Link
-//                   className="nav-link active me-3"
-//                   aria-current="page"
-//                   to="/"
-//                 >
-//                   Home
-//                 </Link>
-//               </li>
-//               <li className="nav-item">
-//                 <Link className="nav-link me-3" to="#">
-//                   Buses
-//                 </Link>
-//               </li>
-//               <li className="nav-item">
-//                 <Link to={"/About"} className="nav-link me-3">
-//                   About
-//                 </Link>
-//               </li>
-
-//               <Link to={"/listtrips"} className="nav-link me-3">
-//                 Trips
-//               </Link>
-//             </ul>
-
-//             {/* {!isUserProfile && (
-//               <ul className="navbar-nav ms-auto me-3">
-//                 <li className="nav-item">
-//                   <Link to={"/Login"}>
-//                     <button id="navBTN" className="btn btn-outline-light me-3">
-//                       Login
-//                     </button>
-//                   </Link>
-//                 </li>
-//                 <li className="nav-item me-3">
-//                   <Link to={"TripTrackSignup"}>
-//                     <button id="navBTN" className="btn btn-outline-dark">
-//                       SignUp
-//                     </button>
-//                   </Link>
-//                 </li>
-//               </ul>
-//             )} */}
-//             <ul className="navbar-nav ms-auto me-3">
-//               {isLoggedIn ? (
-//                 <li className="nav-item">
-//                   <button
-//                     id="navBTN"
-//                     className="btn btn-outline-danger me-3"
-//                     onClick={handleLogout}
-//                   >
-//                     Logout
-//                   </button>
-//                 </li>
-//               ) : (
-//                 <>
-//                   <li className="nav-item">
-//                     <Link to="/Login">
-//                       <button
-//                         id="navBTN"
-//                         className="btn btn-outline-light me-3"
-//                       >
-//                         Login
-//                       </button>
-//                     </Link>
-//                   </li>
-//                   <li className="nav-item me-3">
-//                     <Link to="/TripTrackSignup">
-//                       <button id="navBTN" className="btn btn-outline-dark">
-//                         SignUp
-//                       </button>
-//                     </Link>
-//                   </li>
-//                 </>
-//               )}
-//             </ul>
-//           </div>
-//         </div>
-//       </nav>
-//     </>
-//   );
-// };
-
-// export default NavBar;
-// ----------------------------------------------------2
-=======
-
->>>>>>> 105a93b8ccab351fcdd12a88886c5973b2b510f4
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../logo/neew llogo.png";
 import "./navbar.css";
-import { useEffect, useState } from "react";
-import { Badge } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
-
-<<<<<<< HEAD
-  //  loged in or not
-=======
-
-// const NavBar = ({ favoritesCount }) => {
 export function NavBar() {
-
   const location = useLocation();
+  const navigate = useNavigate();
   const [favoritesCount, setFavoritesCount] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [profilePic, setProfilePic] = useState(null);
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavoritesCount(storedFavorites.length);
+
+    // تحقق مما إذا كان المستخدم قد سجل دخوله
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    setIsLoggedIn(loggedIn);
+
+    // جلب صورة الملف الشخصي
+    const userProfilePic = localStorage.getItem("userProfilePic");
+    setProfilePic(userProfilePic);
   }, []);
-  // تحقق مما إذا كان المستخدم في صفحة الملف الشخصي
->>>>>>> 105a93b8ccab351fcdd12a88886c5973b2b510f4
+
+  const handleLogout = () => {
+    confirmAlert({
+      title: "Confirm Logout",
+      message: "Are you sure you want to logout?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("userProfilePic");
+            setIsLoggedIn(false);
+            navigate("/");
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
+  };
+
   const isUserProfile = location.pathname === "/UserProfile";
 
   return (
@@ -194,7 +92,10 @@ export function NavBar() {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/favorites">
-                  Favorites <span className="badge badge-pill badge-primary">{favoritesCount}</span>
+                  Favorites{" "}
+                  <span className="badge badge-pill badge-primary">
+                    {favoritesCount}
+                  </span>
                 </Link>
               </li>
               <li className="nav-item">
@@ -202,39 +103,62 @@ export function NavBar() {
                   About
                 </Link>
               </li>
-
-              <Link to="/listtrips" className="nav-link me-3">
-                Trips
-              </Link>
+              <li className="nav-item">
+                <Link to="/listtrips" className="nav-link me-3">
+                  Trips
+                </Link>
+              </li>
             </ul>
 
-            {!isUserProfile && (
-              <ul className="navbar-nav ms-auto me-3">
-                <li className="nav-item">
-                  <Link to={"/Login"}>
-                    <button id="navBTN" className="btn btn-outline-light me-3">
-                      Login
-                    </button>
-                  </Link>
-                </li>
+            {isLoggedIn ? (
+              <ul className="navbar-nav ms-auto d-flex align-items-center">
                 <li className="nav-item me-3">
-                  <Link to={"TripTrackSignup"}>
-                    <button id="navBTN" className="btn btn-outline-dark">
-                      SignUp
-                    </button>
-                  </Link>
+                  <img
+                    src={profilePic || "https://via.placeholder.com/50"}
+                    alt="Profile"
+                    className="rounded-circle"
+                    style={{ width: "50px", height: "50px", cursor: "pointer" }}
+                    onClick={() => navigate("/UserProfile")}
+                  />
+                </li>
+                <li className="nav-item">
+                  <button
+                    id="navBTN"
+                    className="btn btn-outline-light"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
                 </li>
               </ul>
+            ) : (
+              !isUserProfile && (
+                <ul className="navbar-nav ms-auto">
+                  <li className="nav-item">
+                    <Link to={"/Login"}>
+                      <button
+                        id="navBTN"
+                        className="btn btn-outline-light me-3"
+                      >
+                        Login
+                      </button>
+                    </Link>
+                  </li>
+                  <li className="nav-item me-3">
+                    <Link to={"TripTrackSignup"}>
+                      <button id="navBTN" className="btn btn-outline-dark">
+                        SignUp
+                      </button>
+                    </Link>
+                  </li>
+                </ul>
+              )
             )}
-
           </div>
         </div>
       </nav>
     </>
   );
-};
+}
 
 export default NavBar;
-
-
-
