@@ -39,7 +39,7 @@ export function NavBar() {
         return () => {
             window.removeEventListener('storage', handleStorageChange);
         };
-    }, []);
+    }, [isLoggedIn,location,navigate]);
 
     const handleLogout = () => {
         confirmAlert({
