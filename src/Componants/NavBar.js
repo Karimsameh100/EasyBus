@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,7 +11,7 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 export function NavBar() {
     const location = useLocation();
     const navigate = useNavigate();
-    const [favorites, setFavorites] = useState(0); // Initialize as 0
+    const [favorites, setFavorites] = useState(0);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [profilePic, setProfilePic] = useState(null);
 
@@ -27,6 +29,9 @@ export function NavBar() {
         const handleStorageChange = () => {
             const updatedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
             setFavorites(updatedFavorites.length);
+
+            const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+            setIsLoggedIn(loggedIn);
         };
 
         window.addEventListener('storage', handleStorageChange);
@@ -99,14 +104,16 @@ export function NavBar() {
                                 Buses
                             </Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/favorites">
-                                Favorites{" "}
-                                <span className="badge badge-pill badge-danger">
-                                    {favorites}
-                                </span>
-                            </Link>
-                        </li>
+                        {isLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/favorites">
+                                    Favorites{" "}
+                                    <span className="badge badge-pill badge-danger">
+                                        {favorites}
+                                    </span>
+                                </Link>
+                            </li>
+                        )}
                         <li className="nav-item">
                             <Link to={"/About"} className="nav-link me-3">
                                 About
