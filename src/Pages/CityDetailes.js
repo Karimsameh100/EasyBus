@@ -345,11 +345,11 @@ export function CityDetailes() {
                                             <td>{trip.arrivedTime}</td>
                                             <td>{trip.price}</td>
                                             <td>
-                                                <button class="btn btn-success btn-sm" style={{ width: "33%" }} 
+                                                <button class="btn btn-success btn-sm mx-1" style={{ width: "20%" }} 
                                                 onClick={() => isLoggedIn ? handleBookTrip(trip, company) : setShowLoginModal(true)}>Book</button>
                                                 <button
                                                     className="btn btn-primary btn-sm"
-                                                    style={{ width: "33%" }}
+                                                    style={{ width: "20%" }}
                                                     onClick={() => {
                                                         handleEditTrip(trip, company);
                                                         setShowEditModal(true);
@@ -358,8 +358,8 @@ export function CityDetailes() {
                                                     Edit
                                                 </button>
                                                 <button
-                                                    className="btn btn-danger btn-sm"
-                                                    style={{ width: "33%" }}
+                                                    className="btn btn-danger btn-sm mx-2 "
+                                                    style={{ width: "20%" }}
                                                     onClick={() => {
                                                         handleDeleteTrip(trip, company);
                                                         setShowDeleteModal(true);
@@ -369,7 +369,9 @@ export function CityDetailes() {
                                                 </button>
                                                 <button
                                                 
-                                                    className="btn btn-success btn-sm"
+                                                    className="btn btn-warning btn-sm"  style={{ width: "30%" }}
+
+
                                                     onClick={() => isLoggedIn ? handleAddToFavorites(trip, company) : setShowLoginModal(true)}
                                                 >
                                                     Add to Favorites

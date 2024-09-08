@@ -19,9 +19,9 @@ export function FavoritesPage() {
 
     return (
         <div className="container">
-        <h2 className="text-center">Your Favorite Trips</h2>
+        <h2 className="text-center my-3">Your Favorite Trips</h2>
         {favorites.length === 0 ? (
-            <p className="text-center">You have no favorite trips yet.</p>
+            <p className="text-center my-3">You have no favorite trips yet.</p>
         ) : (
             <div className="table-responsive">
                 <table className="table table-striped">
