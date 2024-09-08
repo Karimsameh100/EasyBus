@@ -575,7 +575,7 @@ export function CityDetailes() {
                     </ModalBody>
                     <ModalFooter>
                         <Button onClick={() => {
-                            navigate('/login');
+                            navigate('/Login1');
                             setShowLoginModal(false);
                         }}>Go to Login</Button>
                         <Button variant="secondary" onClick={() => setShowLoginModal(false)}>Cancel</Button>

@@ -874,7 +874,7 @@ function ClientSignup() {
       localStorage.setItem("users", JSON.stringify(storedData));
       console.log("Form Data Submitted:", userInputs);
 
-      navigate("/Login");
+      navigate("/Login1");
     }
   };
 

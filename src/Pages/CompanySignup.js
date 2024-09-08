@@ -271,7 +271,7 @@ function CompanySignup() {
 
             // Construct company data with ID
             const companyData = {
-                id: matchedCompany.id,
+                // id: matchedCompany.id,
                 name: userInputs.name,
                 email: userInputs.email,
                 phone: userInputs.phone,
