@@ -345,9 +345,9 @@ export function CityDetailes() {
                                             <td>{trip.arrivedTime}</td>
                                             <td>{trip.price}</td>
                                             <td>
-                                                <button class="btn btn-success btn-sm mx-1" style={{ width: "20%" }} 
+                                                <button class="btn btn-success btn-sm mx-1" style={{ width: "100%" }} 
                                                 onClick={() => isLoggedIn ? handleBookTrip(trip, company) : setShowLoginModal(true)}>Book</button>
-                                                <button
+                                                {/* <button
                                                     className="btn btn-primary btn-sm"
                                                     style={{ width: "20%" }}
                                                     onClick={() => {
@@ -366,15 +366,15 @@ export function CityDetailes() {
                                                     }}
                                                 >
                                                     Delete
-                                                </button>
+                                                </button> */}
                                                 <button
                                                 
-                                                    className="btn btn-warning btn-sm"  style={{ width: "30%" }}
+                                                    className="btn btn-outline-warning btn-sm mx-1 my-1"  style={{ width: "100%" }}
 
 
                                                     onClick={() => isLoggedIn ? handleAddToFavorites(trip, company) : setShowLoginModal(true)}
                                                 >
-                                                    Add to Favorites
+                                                    Favorites
                                                 </button>
                                             </td>
                                         </tr>
