@@ -34,7 +34,12 @@ const UserProfile = () => {
     if (storedName) setName(storedName);
     if (storedEmail) setEmail(storedEmail);
     if (storedProfilePic) setProfilePic(storedProfilePic);
-    setBookedTrips(storedTrips); // set trips
+
+    // Filter trips based on the logged-in user
+    const userTrips = storedTrips.filter(
+      (trip) => trip.userName === storedName
+    );
+    setBookedTrips(userTrips); // Set filtered trips
   }, []);
 
   // Calculate the index range for the current page
@@ -77,7 +82,7 @@ const UserProfile = () => {
   return (
     <Container
       className="my-5"
-      style={{ backgroundColor: "#f8f9fa", minHeight: "150vh" }}
+      style={{ backgroundColor: "#f8f9fa", minHeight: "80vh" }}
     >
       <Row>
         <Col md={4}>
@@ -226,3 +231,4 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+// -----------------------------------------------&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&7777
