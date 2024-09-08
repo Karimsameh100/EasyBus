@@ -563,8 +563,6 @@ export function CityDetailes() {
                 </Modal>
             )}
 
-  
-
             {showLoginModal && (
                 <Modal show={showLoginModal} onHide={() => setShowLoginModal(false)}>
                     <ModalHeader closeButton>
