@@ -58,6 +58,9 @@ export function CityDetailes() {
     
         setFavorites(storedFavorites.length);
     };
+
+
+
     // ------------------Favourites-----------END---------------------//
 
 
@@ -342,7 +345,8 @@ export function CityDetailes() {
                                             <td>{trip.arrivedTime}</td>
                                             <td>{trip.price}</td>
                                             <td>
-                                                <button class="btn btn-success btn-sm" style={{ width: "33%" }} onClick={() => isLoggedIn ? handleBookTrip(trip, company) : setShowLoginModal(true)}>Book</button>
+                                                <button class="btn btn-success btn-sm" style={{ width: "33%" }} 
+                                                onClick={() => isLoggedIn ? handleBookTrip(trip, company) : setShowLoginModal(true)}>Book</button>
                                                 <button
                                                     className="btn btn-primary btn-sm"
                                                     style={{ width: "33%" }}
@@ -364,6 +368,7 @@ export function CityDetailes() {
                                                     Delete
                                                 </button>
                                                 <button
+                                                
                                                     className="btn btn-success btn-sm"
                                                     onClick={() => isLoggedIn ? handleAddToFavorites(trip, company) : setShowLoginModal(true)}
                                                 >
@@ -558,36 +563,15 @@ export function CityDetailes() {
                 </Modal>
             )}
 
-            {showLoginModal && (
-                <Modal id="login-book-modal" show={showLoginModal} onHide={() => setShowLoginModal(false)} className="dialog-modal-centered align-content-center">
-                    <ModalHeader closeButton>
-                        <ModalTitle>Login To Book The Trip</ModalTitle>
-                    </ModalHeader>
-                    <ModalBody>
-                        You need to Login to complete Booking !!
-                    </ModalBody>
-                    <ModalFooter className="d-flex justify-content-center">
-                        <button type="button" className="btn btn-primary w-50" onClick={() => {
-                            navigate('/Login/');
-                            setIsLoggedIn(true);
-                            setShowLoginModal(false);
-                        }}>
-                            go to Login
-                        </button>
-                        <button type="button" className="btn btn-secondary justify-content-end" onClick={() => setShowLoginModal(false)}>
-                            Cancel
-                        </button>
-                    </ModalFooter>
-                </Modal>
-            )}
+  
 
             {showLoginModal && (
                 <Modal show={showLoginModal} onHide={() => setShowLoginModal(false)}>
                     <ModalHeader closeButton>
-                        <ModalTitle>Login To Add to Favorites</ModalTitle>
+                        <ModalTitle>Login To Add to Favorites or Book The Trip</ModalTitle>
                     </ModalHeader>
                     <ModalBody>
-                        You need to login to add trips to your favorites.
+                        You need to Login to complete Booking and add your favourite trips !!
                     </ModalBody>
                     <ModalFooter>
                         <Button onClick={() => {
