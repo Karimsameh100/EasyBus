@@ -102,7 +102,6 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
 import aboutImg from "../logo/about.jpg";
 import img3 from "../logo/Dall1.webp";
 import img1 from "../logo/Dall2.webp";
