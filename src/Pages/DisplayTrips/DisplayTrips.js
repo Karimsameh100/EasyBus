@@ -52,7 +52,7 @@ const DisplayTrips = () => {
     const allTrips = [];
     data.forEach((items) => {
       items?.companies?.forEach((company) => {
-        if (company.id === storedCompany.id) {
+        if (company.name === storedCompany.name) {
           company.trips.forEach((element) => {
             allTrips.push(element);
           });
