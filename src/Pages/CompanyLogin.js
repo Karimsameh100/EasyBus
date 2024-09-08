@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import NavBar from "../Componants/NavBar";
 
 function CompanyLogin({ setLoggedIn }) {
-    const [loginInputs, setLoginInputs] = useState({ id: "", name: "" , email: "" });
+    const [loginInputs, setLoginInputs] = useState({ name: "", password: "" });
     const [loginError, setLoginError] = useState("");
     const navigate = useNavigate();
 
@@ -18,20 +18,22 @@ function CompanyLogin({ setLoggedIn }) {
     const handleLogin = (e) => {
         e.preventDefault();
 
+        // Retrieve stored companies from localStorage
         const storedData = JSON.parse(localStorage.getItem('registeredCompanies')) || [];
+
+        // Match the company based on name and password
         const matchedCompany = storedData.find(company =>
-            company.id === Number(loginInputs.id) &&
             company.name.toLowerCase() === loginInputs.name.toLowerCase() &&
-            company.email.toLowerCase() === loginInputs.email.toLowerCase()
+            company.password === loginInputs.password
         );
 
         if (matchedCompany) {
             console.log("Login successful:", matchedCompany);
             localStorage.setItem('loggedInCompany', JSON.stringify(matchedCompany));
             setLoggedIn(true);  // Update the logged-in state
-            navigate('/DisplayTrips');
+            navigate('/DisplayTrips');  // Redirect to the trips display page
         } else {
-            setLoginError("Invalid company ID or name or email");
+            setLoginError("Invalid company name or password");
         }
     };
 
@@ -39,17 +41,6 @@ function CompanyLogin({ setLoggedIn }) {
         <div className="container">
             <h2 className="mt-5 mb-3 text-center">Company Login</h2>
             <form onSubmit={handleLogin}>
-                <div className="form-floating mb-3">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Enter your company ID"
-                        name="id"
-                        value={loginInputs.id}
-                        onChange={handleLoginChange}
-                    />
-                    <label>ID</label>
-                </div>
                 <div className="form-floating mb-3">
                     <input
                         type="text"
@@ -63,14 +54,14 @@ function CompanyLogin({ setLoggedIn }) {
                 </div>
                 <div className="form-floating mb-3">
                     <input
-                        type="email"
+                        type="password"
                         className="form-control"
-                        placeholder="Enter your company email"
-                        name="email"
-                        value={loginInputs.email}
+                        placeholder="Enter your company password"
+                        name="password"
+                        value={loginInputs.password}
                         onChange={handleLoginChange}
                     />
-                    <label>Email</label>
+                    <label>Password</label>
                 </div>
                 <p className="text-danger">{loginError}</p>
                 <button type="submit" className="btn btn-primary">Login</button>

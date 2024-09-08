@@ -16,6 +16,7 @@ const DisplayTrips = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7; // Adjust this number based on how many items you want per page
   const [view, setView] = useState('trips'); // New state for view toggle
+  const loggedInCompany = JSON.parse(localStorage.getItem('loggedInCompany'));
 
   useEffect(() => {
     const fetchTrips = async () => {
