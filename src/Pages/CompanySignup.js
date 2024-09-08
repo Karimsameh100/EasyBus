@@ -290,7 +290,7 @@ function CompanySignup() {
             console.log("Form Data Submitted:", companyData);
 
             // Navigate to the login page after registration
-            navigate('/CompanyLogin');
+            navigate('/CompleteComReg');  
         }
     };
 

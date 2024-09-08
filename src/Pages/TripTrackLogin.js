@@ -3,25 +3,36 @@ import { Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
 
-function TripTrackSignup() {
+function TripTrackLogin() {
   const [selectedRole, setSelectedRole] = useState();
   const navigate = useNavigate();
 
+  
   const handleRoleChange = (event) => {
     setSelectedRole(event.target.value);
   };
 
-  const handleJoinClick = () => {
+  const handleLoginClick = async () => {
     if (selectedRole === "passanger") {
-      navigate("/client");
+      // Client login logic here
+      
+          navigate("/login");
+        
+          
+      
+     
     } else if (selectedRole === "company") {
-      navigate("/CompanySignup");
+      // Company login logic here
+      
+          navigate("/CompanyLogin");
+        
+       
     }
   };
 
   return (
     <div className="container mt-5">
-      <h1 className="text-center mb-4">Join as a passanger or company</h1>
+      <h1 className="text-center mb-4">Log in as a passanger or company</h1>
 
       <Form>
         <div className="row">
@@ -30,7 +41,7 @@ function TripTrackSignup() {
               className="p-4 border border-dark rounded"
               style={{ fontSize: "1.5rem", fontWeight: "bold" }}
             >
-              <Form.Group controlId="passangerRadio">
+              <Form.Group controlId="clientRadio">
                 <Form.Label>
                   <Form.Check
                     name="role"
@@ -40,7 +51,7 @@ function TripTrackSignup() {
                     onChange={handleRoleChange}
                   />
                   <br />
-                  <span>I'm a Passanger looking for trip</span>
+                  <span>I'm a passanger</span>
                 </Form.Label>
               </Form.Group>
             </div>
@@ -61,31 +72,31 @@ function TripTrackSignup() {
                     onChange={handleRoleChange}
                   />
                   <br />
-                  <span> I'm a company have some trips</span>
+                  <span>I'm a company</span>
                 </Form.Label>
               </Form.Group>
             </div>
           </div>
         </div>
 
+       
+
         <div className="text-center mt-3">
           <Button
             variant="primary"
-            onClick={handleJoinClick}
+            onClick={handleLoginClick}
             disabled={!selectedRole}
           >
-            {selectedRole === "passanger"
-              ? "Join as a passanger"
-              : "Join as a Company"}
+            {selectedRole === "passanger" ? "Log in as passanger" : "Log in as Company"}
           </Button>
         </div>
       </Form>
 
       <p className="text-center mt-3">
-        Already have an account? <Link to={"/TripTrackLogin"}>Log In</Link>
+        Don't have an account? <Link to={"/signup"}>Sign up</Link>
       </p>
     </div>
   );
 }
 
-export default TripTrackSignup;
+export default TripTrackLogin;

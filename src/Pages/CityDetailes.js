@@ -28,14 +28,11 @@ export function CityDetailes() {
     const [reviewToDelete, setReviewToDelete] = useState(null);
     const [showReviewForm, setShowReviewForm] = useState(false);  // State to control the ReviewForm modal
     const [editReviewId, setEditReviewId] = useState(null); // State to control edit mode
-    const [favoritesCount, setFavoritesCount] = useState(0);
+    const [favorites, setFavorites] = useState([]);
 
 
-    
+
     // ------------------Favourites-----------START---------------------//
-
-
-
     useEffect(() => {
         axios.get(`http://localhost:4001/posts/${params.id}`)
             .then((res) => setCity(res.data))
@@ -47,7 +44,7 @@ export function CityDetailes() {
         }
 
         const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        setFavoritesCount(storedFavorites.length);
+        setFavorites(storedFavorites);
     }, [params.id]);
 
     const handleAddToFavorites = (trip, company) => {
@@ -55,8 +52,13 @@ export function CityDetailes() {
         const newFavorite = { ...trip, companyName: company.name };
         storedFavorites.push(newFavorite);
         localStorage.setItem('favorites', JSON.stringify(storedFavorites));
-        setFavoritesCount(storedFavorites.length);
+    
+        // Dispatch a storage event to notify other components
+        window.dispatchEvent(new Event('storage'));
+    
+        setFavorites(storedFavorites.length);
     };
+
 
 
     // ------------------Favourites-----------END---------------------//
@@ -77,6 +79,7 @@ export function CityDetailes() {
         });
         setShowEditModal(true);
     };
+
 
     const handleChange = (event) => {
         setFormData({
@@ -305,6 +308,9 @@ export function CityDetailes() {
                 <img src={city?.image} style={{ width: "50%", height: "50%", objectFit: "cover", marginRight: "20px" }} />
                 <h4 style={{ textAlign: "left" }}>{city.info}</h4>
             </div>
+            <div className="badge-container">
+                <span className="badge badge-primary">{favorites.length}</span> {/* Display the updated favorites count */}
+            </div>
             <div class="container-fluid">
                 {city && city.companies.map((company) => (
                     <div key={company.id} class="row d-flex justify-content-center mb-5">
@@ -312,28 +318,6 @@ export function CityDetailes() {
                         <div class="col-sm-6 col-md-4">
                             <img src={company.image} className="img-fluid mt-5 " alt="Image" />
                         </div>
-                        {/* <div class=" table-responsive col-sm-6 col-md-8">
-                            <table class="table table-striped table-bordered-bold">
-                             
-                                <tbody>
-                                    {company.trips.map((trip) => (
-                                        <tr key={trip.tripNumber}>
-                                            <td>{trip.tripNumber}</td>
-                                            <td>{trip.tripDate}</td>
-                                            <td>{trip.availablePlaces}</td>
-                                            <td>{trip.departureStation}</td>
-                                            <td>{trip.stopStations}</td>
-                                            <td>{trip.departureTime}</td>
-                                            <td>{trip.arrivedTime}</td>
-                                            <td>{trip.price}</td>
-                                            <td>
-                                               
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div> */}
                         <div className="table-responsive col-sm-6 col-md-8">
                             <table className="table table-striped table-bordered-bold">
                                 <thead>
@@ -361,10 +345,11 @@ export function CityDetailes() {
                                             <td>{trip.arrivedTime}</td>
                                             <td>{trip.price}</td>
                                             <td>
-                                            <button class="btn btn-success btn-sm" style={{ width: "33%" }} onClick={() => isLoggedIn ? handleBookTrip(trip, company) : setShowLoginModal(true)}>Book</button>
-                                                <button
+                                                <button class="btn btn-success btn-sm mx-1" style={{ width: "100%" }} 
+                                                onClick={() => isLoggedIn ? handleBookTrip(trip, company) : setShowLoginModal(true)}>Book</button>
+                                                {/* <button
                                                     className="btn btn-primary btn-sm"
-                                                    style={{ width: "33%" }}
+                                                    style={{ width: "20%" }}
                                                     onClick={() => {
                                                         handleEditTrip(trip, company);
                                                         setShowEditModal(true);
@@ -372,22 +357,24 @@ export function CityDetailes() {
                                                 >
                                                     Edit
                                                 </button>
-
                                                 <button
-                                                    className="btn btn-danger btn-sm"
-                                                    style={{ width: "33%" }}
+                                                    className="btn btn-danger btn-sm mx-2 "
+                                                    style={{ width: "20%" }}
                                                     onClick={() => {
                                                         handleDeleteTrip(trip, company);
                                                         setShowDeleteModal(true);
                                                     }}
                                                 >
                                                     Delete
-                                                </button>
+                                                </button> */}
                                                 <button
-                                                    className="btn btn-success btn-sm"
+                                                
+                                                    className="btn btn-outline-warning btn-sm mx-1 my-1"  style={{ width: "100%" }}
+
+
                                                     onClick={() => isLoggedIn ? handleAddToFavorites(trip, company) : setShowLoginModal(true)}
                                                 >
-                                                    Add to Favorites
+                                                    Favorites
                                                 </button>
                                             </td>
                                         </tr>
@@ -579,35 +566,12 @@ export function CityDetailes() {
             )}
 
             {showLoginModal && (
-                <Modal id="login-book-modal" show={showLoginModal} onHide={() => setShowLoginModal(false)} className="dialog-modal-centered align-content-center">
-                    <ModalHeader closeButton>
-                        <ModalTitle>Login To Book The Trip</ModalTitle>
-                    </ModalHeader>
-                    <ModalBody>
-                        You need to Login to complete Booking !!
-                    </ModalBody>
-                    <ModalFooter className="d-flex justify-content-center">
-                        <button type="button" className="btn btn-primary w-50" onClick={() => {
-                            navigate('/Login/');
-                            setIsLoggedIn(true);
-                            setShowLoginModal(false);
-                        }}>
-                            go to Login
-                        </button>
-                        <button type="button" className="btn btn-secondary justify-content-end" onClick={() => setShowLoginModal(false)}>
-                            Cancel
-                        </button>
-                    </ModalFooter>
-                </Modal>
-            )}
-
-            {showLoginModal && (
                 <Modal show={showLoginModal} onHide={() => setShowLoginModal(false)}>
                     <ModalHeader closeButton>
-                        <ModalTitle>Login To Add to Favorites</ModalTitle>
+                        <ModalTitle>Login To Add to Favorites or Book The Trip</ModalTitle>
                     </ModalHeader>
                     <ModalBody>
-                        You need to login to add trips to your favorites.
+                        You need to Login to complete Booking and add your favourite trips !!
                     </ModalBody>
                     <ModalFooter>
                         <Button onClick={() => {
