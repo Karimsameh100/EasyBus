@@ -16,7 +16,19 @@ const DisplayTrips = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7; // Adjust this number based on how many items you want per page
   const [view, setView] = useState('trips'); // New state for view toggle
+<<<<<<< HEAD
   const loggedInCompany = JSON.parse(localStorage.getItem('loggedInCompany'));
+=======
+  // State for pagination of bookings
+  const [currentBookingsPage, setCurrentBookingsPage] = useState(1);
+  const bookingsPerPage = 4; // Adjust this number based on how many items you want per page for bookings
+
+  // Pagination logic for bookings
+  const totalBookingsPages = Math.ceil(userBookings.length / bookingsPerPage);
+  const bookingsStartIndex = (currentBookingsPage - 1) * bookingsPerPage;
+  const bookingsEndIndex = bookingsStartIndex + bookingsPerPage;
+  const currentBookingsPageItems = userBookings.slice(bookingsStartIndex, bookingsEndIndex);
+>>>>>>> d52f44c3626a95062b8997ce13f6c9ba759feabe
 
   useEffect(() => {
     const fetchTrips = async () => {
@@ -44,7 +56,7 @@ const DisplayTrips = () => {
     const allTrips = [];
     data.forEach((items) => {
       items?.companies?.forEach((company) => {
-        if (company.id === storedCompany.id) {
+        if (company.name === storedCompany.name) {
           company.trips.forEach((element) => {
             allTrips.push(element);
           });
@@ -100,7 +112,18 @@ const DisplayTrips = () => {
     handleUpdateTrip(formData);
     setShowEditModal(false);
   };
-
+  const handleBookingsPageChange = (pageNumber) => {
+    setCurrentBookingsPage(pageNumber);
+  };
+  
+  const handleBookingsNext = () => {
+    setCurrentBookingsPage((prev) => Math.min(prev + 1, totalBookingsPages));
+  };
+  
+  const handleBookingsPrevious = () => {
+    setCurrentBookingsPage((prev) => Math.max(prev - 1, 1));
+  };
+  
   const handleEditClick = (trip) => {
     setSelectedTrip({ ...trip, companyId: storedCompany.id });
     setFormData({
@@ -285,59 +308,76 @@ const DisplayTrips = () => {
               </nav>
             </>
           )}
-          {view === 'bookings' && (
-            <>
-              {userBookings.length ? (
-                <div className="table-responsive col-sm-6 col-md-12">
+         {view === 'bookings' && (
+          <>
+            {currentBookingsPageItems.length ? (
+              <div className="table-responsive col-sm-6 col-md-12">
                 <table className="table table-striped">
-                    <thead>
+                  <thead>
                     <tr>
-                        <th>Trip Number</th>
-                        <th>User Name</th>
-                        <th>Trip Date</th>
-                        <th>Departure Station</th>
-                        <th>Arrival Station</th>
-                        <th>Seats Booked</th>
-                        <th>Price</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+                      <th>Trip Number</th>
+                      <th>User Name</th>
+                      <th>Trip Date</th>
+                      <th>Departure Station</th>
+                      <th>Arrival Station</th>
+                      <th>Seats Booked</th>
+                      <th>Price</th>
+                      <th>Status</th>
+                      <th>Actions</th>
                     </tr>
-                </thead>
-                <tbody>
-                    {userBookings.map((booking, index) => (
-                        <tr key={index}>
-                            <td>{booking.tripNumber}</td>
-                            <td>{booking.userName}</td>
-                            <td>{booking.tripDate}</td>
-                            <td>{booking.departureStation}</td>
-                            <td>{booking.stopStations}</td>
-                            <td>{booking.numPlaces}</td>
-                            <td>{booking.tripPrice}</td>
-                            <td>{booking.status || 'Pending'}</td>
-                            <td>
-                              <button
-                               className="btn btn-success btn-sm mx-1"
-                               onClick={() => handleBookingStatus(booking, 'Accepted')}
-                              >
-                               Accept
-                              </button>
-                              <button
-                               className="btn btn-danger btn-sm mx-1"
-                               onClick={() => handleBookingStatus(booking, 'Rejected')}
-                              >
-                               Reject
-                              </button>
-                             </td>
-                        </tr>
+                  </thead>
+                  <tbody>
+                    {currentBookingsPageItems.map((booking, index) => (
+                      <tr key={index}>
+                        <td>{booking.tripNumber}</td>
+                        <td>{booking.userName}</td>
+                        <td>{booking.tripDate}</td>
+                        <td>{booking.departureStation}</td>
+                        <td>{booking.stopStations}</td>
+                        <td>{booking.numPlaces}</td>
+                        <td>{booking.tripPrice}</td>
+                        <td>{booking.status || 'Pending'}</td>
+                        <td>
+                          <button
+                            className="btn btn-success btn-sm mx-1"
+                            onClick={() => handleBookingStatus(booking, 'Accepted')}
+                          >
+                            Accept
+                          </button>
+                          <button
+                            className="btn btn-danger btn-sm mx-1"
+                            onClick={() => handleBookingStatus(booking, 'Rejected')}
+                          >
+                            Reject
+                          </button>
+                        </td>
+                      </tr>
                     ))}
                   </tbody>
                 </table>
-                </div>
-              ) : (
-                <p className="text-center">No bookings found for this company.</p>
-              )}
-            </>
-          )}
+                {/* Pagination Controls for Bookings */}
+                <nav aria-label="Bookings page navigation example">
+                  <ul className="pagination justify-content-center">
+                    <li className={`page-item ${currentBookingsPage === 1 ? 'disabled' : ''}`}>
+                      <button className="page-link" onClick={handleBookingsPrevious}>Previous</button>
+                    </li>
+                    {[...Array(totalBookingsPages).keys()].map((pageNumber) => (
+                      <li key={pageNumber} className={`page-item ${currentBookingsPage === pageNumber + 1 ? 'active' : ''}`}>
+                        <button className="page-link" onClick={() => handleBookingsPageChange(pageNumber + 1)}>{pageNumber + 1}</button>
+                      </li>
+                    ))}
+                    <li className={`page-item ${currentBookingsPage === totalBookingsPages ? 'disabled' : ''}`}>
+                      <button className="page-link" onClick={handleBookingsNext}>Next</button>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            ) : (
+              <p className="text-center">No bookings found for this company.</p>
+            )}
+          </>
+        )}
+
         </div>
       </div>
 

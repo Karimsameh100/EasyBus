@@ -76,7 +76,7 @@ function CompleteComReg() {
 
             console.log("Form Data Submitted:", userInputs);
 
-            navigate('/CompanyLogin'); 
+            navigate('/Login1'); 
         }
     };
 

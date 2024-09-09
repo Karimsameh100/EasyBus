@@ -12,16 +12,15 @@ import {
 } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
 const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [bookedTrips, setBookedTrips] = useState([]); // state for trips
+  const [filteredTrips, setFilteredTrips] = useState([]); // state for filtered trips based on status
   const [currentPage, setCurrentPage] = useState(1); // current page for pagination
-  const [showPendingTrips, setShowPendingTrips] = useState(false); // state to control showing pending trips
+  const [currentSection, setCurrentSection] = useState("profile"); // state to control current section
   const tripsPerPage = 1; // Number of trips per page
   const navigate = useNavigate();
 
@@ -34,17 +33,54 @@ const UserProfile = () => {
     if (storedName) setName(storedName);
     if (storedEmail) setEmail(storedEmail);
     if (storedProfilePic) setProfilePic(storedProfilePic);
-    setBookedTrips(storedTrips); // set trips
+
+    // Filter trips based on the logged-in user
+    const userTrips = storedTrips.filter(
+      (trip) => trip.userName === storedName
+    );
+    setBookedTrips(userTrips);
   }, []);
+
+  useEffect(() => {
+    // Filter trips based on the current section (pending, rejected, accepted)
+    if (currentSection === "pending-trips") {
+      setFilteredTrips(
+        bookedTrips.filter((trip) => trip.status === "Pending" || !trip.status)
+      );
+    } else if (currentSection === "rejected-trips") {
+      setFilteredTrips(
+        bookedTrips.filter((trip) => trip.status === "Rejected")
+      );
+    } else if (currentSection === "accepted-trips") {
+      setFilteredTrips(
+        bookedTrips.filter((trip) => trip.status === "Accepted")
+      );
+    } else {
+      setFilteredTrips(bookedTrips); // For profile, show all trips
+    }
+  }, [currentSection, bookedTrips]);
 
   // Calculate the index range for the current page
   const indexOfLastTrip = currentPage * tripsPerPage;
   const indexOfFirstTrip = indexOfLastTrip - tripsPerPage;
-  const currentTrips = bookedTrips.slice(indexOfFirstTrip, indexOfLastTrip);
+  const currentTrips = filteredTrips.slice(indexOfFirstTrip, indexOfLastTrip);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  // const handleImageUpload = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       const imageUrl = reader.result;
+  //       setProfilePic(imageUrl);
+  //       localStorage.setItem("userProfilePic", imageUrl);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -54,6 +90,9 @@ const UserProfile = () => {
         const imageUrl = reader.result;
         setProfilePic(imageUrl);
         localStorage.setItem("userProfilePic", imageUrl);
+
+        // Dispatch a custom event to notify other components
+        window.dispatchEvent(new Event("profilePicUpdated"));
       };
       reader.readAsDataURL(file);
     }
@@ -66,18 +105,13 @@ const UserProfile = () => {
   };
 
   const handleNavClick = (section) => {
-    if (section === "profile") {
-      setShowPendingTrips(false);
-    } else if (section === "pending-trips") {
-      setShowPendingTrips(true);
-    }
-    // navigate to other pages if needed
+    setCurrentSection(section);
   };
 
   return (
     <Container
       className="my-5"
-      style={{ backgroundColor: "#f8f9fa", minHeight: "150vh" }}
+      style={{ backgroundColor: "#f8f9fa", minHeight: "80vh" }}
     >
       <Row>
         <Col md={4}>
@@ -85,16 +119,16 @@ const UserProfile = () => {
             <Card.Body>
               <Nav className="flex-column">
                 <Nav.Link onClick={() => handleNavClick("profile")}>
-                  Profile
+                  My Profile
                 </Nav.Link>
                 <Nav.Link onClick={() => handleNavClick("pending-trips")}>
                   Pending Trips
                 </Nav.Link>
-                <Nav.Link onClick={() => navigate("/rejected-trips")}>
-                  Rejected
+                <Nav.Link onClick={() => handleNavClick("rejected-trips")}>
+                  Rejected Trips
                 </Nav.Link>
-                <Nav.Link onClick={() => navigate("/accepted-trips")}>
-                  Accepted
+                <Nav.Link onClick={() => handleNavClick("accepted-trips")}>
+                  Accepted Trips
                 </Nav.Link>
               </Nav>
             </Card.Body>
@@ -103,9 +137,8 @@ const UserProfile = () => {
         <Col md={8}>
           <Card>
             <Card.Body>
-              {!showPendingTrips ? (
+              {currentSection === "profile" ? (
                 <div>
-                  <h5>Profile</h5>
                   <Row className="align-items-center">
                     <Col md={4} className="d-flex justify-content-center">
                       <Card.Img
@@ -141,20 +174,18 @@ const UserProfile = () => {
                         </Button>
                       </Form>
                     </Col>
-                    {/* <Col md={2} className="d-flex align-items-center">
-                      <Button
-                        type="submit"
-                        variant="primary"
-                        style={{ marginTop: "5vh" }}
-                      >
-                        Save Changes
-                      </Button>
-                    </Col> */}
                   </Row>
                 </div>
               ) : (
                 <div style={{ marginTop: "5vh" }}>
-                  <h5>Pending Trips:</h5>
+                  <h5>
+                    {currentSection === "pending-trips"
+                      ? "Pending Trips"
+                      : currentSection === "rejected-trips"
+                      ? "Rejected Trips"
+                      : "Accepted Trips"}
+                    :
+                  </h5>
                   {currentTrips.length > 0 ? (
                     currentTrips.map((trip, index) => (
                       <Card key={index} className="mt-4">
@@ -196,14 +227,14 @@ const UserProfile = () => {
                     ))
                   ) : (
                     <Alert variant="info">
-                      You have not booked any trips yet.
+                      You have no trips in this section.
                     </Alert>
                   )}
                   {/* Pagination */}
-                  {bookedTrips.length > tripsPerPage && (
+                  {filteredTrips.length > tripsPerPage && (
                     <Pagination className="justify-content-center mt-4">
                       {Array.from({
-                        length: Math.ceil(bookedTrips.length / tripsPerPage),
+                        length: Math.ceil(filteredTrips.length / tripsPerPage),
                       }).map((_, idx) => (
                         <Pagination.Item
                           key={idx + 1}
