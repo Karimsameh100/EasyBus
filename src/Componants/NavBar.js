@@ -44,7 +44,7 @@ export function NavBar() {
           label: "Yes",
           onClick: () => {
             localStorage.removeItem("isLoggedIn");
-            localStorage.removeItem("userProfilePic");
+            // localStorage.removeItem("userProfilePic");
             setIsLoggedIn(false);
             navigate("/");
 
