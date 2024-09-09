@@ -17,24 +17,23 @@ const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [bookedTrips, setBookedTrips] = useState([]); // state for trips
-  const [filteredTrips, setFilteredTrips] = useState([]); // state for filtered trips based on status
-  const [currentPage, setCurrentPage] = useState(1); // current page for pagination
-  const [currentSection, setCurrentSection] = useState("profile"); // state to control current section
-  const tripsPerPage = 1; // Number of trips per page
+  const [bookedTrips, setBookedTrips] = useState([]);
+  const [filteredTrips, setFilteredTrips] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentSection, setCurrentSection] = useState("profile");
+  const tripsPerPage = 1;
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedName = localStorage.getItem("userName");
     const storedEmail = localStorage.getItem("userEmail");
-    const storedProfilePic = localStorage.getItem("userProfilePic");
+    const storedProfilePic = localStorage.getItem(`profilePic_${storedName}`);
     const storedTrips = JSON.parse(localStorage.getItem("bookedTrips")) || [];
 
     if (storedName) setName(storedName);
     if (storedEmail) setEmail(storedEmail);
     if (storedProfilePic) setProfilePic(storedProfilePic);
 
-    // Filter trips based on the logged-in user
     const userTrips = storedTrips.filter(
       (trip) => trip.userName === storedName
     );
@@ -42,7 +41,6 @@ const UserProfile = () => {
   }, []);
 
   useEffect(() => {
-    // Filter trips based on the current section (pending, rejected, accepted)
     if (currentSection === "pending-trips") {
       setFilteredTrips(
         bookedTrips.filter((trip) => trip.status === "Pending" || !trip.status)
@@ -56,11 +54,10 @@ const UserProfile = () => {
         bookedTrips.filter((trip) => trip.status === "Accepted")
       );
     } else {
-      setFilteredTrips(bookedTrips); // For profile, show all trips
+      setFilteredTrips(bookedTrips);
     }
   }, [currentSection, bookedTrips]);
 
-  // Calculate the index range for the current page
   const indexOfLastTrip = currentPage * tripsPerPage;
   const indexOfFirstTrip = indexOfLastTrip - tripsPerPage;
   const currentTrips = filteredTrips.slice(indexOfFirstTrip, indexOfLastTrip);
@@ -69,19 +66,6 @@ const UserProfile = () => {
     setCurrentPage(pageNumber);
   };
 
-  // const handleImageUpload = (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       const imageUrl = reader.result;
-  //       setProfilePic(imageUrl);
-  //       localStorage.setItem("userProfilePic", imageUrl);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
-
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -89,10 +73,11 @@ const UserProfile = () => {
       reader.onloadend = () => {
         const imageUrl = reader.result;
         setProfilePic(imageUrl);
-        localStorage.setItem("userProfilePic", imageUrl);
-
-        // Dispatch a custom event to notify other components
-        window.dispatchEvent(new Event("profilePicUpdated"));
+        const storedName = localStorage.getItem("userName");
+        if (storedName) {
+          localStorage.setItem(`profilePic_${storedName}`, imageUrl);
+        }
+        window.dispatchEvent(new Event("profilePicUpdated")); // تحديث شريط التنقل
       };
       reader.readAsDataURL(file);
     }
@@ -148,7 +133,7 @@ const UserProfile = () => {
                           width: "150px",
                           height: "150px",
                           borderRadius: "50%",
-                          marginRight: "20px", // Ensure space between the image and text
+                          marginRight: "20px",
                         }}
                       />
                     </Col>
@@ -230,7 +215,6 @@ const UserProfile = () => {
                       You have no trips in this section.
                     </Alert>
                   )}
-                  {/* Pagination */}
                   {filteredTrips.length > tripsPerPage && (
                     <Pagination className="justify-content-center mt-4">
                       {Array.from({
@@ -257,4 +241,3 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
-// ---------------------------------------------------------------------

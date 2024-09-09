@@ -15,23 +15,23 @@ export function NavBar() {
 
   useEffect(() => {
     const handleLoginStatusChange = () => {
-      const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-      setIsLoggedIn(loggedIn);
-      const updatedProfilePic = localStorage.getItem("userProfilePic");
-      setProfilePic(updatedProfilePic);
+      const storedName = localStorage.getItem("userName");
+      setIsLoggedIn(!!storedName);
+      const storedProfilePic = localStorage.getItem(`profilePic_${storedName}`);
+      setProfilePic(storedProfilePic || "https://via.placeholder.com/150");
+
+      const storedFavorites =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+      setFavorites(storedFavorites.length);
     };
 
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites.length);
-
     handleLoginStatusChange();
-
-    window.addEventListener("loginStatusChanged", handleLoginStatusChange);
     window.addEventListener("profilePicUpdated", handleLoginStatusChange);
+    window.addEventListener("loginStatusChanged", handleLoginStatusChange);
 
     return () => {
-      window.removeEventListener("loginStatusChanged", handleLoginStatusChange);
       window.removeEventListener("profilePicUpdated", handleLoginStatusChange);
+      window.removeEventListener("loginStatusChanged", handleLoginStatusChange);
     };
   }, []);
 
@@ -43,8 +43,10 @@ export function NavBar() {
         {
           label: "Yes",
           onClick: () => {
-            localStorage.removeItem("isLoggedIn");
-            // localStorage.removeItem("userProfilePic");
+            localStorage.removeItem("userName");
+            localStorage.removeItem("userEmail");
+            localStorage.removeItem("profilePic");
+            localStorage.removeItem("favorites");
             setIsLoggedIn(false);
             navigate("/");
 
@@ -53,7 +55,6 @@ export function NavBar() {
         },
         {
           label: "No",
-          onClick: () => {},
         },
       ],
     });
@@ -62,9 +63,12 @@ export function NavBar() {
   const isUserProfile = location.pathname === "/UserProfile";
 
   return (
-    <nav className="navbar navbar-expand-lg custom-navbar">
+    <nav
+      className="navbar navbar-expand-lg custom-navbar"
+      style={{ backgroundColor: "#4b0082" }}
+    >
       <div className="container-fluid">
-        <Link className="navbar-brand" to="#">
+        <Link className="navbar-brand" to="/">
           <img
             src={logo}
             alt="Logo"
@@ -107,7 +111,7 @@ export function NavBar() {
               </li>
             )}
             <li className="nav-item">
-              <Link to={"/About"} className="nav-link me-3">
+              <Link to="/About" className="nav-link me-3">
                 About
               </Link>
             </li>
@@ -143,14 +147,14 @@ export function NavBar() {
             !isUserProfile && (
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
-                  <Link to={"/Login1"}>
+                  <Link to="/Login1">
                     <button id="navBTN" className="btn btn-outline-light me-3">
                       Login
                     </button>
                   </Link>
                 </li>
                 <li className="nav-item me-3">
-                  <Link to={"TripTrackSignup"}>
+                  <Link to="/TripTrackSignup">
                     <button id="navBTN" className="btn btn-outline-dark">
                       SignUp
                     </button>
