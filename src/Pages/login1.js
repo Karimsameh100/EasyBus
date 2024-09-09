@@ -1,17 +1,11 @@
-
-//////////////////////////////////////////////////////////
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Login1() {
   // Initialize isLoggedIn from localStorage
-  const [isLoggedIn, setIsLoggedIn] = useState(false) 
-//   => {
-//     return JSON.parse(localStorage.getItem('isLoggedIn')) || false;
-//   });
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({ emailErr: "", passwordErr: "" });
   const [loginError, setLoginError] = useState("");
@@ -34,7 +28,6 @@ function Login1() {
       }));
     }
 
-    // Validate password
     if (name === "password") {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -51,44 +44,51 @@ function Login1() {
   // Function to handle login
   const handleLogin = (e) => {
     e.preventDefault();
-    
-    // Retrieve stored data for companies and passengers
-    const registeredCompanies = JSON.parse(localStorage.getItem('registeredCompanies')) || [];
-    const registeredPassengers = JSON.parse(localStorage.getItem('users')) || [];
 
-    // Match email and password for both companies and passengers
-    const matchedCompany = registeredCompanies.find(company =>
-      company.email === inputs.email && company.password === inputs.password
+    const registeredCompanies =
+      JSON.parse(localStorage.getItem("registeredCompanies")) || [];
+    const registeredPassengers =
+      JSON.parse(localStorage.getItem("users")) || [];
+
+    const matchedCompany = registeredCompanies.find(
+      (company) =>
+        company.email === inputs.email && company.password === inputs.password
     );
 
-    const matchedPassenger = registeredPassengers.find(passenger =>
-      passenger.email === inputs.email && passenger.password === inputs.password
+    const matchedPassenger = registeredPassengers.find(
+      (passenger) =>
+        passenger.email === inputs.email &&
+        passenger.password === inputs.password
     );
-    
 
     if (matchedCompany) {
-      // Successful company login
-      localStorage.setItem('loggedInCompany', JSON.stringify(matchedCompany));
-      localStorage.setItem('isLoggedIn', JSON.stringify(true));  // Save login status
-      setIsLoggedIn(true);  // Set isLoggedIn state to true
-      navigate('/DisplayTrips');  // Redirect to company trips page
+      localStorage.setItem("loggedInCompany", JSON.stringify(matchedCompany));
+      localStorage.setItem("isLoggedIn", JSON.stringify(true));
+      setIsLoggedIn(true);
+
+      window.dispatchEvent(new Event("loginStatusChanged"));
+
+      navigate("/DisplayTrips");
     } else if (matchedPassenger) {
-      // Successful passenger login
-      localStorage.setItem('loggedInPassenger', JSON.stringify(matchedPassenger));
-      localStorage.setItem('isLoggedIn', JSON.stringify(true));  // Save login status
-      localStorage.setItem("userName", matchedPassenger.name); //---------------------
+      localStorage.setItem(
+        "loggedInPassenger",
+        JSON.stringify(matchedPassenger)
+      );
+      localStorage.setItem("isLoggedIn", JSON.stringify(true));
+      localStorage.setItem("userName", matchedPassenger.name);
       localStorage.setItem("userEmail", matchedPassenger.email);
-      setIsLoggedIn(true);  // Set isLoggedIn state to true
-      navigate('/UserProfile');  // Redirect to passenger profile page
+      setIsLoggedIn(true);
+
+      window.dispatchEvent(new Event("loginStatusChanged"));
+
+      navigate("/UserProfile");
     } else {
-      // If no match, display error
       setLoginError("Invalid email or password");
     }
   };
 
-  // Automatically check if user is logged in on page load
   useEffect(() => {
-    const storedIsLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'));
+    const storedIsLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
     if (storedIsLoggedIn) {
       setIsLoggedIn(true);
     }
@@ -97,44 +97,40 @@ function Login1() {
   return (
     <div className="container">
       <h2 className="text-center my-4">Login</h2>
-      {/* {isLoggedIn ? (
-        <p className="text-success">You are logged in!</p>
-      ) : ( */}
-        <form onSubmit={handleLogin}>
-          <div className="form-floating mb-3">
-            <input
-              type="email"
-              className={`form-control ${errors.emailErr && "border-danger"}`}
-              name="email"
-              value={inputs.email}
-              onChange={handleInputChange}
-              placeholder="Enter your email"
-            />
-            <label>Email Address</label>
-            <p className="text-danger">{errors.emailErr}</p>
-          </div>
-          <div className="form-floating mb-3">
-            <input
-              type="password"
-              className={`form-control ${errors.passwordErr && "border-danger"}`}
-              name="password"
-              value={inputs.password}
-              onChange={handleInputChange}
-              placeholder="Enter your password"
-            />
-            <label>Password</label>
-            <p className="text-danger">{errors.passwordErr}</p>
-          </div>
-          {loginError && <p className="text-danger">{loginError}</p>}
-          <button
-            disabled={errors.passwordErr || errors.emailErr}
-            type="submit"
-            className="btn btn-dark mt-3"
-          >
-            Submit
-          </button>
-        </form>
-      
+      <form onSubmit={handleLogin}>
+        <div className="form-floating mb-3">
+          <input
+            type="email"
+            className={`form-control ${errors.emailErr && "border-danger"}`}
+            name="email"
+            value={inputs.email}
+            onChange={handleInputChange}
+            placeholder="Enter your email"
+          />
+          <label>Email Address</label>
+          <p className="text-danger">{errors.emailErr}</p>
+        </div>
+        <div className="form-floating mb-3">
+          <input
+            type="password"
+            className={`form-control ${errors.passwordErr && "border-danger"}`}
+            name="password"
+            value={inputs.password}
+            onChange={handleInputChange}
+            placeholder="Enter your password"
+          />
+          <label>Password</label>
+          <p className="text-danger">{errors.passwordErr}</p>
+        </div>
+        {loginError && <p className="text-danger">{loginError}</p>}
+        <button
+          disabled={errors.passwordErr || errors.emailErr}
+          type="submit"
+          className="btn btn-dark mt-3"
+        >
+          Submit
+        </button>
+      </form>
     </div>
   );
 }
