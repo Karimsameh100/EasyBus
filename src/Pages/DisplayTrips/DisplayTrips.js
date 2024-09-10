@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Modal, ModalTitle, ModalHeader, ModalBody, ModalFooter, Button } from 'react-bootstrap';
 import './DisplayTrips.css'; // Import the CSS file for styling
-import AddTripForm from '../addtrip' ;
+import AddTripForm from '../addtrip';
 
 const DisplayTrips = () => {
   const [trips, setTrips] = useState([]);
@@ -111,15 +111,15 @@ const DisplayTrips = () => {
   const handleBookingsPageChange = (pageNumber) => {
     setCurrentBookingsPage(pageNumber);
   };
-  
+
   const handleBookingsNext = () => {
     setCurrentBookingsPage((prev) => Math.min(prev + 1, totalBookingsPages));
   };
-  
+
   const handleBookingsPrevious = () => {
     setCurrentBookingsPage((prev) => Math.max(prev - 1, 1));
   };
-  
+
   const handleEditClick = (trip) => {
     setSelectedTrip({ ...trip, companyId: storedCompany.id });
     setFormData({
@@ -223,66 +223,71 @@ const DisplayTrips = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row">
-        {/* Sidebar */}
-        <div className="col-md-3">
-          <div className="list-group">
-            <button
-              className={`list-group-item list-group-item-action ${view === 'trips' ? 'active' : ''}`}
-              onClick={() => setView('trips')}
-            >
-              List Trips
-            </button>
-            <button
-              className={`list-group-item list-group-item-action ${view === 'bookings' ? 'active' : ''}`}
-              onClick={() => setView('bookings')}
-            >
-              List Bookings
-            </button>
-          </div>
-        </div>
-        <div className="col-md-9">
-          <h2 className="text-center mb-4">{view === 'trips' ? `Trips of ${companyName}` : `Bookings for ${companyName}`}</h2>
+    <div className="container mt-2 ">
+      <div className="row" class='main'>
+
+        <div className="col-md-9 my-2">
+          <h2 className="text-center my-3 text-bold ">{view === 'trips' ? `Trips of ${companyName}` : `Bookings for ${companyName}`}</h2>
+          <ul class="nav justify-content-center py-2">
+            <li class="nav-item">
+              <button
+                className={`list-group-item list-group-item-action p-2 ${view === 'trips' ? 'active' : ''}`}
+                onClick={() => setView('trips')}
+              >
+                List Trips
+              </button>          </li>
+            <li class="nav-item">
+              <button
+                className={`list-group-item list-group-item-action  p-2  ${view === 'bookings' ? 'active' : ''}`}
+                onClick={() => setView('bookings')}
+              >
+                List Bookings
+              </button>          </li>
+            <li class="nav-item">
+              <button className="list-group-item list-group-item-action p-2" onClick={() => setShowAddModal(true)}>Add Trip</button>
+            </li>
+
+          </ul>
           {view === 'trips' && (
             <>
-            <div className='text-center'><button className="btn btn-primary center" onClick={() => setShowAddModal(true)}>Add Trip</button>
-            </div>
               {currentPageItems.length ? (
                 <div className="table-responsive col-sm-6 col-md-12">
-                <table className="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Trip Number</th>
-                      <th>Trip Date</th>
-                      <th>Available Places</th>
-                      <th>Departure Station</th>
-                      <th>Stop Stations</th>
-                      <th>Departure Time</th>
-                      <th>Arrived Time</th>
-                      <th>Price</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {currentPageItems.map((trip, index) => (
-                      <tr key={index}>
-                        <td>{trip.tripNumber}</td>
-                        <td>{trip.tripDate}</td>
-                        <td>{trip.availablePlaces}</td>
-                        <td>{trip.departureStation}</td>
-                        <td>{trip.stopStations}</td>
-                        <td>{trip.departureTime}</td>
-                        <td>{trip.arrivedTime}</td>
-                        <td>{trip.price}</td>
-                        <td>
-                          <button className='btn btn-outline-info btn-sm mx-1' onClick={() => handleEditClick(trip)}>Edit</button>
-                          <button className='btn btn-outline-danger btn-sm mx-1' onClick={() => handleDeleteClick(trip)}>Delete</button>
-                        </td>
+                  <table className="table table-striped">
+                    <thead className=''>
+                      <tr>
+                        <th>Trip Number</th>
+                        <th>Trip Date</th>
+                        <th>Available Places</th>
+                        <th>Departure Station</th>
+                        <th>Stop Stations</th>
+                        <th>Departure Time</th>
+                        <th>Arrived Time</th>
+                        <th>Price</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {currentPageItems.map((trip, index) => (
+                        <tr key={index}>
+                          <td>{trip.tripNumber}</td>
+                          <td>{trip.tripDate}</td>
+                          <td>{trip.availablePlaces}</td>
+                          <td>{trip.departureStation}</td>
+                          <td>{trip.stopStations}</td>
+                          <td>{trip.departureTime}</td>
+                          <td>{trip.arrivedTime}</td>
+                          <td>{trip.price}</td>
+                          <td>
+                            <button className='btn btn-outline-primary btn-sm mx-1' onClick={() => handleEditClick(trip)}>Edit</button>
+                          </td>
+                          <td>
+                            <button className='btn btn-outline-danger btn-sm mx-1' onClick={() => handleDeleteClick(trip)}>Delete</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               ) : (
                 <p className="text-center">No trips found for this company.</p>
@@ -304,75 +309,75 @@ const DisplayTrips = () => {
               </nav>
             </>
           )}
-         {view === 'bookings' && (
-          <>
-            {currentBookingsPageItems.length ? (
-              <div className="table-responsive col-sm-6 col-md-12">
-                <table className="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Trip Number</th>
-                      <th>User Name</th>
-                      <th>Trip Date</th>
-                      <th>Departure Station</th>
-                      <th>Arrival Station</th>
-                      <th>Seats Booked</th>
-                      <th>Price</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {currentBookingsPageItems.map((booking, index) => (
-                      <tr key={index}>
-                        <td>{booking.tripNumber}</td>
-                        <td>{booking.userName}</td>
-                        <td>{booking.tripDate}</td>
-                        <td>{booking.departureStation}</td>
-                        <td>{booking.stopStations}</td>
-                        <td>{booking.numPlaces}</td>
-                        <td>{booking.tripPrice}</td>
-                        <td>{booking.status || 'Pending'}</td>
-                        <td>
-                          <button
-                            className="btn btn-success btn-sm mx-1"
-                            onClick={() => handleBookingStatus(booking, 'Accepted')}
-                          >
-                            Accept
-                          </button>
-                          <button
-                            className="btn btn-danger btn-sm mx-1"
-                            onClick={() => handleBookingStatus(booking, 'Rejected')}
-                          >
-                            Reject
-                          </button>
-                        </td>
+          {view === 'bookings' && (
+            <>
+              {currentBookingsPageItems.length ? (
+                <div className="table-responsive col-sm-6 col-md-12">
+                  <table className="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Trip Number</th>
+                        <th>User Name</th>
+                        <th>Trip Date</th>
+                        <th>Departure Station</th>
+                        <th>Arrival Station</th>
+                        <th>Seats Booked</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-                {/* Pagination Controls for Bookings */}
-                <nav aria-label="Bookings page navigation example">
-                  <ul className="pagination justify-content-center">
-                    <li className={`page-item ${currentBookingsPage === 1 ? 'disabled' : ''}`}>
-                      <button className="page-link" onClick={handleBookingsPrevious}>Previous</button>
-                    </li>
-                    {[...Array(totalBookingsPages).keys()].map((pageNumber) => (
-                      <li key={pageNumber} className={`page-item ${currentBookingsPage === pageNumber + 1 ? 'active' : ''}`}>
-                        <button className="page-link" onClick={() => handleBookingsPageChange(pageNumber + 1)}>{pageNumber + 1}</button>
+                    </thead>
+                    <tbody>
+                      {currentBookingsPageItems.map((booking, index) => (
+                        <tr key={index}>
+                          <td>{booking.tripNumber}</td>
+                          <td>{booking.userName}</td>
+                          <td>{booking.tripDate}</td>
+                          <td>{booking.departureStation}</td>
+                          <td>{booking.stopStations}</td>
+                          <td>{booking.numPlaces}</td>
+                          <td>{booking.tripPrice}</td>
+                          <td>{booking.status || 'Pending'}</td>
+                          <td>
+                            <button
+                              className="btn btn-success btn-sm mx-1"
+                              onClick={() => handleBookingStatus(booking, 'Accepted')}
+                            >
+                              Accept
+                            </button>
+                            <button
+                              className="btn btn-danger btn-sm mx-1"
+                              onClick={() => handleBookingStatus(booking, 'Rejected')}
+                            >
+                              Reject
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  {/* Pagination Controls for Bookings */}
+                  <nav aria-label="Bookings page navigation example">
+                    <ul className="pagination justify-content-center">
+                      <li className={`page-item ${currentBookingsPage === 1 ? 'disabled' : ''}`}>
+                        <button className="page-link" onClick={handleBookingsPrevious}>Previous</button>
                       </li>
-                    ))}
-                    <li className={`page-item ${currentBookingsPage === totalBookingsPages ? 'disabled' : ''}`}>
-                      <button className="page-link" onClick={handleBookingsNext}>Next</button>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            ) : (
-              <p className="text-center">No bookings found for this company.</p>
-            )}
-          </>
-        )}
+                      {[...Array(totalBookingsPages).keys()].map((pageNumber) => (
+                        <li key={pageNumber} className={`page-item ${currentBookingsPage === pageNumber + 1 ? 'active' : ''}`}>
+                          <button className="page-link" onClick={() => handleBookingsPageChange(pageNumber + 1)}>{pageNumber + 1}</button>
+                        </li>
+                      ))}
+                      <li className={`page-item ${currentBookingsPage === totalBookingsPages ? 'disabled' : ''}`}>
+                        <button className="page-link" onClick={handleBookingsNext}>Next</button>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              ) : (
+                <p className="text-center">No bookings found for this company.</p>
+              )}
+            </>
+          )}
 
         </div>
       </div>
@@ -495,16 +500,16 @@ const DisplayTrips = () => {
         </ModalFooter>
       </Modal>
       <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
-            <ModalHeader closeButton>
-              <ModalTitle>Add Trip</ModalTitle>
-            </ModalHeader>
-            <ModalBody>
-              <AddTripForm />
-            </ModalBody>
-            <ModalFooter>
-              <Button variant="secondary" onClick={() => setShowAddModal(false)}>Close</Button>
-            </ModalFooter>
-          </Modal>
+        <ModalHeader closeButton>
+          <ModalTitle>Add Trip</ModalTitle>
+        </ModalHeader>
+        <ModalBody>
+          <AddTripForm />
+        </ModalBody>
+        <ModalFooter>
+          <Button variant="secondary" onClick={() => setShowAddModal(false)}>Close</Button>
+        </ModalFooter>
+      </Modal>
 
     </div>
   );
