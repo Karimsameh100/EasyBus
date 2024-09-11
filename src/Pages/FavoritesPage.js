@@ -15,8 +15,8 @@ export function FavoritesPage() {
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
 
-    // Dispatch a storage event to notify other components
-    window.dispatchEvent(new Event("storage"));
+    // Dispatch a custom event to notify the NavBar component
+    window.dispatchEvent(new CustomEvent("favoritesUpdated"));
   };
 
   return (
@@ -70,5 +70,8 @@ export function FavoritesPage() {
     </div>
   );
 }
+
+
+
 
 export default FavoritesPage;
