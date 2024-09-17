@@ -403,14 +403,14 @@ export function CityDetailes() {
                         <div className="col-12 col-lg-8">
                             <div className="row">
                                 {currentReviews.map((review) => (
-                                    <div key={review.ReviewId} className="col-12 col-md-6 mb-4">
+                                    <div key={review.id} className="col-12 col-md-6 mb-4">
                                         <Reviews
                                             customerImg={review.RevCustomerImage}
                                             customerReview={review.Review}
                                             customerName={review.ReviewCustomerName}
                                             customerRate={review.ReviewCustomerRate}
-                                            onEdit={() => handleEditReview(review.ReviewId)}
-                                            onDelete={() => confirmDeleteReview(review.ReviewId)}
+                                            onEdit={() => handleEditReview(review.id)}
+                                            onDelete={() => confirmDeleteReview(review.id)}
                                             isAuthor={review.UserId === currentUserId}
 
                                         />
