@@ -13,7 +13,7 @@ export function TripList() {
 
     useEffect(() => {
         axios
-          .get("http://localhost:4001/posts")
+          .get("http://127.0.0.1:8000/cities/")
           .then((res) => {
             console.log(res.data)
             setTrips(res.data);

@@ -11,18 +11,18 @@ function ReviewForm({ id, reviewId, onClose, onSubmit }) {
 
     useEffect(() => {
         if (reviewId) {
-            axios.get(`http://localhost:4001/posts/${id}`)
-                .then(res => {
-                    const existingReview = res.data.Reviews.find(r => r.ReviewId === parseInt(reviewId));
-                    if (existingReview) {
-                        setReview(existingReview);
-                    } else {
-                        console.error('Review not found');
-                    }
-                })
+            axios.get(`http://localhost:8000/reviews/${reviewId}/`)
+            .then(res => {
+                const existingReview = res.data;
+                setReview({
+                    ReviewCustomerName: existingReview.user,
+                    Review: existingReview.comment,
+                    ReviewCustomerRate: existingReview.rate,
+                });
+             })
                 .catch(err => console.error('Error fetching review:', err));
         }
-    }, [id, reviewId]);
+    }, [reviewId]);
 
     const handleChange = (e) => {
         setReview({
@@ -61,55 +61,31 @@ function ReviewForm({ id, reviewId, onClose, onSubmit }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const currentUser = {
-            UserId: 1, // Replace with actual logged-in user ID
-            UserName: 'Afnan', // Replace with actual logged-in user name
+        const reviewData = {
+            comment: review.Review,
+            rate: review.ReviewCustomerRate,
+            user: review.ReviewCustomerName,  // Assuming you're passing the username directly
         };
 
         if (reviewId) {
             // Update existing review
-            axios.get(`http://localhost:4001/posts/${id}`)
+            axios.put(`http://localhost:8000/reviews/${reviewId}/`, reviewData)
                 .then(res => {
-                    const updatedReviews = res.data.Reviews.map(r => 
-                        r.ReviewId === parseInt(reviewId) ? { ...review } : r
-                    );
-                    axios.put(`http://localhost:4001/posts/${id}`, {
-                        ...res.data,
-                        Reviews: updatedReviews
-                    }).then(() => {
-                        onSubmit(updatedReviews); // Notify parent of the updated reviews
-                        onClose(); // Close modal
-                    });
+                    onSubmit(res.data);  // Notify parent of the updated reviews
+                    onClose();  // Close modal
                 })
                 .catch(err => console.error('Error updating review:', err));
         } else {
             // Create new review
-            axios.get(`http://localhost:4001/posts/${id}`)
+            axios.post('http://localhost:8000/reviews/', reviewData)
                 .then(res => {
-                    const existingReviews = res.data.Reviews;
-                    const maxReviewId = existingReviews.length > 0 ? Math.max(...existingReviews.map(r => r.ReviewId || 0)) : 1;
-
-                    const newReview = { 
-                        ReviewId: maxReviewId + 1,
-                        ...review,
-                        UserId: currentUser.UserId,
-                        UserName: currentUser.UserName,
-                    };
-
-                    const updatedReviews = [...existingReviews, newReview];
-
-                    axios.put(`http://localhost:4001/posts/${id}`, {
-                        ...res.data,
-                        Reviews: updatedReviews
-                    }).then(() => {
-                        onSubmit(updatedReviews); // Notify parent of the updated reviews
-                        onClose(); // Close modal
-                    });
+                    onSubmit(res.data);  // Notify parent of the new review
+                    onClose();  // Close modal
                 })
                 .catch(err => console.error('Error creating review:', err));
         }
     };
-
+    
     return (
         <form onSubmit={handleSubmit}>
             <div className="mb-3 text-center">
