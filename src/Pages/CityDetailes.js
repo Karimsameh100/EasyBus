@@ -287,8 +287,9 @@ export function CityDetailes() {
     <>
       <div style={{ position: "relative" }}>
         <img
-          src={`http://localhost:8000${city.image}`}
-          //   {city?.image}
+          src={city.image}
+          //   {`http://localhost:8000${city.image}`}
+
           style={{
             width: "100%",
             height: "100vh",
@@ -320,13 +321,13 @@ export function CityDetailes() {
         >
           <h1 className="text-light text-center">Book your Ticket</h1>
           <SearchComponent />
-          <h2 className="text-light text-center">{city.name} City</h2>
+          <h2 className="text-light text-center">{city.city} City</h2>
         </div>
       </div>
       <div style={{ display: "flex", alignItems: "center", margin: "20px" }}>
         <img
-          src={`http://localhost:8000${city.image}`}
-          //   {city?.image}
+          src={city?.image}
+          alt={city.name}
           style={{
             width: "50%",
             height: "50%",
