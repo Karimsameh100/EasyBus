@@ -25,13 +25,21 @@ export function NavBar() {
       setFavorites(storedFavorites.length);
     };
 
+    const handleFavoritesUpdate = () => {
+      const storedFavorites =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+      setFavorites(storedFavorites.length);
+    };
+
     handleLoginStatusChange();
     window.addEventListener("profilePicUpdated", handleLoginStatusChange);
     window.addEventListener("loginStatusChanged", handleLoginStatusChange);
+    window.addEventListener("favoritesUpdated", handleFavoritesUpdate);
 
     return () => {
       window.removeEventListener("profilePicUpdated", handleLoginStatusChange);
       window.removeEventListener("loginStatusChanged", handleLoginStatusChange);
+      window.removeEventListener("favoritesUpdated", handleFavoritesUpdate);
     };
   }, []);
 

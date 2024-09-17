@@ -1,22 +1,37 @@
 /* DisplayTrips.css */
 .list-group-item.active {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .list-group-item {
-    cursor: pointer;
-  }
-  
-  .table td, .table th {
-    vertical-align: middle;
-  }
-  
-  .table {
-    margin-bottom: 0;
-  }
-  
-  .pagination {
-    margin-top: 1rem;
-  }
-  
+  background-color: #007bff;
+  color: white;
+  border-radius: 10%;
+
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+.table {
+  margin-bottom: 0;
+  box-shadow: (rgb(224, 218, 218));
+}
+
+.pagination {
+  margin-top: 1rem;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav{
+  background-color: rgb(141, 141, 141);
+  border-top-left-radius:5px ;
+  border-top-right-radius:5px ;
+}
