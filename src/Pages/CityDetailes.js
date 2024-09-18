@@ -240,35 +240,26 @@ export function CityDetailes() {
   const handleDeleteReview = () => {
     if (!reviewToDelete) return;
 
-    // Optimistically update the UI
     const updatedReviews = city.Reviews.filter(
       (r) => r.ReviewId !== reviewToDelete
     );
-    setCity((prevCity) => ({
-      ...prevCity,
-      Reviews: updatedReviews,
-    }));
 
-    // Make the API call to update the server
-    axios
-      .put(`http://localhost:4001/posts/${params.id}`, {
-        ...city,
+    axios.put(`http://localhost:8000/cities/${params.id}/`, {
+      ...city,
+      Reviews: updatedReviews,
+    })
+    .then(() => {
+      setCity((prevCity) => ({
+        ...prevCity,
         Reviews: updatedReviews,
-      })
-      .then(() => {
-        // Reset modal and state after successful deletion
-        setShowModal(false);
-        setReviewToDelete(null);
-      })
-      .catch((err) => {
-        console.error("Error deleting review:", err);
-        // If the API call fails, revert the optimistic update
-        setCity((prevCity) => ({
-          ...prevCity,
-          Reviews: [...prevCity.Reviews, reviewToDelete], // Add back the deleted review
-        }));
-        // Show an error message or handle the error appropriately
-      });
+      }));
+      setShowModal(false);
+      setReviewToDelete(null);
+    })
+    .catch((err) => {
+      console.error('Error deleting review:', err);
+      // Optionally, revert the optimistic update
+    });
   };
 
   const handleEditReview = (reviewId) => {
@@ -281,8 +272,22 @@ export function CityDetailes() {
     setShowReviewForm(true); // Open the modal for a new review
   };
 
-  const handleReviewSubmit = (updatedReviews) => {
-    setCity((prevCity) => ({ ...prevCity, Reviews: updatedReviews }));
+  const handleReviewSubmit = (updatedReview) => {
+    // Update the city state with the new or edited review
+    if (editReviewId) {
+      setCity((prevCity) => ({
+        ...prevCity,
+        Reviews: prevCity.Reviews.map((review) =>
+          review.id === updatedReview.id ? updatedReview : review
+        ),
+      }));
+    } else {
+      console.error('Review object or ID is missing');
+      setCity((prevCity) => ({
+        ...prevCity,
+        Reviews: [...prevCity.Reviews, updatedReview],
+      }));
+    }
   };
 
   return (
@@ -469,9 +474,9 @@ export function CityDetailes() {
                 {currentReviews.map((review) => (
                   <div key={review.ReviewId} className="col-12 col-md-6 mb-4">
                     <Reviews
-                      customerImg={review.RevCustomerImage}
+                      customerImg={review.ReviewCustomerDetails.image}
                       customerReview={review.Review}
-                      customerName={review.ReviewCustomerName}
+                      customerName={review.ReviewCustomerDetails.name}
                       customerRate={review.ReviewCustomerRate}
                       onEdit={() => handleEditReview(review.ReviewId)}
                       onDelete={() => confirmDeleteReview(review.ReviewId)}
