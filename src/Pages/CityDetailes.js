@@ -43,11 +43,10 @@ export function CityDetailes() {
       .get(`http://localhost:8000/cities/${params.id}/`)
       //   (`http://localhost:4001/posts/${params.id}`)
       .then((res) => {
-        console.log("reeessssss:", res.data);
+        console.log("resssssss:", res.data);
         setCity(res.data);
       })
       .catch((err) => console.error("Error fetching city:", err));
-
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (isLoggedIn === "true") {
       setIsLoggedIn(true);
@@ -161,8 +160,9 @@ export function CityDetailes() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4001/posts/${params.id}`)
+      .get(`http://localhost:8000/cities/${params.id}/`)
       .then((res) => {
+        console.log("tststtsts: ", res.data.companies);
         setCity(res.data);
         setHasMoreReviews(res.data.Reviews.length > reviewsPerPage);
         setCompanies(res.data.companies || []); // add default value
