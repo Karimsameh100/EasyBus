@@ -274,7 +274,7 @@ const UserProfile = () => {
   // Fetch user data and booked trips from Django API
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/user-profile/", {
+      .get("http://localhost:8000/login/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access")}`, // JWT Token
         },
@@ -331,7 +331,7 @@ const UserProfile = () => {
         // Update profile picture in the Django backend
         axios
           .put(
-            "http://localhost:8000/api/update-profile/",
+            "http://localhost:8000/register-user/",
             { profilePic: imageUrl },
             {
               headers: {

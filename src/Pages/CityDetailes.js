@@ -24,6 +24,7 @@ export function CityDetailes() {
   const [companiess, setCompanies] = useState([]);
   const [trips, setTrips] = useState([]);
   const currentUserId = 1;
+  const [allTrips, setAllTrips] = useState([]);
 
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -40,6 +41,16 @@ export function CityDetailes() {
   // ------------------Favourites-----------START---------------------//
   useEffect(() => {
     axios
+      .get(`http://localhost:8000/all/trips/`)
+      //   (`http://localhost:4001/posts/${params.id}`)
+      .then((res) => {
+        setAllTrips(res.data);
+      })
+      .catch((err) => console.error("Error fetching trips:", err));
+  }, [params.id, setEditTrip, setAllTrips]);
+
+  useEffect(() => {
+    axios
       .get(`http://localhost:8000/cities/${params.id}/`)
       //   (`http://localhost:4001/posts/${params.id}`)
       .then((res) => {
@@ -54,7 +65,7 @@ export function CityDetailes() {
 
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(storedFavorites);
-  }, [params.id]);
+  }, [params.id, setAllTrips, setEditTrip]);
 
   const handleAddToFavorites = (trip, company) => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -69,19 +80,22 @@ export function CityDetailes() {
   };
 
   // ------------------Favourites-----------END---------------------//
-
   const handleEditTrip = (trip, company) => {
     setEditTrip(trip);
     setCompany(company);
     setFormData({
       tripNumber: trip.tripNumber,
-      tripDate: trip.tripDate,
-      availablePlaces: trip.availablePlaces,
-      departureStation: trip.departureStation,
-      stopStations: trip.stopStations,
-      departureTime: trip.departureTime,
-      arrivedTime: trip.arrivedTime,
+      date: trip.date,
+      avilabalPlaces: trip.avilabalPlaces,
+      departuerStation: trip.departuerStation,
+      destinationStation: trip.destinationStation,
+      departuerTime: trip.departuerTime,
+      destinationTime: trip.destinationTime,
+      status: trip.status,
       price: trip.price,
+      user: trip.user,
+      bus: trip.bus,
+      book: trip.book,
     });
     setShowEditModal(true);
   };
@@ -95,30 +109,17 @@ export function CityDetailes() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Update the trip in the JSON data
+    // Make the request
     axios
-      .put(`http://localhost:4001/posts/${params.id}`, {
-        ...city,
-        companies: city.companies.map((c) => {
-          if (c.id === company.id) {
-            return {
-              ...c,
-              trips: c.trips.map((t) => {
-                if (t.tripNumber === editTrip.tripNumber) {
-                  return {
-                    ...formData,
-                    id: t.id,
-                  };
-                }
-                return t;
-              }),
-            };
-          }
-          return c;
-        }),
+      .put(`http://localhost:8000/selected/trip/${editTrip.tripNumber}`, {
+        ...formData,
       })
+
       .then((res) => {
-        setCity(res.data);
+        const updatedTrips = allTrips.map((trip) =>
+          trip.tripNumber === editTrip.tripNumber ? res.data : trip
+        );
+        setAllTrips(updatedTrips);
         setShowEditModal(false); // Hide the modal after update
       })
       .catch((err) => console.error("Error updating trip:", err));
@@ -132,23 +133,17 @@ export function CityDetailes() {
 
   const confirmDelete = () => {
     // Delete the trip from the JSON data
+
     axios
-      .put(`http://localhost:4001/posts/${params.id}`, {
-        ...city,
-        companies: city.companies.map((c) => {
-          if (c.id === company.id) {
-            return {
-              ...c,
-              trips: c.trips.filter(
-                (t) => t.tripNumber !== editTrip.tripNumber
-              ),
-            };
-          }
-          return c;
-        }),
+      .delete(`http://localhost:8000/selected/trip/${editTrip.tripNumber}`, {
+        username: "admin",
+        password: "admin",
       })
       .then((res) => {
-        setCity(res.data);
+        const updatedTrips = allTrips.filter(
+          (trip) => trip.tripNumber !== editTrip.tripNumber
+        );
+        setAllTrips(updatedTrips);
         setShowDeleteModal(false); // Hide the modal after deletion
       })
       .catch((err) => console.error("Error deleting trip:", err));
@@ -375,18 +370,18 @@ export function CityDetailes() {
                     </tr>
                   </thead>
                   <tbody>
-                    {company.trips.map((trip) => (
+                    {allTrips.map((trip) => (
                       <tr key={trip.tripNumber}>
                         <td>{trip.tripNumber}</td>
-                        <td>{trip.tripDate}</td>
-                        <td>{trip.availablePlaces}</td>
-                        <td>{trip.departureStation}</td>
-                        <td>{trip.stopStations}</td>
-                        <td>{trip.departureTime}</td>
-                        <td>{trip.arrivedTime}</td>
+                        <td>{trip.date}</td>
+                        <td>{trip.avilabalPlaces}</td>
+                        <td>{trip.departuerStation}</td>
+                        <td>{trip.destinationStation}</td>
+                        <td>{trip.departuerTime}</td>
+                        <td>{trip.destinationTime}</td>
                         <td>{trip.price}</td>
                         <td>
-                          <button
+                          {/* <button
                             class="btn btn-success btn-sm mx-1"
                             style={{ width: "100%" }}
                             onClick={() =>
@@ -396,27 +391,27 @@ export function CityDetailes() {
                             }
                           >
                             Book
+                          </button> */}
+                          <button
+                            className="btn btn-primary btn-sm"
+                            style={{ width: "45%" }}
+                            onClick={() => {
+                              handleEditTrip(trip, company);
+                              setShowEditModal(true);
+                            }}
+                          >
+                            Edit
                           </button>
-                          {/* <button
-                                                    className="btn btn-primary btn-sm"
-                                                    style={{ width: "20%" }}
-                                                    onClick={() => {
-                                                        handleEditTrip(trip, company);
-                                                        setShowEditModal(true);
-                                                    }}
-                                                >
-                                                    Edit
-                                                </button>
-                                                <button
-                                                    className="btn btn-danger btn-sm mx-2 "
-                                                    style={{ width: "20%" }}
-                                                    onClick={() => {
-                                                        handleDeleteTrip(trip, company);
-                                                        setShowDeleteModal(true);
-                                                    }}
-                                                >
-                                                    Delete
-                                                </button> */}
+                          <button
+                            className="btn btn-danger btn-sm mx-1 "
+                            style={{ width: "47%" }}
+                            onClick={() => {
+                              handleDeleteTrip(trip, company);
+                              setShowDeleteModal(true);
+                            }}
+                          >
+                            Delete
+                          </button>
                           <button
                             className="btn btn-outline-warning btn-sm mx-1 my-1"
                             style={{ width: "100%" }}
@@ -557,8 +552,8 @@ export function CityDetailes() {
                 <label>Trip Date:</label>
                 <input
                   type="date"
-                  name="tripDate"
-                  value={formData.tripDate}
+                  name="date"
+                  value={formData.date}
                   onChange={handleChange}
                   className="form-control"
                 />
@@ -567,8 +562,8 @@ export function CityDetailes() {
                 <label>Available Places:</label>
                 <input
                   type="number"
-                  name="availablePlaces"
-                  value={formData.availablePlaces}
+                  name="avilabalPlaces"
+                  value={formData.avilabalPlaces}
                   onChange={handleChange}
                   className="form-control"
                 />
@@ -577,8 +572,8 @@ export function CityDetailes() {
                 <label>Departure Station:</label>
                 <input
                   type="text"
-                  name="departureStation"
-                  value={formData.departureStation}
+                  name="departuerStation"
+                  value={formData.departuerStation}
                   onChange={handleChange}
                   className="form-control"
                 />
@@ -587,8 +582,8 @@ export function CityDetailes() {
                 <label>Arrived Station:</label>
                 <input
                   type="text"
-                  name="arrivedStation"
-                  value={formData.arrivedStation}
+                  name="destinationStation"
+                  value={formData.destinationStation}
                   onChange={handleChange}
                   className="form-control"
                 />
@@ -597,8 +592,8 @@ export function CityDetailes() {
                 <label>Departure Time:</label>
                 <input
                   type="time"
-                  name="departureTime"
-                  value={formData.departureTime}
+                  name="departuerTime"
+                  value={formData.departuerTime}
                   onChange={handleChange}
                   className="form-control"
                 />
@@ -607,8 +602,8 @@ export function CityDetailes() {
                 <label>Arrived Time:</label>
                 <input
                   type="time"
-                  name="arrivedTime"
-                  value={formData.arrivedTime}
+                  name="destinationTime"
+                  value={formData.destinationTime}
                   onChange={handleChange}
                   className="form-control"
                 />
@@ -616,9 +611,49 @@ export function CityDetailes() {
               <div className="form-group">
                 <label>Price:</label>
                 <input
-                  type="text"
+                  type="number"
                   name="price"
                   value={formData.price}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Status</label>
+                <input
+                  type="text"
+                  name="status"
+                  value={formData.status}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>User</label>
+                <input
+                  type="number"
+                  name="user"
+                  value={formData.user}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Bus</label>
+                <input
+                  type="number"
+                  name="bus"
+                  value={formData.bus}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Book</label>
+                <input
+                  type="number"
+                  name="book"
+                  value={formData.book}
                   onChange={handleChange}
                   className="form-control"
                 />
