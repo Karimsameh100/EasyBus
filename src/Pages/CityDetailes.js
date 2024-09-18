@@ -246,8 +246,7 @@ export function CityDetailes() {
         }));
 
         // Make the API call to update the server
-        axios
-            .put(`http://localhost:4001/posts/${params.id}`, {
+        axios.put(`http://localhost:8000/cities/${params.id}/`,{
                 ...city,
                 Reviews: updatedReviews,
             })
@@ -287,8 +286,6 @@ export function CityDetailes() {
             <div style={{ position: "relative" }}>
                 <img
                     src={city.image}
-                    //   {`http://localhost:8000${city.image}`}
-
                     style={{
                         width: "100%",
                         height: "100vh",
@@ -466,9 +463,9 @@ export function CityDetailes() {
                                 {currentReviews.map((review) => (
                                     <div key={review.ReviewId} className="col-12 col-md-6 mb-4">
                                         <Reviews
-                                            customerImg={review.RevCustomerImage}
+                                            customerImg={review.ReviewCustomerDetails.image}
                                             customerReview={review.Review}
-                                            customerName={review.ReviewCustomerName}
+                                            customerName={review.ReviewCustomerDetails.name}
                                             customerRate={review.ReviewCustomerRate}
                                             onEdit={() => handleEditReview(review.ReviewId)}
                                             onDelete={() => confirmDeleteReview(review.ReviewId)}
