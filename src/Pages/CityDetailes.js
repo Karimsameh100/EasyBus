@@ -40,9 +40,12 @@ export function CityDetailes() {
   // ------------------Favourites-----------START---------------------//
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/cities/${params.id}/`)
+      .get(`http://localhost:8000/cities/${params.id}/`)
       //   (`http://localhost:4001/posts/${params.id}`)
-      .then((res) => setCity(res.data))
+      .then((res) => {
+        console.log("reeessssss:", res.data);
+        setCity(res.data);
+      })
       .catch((err) => console.error("Error fetching city:", err));
 
     const isLoggedIn = localStorage.getItem("isLoggedIn");
