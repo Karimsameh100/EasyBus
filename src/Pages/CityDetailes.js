@@ -27,6 +27,7 @@ export function CityDetailes() {
     const [allTrips, setAllTrips] = useState([]);
 
     const [showEditModal, setShowEditModal] = useState(false);
+    const [showAddModal, setShowAddModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [formData, setFormData] = useState({}); // Initialize formData state
@@ -38,6 +39,57 @@ export function CityDetailes() {
     const [editReviewId, setEditReviewId] = useState(null); // State to control edit mode
     const [favorites, setFavorites] = useState([]);
 
+    //--------------------------------Add new Trip-------------------------
+    const [newTrip, setNewTrip] = useState({
+        tripNumber: '',
+        date: '',
+        avilabalPlaces: '',
+        departuerStation: '',
+        destinationStation: '',
+        departuerTime: '',
+        destinationTime: '',
+        status: '',
+        price: '',
+        user: '',
+        bus: '',
+        book: '',
+    });
+
+    const handleAddTrip = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:8000/all/trips/', newTrip)
+          .then((res) => {
+            console.log(res.data);
+            setAllTrips([...allTrips, res.data]);
+            setShowAddModal(true)
+            setNewTrip({
+              tripNumber: '',
+              date: '',
+              avilabalPlaces: '',
+              departuerStation: '',
+              destinationStation: '',
+              departuerTime: '',
+              destinationTime: '',
+              status: '',
+              price: '',
+              user: '',
+              bus: '',
+              book: '',
+            });
+          })
+          .catch((err) => console.error(err));
+      };
+      
+      // Handle the change of the new trip data
+      const handleNewTripChange = (event) => {
+        setNewTrip({
+          ...newTrip,
+          [event.target.name]: event.target.value,
+        });
+      };
+
+    //---------------------------------------------------------------------
+
     // ------------------Favourites-----------START---------------------//
     useEffect(() => {
         axios
@@ -48,7 +100,7 @@ export function CityDetailes() {
             })
             .catch((err) => console.error("Error fetching trips:", err));
     }
-        , [params.id , setEditTrip , setAllTrips]);
+        , [params.id, setEditTrip, setAllTrips]);
 
 
     useEffect(() => {
@@ -67,7 +119,7 @@ export function CityDetailes() {
 
         const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
         setFavorites(storedFavorites);
-    }, [params.id , setAllTrips , setEditTrip ]);
+    }, [params.id, setAllTrips, setEditTrip]);
 
     const handleAddToFavorites = (trip, company) => {
         const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -112,13 +164,13 @@ export function CityDetailes() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Make the request
-        axios.put(`http://localhost:8000/selected/trip/${editTrip.tripNumber}`, {
+        axios.put(`http://localhost:8000/selected/trip/${editTrip.id}`, {
             ...formData,
         })
 
             .then((res) => {
                 const updatedTrips = allTrips.map((trip) =>
-                    trip.tripNumber === editTrip.tripNumber ? res.data : trip
+                    trip.tripNumber === editTrip.id ? res.data : trip
                 );
                 setAllTrips(updatedTrips);
                 setShowEditModal(false); // Hide the modal after update
@@ -135,13 +187,13 @@ export function CityDetailes() {
     const confirmDelete = () => {
         // Delete the trip from the JSON data
 
-        axios.delete(`http://localhost:8000/selected/trip/${editTrip.tripNumber}`, {
+        axios.delete(`http://localhost:8000/selected/trip/${editTrip.id}`, {
             username: 'admin',
             password: 'admin',
         })
             .then((res) => {
                 const updatedTrips = allTrips.filter(
-                    (trip) => trip.tripNumber !== editTrip.tripNumber
+                    (trip) => trip.id !== editTrip.id
                 );
                 setAllTrips(updatedTrips);
                 setShowDeleteModal(false); // Hide the modal after deletion
@@ -344,6 +396,7 @@ export function CityDetailes() {
                             key={company.id}
                             class="row d-flex justify-content-center mb-5"
                         >
+
                             <h2 className="text-center m-5">Travel with {company.name}</h2>
                             <div class="col-sm-6 col-md-4">
                                 <img
@@ -426,6 +479,7 @@ export function CityDetailes() {
                                         ))}
                                     </tbody>
                                 </table>
+                                <button className="btn btn-md btn-success  w-100 fs-3 my-2" onClick={()=>{setShowAddModal(true)}}> <b>+</b> </button>
                             </div>
                         </div>
                     ))}
@@ -525,6 +579,73 @@ export function CityDetailes() {
                     </div>
                 </div>
             </section>
+            {showAddModal && (
+               <Modal
+               id="add-trip-modal"
+               show={showAddModal}
+               onHide={() => setShowAddModal(false)}
+             >
+               <ModalHeader closeButton>
+                 <ModalTitle>Add Trip</ModalTitle>
+               </ModalHeader>
+               <ModalBody>
+                        <form id="add-trip-form" onSubmit={handleAddTrip}>
+                            <div className="form-group">
+                                <label>Trip Number:</label>
+                                <input type="text" name="tripNumber" value={newTrip.tripNumber} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Trip Date:</label>
+                                <input type="date" name="date" value={newTrip.date} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Available Places:</label>
+                                <input type="number" name="avilabalPlaces" value={newTrip.avilabalPlaces} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Departure Station:</label>
+                                <input type="text" name="departuerStation" value={newTrip.departuerStation} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Arrived Station:</label>
+                                <input type="text" name="destinationStation" value={newTrip.destinationStation} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Departure Time:</label>
+                                <input type="time" name="departuerTime" value={newTrip.departuerTime} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Arrived Time:</label>
+                                <input type="time" name="destinationTime" value={newTrip.destinationTime} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Price:</label>
+                                <input type="number" name="price" value={newTrip.price} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Status</label>
+                                <input type="text" name="status" value={newTrip.status} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>User</label>
+                                <input type="number" name="user" value={newTrip.user} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Bus</label>
+                                <input type="number" name="bus" value={newTrip.bus} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Book</label>
+                                <input type="number" name="book" value={newTrip.book} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <button type="submit" className="btn btn-success">
+                                Add Trip
+                            </button>
+                        </form>
+                    </ModalBody>
+                </Modal>
+            )},
+
             {showEditModal && (
                 <Modal
                     id="edit-trip-modal"
