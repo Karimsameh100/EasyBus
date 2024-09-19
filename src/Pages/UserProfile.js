@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 
 const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -29,6 +29,8 @@ const UserProfile = () => {
   // Fetch user data and booked trips from Django API
   useEffect(() => {
     const access_token = localStorage.getItem("authToken");
+    console.log("Access Token:", access_token);
+
     if (!access_token) {
       navigate("/Login1");
       return;
@@ -36,8 +38,9 @@ const UserProfile = () => {
 
     try {
       const decodedToken = jwtDecode(access_token);
-      const userId = decodedToken.user_id;
+      const userId = decodedToken.user_id; // Extract the user ID from the token
 
+      // Fetch the user profile data from the API
       axios
         .get(`http://127.0.0.1:8000/user/${userId}`, {
           headers: {
@@ -45,7 +48,8 @@ const UserProfile = () => {
           },
         })
         .then((response) => {
-          const { name, email, phone_number, image, bookedTrips } = response.data;
+          const { name, email, phone_number, image, bookedTrips } =
+            response.data;
           setName(name);
           setEmail(email);
           setPhoneNumber(phone_number);

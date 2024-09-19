@@ -1,7 +1,4 @@
-
-/////////////////////////////////////////////////////////login //////////////
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logo from "../logo/trip.jpeg";
@@ -42,7 +39,6 @@ function Login1() {
     }
   };
 
-  
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -53,10 +49,16 @@ function Login1() {
       });
 
       const data = response.data;
-      console.log("view user details",data);
+      console.log("view user details", data);
       if (response.status === 200) {
-        localStorage.setItem('authToken', data.token);
-        
+        localStorage.setItem("authToken", data.token);
+        localStorage.setItem(
+          "profilePic",
+          data.profilePic || "https://via.placeholder.com/150" //---------------------------------
+        );
+
+        window.dispatchEvent(new Event("loginStatusChanged")); //-----------------
+
         if (data.user_type === "company") {
           navigate("/DisplayTrips");
         } else if (data.user_type === "user") {
@@ -66,9 +68,16 @@ function Login1() {
         setLoginError("Invalid email or password");
       }
     } catch (error) {
-      console.error("Error during login:", error.response ? error.response.data : error.message);
-      setLoginError(error.response ? error.response.data.message : "An error occurred. Please try again later.");
-  }
+      console.error(
+        "Error during login:",
+        error.response ? error.response.data : error.message
+      );
+      setLoginError(
+        error.response
+          ? error.response.data.message
+          : "An error occurred. Please try again later."
+      );
+    }
   };
 
   return (

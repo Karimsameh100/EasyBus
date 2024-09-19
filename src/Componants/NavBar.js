@@ -14,34 +14,37 @@ export function NavBar() {
   const [profilePic, setProfilePic] = useState(null);
 
   useEffect(() => {
+    const accessToken = localStorage.getItem("authToken");
+    const storedProfilePic = localStorage.getItem("profilePic");
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    setIsLoggedIn(!!accessToken);
+    setProfilePic(storedProfilePic || "https://via.placeholder.com/150");
+    setFavorites(storedFavorites.length);
+
     const handleLoginStatusChange = () => {
-      const storedName = localStorage.getItem("userName");
-      setIsLoggedIn(!!storedName);
-      const storedProfilePic = localStorage.getItem(`profilePic_${storedName}`);
-      setProfilePic(storedProfilePic || "https://via.placeholder.com/150");
-
-      const storedFavorites =
-        JSON.parse(localStorage.getItem("favorites")) || [];
-      setFavorites(storedFavorites.length);
+      const accessToken = localStorage.getItem("authToken");
+      setIsLoggedIn(!!accessToken);
+      setProfilePic(
+        localStorage.getItem("profilePic") || "https://via.placeholder.com/150"
+      );
+      setFavorites(
+        (JSON.parse(localStorage.getItem("favorites")) || []).length
+      );
     };
 
-    const handleFavoritesUpdate = () => {
-      const storedFavorites =
-        JSON.parse(localStorage.getItem("favorites")) || [];
-      setFavorites(storedFavorites.length);
-    };
-
-    handleLoginStatusChange();
-    window.addEventListener("profilePicUpdated", handleLoginStatusChange);
     window.addEventListener("loginStatusChanged", handleLoginStatusChange);
-    window.addEventListener("favoritesUpdated", handleFavoritesUpdate);
 
     return () => {
-      window.removeEventListener("profilePicUpdated", handleLoginStatusChange);
       window.removeEventListener("loginStatusChanged", handleLoginStatusChange);
-      window.removeEventListener("favoritesUpdated", handleFavoritesUpdate);
     };
   }, []);
+
+  const handleLogin = (token, profilePic) => {
+    localStorage.setItem("authToken", token);
+    localStorage.setItem("profilePic", profilePic);
+    window.dispatchEvent(new Event("loginStatusChanged")); // ------------------------
+  };
 
   const handleLogout = () => {
     confirmAlert({
@@ -51,14 +54,12 @@ export function NavBar() {
         {
           label: "Yes",
           onClick: () => {
-            localStorage.removeItem("userName");
-            localStorage.removeItem("userEmail");
+            localStorage.removeItem("authToken");
             localStorage.removeItem("profilePic");
             localStorage.removeItem("favorites");
             setIsLoggedIn(false);
             navigate("/");
-
-            window.dispatchEvent(new Event("loginStatusChanged"));
+            window.dispatchEvent(new Event("loginStatusChanged")); //-----------------------
           },
         },
         {
@@ -134,7 +135,7 @@ export function NavBar() {
             <ul className="navbar-nav ms-auto d-flex align-items-center">
               <li className="nav-item me-3">
                 <img
-                  src={profilePic || "https://via.placeholder.com/50"}
+                  src={profilePic}
                   alt="Profile"
                   className="rounded-circle"
                   style={{ width: "50px", height: "50px", cursor: "pointer" }}
