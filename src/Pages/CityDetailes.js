@@ -58,35 +58,35 @@ export function CityDetailes() {
     const handleAddTrip = (event) => {
         event.preventDefault();
         axios.post('http://localhost:8000/all/trips/', newTrip)
-          .then((res) => {
-            console.log(res.data);
-            setAllTrips([...allTrips, res.data]);
-            setShowAddModal(true)
-            setNewTrip({
-              tripNumber: '',
-              date: '',
-              avilabalPlaces: '',
-              departuerStation: '',
-              destinationStation: '',
-              departuerTime: '',
-              destinationTime: '',
-              status: '',
-              price: '',
-              user: '',
-              bus: '',
-              book: '',
-            });
-          })
-          .catch((err) => console.error(err));
-      };
-      
-      // Handle the change of the new trip data
-      const handleNewTripChange = (event) => {
+            .then((res) => {
+                console.log(res.data);
+                setAllTrips([...allTrips, res.data]);
+                setShowAddModal(true)
+                setNewTrip({
+                    tripNumber: '',
+                    date: '',
+                    avilabalPlaces: '',
+                    departuerStation: '',
+                    destinationStation: '',
+                    departuerTime: '',
+                    destinationTime: '',
+                    status: '',
+                    price: '',
+                    user: '',
+                    bus: '',
+                    book: '',
+                });
+            })
+            .catch((err) => console.error(err));
+    };
+
+    // Handle the change of the new trip data
+    const handleNewTripChange = (event) => {
         setNewTrip({
-          ...newTrip,
-          [event.target.name]: event.target.value,
+            ...newTrip,
+            [event.target.name]: event.target.value,
         });
-      };
+    };
 
     //---------------------------------------------------------------------
 
@@ -298,10 +298,10 @@ export function CityDetailes() {
         }));
 
         // Make the API call to update the server
-        axios.put(`http://localhost:8000/cities/${params.id}/`,{
-                ...city,
-                Reviews: updatedReviews,
-            })
+        axios.put(`http://localhost:8000/cities/${params.id}/`, {
+            ...city,
+            Reviews: updatedReviews,
+        })
             .then(() => {
                 // Reset modal and state after successful deletion
                 setShowModal(false);
@@ -432,18 +432,18 @@ export function CityDetailes() {
                                                 <td>{trip.destinationTime}</td>
                                                 <td>{trip.price}</td>
                                                 <td>
-                                                    {/* <button
-                            class="btn btn-success btn-sm mx-1"
-                            style={{ width: "100%" }}
-                            onClick={() =>
-                              isLoggedIn
-                                ? handleBookTrip(trip, company)
-                                : setShowLoginModal(true)
-                            }
-                          >
-                            Book
-                          </button> */}
                                                     <button
+                                                        class="btn btn-success btn-sm mx-1"
+                                                        style={{ width: "100%" }}
+                                                        onClick={() =>
+                                                            isLoggedIn
+                                                                ? handleBookTrip(trip, company)
+                                                                : setShowLoginModal(true)
+                                                        }
+                                                    >
+                                                        Book
+                                                    </button>
+                                                    {/* <button
                                                         className="btn btn-primary btn-sm"
                                                         style={{ width: "45%" }}
                                                         onClick={() => {
@@ -462,7 +462,7 @@ export function CityDetailes() {
                                                         }}
                                                     >
                                                         Delete
-                                                    </button>
+                                                    </button> */}
                                                     <button
                                                         className="btn btn-outline-warning btn-sm mx-1 my-1"
                                                         style={{ width: "100%" }}
@@ -479,7 +479,7 @@ export function CityDetailes() {
                                         ))}
                                     </tbody>
                                 </table>
-                                <button className="btn btn-md btn-success  w-100 fs-3 my-2" onClick={()=>{setShowAddModal(true)}}> <b>+</b> </button>
+                                <button className="btn btn-md btn-success  w-100 fs-3 my-2" onClick={() => { setShowAddModal(true) }}> <b>+</b> </button>
                             </div>
                         </div>
                     ))}
@@ -580,15 +580,15 @@ export function CityDetailes() {
                 </div>
             </section>
             {showAddModal && (
-               <Modal
-               id="add-trip-modal"
-               show={showAddModal}
-               onHide={() => setShowAddModal(false)}
-             >
-               <ModalHeader closeButton>
-                 <ModalTitle>Add Trip</ModalTitle>
-               </ModalHeader>
-               <ModalBody>
+                <Modal
+                    id="add-trip-modal"
+                    show={showAddModal}
+                    onHide={() => setShowAddModal(false)}
+                >
+                    <ModalHeader closeButton>
+                        <ModalTitle>Add Trip</ModalTitle>
+                    </ModalHeader>
+                    <ModalBody>
                         <form id="add-trip-form" onSubmit={handleAddTrip}>
                             <div className="form-group">
                                 <label>Trip Number:</label>

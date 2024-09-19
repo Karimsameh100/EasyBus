@@ -8,15 +8,15 @@ const SearchResults = () => {
     console.log(filteredTrips)
 
     if (!filteredTrips || filteredTrips.length === 0) {
-        return <div>No trips found</div>;
+        return <div className='text-center'> <h1 className='my-5'> No trips found  -_- </h1></div>;
     } 
 
 
     return (
-        <div className="table-responsive container mt-5">
+        <div className="table-responsive container mt-5 mb-5">
         <h1 className="text-center mb-4">Search Results</h1>
         <table className="table table-striped table-bordered">
-          <thead className="thead-dark">
+          <thead className="table-dark">
             <tr>
               <th>Company</th>
               <th>Trip Number</th>
@@ -32,10 +32,10 @@ const SearchResults = () => {
               <tr key={trip.tripNumber}>
                 <td>{trip.companyName}</td>
                 <td>{trip.tripNumber}</td>
-                <td>{trip.departureStation}</td>
-                <td>{trip.stopStations}</td>
-                <td>{trip.tripDate}</td>
-                <td>{trip.availablePlaces}</td>
+                <td>{trip.departuerStation}</td>
+                <td>{trip.destinationStation}</td>
+                <td>{trip.date}</td>
+                <td>{trip.avilabalPlaces}</td>
                 <td>{trip.price} EGP</td>
               </tr>
             ))}

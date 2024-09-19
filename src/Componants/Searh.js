@@ -9,38 +9,27 @@ const Search = () => {
     const [arrivalStation, setArrivalStation] = useState('');
     const [tripDate, setTripDate] = useState('');
     const [trips, setTrips] = useState([]);
-    const [city, setCity] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:4001/posts')
-            .then(response => {
-                const allTrips = response.data.reduce((acc, city) => {
-                    city?.companies?.forEach(company => {
-                        company.trips.forEach(trip => {
-                            acc.push({ ...trip, companyName: company.name });
-                        });
-                    });
-                    return acc;
-                }, []);
-                setTrips(allTrips);
-                setCity(response.data);
-            })
-            .catch(error => console.error(error));
+        // No need to fetch data on mount, as we'll fetch data on search submit
     }, []);
-
-    console.log(city)
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const filteredTrips = trips.filter((trip) => {
-            return (
-                trip.departureStation === departureStation &&
-                trip.stopStations === arrivalStation
-            );
-        });
-        navigate('/search-results', { state: { filteredTrips } });
-        console.log(filteredTrips)
+        const url = `http://127.0.0.1:8000/find/trip/`;
+        const params = {
+            departuerStation: departureStation,
+            destinationStation: arrivalStation,
+            date: tripDate,
+        };
+        axios.get(url, { params })
+            .then(response => {
+                const filteredTrips = response.data;
+                navigate('/search-results', { state: { filteredTrips } });
+                console.log(filteredTrips)
+            })
+            .catch(error => console.error(error));
     };
 
     return (
@@ -50,9 +39,8 @@ const Search = () => {
                     <Form.Label>Departure Station:</Form.Label>
                     <Form.Control as="select" value={departureStation} onChange={(event) => setDepartureStation(event.target.value)}>
                         <option value="">Select a city</option>
-                        {city.map((city) => (
-                            <option key={city.id} value={city.city}>{city.city}</option>
-                        ))}
+                        <option value="Cairo">Cairo</option>
+
                     </Form.Control>
                 </Form.Group>
 
@@ -60,9 +48,8 @@ const Search = () => {
                     <Form.Label>Arrival Station:</Form.Label>
                     <Form.Control as="select" value={arrivalStation} onChange={(event) => setArrivalStation(event.target.value)}>
                         <option value="">Select a city</option>
-                        {city.map((city) => (
-                            <option key={city.id} value={city.city}>{city.city}</option>
-                        ))}
+                        <option value="Sohag">Sohag</option>
+
                     </Form.Control>
                 </Form.Group>
 

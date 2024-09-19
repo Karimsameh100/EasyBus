@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form, Button, Modal } from 'react-bootstrap';
 import "../Componants/bookstyle.css"
 import logo from "../logo/neew llogo.png"
+import axios from 'axios';
 
 const BookingPage = () => {
     const location = useLocation();
     const trip = location.state?.trip;
     const company = location.state.company;
 
-    const [numPlaces, setNumPlaces] = useState(1); // default value to 1
     const [showModal, setShowModal] = useState(false);
     const [totalCost, setTotalCost] = useState(0);
     const [subTotal, setSubTotal] = useState(0);
@@ -23,32 +23,33 @@ const BookingPage = () => {
     const [bookingData, setBookingData] = useState({});
     const [userName, setUserName] = useState('');
     const [bookedTrips, setBookedTrips] = useState([]);
-
-
-
+    const [time, setTime] = useState('');
+    const [numberOfPlaces, setNumberOfPlaces] = useState(1);
+    const [pickupLocation, setPickupLocation] = useState('');
+    const [dropLocation, setDropLocation] = useState('');
 
     useEffect(() => {
         const tripPrice = parseFloat(trip.price.replace(/[^\d\.]/g, '')); // extract numeric value from string
-        const subTotal = numPlaces * tripPrice;
+        const subTotal = numberOfPlaces * tripPrice;
         const discountAmount = subTotal * 0.10; // 10% discount
         const tax = (subTotal - discountAmount) * 0.14;
         setSubTotal(subTotal);
         setDiscountAmount(discountAmount);
         setTax(tax);
         setTotalCost(subTotal - discountAmount + tax);
-    }, [numPlaces, trip.price]);
+    }, [numberOfPlaces, trip.price]);
 
     const handleIncrement = () => {
-        if (numPlaces < trip.availablePlaces) {
-            setNumPlaces(numPlaces + 1);
+        if (numberOfPlaces < trip.availablePlaces) {
+            setNumberOfPlaces(numberOfPlaces + 1);
         } else {
             setShowModal(true);
         }
     };
 
     const handleDecrement = () => {
-        if (numPlaces > 1) {
-            setNumPlaces(numPlaces - 1);
+        if (numberOfPlaces > 1) {
+            setNumberOfPlaces(numberOfPlaces - 1);
         }
     };
 
@@ -64,33 +65,20 @@ const BookingPage = () => {
         setAgreeToPayDeposit(e.target.checked);
     };
 
-
-
-    useEffect(() => {
-        const storedUserName = localStorage.getItem('userName');
-        const storedBookedTrips = localStorage.getItem('bookedTrips');
-        if (storedUserName) {
-            setUserName(storedUserName);
-        }
-        if (storedBookedTrips) {
-            setBookedTrips(JSON.parse(storedBookedTrips));
-        }
-    }, []);
-
     const handleBookNow = () => {
         if (paymentMethod && (paymentMethod === 'payOnline' && onlinePaymentMethod) || (paymentMethod === 'payCash' && agreeToPayDeposit)) {
             const tripInfo = {
                 tripNumber: trip.tripNumber,
                 tripDate: trip.tripDate,
-                departureStation: trip.departureStation,
-                stopStations: trip.stopStations,
-                departureTime: trip.departureTime,
-                arrivedTime: trip.arrivedTime,
+                departureStation: trip.departuerStation,
+                stopStations: trip.destinationStation,
+                departureTime: trip.departuerTime,
+                arrivedTime: trip.destinationTime,
                 tripPrice: trip.price,
                 company: company.name,
                 userName: userName,
                 totalCost: totalCost,
-                numPlaces: numPlaces,
+                numPlaces: numberOfPlaces,
             };
 
             const newBookedTrips = [...bookedTrips, tripInfo];
@@ -102,8 +90,37 @@ const BookingPage = () => {
             setOnlinePaymentMethod('');
             setAgreeToPayDeposit(false);
             setShowTicketModal(true)
+
+            const bookingData = {
+                time: time,
+                numberOfPlaces: numberOfPlaces,
+                totalFare: totalCost,
+                pickupLocation: pickupLocation,
+                dropLocation: dropLocation,
+            };
+
+            axios.post('http://127.0.0.1:8000/booking/data/', bookingData)
+                .then((response) => {
+                    console.log(response.data);
+                    // ... handle success response ...
+                })
+                .catch((error) => {
+                    console.error(error);
+                    // ... handle error response ...
+                });
         }
     };
+
+    useEffect(() => {
+        const storedUserName = localStorage.getItem('userName');
+        const storedBookedTrips = localStorage.getItem('bookedTrips');
+        if (storedUserName) {
+            setUserName(storedUserName);
+        }
+        if (storedBookedTrips) {
+            setBookedTrips(JSON.parse(storedBookedTrips));
+        }
+    }, []);
 
     return (
         <Container>
@@ -125,23 +142,23 @@ const BookingPage = () => {
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <span className="font-weight-bold fs-5">Trip Date:</span>
-                                    <span className='fs-5'>{trip.tripDate}</span>
+                                    <span className='fs-5'>{trip.date}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <span className="font-weight-bold fs-5">Departure Station:</span>
-                                    <span className='fs-5'>{trip.departureStation}</span>
+                                    <span className='fs-5'>{trip.departuerStation}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <span className="font-weight-bold fs-5">Stop Stations:</span>
-                                    <span className='fs-5'>{trip.stopStations}</span>
+                                    <span className='fs-5'>{trip.destinationStation}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <span className="font-weight-bold fs-5">Departure Time:</span>
-                                    <span className='fs-5'>{trip.departureTime}</span>
+                                    <span className='fs-5'>{trip.departuerTime}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <span className="font-weight-bold fs-5">Arrival Time:</span>
-                                    <span className='fs-5'>{trip.arrivedTime}</span>
+                                    <span className='fs-5'>{trip.destinationTime}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <span className="font-weight-bold fs-5">Trip Price:</span>
@@ -149,7 +166,7 @@ const BookingPage = () => {
                                 </li>
                             </ul>
                         </Card.Body>
-                    </Card>
+ </Card>
                 </Col>
                 <Col md={4} className="right-col py-2">
                     {/* Right column content */}
@@ -157,14 +174,14 @@ const BookingPage = () => {
                         <Card.Body>
                             <h5> Booking Form </h5>
                             <Form>
-                                <Form.Group controlId="numPlaces">
-                                    <Form.Label>Number of Places:</Form.Label>
+                                <Form.Group controlId="numberOfPlaces">
+                                <Form.Label>Number of Places:</Form.Label>
                                     <div className="input-group">
-                                        <Button variant="secondary" className='w-25' onClick={handleDecrement} disabled={numPlaces === 1}>
+                                        <Button variant="secondary" className='w-25' onClick={handleDecrement} disabled={numberOfPlaces === 1}>
                                             -
                                         </Button>
-                                        <Form.Control type="text" className='text-center' value={numPlaces} readOnly />
-                                        <Button variant="secondary" className='w-25 btn btn-lg' onClick={handleIncrement} disabled={numPlaces === trip.availablePlaces}>
+                                        <Form.Control type="number" value={numberOfPlaces} onChange={(e) => setNumberOfPlaces(e.target.value)} />
+                                        <Button variant="secondary" className='w-25 btn btn-lg' onClick={handleIncrement} disabled={numberOfPlaces === trip.avilabalPlaces}>
                                             +
                                         </Button>
                                     </div>
@@ -189,6 +206,26 @@ const BookingPage = () => {
                                     </li>
                                 </ul>
                                 <hr />
+
+                                {/* <Form.Group controlId="time">
+                                    <Form.Label>Time:</Form.Label>
+                                    <Form.Control type="time" value={time} onChange={(e) => setTime(e.target.value)} />
+                                </Form.Group> */}
+
+                                {/* <Form.Group controlId="numberOfPlaces">
+                                    <Form.Label>Number of Places:</Form.Label>
+                                    <Form.Control type="number" value={numberOfPlaces} onChange={(e) => setNumberOfPlaces(e.target.value)} />
+                                </Form.Group> */}
+
+                                <Form.Group controlId="pickupLocation">
+                                    <Form.Label>Pickup Location:</Form.Label>
+                                    <Form.Control type="text" value={pickupLocation} onChange={(e) => setPickupLocation(e.target.value)} />
+                                </Form.Group>
+
+                                <Form.Group controlId="dropLocation">
+                                    <Form.Label>Drop Location:</Form.Label>
+                                    <Form.Control type="text" value={dropLocation} onChange={(e) => setDropLocation(e.target.value)} />
+                                </Form.Group>
 
                                 <Form.Group controlId="paymentMethod" className="text-center">
                                     <Form.Label className='fs-5'>Payment Method:</Form.Label>
@@ -265,7 +302,7 @@ const BookingPage = () => {
                         </Modal.Header>
                         <Modal.Body className=' d-flex'>
                             <div className='bg-dark w-25 d-flex flex-column rounded-3'>
-                                <img src={logo} className='w-100  my-auto h-100 rounded-3' />
+                            <img src={logo} className=' w-100  my-auto h-100 rounded-3' />
                             </div>
                             <div className='custom-dashed-border'></div>
                             <div className="ticket-container bg-dark-subtle w-100 rounded-3 p-2">
@@ -285,19 +322,19 @@ const BookingPage = () => {
                                 <ul className="list-unstyled">
                                 <li className="d-flex justify-content-between">
                                     <strong className="font-weight-bold fs-5">Departure Station:</strong>
-                                    <span className='fs-5'>{bookingData.departureStation}</span>
+                                    <span className='fs-5'>{bookingData.departuerStation}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <strong className="font-weight-bold fs-5">Stop Stations:</strong>
-                                    <span className='fs-5'>{bookingData.stopStations}</span>
+                                    <span className='fs-5'>{bookingData.destinationStation}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <strong className="font-weight-bold fs-5">Departure Time:</strong>
-                                    <span className='fs-5'>{bookingData.departureTime}</span>
+                                    <span className='fs-5'>{bookingData.departuerTime}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <strong className="font-weight-bold fs-5">Arrival Time:</strong>
-                                    <span className='fs-5'>{bookingData.arrivedTime}</span>
+                                    <span className='fs-5'>{bookingData.destinationTime}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <strong className="font-weight-bold fs-5">Number of places:</strong>
