@@ -53,8 +53,10 @@ function Login1() {
       });
 
       const data = response.data;
-      console.log(data);
+      console.log("view user details",data);
       if (response.status === 200) {
+        localStorage.setItem('authToken', data.token);
+        
         if (data.user_type === "company") {
           navigate("/DisplayTrips");
         } else if (data.user_type === "user") {
@@ -64,9 +66,9 @@ function Login1() {
         setLoginError("Invalid email or password");
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      setLoginError("An error occurred. Please try again later.");
-    }
+      console.error("Error during login:", error.response ? error.response.data : error.message);
+      setLoginError(error.response ? error.response.data.message : "An error occurred. Please try again later.");
+  }
   };
 
   return (

@@ -197,23 +197,36 @@ function CompleteComReg() {
                 formData.append('email', companyData.email);
                 formData.append('phone_number', companyData.phone_number);
                 formData.append('password', companyData.password);
-                formData.append('confirm_password', companyData.comfirm_password);
+                formData.append('confirm_password', companyData.confirm_password);
+                formData.append('user_type', userInputs.user_type);
                 
 
                try {  
                 const response = await axios.post('http://127.0.0.1:8000/register/company/', formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
                     }
                 });
 
                 console.log("File upload response:", response.data);
 
                 // Navigate to another page after successful submission
-                navigate('/Login1'); 
+               if (response.status === 201 || response.status === 200) {
+                    // Navigate only if the response is successful
+                    navigate('/Login1');
+                } else {
+                    console.error("Unexpected response status:", response.status);
+                }
 
             } catch (error) {
-                console.error("Error submitting the form:", error);
+                if (error.response) {
+                    console.error("Error response:", error.response.data);
+                } else if (error.request) {
+                    console.error("Error request:", error.request);
+                } else {
+                    console.error("Error message:", error.message);
+                }
             }
         }
     };

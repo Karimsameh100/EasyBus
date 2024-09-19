@@ -891,20 +891,25 @@ function ClientSignup() {
           body: JSON.stringify(newUser),
         });
 
-        if (response.ok) {
+        if (response.status === 201 || response.ok) {
           console.log("User registered successfully");
           navigate("/Login1");
+        } else {
+          // Attempt to parse the response as JSON
+          try {
+            const errorData = await response.json();
+            console.error("Failed to register user:", errorData);
+          } catch (jsonError) {
+            // Fallback to log the raw response (probably HTML)
+            const errorText = await response.text();
+            console.error("Failed to register user (non-JSON response):", errorText);
+          }
         }
-         else {
-          console.error("Failed to register user");
-        }
-      } 
-      catch (error) {
+      } catch (error) {
         console.error("Error:", error);
       }
     }
   };
-
   const handleLogout = () => {
     confirmAlert({
       title: "Confirm to Logout",
