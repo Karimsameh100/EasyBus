@@ -6,16 +6,12 @@ import {
   Card,
   Button,
   Form,
-  Alert,
-  Pagination,
   Nav,
 } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { jwtDecode } from 'jwt-decode';
-
-
 
 const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -26,26 +22,22 @@ const UserProfile = () => {
   const [filteredTrips, setFilteredTrips] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSection, setCurrentSection] = useState("profile");
+  const [selectedFile, setSelectedFile] = useState(null);
   const tripsPerPage = 1;
   const navigate = useNavigate();
 
   // Fetch user data and booked trips from Django API
   useEffect(() => {
     const access_token = localStorage.getItem("authToken");
-    console.log("Access Token:", access_token);
-  
     if (!access_token) {
-      // Redirect to login if there's no access token
-      navigate("/login1");
+      navigate("/Login1");
       return;
     }
-  
+
     try {
-      // Try decoding the token
       const decodedToken = jwtDecode(access_token);
-      const userId = decodedToken.user_id;  // Extract the user ID from the token
-      
-      // Fetch the user profile data from the API
+      const userId = decodedToken.user_id;
+
       axios
         .get(`http://127.0.0.1:8000/user/${userId}`, {
           headers: {
@@ -56,8 +48,8 @@ const UserProfile = () => {
           const { name, email, phone_number, image, bookedTrips } = response.data;
           setName(name);
           setEmail(email);
-          setPhoneNumber(phone_number); // Set phone number
-          setProfilePic(image); // Assume profilePic is returned as `image`
+          setPhoneNumber(phone_number);
+          setProfilePic(image);
           setBookedTrips(bookedTrips || []);
         })
         .catch((error) => {
@@ -65,12 +57,11 @@ const UserProfile = () => {
         });
     } catch (error) {
       console.error("Invalid token:", error);
-      // Optionally handle the invalid token case, like redirecting to login
       navigate("/login");
     }
   }, [navigate]);
 
-  // Filter trips based on the selected section (Pending, Rejected, Accepted)
+  // Filter trips based on the selected section
   useEffect(() => {
     if (currentSection === "pending-trips") {
       setFilteredTrips(
@@ -105,29 +96,40 @@ const UserProfile = () => {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const imageUrl = reader.result;
-        setProfilePic(imageUrl);
+      setSelectedFile(file);
+    }
+  };
 
-        axios
-          .put(
-            "http://localhost:8000/register/user/",
-            { profilePic: imageUrl },
-            {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("access")}`,
-              },
-            }
-          )
-          .then(() => {
-            alert("Profile picture updated successfully!");
-          })
-          .catch((error) => {
-            console.error("Error updating profile picture:", error);
-          });
-      };
-      reader.readAsDataURL(file);
+  const handleProfilePictureChange = () => {
+    if (selectedFile) {
+      const formData = new FormData();
+      formData.append("image", selectedFile);
+
+      const access_token = localStorage.getItem("authToken");
+      const decodedToken = jwtDecode(access_token);
+      const userId = decodedToken.user_id;
+
+      axios
+        .put(
+          `http://localhost:8000/register/user/${userId}/`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
+        .then((response) => {
+          setProfilePic(response.data.image);
+          setSelectedFile(null); // Clear selected file
+          alert("Profile picture updated successfully!");
+        })
+        .catch((error) => {
+          console.error("Error updating profile picture:", error);
+        });
+    } else {
+      alert("No file selected!");
     }
   };
 
@@ -220,49 +222,20 @@ const UserProfile = () => {
                           <Form.Control
                             type="file"
                             style={{ marginTop: "5vh" }}
-                            onChange={(e) => {
-                              const file = e.target.files[0];
-                              if (file) {
-                                const reader = new FileReader();
-                                reader.onloadend = () => {
-                                  const imageUrl = reader.result;
-                                  setProfilePic(imageUrl);
-                                  axios
-                                    .put(
-                                      "http://localhost:8000/register/user/",
-                                      { profilePic: imageUrl },
-                                      {
-                                        headers: {
-                                          Authorization: `Bearer ${localStorage.getItem(
-                                            "access"
-                                          )}`,
-                                        },
-                                      }
-                                    )
-                                    .then(() => {
-                                      alert(
-                                        "Profile picture updated successfully!"
-                                      );
-                                    })
-                                    .catch((error) => {
-                                      console.error(
-                                        "Error updating profile picture:",
-                                        error
-                                      );
-                                    });
-                                };
-                                reader.readAsDataURL(file);
-                              }
-                            }}
+                            onChange={handleImageUpload}
                           />
                         </Form.Group>
                         <Button
                           variant="primary"
-                          onClick={() =>
-                            navigate("/client", {
-                              state: { name, email },
-                            })
-                          }
+                          onClick={handleProfilePictureChange}
+                          style={{ marginTop: "3vh" }}
+                          disabled={!selectedFile} // Disable button if no file selected
+                        >
+                          Change Profile Picture
+                        </Button>
+                        <Button
+                          variant="primary"
+                          onClick={handleEditAccount}
                           style={{ marginTop: "3vh" }}
                         >
                           Edit My Profile
@@ -272,8 +245,6 @@ const UserProfile = () => {
                   </Row>
                 </div>
               ) : (
-                // Here you can add different sections (pending-trips, rejected-trips, accepted-trips)
-                // based on the value of currentSection
                 <div>
                   {/* Add the corresponding JSX for pending-trips, rejected-trips, accepted-trips */}
                 </div>
