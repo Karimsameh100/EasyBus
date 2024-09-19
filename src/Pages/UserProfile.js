@@ -10,13 +10,18 @@ import {
   Pagination,
   Nav,
 } from "react-bootstrap";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { jwtDecode } from 'jwt-decode';
+
+
 
 const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [bookedTrips, setBookedTrips] = useState([]);
   const [filteredTrips, setFilteredTrips] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,22 +29,48 @@ const UserProfile = () => {
   const tripsPerPage = 1;
   const navigate = useNavigate();
 
+  // Fetch user data and booked trips from Django API
   useEffect(() => {
-    const storedName = localStorage.getItem("userName");
-    const storedEmail = localStorage.getItem("userEmail");
-    const storedProfilePic = localStorage.getItem(`profilePic_${storedName}`);
-    const storedTrips = JSON.parse(localStorage.getItem("bookedTrips")) || [];
+    const access_token = localStorage.getItem("authToken");
+    console.log("Access Token:", access_token);
+  
+    if (!access_token) {
+      // Redirect to login if there's no access token
+      navigate("/login1");
+      return;
+    }
+  
+    try {
+      // Try decoding the token
+      const decodedToken = jwtDecode(access_token);
+      const userId = decodedToken.user_id;  // Extract the user ID from the token
+      
+      // Fetch the user profile data from the API
+      axios
+        .get(`http://127.0.0.1:8000/user/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        })
+        .then((response) => {
+          const { name, email, phone_number, image, bookedTrips } = response.data;
+          setName(name);
+          setEmail(email);
+          setPhoneNumber(phone_number); // Set phone number
+          setProfilePic(image); // Assume profilePic is returned as `image`
+          setBookedTrips(bookedTrips || []);
+        })
+        .catch((error) => {
+          console.error("Error fetching user profile:", error);
+        });
+    } catch (error) {
+      console.error("Invalid token:", error);
+      // Optionally handle the invalid token case, like redirecting to login
+      navigate("/login");
+    }
+  }, [navigate]);
 
-    if (storedName) setName(storedName);
-    if (storedEmail) setEmail(storedEmail);
-    if (storedProfilePic) setProfilePic(storedProfilePic);
-
-    const userTrips = storedTrips.filter(
-      (trip) => trip.userName === storedName
-    );
-    setBookedTrips(userTrips);
-  }, []);
-
+  // Filter trips based on the selected section (Pending, Rejected, Accepted)
   useEffect(() => {
     if (currentSection === "pending-trips") {
       setFilteredTrips(
@@ -58,14 +89,19 @@ const UserProfile = () => {
     }
   }, [currentSection, bookedTrips]);
 
+  // Handle pagination for trips
   const indexOfLastTrip = currentPage * tripsPerPage;
   const indexOfFirstTrip = indexOfLastTrip - tripsPerPage;
-  const currentTrips = filteredTrips.slice(indexOfFirstTrip, indexOfLastTrip);
+  const currentTrips =
+    filteredTrips && filteredTrips.length > 0
+      ? filteredTrips.slice(indexOfFirstTrip, indexOfLastTrip)
+      : [];
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
+  // Handle profile picture upload
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -73,22 +109,36 @@ const UserProfile = () => {
       reader.onloadend = () => {
         const imageUrl = reader.result;
         setProfilePic(imageUrl);
-        const storedName = localStorage.getItem("userName");
-        if (storedName) {
-          localStorage.setItem(`profilePic_${storedName}`, imageUrl);
-        }
-        window.dispatchEvent(new Event("profilePicUpdated")); // تحديث شريط التنقل
+
+        axios
+          .put(
+            "http://localhost:8000/register/user/",
+            { profilePic: imageUrl },
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("access")}`,
+              },
+            }
+          )
+          .then(() => {
+            alert("Profile picture updated successfully!");
+          })
+          .catch((error) => {
+            console.error("Error updating profile picture:", error);
+          });
       };
       reader.readAsDataURL(file);
     }
   };
 
+  // Handle account edit navigation
   const handleEditAccount = () => {
     navigate("/client", {
       state: { name, email, profilePic, isEditMode: true },
     });
   };
 
+  // Handle navigation between profile and trip sections
   const handleNavClick = (section) => {
     setCurrentSection(section);
   };
@@ -103,16 +153,39 @@ const UserProfile = () => {
           <Card>
             <Card.Body>
               <Nav className="flex-column">
-                <Nav.Link onClick={() => handleNavClick("profile")}>
+                <Nav.Link
+                  onClick={() => setCurrentSection("profile")}
+                  style={{
+                    color: currentSection === "profile" ? "#007bff" : "#333",
+                  }}
+                >
                   My Profile
                 </Nav.Link>
-                <Nav.Link onClick={() => handleNavClick("pending-trips")}>
+                <Nav.Link
+                  onClick={() => setCurrentSection("pending-trips")}
+                  style={{
+                    color:
+                      currentSection === "pending-trips" ? "#007bff" : "#333",
+                  }}
+                >
                   Pending Trips
                 </Nav.Link>
-                <Nav.Link onClick={() => handleNavClick("rejected-trips")}>
+                <Nav.Link
+                  onClick={() => setCurrentSection("rejected-trips")}
+                  style={{
+                    color:
+                      currentSection === "rejected-trips" ? "#007bff" : "#333",
+                  }}
+                >
                   Rejected Trips
                 </Nav.Link>
-                <Nav.Link onClick={() => handleNavClick("accepted-trips")}>
+                <Nav.Link
+                  onClick={() => setCurrentSection("accepted-trips")}
+                  style={{
+                    color:
+                      currentSection === "accepted-trips" ? "#007bff" : "#333",
+                  }}
+                >
                   Accepted Trips
                 </Nav.Link>
               </Nav>
@@ -138,98 +211,71 @@ const UserProfile = () => {
                       />
                     </Col>
                     <Col md={6}>
-                      <Card.Title>Welcome : {name}</Card.Title>
+                      <Card.Title>Welcome: {name}</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted">
-                        Your Mail : {email}
+                        Your Email: {email}
                       </Card.Subtitle>
                       <Form>
                         <Form.Group controlId="formFile">
                           <Form.Control
                             type="file"
                             style={{ marginTop: "5vh" }}
-                            onChange={handleImageUpload}
+                            onChange={(e) => {
+                              const file = e.target.files[0];
+                              if (file) {
+                                const reader = new FileReader();
+                                reader.onloadend = () => {
+                                  const imageUrl = reader.result;
+                                  setProfilePic(imageUrl);
+                                  axios
+                                    .put(
+                                      "http://localhost:8000/register/user/",
+                                      { profilePic: imageUrl },
+                                      {
+                                        headers: {
+                                          Authorization: `Bearer ${localStorage.getItem(
+                                            "access"
+                                          )}`,
+                                        },
+                                      }
+                                    )
+                                    .then(() => {
+                                      alert(
+                                        "Profile picture updated successfully!"
+                                      );
+                                    })
+                                    .catch((error) => {
+                                      console.error(
+                                        "Error updating profile picture:",
+                                        error
+                                      );
+                                    });
+                                };
+                                reader.readAsDataURL(file);
+                              }
+                            }}
                           />
                         </Form.Group>
                         <Button
                           variant="primary"
-                          onClick={handleEditAccount}
-                          style={{ marginTop: "5vh" }}
+                          onClick={() =>
+                            navigate("/client", {
+                              state: { name, email },
+                            })
+                          }
+                          style={{ marginTop: "3vh" }}
                         >
-                          Edit Account
+                          Edit My Profile
                         </Button>
                       </Form>
                     </Col>
                   </Row>
                 </div>
               ) : (
-                <div style={{ marginTop: "5vh" }}>
-                  <h5>
-                    {currentSection === "pending-trips"
-                      ? "Pending Trips"
-                      : currentSection === "rejected-trips"
-                      ? "Rejected Trips"
-                      : "Accepted Trips"}
-                    :
-                  </h5>
-                  {currentTrips.length > 0 ? (
-                    currentTrips.map((trip, index) => (
-                      <Card key={index} className="mt-4">
-                        <Card.Header className="d-flex justify-content-between">
-                          <div>
-                            <h4 className="text-end">{trip.company}</h4>
-                            <strong>Trip Date:</strong> {trip.tripDate}
-                          </div>
-                        </Card.Header>
-                        <Card.Body>
-                          <ul className="list-unstyled">
-                            <li className="d-flex justify-content-between">
-                              <strong>Departure Station:</strong>
-                              <span>{trip.departureStation}</span>
-                            </li>
-                            <li className="d-flex justify-content-between">
-                              <strong>Stop Stations:</strong>
-                              <span>{trip.stopStations}</span>
-                            </li>
-                            <li className="d-flex justify-content-between">
-                              <strong>Departure Time:</strong>
-                              <span>{trip.departureTime}</span>
-                            </li>
-                            <li className="d-flex justify-content-between">
-                              <strong>Arrival Time:</strong>
-                              <span>{trip.arrivedTime}</span>
-                            </li>
-                            <li className="d-flex justify-content-between">
-                              <strong>Number of Places:</strong>
-                              <span>{trip.numPlaces}</span>
-                            </li>
-                            <li className="d-flex justify-content-between">
-                              <strong>Total Cost:</strong>
-                              <span>{trip.totalCost}</span>
-                            </li>
-                          </ul>
-                        </Card.Body>
-                      </Card>
-                    ))
-                  ) : (
-                    <Alert variant="info">
-                      You have no trips in this section.
-                    </Alert>
-                  )}
-                  {filteredTrips.length > tripsPerPage && (
-                    <Pagination className="justify-content-center mt-4">
-                      {Array.from({
-                        length: Math.ceil(filteredTrips.length / tripsPerPage),
-                      }).map((_, idx) => (
-                        <Pagination.Item
-                          key={idx + 1}
-                          active={idx + 1 === currentPage}
-                          onClick={() => handlePageChange(idx + 1)}
-                        >
-                          {idx + 1}
-                        </Pagination.Item>
-                      ))}
-                    </Pagination>
-                  )}
+                // Here you can add different sections (pending-trips, rejected-trips, accepted-trips)
+                // based on the value of currentSection
+                <div>
+                  {/* Add the corresponding JSX for pending-trips, rejected-trips, accepted-trips */}
                 </div>
               )}
             </Card.Body>
