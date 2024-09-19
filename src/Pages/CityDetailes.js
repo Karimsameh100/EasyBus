@@ -55,6 +55,7 @@ export function CityDetailes() {
     book: "",
   });
 
+<<<<<<< HEAD
   const handleAddTrip = (event) => {
     event.preventDefault();
     axios
@@ -80,6 +81,40 @@ export function CityDetailes() {
       })
       .catch((err) => console.error(err));
   };
+=======
+    const handleAddTrip = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:8000/all/trips/', newTrip)
+            .then((res) => {
+                console.log(res.data);
+                setAllTrips([...allTrips, res.data]);
+                setShowAddModal(true)
+                setNewTrip({
+                    tripNumber: '',
+                    date: '',
+                    avilabalPlaces: '',
+                    departuerStation: '',
+                    destinationStation: '',
+                    departuerTime: '',
+                    destinationTime: '',
+                    status: '',
+                    price: '',
+                    user: '',
+                    bus: '',
+                    book: '',
+                });
+            })
+            .catch((err) => console.error(err));
+    };
+
+    // Handle the change of the new trip data
+    const handleNewTripChange = (event) => {
+        setNewTrip({
+            ...newTrip,
+            [event.target.name]: event.target.value,
+        });
+    };
+>>>>>>> 5515740b3648b208777a8e1a1f3a1783d30c4a0a
 
   // Handle the change of the new trip data
   const handleNewTripChange = (event) => {
@@ -318,10 +353,33 @@ export function CityDetailes() {
       });
   };
 
+<<<<<<< HEAD
   const handleEditReview = (reviewId) => {
     setEditReviewId(reviewId);
     setShowReviewForm(true); // Open the modal in edit mode
   };
+=======
+        // Make the API call to update the server
+        axios.put(`http://localhost:8000/cities/${params.id}/`, {
+            ...city,
+            Reviews: updatedReviews,
+        })
+            .then(() => {
+                // Reset modal and state after successful deletion
+                setShowModal(false);
+                setReviewToDelete(null);
+            })
+            .catch((err) => {
+                console.error("Error deleting review:", err);
+                // If the API call fails, revert the optimistic update
+                setCity((prevCity) => ({
+                    ...prevCity,
+                    Reviews: [...prevCity.Reviews, reviewToDelete], // Add back the deleted review
+                }));
+                // Show an error message or handle the error appropriately
+            });
+    };
+>>>>>>> 5515740b3648b208777a8e1a1f3a1783d30c4a0a
 
   const handleOpenReviewForm = () => {
     setEditReviewId(null); // Reset the edit mode
@@ -402,6 +460,7 @@ export function CityDetailes() {
                   className="img-fluid mt-5 "
                   alt="Image"
                 />
+<<<<<<< HEAD
               </div>
               <div className="table-responsive col-sm-6 col-md-8">
                 <table className="table table-striped table-bordered-bold">
@@ -444,6 +503,421 @@ export function CityDetailes() {
                           <button
                             className="btn btn-primary btn-sm"
                             style={{ width: "45%" }}
+=======
+
+                <div
+                    className="d-flex flex-column align-items-center justify-content-center"
+                    style={{
+                        position: "absolute",
+                        top: "0%",
+                        left: "0%",
+                        right: "0%",
+                        padding: "10px",
+                        paddingBottom: "30px",
+                        width: "100%",
+                        height: "100%",
+                        maxHeight: "100%", // add this to prevent height overflow
+                        maxWidth: "100%",
+                        backgroundColor: "rgba(128, 128, 128, 0.4)",
+                        display: "block",
+                        justifyContent: "around",
+                        alignItems: "center",
+                        borderRadius: "10px",
+                        boxSizing: "border-box",
+                    }}
+                >
+                    <h1 className="text-light text-center">Book your Ticket</h1>
+                    <SearchComponent />
+                    <h2 className="text-light text-center">{city.city} City</h2>
+                </div>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", margin: "20px" }}>
+                <img
+                    src={city?.image}
+                    alt={city.name}
+                    style={{
+                        width: "50%",
+                        height: "50%",
+                        objectFit: "cover",
+                        marginRight: "20px",
+                    }}
+                />
+                <h4 style={{ textAlign: "left" }}>{city.info}</h4>
+            </div>
+            <div className="badge-container">
+                <span className="badge badge-primary">{favorites.length}</span>{" "}
+                {/* Display the updated favorites count */}
+            </div>
+            <div class="container-fluid">
+                {city &&
+                    city.companies.map((company) => (
+                        <div
+                            key={company.id}
+                            class="row d-flex justify-content-center mb-5"
+                        >
+
+                            <h2 className="text-center m-5">Travel with {company.name}</h2>
+                            <div class="col-sm-6 col-md-4">
+                                <img
+                                    src={company.image}
+                                    className="img-fluid mt-5 "
+                                    alt="Image"
+                                />
+                            </div>
+                            <div className="table-responsive col-sm-6 col-md-8">
+                                <table className="table table-striped table-bordered-bold">
+                                    <thead>
+                                        <tr>
+                                            <th>Trip Number</th>
+                                            <th>Trip Date</th>
+                                            <th>Available Places</th>
+                                            <th>Departure Station</th>
+                                            <th>Stop Stations</th>
+                                            <th>Go In</th>
+                                            <th>Arrive At</th>
+                                            <th>Price</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {allTrips.map((trip) => (
+                                            <tr key={trip.tripNumber}>
+                                                <td>{trip.tripNumber}</td>
+                                                <td>{trip.date}</td>
+                                                <td>{trip.avilabalPlaces}</td>
+                                                <td>{trip.departuerStation}</td>
+                                                <td>{trip.destinationStation}</td>
+                                                <td>{trip.departuerTime}</td>
+                                                <td>{trip.destinationTime}</td>
+                                                <td>{trip.price}</td>
+                                                <td>
+                                                    <button
+                                                        class="btn btn-success btn-sm mx-1"
+                                                        style={{ width: "100%" }}
+                                                        onClick={() =>
+                                                            isLoggedIn
+                                                                ? handleBookTrip(trip, company)
+                                                                : setShowLoginModal(true)
+                                                        }
+                                                    >
+                                                        Book
+                                                    </button>
+                                                    {/* <button
+                                                        className="btn btn-primary btn-sm"
+                                                        style={{ width: "45%" }}
+                                                        onClick={() => {
+                                                            handleEditTrip(trip, company);
+                                                            setShowEditModal(true);
+                                                        }}
+                                                    >
+                                                        Edit
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-danger btn-sm mx-1 "
+                                                        style={{ width: "47%" }}
+                                                        onClick={() => {
+                                                            handleDeleteTrip(trip, company);
+                                                            setShowDeleteModal(true);
+                                                        }}
+                                                    >
+                                                        Delete
+                                                    </button> */}
+                                                    <button
+                                                        className="btn btn-outline-warning btn-sm mx-1 my-1"
+                                                        style={{ width: "100%" }}
+                                                        onClick={() =>
+                                                            isLoggedIn
+                                                                ? handleAddToFavorites(trip, company)
+                                                                : setShowLoginModal(true)
+                                                        }
+                                                    >
+                                                        Favorites
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                                <button className="btn btn-md btn-success  w-100 fs-3 my-2" onClick={() => { setShowAddModal(true) }}> <b>+</b> </button>
+                            </div>
+                        </div>
+                    ))}
+            </div>
+            <section className="bg-light py-3 py-md-5">
+                <div className="container">
+                    <div className="row gy-5 gy-lg-0 align-items-center">
+                        <div className="col-12 col-lg-4">
+                            <h2 className="display-5 mb-3 mb-xl-4">Our Clients</h2>
+                            <p className="lead mb-4 mb-xl-5">
+                                We believe in client satisfaction. Here are some Reviews by our
+                                worthy clients.
+                            </p>
+                            <div className="d-flex">
+                                {currentPage > 1 && (
+                                    <button
+                                        onClick={handleGoBack}
+                                        className="btn btn-secondary rounded-pill me-2"
+                                    >
+                                        Go Back
+                                    </button>
+                                )}
+                                {hasMoreReviews && (
+                                    <button
+                                        onClick={handleLoadMore}
+                                        className="btn btn-success rounded-pill"
+                                    >
+                                        More Reviews
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-8">
+                            <div className="row">
+                                {currentReviews.map((review) => (
+                                    <div key={review.ReviewId} className="col-12 col-md-6 mb-4">
+                                        <Reviews
+                                            customerImg={review.ReviewCustomerDetails.image}
+                                            customerReview={review.Review}
+                                            customerName={review.ReviewCustomerDetails.name}
+                                            customerRate={review.ReviewCustomerRate}
+                                            onEdit={() => handleEditReview(review.ReviewId)}
+                                            onDelete={() => confirmDeleteReview(review.ReviewId)}
+                                            isAuthor={review.UserId === currentUserId}
+                                        />
+                                    </div>
+                                ))}
+                                <Button
+                                    className="btn btn-success rounded-pill"
+                                    onClick={handleOpenReviewForm}
+                                >
+                                    Share Your Review
+                                </Button>
+                            </div>
+
+                            {/* Review Form Modal */}
+                            <Modal
+                                show={showReviewForm}
+                                onHide={() => setShowReviewForm(false)}
+                            >
+                                <Modal.Header closeButton>
+                                    <Modal.Title>
+                                        {editReviewId ? "Edit Your Review" : "Share Your Review"}
+                                    </Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <ReviewForm
+                                        id={params.id}
+                                        reviewId={editReviewId}
+                                        onClose={() => setShowReviewForm(false)}
+                                        onSubmit={handleReviewSubmit}
+                                    />
+                                </Modal.Body>
+                            </Modal>
+
+                            {/* Confirmation Modal */}
+                            <Modal show={showModal} onHide={() => setShowModal(false)}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Confirm Deletion</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    Are you sure you want to delete this review?
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <Button
+                                        variant="secondary"
+                                        onClick={() => setShowModal(false)}
+                                    >
+                                        Cancel
+                                    </Button>
+                                    <Button variant="danger" onClick={handleDeleteReview}>
+                                        Delete
+                                    </Button>
+                                </Modal.Footer>
+                            </Modal>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {showAddModal && (
+                <Modal
+                    id="add-trip-modal"
+                    show={showAddModal}
+                    onHide={() => setShowAddModal(false)}
+                >
+                    <ModalHeader closeButton>
+                        <ModalTitle>Add Trip</ModalTitle>
+                    </ModalHeader>
+                    <ModalBody>
+                        <form id="add-trip-form" onSubmit={handleAddTrip}>
+                            <div className="form-group">
+                                <label>Trip Number:</label>
+                                <input type="text" name="tripNumber" value={newTrip.tripNumber} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Trip Date:</label>
+                                <input type="date" name="date" value={newTrip.date} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Available Places:</label>
+                                <input type="number" name="avilabalPlaces" value={newTrip.avilabalPlaces} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Departure Station:</label>
+                                <input type="text" name="departuerStation" value={newTrip.departuerStation} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Arrived Station:</label>
+                                <input type="text" name="destinationStation" value={newTrip.destinationStation} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Departure Time:</label>
+                                <input type="time" name="departuerTime" value={newTrip.departuerTime} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Arrived Time:</label>
+                                <input type="time" name="destinationTime" value={newTrip.destinationTime} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Price:</label>
+                                <input type="number" name="price" value={newTrip.price} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Status</label>
+                                <input type="text" name="status" value={newTrip.status} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>User</label>
+                                <input type="number" name="user" value={newTrip.user} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Bus</label>
+                                <input type="number" name="bus" value={newTrip.bus} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Book</label>
+                                <input type="number" name="book" value={newTrip.book} onChange={handleNewTripChange} className="form-control" />
+                            </div>
+                            <button type="submit" className="btn btn-success">
+                                Add Trip
+                            </button>
+                        </form>
+                    </ModalBody>
+                </Modal>
+            )},
+
+            {showEditModal && (
+                <Modal
+                    id="edit-trip-modal"
+                    show={showEditModal}
+                    onHide={() => setShowEditModal(false)}
+                >
+                    <ModalHeader closeButton>
+                        <ModalTitle>Edit Trip</ModalTitle>
+                    </ModalHeader>
+                    <ModalBody>
+                        <form id="edit-trip-form" onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label>Trip Number:</label>
+                                <input type="text" name="tripNumber" value={formData.tripNumber} onChange={handleChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Trip Date:</label>
+                                <input type="date" name="date" value={formData.date} onChange={handleChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Available Places:</label>
+                                <input type="number" name="avilabalPlaces" value={formData.avilabalPlaces} onChange={handleChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Departure Station:</label>
+                                <input type="text" name="departuerStation" value={formData.departuerStation} onChange={handleChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Arrived Station:</label>
+                                <input type="text" name="destinationStation" value={formData.destinationStation} onChange={handleChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Departure Time:</label>
+                                <input type="time" name="departuerTime" value={formData.departuerTime} onChange={handleChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Arrived Time:</label>
+                                <input type="time" name="destinationTime" value={formData.destinationTime} onChange={handleChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Price:</label>
+                                <input type="number" name="price" value={formData.price} onChange={handleChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Status</label>
+                                <input type="text" name="status" value={formData.status} onChange={handleChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>User</label>
+                                <input type="number" name="user" value={formData.user} onChange={handleChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Bus</label>
+                                <input type="number" name="bus" value={formData.bus} onChange={handleChange} className="form-control" />
+                            </div>
+                            <div className="form-group">
+                                <label>Book</label>
+                                <input type="number" name="book" value={formData.book} onChange={handleChange} className="form-control" />
+                            </div>
+                            <button type="submit" className="btn btn-primary">
+                                Save Changes
+                            </button>
+                            <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                        </form>
+                    </ModalBody>
+                </Modal>
+            )}
+            ,
+            {showDeleteModal && (
+                <Modal
+                    id="delete-trip-modal"
+                    show={showDeleteModal}
+                    onHide={() => setShowDeleteModal(false)}
+                >
+                    <ModalHeader closeButton>
+                        <ModalTitle>Delete Trip</ModalTitle>
+                    </ModalHeader>
+                    <ModalBody>Are you sure you want to delete this trip?</ModalBody>
+                    <ModalFooter>
+                        <button
+                            type="button"
+                            className="btn btn-danger"
+                            onClick={confirmDelete}
+                        >
+                            Delete
+                        </button>
+                        <button
+                            type="button"
+                            className="btn btn-secondary"
+                            onClick={cancelDelete}
+                        >
+                            Cancel
+                        </button>
+                    </ModalFooter>
+                </Modal>
+            )}
+            {showLoginModal && (
+                <Modal show={showLoginModal} onHide={() => setShowLoginModal(false)}>
+                    <ModalHeader closeButton>
+                        <ModalTitle>Login To Add to Favorites or Book The Trip</ModalTitle>
+                    </ModalHeader>
+                    <ModalBody>
+                        You need to Login to complete Booking and add your favourite trips
+                        !!
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button
+>>>>>>> 5515740b3648b208777a8e1a1f3a1783d30c4a0a
                             onClick={() => {
                               handleEditTrip(trip, company);
                               setShowEditModal(true);

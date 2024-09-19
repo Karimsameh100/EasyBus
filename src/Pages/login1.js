@@ -149,6 +149,7 @@ function Login1() {
       }));
     }
 
+    // Validate password
     if (name === "password") {
       setErrors((prevErrors) => ({
         ...prevErrors,
@@ -172,9 +173,9 @@ function Login1() {
       });
 
       const data = response.data;
+      console.log("view user details", data);
       if (response.status === 200) {
-        // تخزين الـ access_token في sessionStorage
-        sessionStorage.setItem("access", data.access_token);
+        localStorage.setItem("authToken", data.token);
 
         if (data.user_type === "company") {
           navigate("/DisplayTrips");
@@ -185,8 +186,15 @@ function Login1() {
         setLoginError("Invalid email or password");
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      setLoginError("An error occurred. Please try again later.");
+      console.error(
+        "Error during login:",
+        error.response ? error.response.data : error.message
+      );
+      setLoginError(
+        error.response
+          ? error.response.data.message
+          : "An error occurred. Please try again later."
+      );
     }
   };
 
