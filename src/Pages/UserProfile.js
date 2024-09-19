@@ -573,6 +573,8 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import {jwt} from jwtDecode
+import { jwtDecode } from "jwt-decode";
 
 const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -587,20 +589,25 @@ const UserProfile = () => {
 
   // Fetch user data and booked trips from Django API
   useEffect(() => {
-    const access_token = sessionStorage.getItem("access");
-
-    if (!access_token) {
-      navigate("/login"); // إعادة التوجيه إلى صفحة تسجيل الدخول إذا لم يكن هناك توكن
+    // const authtoken = localStorage.getItem("access");
+    const authtoken = localStorage.getItem("authToken");
+    if (!authtoken) {
+      navigate("/login1"); // إعادة التوجيه إلى صفحة تسجيل الدخول إذا لم يكن هناك توكن
       return;
     }
 
+    try{
+      const decodeToken=jwtDecode(authtoken);
+      const userId=decodeToken.user_id;
+    
     axios
-      .get("http://127.0.0.1:8000/register/user/", {
+      .get('http://127.0.0.1:8000/user/${userid}', {
         headers: {
-          Authorization: `Bearer ${access_token}`, // JWT Token
+          Authorization: `Bearer ${authtoken}`, // JWT Token
         },
       })
       .then((response) => {
+        // console.log("Response from API:", response);
         const { name, email, profilePic, bookedTrips } = response.data;
         setName(name);
         setEmail(email);
@@ -611,6 +618,7 @@ const UserProfile = () => {
         console.error("Error fetching user profile:", error);
       });
   }, [navigate]);
+
   // باقي الكود الخاص بـ UserProfile كما هو...
   // useEffect(() => {
   //   axios
