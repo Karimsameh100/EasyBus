@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function ReviewForm({ id, reviewId, onClose, onSubmit }) {
+function ReviewForm({ id,reviewId, onClose, onSubmit , currentUser}) {
     const [review, setReview] = useState({
-        RevCustomerImage: 'https://i.pinimg.com/564x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg',
+        RevCustomerImage:  currentUser?.image || 'https://i.pinimg.com/564x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg',
         Review: '',
-        ReviewCustomerName: '',
+        ReviewCustomerName: currentUser?.name || '',
         ReviewCustomerRate: 0,
     });
 
@@ -15,9 +15,10 @@ function ReviewForm({ id, reviewId, onClose, onSubmit }) {
             .then(res => {
                 const existingReview = res.data;
                 setReview({
-                    ReviewCustomerName: existingReview.user,
-                    Review: existingReview.comment,
-                    ReviewCustomerRate: existingReview.rate,
+                    ReviewCustomerName: existingReview.ReviewCustomerDetails.name,
+                    Review: existingReview.Review,
+                    ReviewCustomerRate: existingReview.ReviewCustomerRate,
+                    ReviewCustomerImage: existingReview.ReviewCustomerDetails.image || 'https://i.pinimg.com/564x/1a/ef/2a/1aef2a96597421aeb4013e26b9513b65.jpg',
                 });
              })
                 .catch(err => console.error('Error fetching review:', err));
@@ -62,9 +63,9 @@ function ReviewForm({ id, reviewId, onClose, onSubmit }) {
         e.preventDefault();
 
         const reviewData = {
-            comment: review.Review,
-            rate: review.ReviewCustomerRate,
-            user: review.ReviewCustomerName,  // Assuming you're passing the username directly
+            Review: review.Review,
+            ReviewCustomerRate: review.ReviewCustomerRate,
+            ReviewCustomerName: currentUser.id,  // Send the logged-in user’s ID
         };
 
         if (reviewId) {
@@ -100,9 +101,9 @@ function ReviewForm({ id, reviewId, onClose, onSubmit }) {
                     className="form-control"
                     id="ReviewCustomerName"
                     name="ReviewCustomerName"
-                    value={review.ReviewCustomerName}
+                    value={review.name}
                     onChange={handleChange}
-                    required
+                    readOnly
                 />
             </div>
             <div className="mb-3">
