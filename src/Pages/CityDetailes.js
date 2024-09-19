@@ -484,12 +484,6 @@ export function CityDetailes() {
       });
   };
 
-<<<<<<< HEAD
-  const handleEditReview = (reviewId) => {
-    setEditReviewId(reviewId);
-    setShowReviewForm(true); // Open the modal in edit mode
-  };
-=======
         // Make the API call to update the server
         axios.put(`http://localhost:8000/cities/${params.id}/`,{
                 ...city,
@@ -510,7 +504,6 @@ export function CityDetailes() {
                 // Show an error message or handle the error appropriately
             });
     };
->>>>>>> f984a8ee4168a9460245332c1aee8848e18e98a4
 
   const handleOpenReviewForm = () => {
     setEditReviewId(null); // Reset the edit mode
@@ -589,41 +582,6 @@ export function CityDetailes() {
               <h2 className="text-center m-5">Travel with {company.name}</h2>
               <div class="col-sm-6 col-md-4">
                 <img
-<<<<<<< HEAD
-                  src={company.image}
-                  className="img-fluid mt-5 "
-                  alt="Image"
-                />
-              </div>
-              <div className="table-responsive col-sm-6 col-md-8">
-                <table className="table table-striped table-bordered-bold">
-                  <thead>
-                    <tr>
-                      <th>Trip Number</th>
-                      <th>Trip Date</th>
-                      <th>Available Places</th>
-                      <th>Departure Station</th>
-                      <th>Stop Stations</th>
-                      <th>Go In</th>
-                      <th>Arrive At</th>
-                      <th>Price</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {allTrips.map((trip) => (
-                      <tr key={trip.tripNumber}>
-                        <td>{trip.tripNumber}</td>
-                        <td>{trip.date}</td>
-                        <td>{trip.avilabalPlaces}</td>
-                        <td>{trip.departuerStation}</td>
-                        <td>{trip.destinationStation}</td>
-                        <td>{trip.departuerTime}</td>
-                        <td>{trip.destinationTime}</td>
-                        <td>{trip.price}</td>
-                        <td>
-                          {/* <button
-=======
                     src={city.image}
                     style={{
                         width: "100%",
@@ -720,7 +678,6 @@ export function CityDetailes() {
                                                 <td>{trip.price}</td>
                                                 <td>
                                                     {/* <button
->>>>>>> f984a8ee4168a9460245332c1aee8848e18e98a4
                             class="btn btn-success btn-sm mx-1"
                             style={{ width: "100%" }}
                             onClick={() =>
@@ -731,11 +688,6 @@ export function CityDetailes() {
                           >
                             Book
                           </button> */}
-<<<<<<< HEAD
-                          <button
-                            className="btn btn-primary btn-sm"
-                            style={{ width: "45%" }}
-=======
                                                     <button
                                                         className="btn btn-primary btn-sm"
                                                         style={{ width: "45%" }}
@@ -1051,7 +1003,6 @@ export function CityDetailes() {
                     </ModalBody>
                     <ModalFooter>
                         <Button
->>>>>>> f984a8ee4168a9460245332c1aee8848e18e98a4
                             onClick={() => {
                               handleEditTrip(trip, company);
                               setShowEditModal(true);
