@@ -573,13 +573,20 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+<<<<<<< HEAD
 import {jwt} from jwtDecode
 import { jwtDecode } from "jwt-decode";
+=======
+import { jwtDecode } from 'jwt-decode';
+
+
+>>>>>>> 378cc46b3761b993c81b6c952b638d73ec1e5b94
 
 const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [bookedTrips, setBookedTrips] = useState([]);
   const [filteredTrips, setFilteredTrips] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -589,6 +596,7 @@ const UserProfile = () => {
 
   // Fetch user data and booked trips from Django API
   useEffect(() => {
+<<<<<<< HEAD
     // const authtoken = localStorage.getItem("access");
     const authtoken = localStorage.getItem("authToken");
     if (!authtoken) {
@@ -638,6 +646,46 @@ const UserProfile = () => {
   //       console.error("Error fetching user profile:", error);
   //     });
   // }, []);
+=======
+    const access_token = localStorage.getItem("authToken");
+    console.log("Access Token:", access_token);
+  
+    if (!access_token) {
+      // Redirect to login if there's no access token
+      navigate("/login1");
+      return;
+    }
+  
+    try {
+      // Try decoding the token
+      const decodedToken = jwtDecode(access_token);
+      const userId = decodedToken.user_id;  // Extract the user ID from the token
+      
+      // Fetch the user profile data from the API
+      axios
+        .get(`http://127.0.0.1:8000/user/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        })
+        .then((response) => {
+          const { name, email, phone_number, image, bookedTrips } = response.data;
+          setName(name);
+          setEmail(email);
+          setPhoneNumber(phone_number); // Set phone number
+          setProfilePic(image); // Assume profilePic is returned as `image`
+          setBookedTrips(bookedTrips || []);
+        })
+        .catch((error) => {
+          console.error("Error fetching user profile:", error);
+        });
+    } catch (error) {
+      console.error("Invalid token:", error);
+      // Optionally handle the invalid token case, like redirecting to login
+      navigate("/login");
+    }
+  }, [navigate]);
+>>>>>>> 378cc46b3761b993c81b6c952b638d73ec1e5b94
 
   // Filter trips based on the selected section (Pending, Rejected, Accepted)
   useEffect(() => {
