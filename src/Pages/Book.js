@@ -120,6 +120,7 @@ const BookingPage = () => {
                 pickupLocation: pickupLocation,
                 dropLocation: dropLocation,
                 user : userId,
+                trip_id: trip.id,
             };
 
             axios.post('http://127.0.0.1:8000/booking/data/', bookingData, {
