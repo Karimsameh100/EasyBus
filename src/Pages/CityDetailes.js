@@ -48,11 +48,8 @@ export function CityDetailes() {
     destinationStation: "",
     departuerTime: "",
     destinationTime: "",
-    status: "",
     price: "",
-    user: "",
     bus: "",
-    book: "",
   });
 
   const handleAddTrip = (event) => {
@@ -71,11 +68,8 @@ export function CityDetailes() {
           destinationStation: "",
           departuerTime: "",
           destinationTime: "",
-          status: "",
           price: "",
-          user: "",
           bus: "",
-          book: "",
         });
       })
       .catch((err) => console.error(err));
@@ -676,7 +670,7 @@ export function CityDetailes() {
                   className="form-control"
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label>Status</label>
                 <input
                   type="text"
@@ -695,7 +689,7 @@ export function CityDetailes() {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-              </div>
+              </div> */}
               <div className="form-group">
                 <label>Bus</label>
                 <input
@@ -706,7 +700,7 @@ export function CityDetailes() {
                   className="form-control"
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label>Book</label>
                 <input
                   type="number"
@@ -715,7 +709,7 @@ export function CityDetailes() {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-              </div>
+              </div> */}
               <button type="submit" className="btn btn-success">
                 Add Trip
               </button>
