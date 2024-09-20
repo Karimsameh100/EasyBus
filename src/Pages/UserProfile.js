@@ -306,32 +306,12 @@ const UserProfile = () => {
     }
   }, [navigate]);
 
-  useEffect(() => {
-    if (currentSection === "pending-trips") {
-      setFilteredTrips(
-        bookedTrips.filter((trip) => trip.status === "Pending" || !trip.status)
-      );
-    } else if (currentSection === "rejected-trips") {
-      setFilteredTrips(
-        bookedTrips.filter((trip) => trip.status === "Rejected")
-      );
-    } else if (currentSection === "accepted-trips") {
-      setFilteredTrips(
-        bookedTrips.filter((trip) => trip.status === "Accepted")
-      );
-    } else {
-      setFilteredTrips(bookedTrips);
-    }
-  }, [currentSection, bookedTrips]);
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       setSelectedFile(file);
+      const imageUrl = URL.createObjectURL(file); // Create a temporary URL for the selected file
+      setProfilePic(imageUrl); // Update profilePic with the temporary URL
     }
   };
 
@@ -353,7 +333,7 @@ const UserProfile = () => {
         })
         .then((response) => {
           // Assuming the response contains the updated user data with the new image URL
-          setProfilePic(response.data.image);
+          setProfilePic(response.data.image); // Update with the URL from the server response
           setSelectedFile(null);
           alert("Profile picture updated successfully!");
         })
@@ -365,15 +345,7 @@ const UserProfile = () => {
     }
   };
 
-  const handleEditAccount = () => {
-    navigate("/client", {
-      state: { name, email, profilePic, isEditMode: true },
-    });
-  };
-
-  const handleNavClick = (section) => {
-    setCurrentSection(section);
-  };
+  // Other functions remain unchanged...
 
   return (
     <Container
@@ -465,7 +437,7 @@ const UserProfile = () => {
                         </Button>
                         <Button
                           variant="primary"
-                          onClick={handleEditAccount}
+                          //   onClick={handleEditAccount}
                           style={{ marginTop: "3vh" }}
                         >
                           Edit My Profile
