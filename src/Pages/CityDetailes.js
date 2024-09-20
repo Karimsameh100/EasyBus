@@ -48,11 +48,8 @@ export function CityDetailes() {
     destinationStation: "",
     departuerTime: "",
     destinationTime: "",
-    status: "",
     price: "",
-    user: "",
     bus: "",
-    book: "",
   });
 
   const handleAddTrip = (event) => {
@@ -71,11 +68,8 @@ export function CityDetailes() {
           destinationStation: "",
           departuerTime: "",
           destinationTime: "",
-          status: "",
           price: "",
-          user: "",
           bus: "",
-          book: "",
         });
       })
       .catch((err) => console.error(err));
@@ -241,6 +235,12 @@ export function CityDetailes() {
   // isLoggedIn	true
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const isUser = localStorage.getItem("authToken") ? true : false;
+    if (isUser) {
+      setIsLoggedIn(true);
+    }
+  }, [localStorage.getItem("authToken")]);
 
   // useEffect(() => {
   //     const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -249,17 +249,16 @@ export function CityDetailes() {
   //     }
   // }, []);
 
-  const handleLogin = () => {
-    // login logic here
-    localStorage.setItem("isLoggedIn", "true");
-    setIsLoggedIn(true);
-  };
+//   const handleLogin = () => {
+//     localStorage.setItem("isLoggedIn", "true");
+//     setIsLoggedIn(true);
+//   };
 
-  const handleLogout = () => {
-    // logout logic here
-    localStorage.setItem("isLoggedIn", "false");
-    setIsLoggedIn(false);
-  };
+//   const handleLogout = () => {
+//     // logout logic here
+//     localStorage.setItem("isLoggedIn", "false");
+//     setIsLoggedIn(false);
+//   };
 
   const handleBookTrip = (trip, company) => {
     if (!isLoggedIn) {
@@ -676,7 +675,7 @@ export function CityDetailes() {
                   className="form-control"
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label>Status</label>
                 <input
                   type="text"
@@ -695,7 +694,7 @@ export function CityDetailes() {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-              </div>
+              </div> */}
               <div className="form-group">
                 <label>Bus</label>
                 <input
@@ -706,7 +705,7 @@ export function CityDetailes() {
                   className="form-control"
                 />
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label>Book</label>
                 <input
                   type="number"
@@ -715,7 +714,7 @@ export function CityDetailes() {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-              </div>
+              </div> */}
               <button type="submit" className="btn btn-success">
                 Add Trip
               </button>

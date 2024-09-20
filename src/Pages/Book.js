@@ -27,7 +27,9 @@ const BookingPage = () => {
     const [numberOfPlaces, setNumberOfPlaces] = useState(1);
     const [pickupLocation, setPickupLocation] = useState('');
     const [dropLocation, setDropLocation] = useState('');
+    const [userId,setUserId] = useState(1);
 
+    
     useEffect(() => {
         const tripPrice = parseFloat(trip.price.replace(/[^\d\.]/g, '')); // extract numeric value from string
         const subTotal = numberOfPlaces * tripPrice;
@@ -84,12 +86,32 @@ const BookingPage = () => {
             const newBookedTrips = [...bookedTrips, tripInfo];
             setBookedTrips(newBookedTrips);
 
-            localStorage.setItem('bookedTrips', JSON.stringify(newBookedTrips));
+
+            // localStorage.setItem('bookedTrips', JSON.stringify(newBookedTrips));
             setPaymentMethod('');
             setBookingData(tripInfo);
             setOnlinePaymentMethod('');
             setAgreeToPayDeposit(false);
             setShowTicketModal(true)
+
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                console.error('No authentication token found');
+                return;
+            }
+        
+            const headers = {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            };
+
+            axios.get('http://127.0.0.1:8000/currant-user/', { headers })
+                .then((response) => {
+                    setUserId(response.data.user_id);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
 
             const bookingData = {
                 time: time,
@@ -97,30 +119,35 @@ const BookingPage = () => {
                 totalFare: totalCost,
                 pickupLocation: pickupLocation,
                 dropLocation: dropLocation,
+                user : userId,
+                trip_id: trip.id,
             };
 
-            axios.post('http://127.0.0.1:8000/booking/data/', bookingData)
+            axios.post('http://127.0.0.1:8000/booking/data/', bookingData, {
+                headers: {
+                  'Authorization': `Bearer ${token}`,
+                  'Content-Type': 'application/json'
+                }
+              })
                 .then((response) => {
                     console.log(response.data);
-                    // ... handle success response ...
                 })
                 .catch((error) => {
                     console.error(error);
-                    // ... handle error response ...
                 });
         }
     };
 
-    useEffect(() => {
-        const storedUserName = localStorage.getItem('userName');
-        const storedBookedTrips = localStorage.getItem('bookedTrips');
-        if (storedUserName) {
-            setUserName(storedUserName);
-        }
-        if (storedBookedTrips) {
-            setBookedTrips(JSON.parse(storedBookedTrips));
-        }
-    }, []);
+    // useEffect(() => {
+    //     const storedUserName = localStorage.getItem('userName');
+    //     const storedBookedTrips = localStorage.getItem('bookedTrips');
+    //     if (storedUserName) {
+    //         setUserName(storedUserName);
+    //     }
+    //     if (storedBookedTrips) {
+    //         setBookedTrips(JSON.parse(storedBookedTrips));
+    //     }
+    // }, []);
 
     return (
         <Container>
