@@ -230,9 +230,6 @@ export function CityDetailes() {
     }
   };
 
-  //     userName	Karim Sameh
-  // userEmail	karimsameh807@gmail.com
-  // isLoggedIn	true
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
@@ -242,23 +239,6 @@ export function CityDetailes() {
     }
   }, [localStorage.getItem("authToken")]);
 
-  // useEffect(() => {
-  //     const isLoggedIn = localStorage.getItem("isLoggedIn");
-  //     if (isLoggedIn === "true") {
-  //         setIsLoggedIn(true);
-  //     }
-  // }, []);
-
-//   const handleLogin = () => {
-//     localStorage.setItem("isLoggedIn", "true");
-//     setIsLoggedIn(true);
-//   };
-
-//   const handleLogout = () => {
-//     // logout logic here
-//     localStorage.setItem("isLoggedIn", "false");
-//     setIsLoggedIn(false);
-//   };
 
   const handleBookTrip = (trip, company) => {
     if (!isLoggedIn) {
