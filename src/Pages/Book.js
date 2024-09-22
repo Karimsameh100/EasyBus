@@ -1,4 +1,6 @@
 import { useLocation } from 'react-router-dom';
+import React from 'react';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form, Button, Modal } from 'react-bootstrap';
 import "../Componants/bookstyle.css"
@@ -17,7 +19,7 @@ const BookingPage = () => {
     const [discount, setDiscount] = useState(0);
     const [discountAmount, setDiscountAmount] = useState(0);
     const [paymentMethod, setPaymentMethod] = useState('');
-    const [onlinePaymentMethod, setOnlinePaymentMethod] = useState('');
+    const [onlinePaymentMethod, setOnlinePaymentMethod] = useState('paypal');
     const [agreeToPayDeposit, setAgreeToPayDeposit] = useState(false);
     const [showTicketModal, setShowTicketModal] = useState(false);
     const [bookingData, setBookingData] = useState({});
@@ -27,9 +29,10 @@ const BookingPage = () => {
     const [numberOfPlaces, setNumberOfPlaces] = useState(1);
     const [pickupLocation, setPickupLocation] = useState('');
     const [dropLocation, setDropLocation] = useState('');
-    const [userId,setUserId] = useState(1);
+    const [userId, setUserId] = useState(1);
+    const [paypalAmount, setPaypalAmount] = useState(100);
+    const [bookingID,setBookingId] = useState();
 
-    
     useEffect(() => {
         const tripPrice = parseFloat(trip.price.replace(/[^\d\.]/g, '')); // extract numeric value from string
         const subTotal = numberOfPlaces * tripPrice;
@@ -67,6 +70,22 @@ const BookingPage = () => {
         setAgreeToPayDeposit(e.target.checked);
     };
 
+    const handlePaymentMethodChange = (event) => {
+        setPaymentMethod(event.target.value);
+    };
+
+    const handlePaypalAmountChange = () => {
+        if (paymentMethod === 'payOnline') {
+            setPaypalAmount(totalCost.toFixed(2));
+        } else if (paymentMethod === 'payCash') {
+            setPaypalAmount((totalCost * 0.20).toFixed(2)); // 20% deposit
+        }
+    };
+
+    useEffect(() => {
+        handlePaypalAmountChange();
+    }, [paymentMethod]);
+
     const handleBookNow = () => {
         if (paymentMethod && (paymentMethod === 'payOnline' && onlinePaymentMethod) || (paymentMethod === 'payCash' && agreeToPayDeposit)) {
             const tripInfo = {
@@ -86,7 +105,6 @@ const BookingPage = () => {
             const newBookedTrips = [...bookedTrips, tripInfo];
             setBookedTrips(newBookedTrips);
 
-
             // localStorage.setItem('bookedTrips', JSON.stringify(newBookedTrips));
             setPaymentMethod('');
             setBookingData(tripInfo);
@@ -99,7 +117,7 @@ const BookingPage = () => {
                 console.error('No authentication token found');
                 return;
             }
-        
+
             const headers = {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
@@ -114,40 +132,70 @@ const BookingPage = () => {
                 });
 
             const bookingData = {
-                time: time,
+                time: new Date(),
                 numberOfPlaces: numberOfPlaces,
                 totalFare: totalCost,
                 pickupLocation: pickupLocation,
                 dropLocation: dropLocation,
-                user : userId,
+                user: userId,
                 trip_id: trip.id,
             };
 
-            axios.post('http://127.0.0.1:8000/booking/data/', bookingData, {
-                headers: {
-                  'Authorization': `Bearer ${token}`,
-                  'Content-Type': 'application/json'
-                }
-              })
-                .then((response) => {
-                    console.log(response.data);
+            return new Promise((resolve, reject) => {
+                axios.post('http://127.0.0.1:8000/booking/data/', bookingData, {
+                  headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                  }
                 })
-                .catch((error) => {
+                  .then((response) => {
+                    const bookingId = response.data.id;
+                    setBookingId(bookingId);
+                    resolve(bookingId); // Resolve the promise with the booking ID
+                  })
+                  .catch((error) => {
                     console.error(error);
-                });
-        }
+                    reject(error); // Reject the promise with the error
+                  });
+              });
+            }
+          
     };
 
-    // useEffect(() => {
-    //     const storedUserName = localStorage.getItem('userName');
-    //     const storedBookedTrips = localStorage.getItem('bookedTrips');
-    //     if (storedUserName) {
-    //         setUserName(storedUserName);
-    //     }
-    //     if (storedBookedTrips) {
-    //         setBookedTrips(JSON.parse(storedBookedTrips));
-    //     }
-    // }, []);
+    const handelPayment=(bookingId)=>{
+       
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            console.error('No authentication token found');
+            return;
+        }
+
+        const headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        };
+
+        const paymentData = {
+            date: new Date(),
+            amount: paypalAmount,
+            payment_method: paymentMethod,
+            booking_id : bookingId,
+            user: userId,
+            trip_id: trip.id,
+            user: userId , // Add the user object with ID
+            trip: trip.id ,
+            booking : bookingId,
+            
+        };
+
+        axios.post('http://127.0.0.1:8000/payments/', paymentData, {headers})
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
     return (
         <Container>
@@ -193,7 +241,7 @@ const BookingPage = () => {
                                 </li>
                             </ul>
                         </Card.Body>
- </Card>
+                    </Card>
                 </Col>
                 <Col md={4} className="right-col py-2">
                     {/* Right column content */}
@@ -202,13 +250,13 @@ const BookingPage = () => {
                             <h5> Booking Form </h5>
                             <Form>
                                 <Form.Group controlId="numberOfPlaces">
-                                <Form.Label>Number of Places:</Form.Label>
+                                    <Form.Label>Number of Places:</Form.Label>
                                     <div className="input-group">
                                         <Button variant="secondary" className='w-25' onClick={handleDecrement} disabled={numberOfPlaces === 1}>
                                             -
                                         </Button>
                                         <Form.Control type="number" value={numberOfPlaces} onChange={(e) => setNumberOfPlaces(e.target.value)} />
-                                        <Button variant="secondary" className='w-25 btn btn-lg' onClick={handleIncrement} disabled={numberOfPlaces === trip.avilabalPlaces}>
+                                        <Button variant="secondary" className='w-25 btn btn-lg' onClick={handleIncrement} disabled={numberOfPlaces === trip.availablePlaces}>
                                             +
                                         </Button>
                                     </div>
@@ -234,16 +282,6 @@ const BookingPage = () => {
                                 </ul>
                                 <hr />
 
-                                {/* <Form.Group controlId="time">
-                                    <Form.Label>Time:</Form.Label>
-                                    <Form.Control type="time" value={time} onChange={(e) => setTime(e.target.value)} />
-                                </Form.Group> */}
-
-                                {/* <Form.Group controlId="numberOfPlaces">
-                                    <Form.Label>Number of Places:</Form.Label>
-                                    <Form.Control type="number" value={numberOfPlaces} onChange={(e) => setNumberOfPlaces(e.target.value)} />
-                                </Form.Group> */}
-
                                 <Form.Group controlId="pickupLocation">
                                     <Form.Label>Pickup Location:</Form.Label>
                                     <Form.Control type="text" value={pickupLocation} onChange={(e) => setPickupLocation(e.target.value)} />
@@ -253,13 +291,15 @@ const BookingPage = () => {
                                     <Form.Label>Drop Location:</Form.Label>
                                     <Form.Control type="text" value={dropLocation} onChange={(e) => setDropLocation(e.target.value)} />
                                 </Form.Group>
-
                                 <Form.Group controlId="paymentMethod" className="text-center">
                                     <Form.Label className='fs-5'>Payment Method:</Form.Label>
                                     <div className="d-flex justify-content-between">
                                         <div className='d-flex flex-column justify-content-center w-50'>
                                             <div className="px-auto py-2 ">
-                                                <Form.Check type="radio" className='border-primary' name="paymentMethod" id="payOnline" onChange={(e) => setPaymentMethod('payOnline')} />
+                                                <Form.Check type="radio" className='border-primary' name="paymentMethod" id="payOnline" value="payOnline" onChange={(e) => {
+                                                    handlePaymentMethodChange(e);
+                                                    handlePaypalAmountChange(e);
+                                                }} />
                                             </div>
                                             <div className='px-auto py-3'>
                                                 <b className='fs-5'>Pay Online</b>
@@ -267,7 +307,10 @@ const BookingPage = () => {
                                         </div>
                                         <div className='d-flex flex-column justify-content-center w-50 border-2'>
                                             <div className='px-auto py-2'>
-                                                <Form.Check type="radio" name="paymentMethod" id="payCash" onChange={(e) => setPaymentMethod('payCash')} />
+                                                <Form.Check type="radio" name="paymentMethod" id="payCash" value="payCash" onChange={(e) => {
+                                                    handlePaymentMethodChange(e);
+                                                    handlePaypalAmountChange(e);
+                                                }} />
                                             </div>
                                             <div className='px-auto py-3'>
                                                 <b className='fs-5'>Pay Cash</b>
@@ -279,17 +322,13 @@ const BookingPage = () => {
                                     <div className=" p-3">
                                         <h5 className="">Online Payment Methods:</h5>
                                         <ul className="list-unstyled">
-                                            <li>
-                                                <Form.Check type="checkbox" label="Visa" id="visa"
-                                                    onChange={handleOnlinePaymentMethodChange} />
-                                            </li>
-                                            <li>
-                                                <Form.Check type="checkbox" label="Mastercard" id="mastercard"
-                                                    onChange={handleOnlinePaymentMethodChange} />
-                                            </li>
+                                           
                                             <li>
                                                 <Form.Check type="checkbox" label="PayPal" id="paypal"
-                                                    onChange={handleOnlinePaymentMethodChange} />
+                                                    onChange={(e) => {
+                                                        handleOnlinePaymentMethodChange(e);
+                                                        setOnlinePaymentMethod(e.target.id);
+                                                    }} />
                                             </li>
                                         </ul>
                                     </div>
@@ -306,18 +345,46 @@ const BookingPage = () => {
                                     </div>
                                 )}
 
-                                {paymentMethod && (
-                                    <Button
-                                        variant="primary"
-                                        type="submit"
-                                        onClick={handleBookNow}
-                                        className="mt-3 d-flex mx-auto justify-content-center w-75"
-                                        disabled={!paymentMethod ||
-                                            (paymentMethod === 'payOnline' && !onlinePaymentMethod) ||
-                                            (paymentMethod === 'payCash' && !agreeToPayDeposit)}
+                                {(paymentMethod && (paymentMethod === 'payOnline' && onlinePaymentMethod === 'paypal') || (paymentMethod === 'payCash' && agreeToPayDeposit)) && (
+                                    <PayPalScriptProvider
+                                        src="https://www.paypal.com/sdk/js"
+                                        options={{
+                                            'client-id': 'ASqEJBR1uVuEmIcx5WxO26SQMcW9DKTNy090VaVbCczbnEvsV2Lz5xSV2oc1dIErzoIy8ldjBUZqY4M5',
+                                            currency: "USD",
+                                            intent: 'capture',
+                                        }}
+                                        deferLoading={false}
                                     >
-                                        Book Now
-                                    </Button>
+                                        <PayPalButtons
+                                            amount={Math.round(paypalAmount * 100) / 100}
+                                            currency="USD"
+                                            style={{ layout: 'horizontal' }}
+                                            createOrder={(data, actions) => {
+                                                const paymentIntent = actions.order.create({
+                                                    purchase_units: [
+                                                        {
+                                                            amount: {
+                                                                value: Math.round(paypalAmount * 100) / 100,
+                                                            },
+                                                        },
+                                                    ],
+                                                });
+                                                console.log('Payment intent:', paymentIntent);
+                                                return paymentIntent;
+                                            }}
+                                            onApprove={(data, actions) => {
+                                                const authorization = actions.order.capture({
+                                                    paymentIntentId: data.paymentIntentId,
+                                                });
+                                                console.log('Authorization:', authorization);
+                                                return authorization.then((details) => {
+                                                    handleBookNow().then((bookingId) => {
+                                                        handelPayment(bookingId);
+                                                      });
+                                                });
+                                            }}
+                                        />
+                                    </PayPalScriptProvider>
                                 )}
                             </Form>
                         </Card.Body>
@@ -329,7 +396,7 @@ const BookingPage = () => {
                         </Modal.Header>
                         <Modal.Body className=' d-flex'>
                             <div className='bg-dark w-25 d-flex flex-column rounded-3'>
-                            <img src={logo} className=' w-100  my-auto h-100 rounded-3' />
+                                <img src={logo} className=' w-100  my-auto h-100 rounded-3' />
                             </div>
                             <div className='custom-dashed-border'></div>
                             <div className="ticket-container bg-dark-subtle w-100 rounded-3 p-2">
@@ -339,39 +406,39 @@ const BookingPage = () => {
                                         <strong>Trip Number:</strong> {bookingData.tripNumber}
                                     </div>
                                     <div>
-                                    <h4 className='text-end'>{company.name}</h4>
-                                    <strong>Trip Date:</strong> {bookingData.tripDate}
+                                        <h4 className='text-end'>{company.name}</h4>
+                                        <strong>Trip Date:</strong> {bookingData.tripDate}
 
                                     </div>
                                 </div>
-                                <hr/>
+                                <hr />
                                 <div className="ticket-body">
-                                <ul className="list-unstyled">
-                                <li className="d-flex justify-content-between">
-                                    <strong className="font-weight-bold fs-5">Departure Station:</strong>
-                                    <span className='fs-5'>{bookingData.departuerStation}</span>
-                                </li>
-                                <li className="d-flex justify-content-between">
-                                    <strong className="font-weight-bold fs-5">Stop Stations:</strong>
-                                    <span className='fs-5'>{bookingData.destinationStation}</span>
-                                </li>
-                                <li className="d-flex justify-content-between">
-                                    <strong className="font-weight-bold fs-5">Departure Time:</strong>
-                                    <span className='fs-5'>{bookingData.departuerTime}</span>
-                                </li>
-                                <li className="d-flex justify-content-between">
-                                    <strong className="font-weight-bold fs-5">Arrival Time:</strong>
-                                    <span className='fs-5'>{bookingData.destinationTime}</span>
-                                </li>
-                                <li className="d-flex justify-content-between">
-                                    <strong className="font-weight-bold fs-5">Number of places:</strong>
-                                    <span className='fs-5'>{bookingData.numPlaces}</span>
-                                </li>
-                                <li className="d-flex justify-content-between">
-                                    <strong className="font-weight-bold fs-5">Trip Cost:</strong>
-                                    <span className='fs-5'>{bookingData.totalCost}</span>
-                                </li>
-                            </ul>
+                                    <ul className="list-unstyled">
+                                        <li className="d-flex justify-content-between">
+                                            <strong className="font-weight-bold fs-5">Departure Station:</strong>
+                                            <span className='fs-5'>{bookingData.departuerStation}</span>
+                                        </li>
+                                        <li className="d-flex justify-content-between">
+                                            <strong className="font-weight-bold fs-5">Stop Stations:</strong>
+                                            <span className='fs-5'>{bookingData.destinationStation}</span>
+                                        </li>
+                                        <li className="d-flex justify-content-between">
+                                            <strong className="font-weight-bold fs-5">Departure Time:</strong>
+                                            <span className='fs-5'>{bookingData.departuerTime}</span>
+                                        </li>
+                                        <li className="d-flex justify-content-between">
+                                            <strong className="font-weight-bold fs-5">Arrival Time:</strong>
+                                            <span className='fs-5'>{bookingData.destinationTime}</span>
+                                        </li>
+                                        <li className="d-flex justify-content-between">
+                                            <strong className="font-weight-bold fs-5">Number of places:</strong>
+                                            <span className='fs-5'>{bookingData.numPlaces}</span>
+                                        </li>
+                                        <li className="d-flex justify-content-between">
+                                            <strong className="font-weight-bold fs-5">Trip Cost:</strong>
+                                            <span className='fs-5'>{bookingData.totalCost}</span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </Modal.Body>
