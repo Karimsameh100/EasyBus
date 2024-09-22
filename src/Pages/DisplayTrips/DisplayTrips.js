@@ -3,16 +3,18 @@ import axios from 'axios';
 import { Modal, ModalTitle, ModalHeader, ModalBody, ModalFooter, Button } from 'react-bootstrap';
 import './DisplayTrips.css'; // Import the CSS file for styling
 import AddTripForm from '../addtrip';
+import { useParams } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
 
 const DisplayTrips = () => {
   const [trips, setTrips] = useState([]);
+  const [companyName, setName] = useState("")
   const [userBookings, setUserBookings] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedTrip, setSelectedTrip] = useState(null);
   const [formData, setFormData] = useState({});
-  const [companyName, setCompanyName] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7; // Adjust this number based on how many items you want per page
   const [view, setView] = useState('trips'); // New state for view toggle
@@ -25,48 +27,69 @@ const DisplayTrips = () => {
   const bookingsStartIndex = (currentBookingsPage - 1) * bookingsPerPage;
   const bookingsEndIndex = bookingsStartIndex + bookingsPerPage;
   const currentBookingsPageItems = userBookings.slice(bookingsStartIndex, bookingsEndIndex);
+  const params = useParams();
+  const [editTrip, setEditTrip] = useState(null);
 
-  useEffect(() => {
-    const fetchTrips = async () => {
-      try {
-        const response = await axios.get('http://localhost:4001/posts');
-        getCompaniesTrips(response.data);
-      } catch (error) {
-        console.error('Error fetching trips:', error);
-      }
-    };
-
-    const storedCompany = JSON.parse(localStorage.getItem('loggedInCompany'));
-    if (storedCompany) {
-      setCompanyName(storedCompany.name);
-      fetchTrips();
-      fetchUserBookings(storedCompany.name);
-    } else {
-      console.warn('No logged-in company found.');
-    }
-  }, []);
-
-  const storedCompany = JSON.parse(localStorage.getItem('loggedInCompany'));
-
-  function getCompaniesTrips(data) {
-    const allTrips = [];
-    data.forEach((items) => {
-      items?.companies?.forEach((company) => {
-        if (company.name === storedCompany.name) {
-          company.trips.forEach((element) => {
-            allTrips.push(element);
-          });
-        }
-      });
+    //--------------------------------Add new Trip-------------------------
+  const [newTrip, setNewTrip] = useState({
+      tripNumber: "",
+      date: "",
+      avilabalPlaces: "",
+      departuerStation: "",
+      destinationStation: "",
+      departuerTime: "",
+      destinationTime: "",
+      price: "",
+      bus: "",
     });
-    setTrips(allTrips);
-  }
+  
+  
+    // Handle the change of the new trip data
+  const handleNewTripChange = (event) => {
+      setNewTrip({
+        ...newTrip,
+        [event.target.name]: event.target.value,
+      });
+    };
+  
+    //---------------------------------------------------------------------
+  
 
-  const fetchUserBookings = (companyName) => {
+  const token = localStorage.getItem('authToken');
+  const decodedToken = jwtDecode(token); // Decode token to get company info
+  console.log(decodedToken)
+  const companyId = decodedToken.user_id;
+  console.log("companyy:",companyId)
+
+    
+  useEffect(() => {
+
+     
+      if (!token) {
+        console.warn('No token found');
+        return;
+      }
+
+      axios
+      .get(`http://127.0.0.1:8000/mixinuser_pk/${companyId}?user_type=company`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          const { name ,company_trips } = res.data
+          setName(name);
+          setTrips(company_trips);
+        })
+        .catch((err) => console.error("Error fetching trips:", err));
+    }, [params.id, setEditTrip]);
+
+
+/*   const fetchUserBookings = (companyName) => {
     const bookings = JSON.parse(localStorage.getItem('bookedTrips')) || [];
     const companyBookings = bookings.filter((booking) => booking.company === companyName);
     setUserBookings(companyBookings);
-  };
+  }; */
 
   // handle accept/reject status
   const handleBookingStatus = (booking, status) => {
@@ -105,9 +128,24 @@ const DisplayTrips = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleUpdateTrip(formData);
-    setShowEditModal(false);
+    console.log("Form submitted with data:", formData);
+  
+    axios
+      .put(` http://127.0.0.1:8000/selected/trip/${formData.id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setTrips((prevTrips) =>
+          prevTrips.map((trip) => (trip.id === formData.id ? res.data : trip))
+        );
+        setShowEditModal(false);
+        setFormData({});
+      })
+      .catch((err) => console.error("Error updating trip:", err));
   };
+  
   const handleBookingsPageChange = (pageNumber) => {
     setCurrentBookingsPage(pageNumber);
   };
@@ -121,16 +159,18 @@ const DisplayTrips = () => {
   };
 
   const handleEditClick = (trip) => {
-    setSelectedTrip({ ...trip, companyId: storedCompany.id });
     setFormData({
       tripNumber: trip.tripNumber,
-      tripDate: trip.tripDate,
-      availablePlaces: trip.availablePlaces,
-      departureStation: trip.departureStation,
-      stopStations: trip.stopStations,
-      departureTime: trip.departureTime,
-      arrivedTime: trip.arrivedTime,
+      date: trip.date,
+      avilabalPlaces: trip.avilabalPlaces,
+      departuerStation: trip.departuerStation,
+      destinationStation: trip.destinationStation,
+      departuerTime: trip.departuerTime,
+      destinationTime: trip.destinationTime,
       price: trip.price,
+      status: trip.status,
+      bus: trip.bus,
+      id: trip.id, // Ensure to capture the trip ID for the update
     });
     setShowEditModal(true);
   };
@@ -143,83 +183,84 @@ const DisplayTrips = () => {
   };
 
   const handleDeleteClick = (trip) => {
-    setSelectedTrip({ ...trip, companyId: storedCompany.id });
+    setSelectedTrip(trip);
+    setShowDeleteModal(true);
+  };
+  const handleAddTrip = (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+    console.log("Adding trip with data:", newTrip); // Log the trip data
+  
+    // Open the modal first
+    setShowAddModal(true);
+  
+    // Make the POST request to add the new trip
+    axios
+      .post("http://localhost:8000/all/trips/", newTrip, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        console.log("Trip added:", res.data);
+        setTrips((prevTrips) => [...prevTrips, res.data]); // Update the trips state with the new trip
+        setNewTrip({
+          tripNumber: "",
+          date: "",
+          avilabalPlaces: "",
+          departuerStation: "",
+          destinationStation: "",
+          departuerTime: "",
+          destinationTime: "",
+          price: "",
+          bus: "",
+        }); // Reset newTrip state
+        setShowAddModal(false); // Close the modal
+      })
+      .catch((err) => {
+        console.error("Error adding trip:",  err.response ? err.response.data : err.message); // Log the error
+        setShowAddModal(false); // Close the modal even if there's an error
+      });
+  };
+  
+
+  const handleEditTrip = (trip, company) => {
+    setEditTrip(trip);
+   /*  setCompany(company); */
+    setFormData({
+      tripNumber: trip.tripNumber,
+      date: trip.date,
+      avilabalPlaces: trip.avilabalPlaces,
+      departuerStation: trip.departuerStation,
+      destinationStation: trip.destinationStation,
+      departuerTime: trip.departuerTime,
+      destinationTime: trip.destinationTime,
+      status: trip.status,
+      price: trip.price,
+      user: trip.user,
+      bus: trip.bus,
+      book: trip.book,
+    });
+    setShowEditModal(true);
+  };
+
+  const handleDeleteTrip = (trip, company) => {
+    setEditTrip(trip);
+    /* setCompany(company); */
     setShowDeleteModal(true);
   };
 
+  const confirmDelete = () => {
+    axios
+      .delete(`http://127.0.0.1:8000/selected/trip/${selectedTrip.id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then(() => {
+        setTrips((prevTrips) => prevTrips.filter((trip) => trip.id !== selectedTrip.id));
+        setShowDeleteModal(false);
+      })
+      .catch((err) => console.error("Error deleting trip:", err));
+  };
+ 
   const cancelDelete = () => {
-    setShowDeleteModal(false);
-  };
-
-  const handleUpdateTrip = (updatedTrip) => {
-    axios.get('http://localhost:4001/posts')
-      .then((response) => {
-        if (response.data) {
-          const updatedPosts = response.data.map((post) => {
-            post.companies.forEach((company) => {
-              if (company.id === selectedTrip.companyId) {
-                company.trips = company.trips.map((trip) => {
-                  if (trip.tripNumber === updatedTrip.tripNumber) {
-                    return updatedTrip;
-                  }
-                  return trip;
-                });
-              }
-            });
-            return post;
-          });
-          axios.put('http://localhost:4001/posts', updatedPosts)
-            .then(() => {
-              axios.get('http://localhost:4001/posts')
-                .then((response) => {
-                  getCompaniesTrips(response.data);
-                })
-                .catch((error) => {
-                  console.error('Error fetching trips:', error);
-                });
-              setShowEditModal(false);
-            })
-            .catch((error) => {
-              console.error('Error updating trips:', error);
-            });
-        } else {
-          console.error('Error fetching posts:', response);
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching posts:', error);
-      });
-  };
-
-  const handleDeleteTrip = (trip) => {
-    axios.get('http://localhost:4001/posts')
-      .then((response) => {
-        const updatedPosts = response.data.map((post) => {
-          post.companies.forEach((company) => {
-            if (company.id === selectedTrip.companyId) {
-              company.trips = company.trips.filter((trip) => trip.tripNumber !== selectedTrip.tripNumber);
-            }
-          });
-          return post;
-        });
-        axios.put('http://localhost:4001/posts', updatedPosts)
-          .then(() => {
-            axios.get('http://localhost:4001/posts')
-              .then((response) => {
-                getCompaniesTrips(response.data);
-              })
-              .catch((error) => {
-                console.error('Error fetching trips:', error);
-              });
-            setShowDeleteModal(false);
-          })
-          .catch((error) => {
-            console.error('Error deleting trips:', error);
-          });
-      })
-      .catch((error) => {
-        console.error('Error fetching posts:', error);
-      });
+    setShowDeleteModal(false); // Hide the modal without deleting
   };
 
   return (
@@ -263,21 +304,23 @@ const DisplayTrips = () => {
                         <th>Departure Time</th>
                         <th>Arrived Time</th>
                         <th>Price</th>
+                        <th>Status</th>
                         <th>Edit</th>
                         <th>Delete</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {currentPageItems.map((trip, index) => (
-                        <tr key={index}>
+                      {currentPageItems.map((trip) => (
+                        <tr key={trip.id}>
                           <td>{trip.tripNumber}</td>
-                          <td>{trip.tripDate}</td>
-                          <td>{trip.availablePlaces}</td>
-                          <td>{trip.departureStation}</td>
-                          <td>{trip.stopStations}</td>
-                          <td>{trip.departureTime}</td>
-                          <td>{trip.arrivedTime}</td>
+                          <td>{trip.date}</td>
+                          <td>{trip.avilabalPlaces}</td>
+                          <td>{trip.departuerStation}</td>
+                          <td>{trip.destinationStation}</td>
+                          <td>{trip.departuerTime}</td>
+                          <td>{trip.destinationTime}</td>
                           <td>{trip.price}</td>
+                          <td>{trip.status}</td>
                           <td>
                             <button className='btn btn-outline-primary btn-sm mx-1' onClick={() => handleEditClick(trip)}>Edit</button>
                           </td>
@@ -382,9 +425,289 @@ const DisplayTrips = () => {
         </div>
       </div>
 
-      {/* Edit Modal */}
+      {showAddModal && (
+        <Modal
+          id="add-trip-modal"
+          show={showAddModal}
+          onHide={() => setShowAddModal(false)}
+        >
+          <ModalHeader closeButton>
+            <ModalTitle>Add Trip</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
+            <form id="add-trip-form" onSubmit={handleAddTrip}>
+              <div className="form-group">
+                <label>Trip Number:</label>
+                <input
+                  type="text"
+                  name="tripNumber"
+                  value={newTrip.tripNumber}
+                  onChange={handleNewTripChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Trip Date:</label>
+                <input
+                  type="date"
+                  name="date"
+                  value={newTrip.date}
+                  onChange={handleNewTripChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Available Places:</label>
+                <input
+                  type="number"
+                  name="avilabalPlaces"
+                  value={newTrip.avilabalPlaces}
+                  onChange={handleNewTripChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Departure Station:</label>
+                <input
+                  type="text"
+                  name="departuerStation"
+                  value={newTrip.departuerStation}
+                  onChange={handleNewTripChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Arrived Station:</label>
+                <input
+                  type="text"
+                  name="destinationStation"
+                  value={newTrip.destinationStation}
+                  onChange={handleNewTripChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Departure Time:</label>
+                <input
+                  type="time"
+                  name="departuerTime"
+                  value={newTrip.departuerTime}
+                  onChange={handleNewTripChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Arrived Time:</label>
+                <input
+                  type="time"
+                  name="destinationTime"
+                  value={newTrip.destinationTime}
+                  onChange={handleNewTripChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Price:</label>
+                <input
+                  type="number"
+                  name="price"
+                  value={newTrip.price}
+                  onChange={handleNewTripChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Bus</label>
+                <input
+                  type="number"
+                  name="bus"
+                  value={newTrip.bus}
+                  onChange={handleNewTripChange}
+                  className="form-control"
+                />
+              </div>
+              <button type="submit" className="btn btn-success">
+                Add Trip
+              </button>
+            </form>
+          </ModalBody>
+        </Modal>
+      )}
+      ,
+      {showEditModal && (
+        <Modal
+          id="edit-trip-modal"
+          show={showEditModal}
+          onHide={() => setShowEditModal(false)}
+        >
+          <ModalHeader closeButton>
+            <ModalTitle>Edit Trip</ModalTitle>
+          </ModalHeader>
+          <ModalBody>
+            <form id="edit-trip-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Trip Number:</label>
+                <input
+                  type="text"
+                  name="tripNumber"
+                  value={formData.tripNumber}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Trip Date:</label>
+                <input
+                  type="date"
+                  name="date"
+                  value={formData.date}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Available Places:</label>
+                <input
+                  type="number"
+                  name="avilabalPlaces"
+                  value={formData.avilabalPlaces}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Departure Station:</label>
+                <input
+                  type="text"
+                  name="departuerStation"
+                  value={formData.departuerStation}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Arrived Station:</label>
+                <input
+                  type="text"
+                  name="destinationStation"
+                  value={formData.destinationStation}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Departure Time:</label>
+                <input
+                  type="time"
+                  name="departuerTime"
+                  value={formData.departuerTime}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Arrived Time:</label>
+                <input
+                  type="time"
+                  name="destinationTime"
+                  value={formData.destinationTime}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Price:</label>
+                <input
+                  type="number"
+                  name="price"
+                  value={formData.price}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Status</label>
+                <input
+                  type="text"
+                  name="status"
+                  value={formData.status}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              {/* <div className="form-group">
+                <label>User</label>
+                <input
+                  type="number"
+                  name="user"
+                  value={formData.user}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div> */}
+              <div className="form-group">
+                <label>Bus</label>
+                <input
+                  type="number"
+                  name="bus"
+                  value={formData.bus}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div>
+              {/* <div className="form-group">
+                <label>Book</label>
+                <input
+                  type="number"
+                  name="book"
+                  value={formData.book}
+                  onChange={handleChange}
+                  className="form-control"
+                />
+              </div> */}
+              <button type="submit" className="btn btn-primary">
+                Save Changes
+              </button>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </form>
+          </ModalBody>
+        </Modal>
+      )}
+      ,
+      {showDeleteModal && (
+        <Modal
+          id="delete-trip-modal"
+          show={showDeleteModal}
+          onHide={() => setShowDeleteModal(false)}
+        >
+          <ModalHeader closeButton>
+            <ModalTitle>Delete Trip</ModalTitle>
+          </ModalHeader>
+          <ModalBody>Are you sure you want to delete this trip?</ModalBody>
+          <ModalFooter>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={confirmDelete}
+            >
+              Delete
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={cancelDelete}
+            >
+              Cancel
+            </button>
+          </ModalFooter>
+        </Modal>
+      )}
   
-
     </div>
   );
 };
