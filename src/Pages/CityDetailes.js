@@ -44,10 +44,13 @@ export function CityDetailes() {
     axios
       .get(`http://localhost:8000/all/trips/`)
       .then((res) => {
+        console.log('API response:', res.data);
         setAllTrips(res.data);
       })
-      .catch((err) => console.error("Error fetching trips:", err));
+      .catch((err) => console.error('Error fetching trips:', err));
   }, [params.id, setEditTrip, setAllTrips]);
+
+  console.log('allTrips:', allTrips);
 
   useEffect(() => {
     axios
@@ -283,86 +286,89 @@ export function CityDetailes() {
               <h2 className="text-center m-5">Travel with {company.name}</h2>
               <div class="col-sm-6 col-md-4">
                 <img
-                  src={company.image}
+                  src={gobus}
                   className="img-fluid mt-5 "
                   alt="Image"
                 />
               </div>
-              <div className="table-responsive col-sm-6 col-md-8">
-                <table className="table table-striped table-bordered-bold">
-                  <thead>
-                    <tr>
-                      <th>Trip Number</th>
-                      <th>Trip Date</th>
-                      <th>Available Places</th>
-                      <th>Departure Station</th>
-                      <th>Stop Stations</th>
-                      <th>Go In</th>
-                      <th>Arrive At</th>
-                      <th>Price</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {allTrips.map((trip) => (
-                      <tr key={trip.tripNumber}>
-                        <td>{trip.tripNumber}</td>
-                        <td>{trip.date}</td>
-                        <td>{trip.avilabalPlaces}</td>
-                        <td>{trip.departuerStation}</td>
-                        <td>{trip.destinationStation}</td>
-                        <td>{trip.departuerTime}</td>
-                        <td>{trip.destinationTime}</td>
-                        <td>{trip.price}</td>
-                        <td>
-                          <button
-                            class="btn btn-success btn-sm mx-1"
-                            style={{ width: "100%" }}
-                            onClick={() =>
-                              isLoggedIn
-                                ? handleBookTrip(trip, company)
-                                : setShowLoginModal(true)
-                            }
-                          >
-                            Book
-                          </button>
-                          {/* <button
-                                                        className="btn btn-primary btn-sm"
-                                                        style={{ width: "45%" }}
-                                                        onClick={() => {
-                                                            handleEditTrip(trip, company);
-                                                            setShowEditModal(true);
-                                                        }}
-                                                    >
-                                                        Edit
-                                                    </button>
-                                                    <button
-                                                        className="btn btn-danger btn-sm mx-1 "
-                                                        style={{ width: "47%" }}
-                                                        onClick={() => {
-                                                            handleDeleteTrip(trip, company);
-                                                            setShowDeleteModal(true);
-                                                        }}
-                                                    >
-                                                        Delete
-                                                    </button> */}
-                          <button
-                            className="btn btn-outline-warning btn-sm mx-1 my-1"
-                            style={{ width: "100%" }}
-                            onClick={() =>
-                              isLoggedIn
-                                ? handleAddToFavorites(trip, company)
-                                : setShowLoginModal(true)
-                            }
-                          >
-                            Favorites
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              {/*   <button
+
+            </div>
+          ))}
+        <div className="table-responsive col-sm-6 col-md-8">
+          <table className="table table-striped table-bordered-bold">
+            <thead>
+              <tr>
+                <th>Trip Number</th>
+                <th>Trip Date</th>
+                <th>Available Places</th>
+                <th>Departure Station</th>
+                <th>Stop Stations</th>
+                <th>Go In</th>
+                <th>Arrive At</th>
+                <th>Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allTrips.map((trip) => (
+                <tr key={trip.tripNumber}>
+                  <td>{trip.tripNumber}</td>
+                  <td>{trip.date}</td>
+                  <td>{trip.avilabalPlaces}</td>
+                  <td>{trip.departuerStation}</td>
+                  <td>{trip.destinationStation}</td>
+                  <td>{trip.departuerTime}</td>
+                  <td>{trip.destinationTime}</td>
+                  <td>{trip.price}</td>
+                  <td>
+                    <button
+                      class="btn btn-success btn-sm mx-1"
+                      style={{ width: "100%" }}
+                      onClick={() =>
+                        isLoggedIn
+                          ? handleBookTrip(trip, company)
+                          : setShowLoginModal(true)
+                      }
+                    >
+                      Book
+                    </button>
+                    {/* <button
+                      className="btn btn-primary btn-sm"
+                      style={{ width: "45%" }}
+                      onClick={() => {
+                        handleEditTrip(trip, company);
+                        setShowEditModal(true);
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-danger btn-sm mx-1 "
+                      style={{ width: "47%" }}
+                      onClick={() => {
+                        handleDeleteTrip(trip, company);
+                        setShowDeleteModal(true);
+                      }}
+                    >
+                      Delete
+                    </button> */}
+                    <button
+                      className="btn btn-outline-warning btn-sm mx-1 my-1"
+                      style={{ width: "100%" }}
+                      onClick={() =>
+                        isLoggedIn
+                          ? handleAddToFavorites(trip, company)
+                          : setShowLoginModal(true)
+                      }
+                    >
+                      Favorites
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {/*   <button
                   className="btn btn-md btn-success  w-100 fs-3 my-2"
                   onClick={() => {
                     setShowAddModal(true);
@@ -371,9 +377,7 @@ export function CityDetailes() {
                   {" "}
                   <b>+</b>{" "}
                 </button> */}
-              </div>
-            </div>
-          ))}
+        </div>
       </div>
       <section className="bg-light py-3 py-md-5">
         <div className="container">

@@ -204,8 +204,8 @@ const BookingPage = () => {
                     {/* Left column content */}
                     <Card className="shadow-sm">
                         <Card.Header className="text-center">
-                            <img src={company.image} className="img-fluid mb-3" />
-                            <h2 className="text-center mb-4">Your Trip with {company.name}</h2>
+                            <img src={logo} className="img-fluid mb-3" />
+                            <h2 className="text-center mb-4">Your Trip with {"go bus"}</h2>
                         </Card.Header>
 
                         <Card.Body className="px-4 py-3">
@@ -406,7 +406,7 @@ const BookingPage = () => {
                                         <strong>Trip Number:</strong> {bookingData.tripNumber}
                                     </div>
                                     <div>
-                                        <h4 className='text-end'>{company.name}</h4>
+                                        <h4 className='text-end'>{"go bus"}</h4>
                                         <strong>Trip Date:</strong> {bookingData.tripDate}
 
                                     </div>
