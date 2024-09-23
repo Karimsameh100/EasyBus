@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { jwtDecode } from "jwt-decode";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -11,6 +12,8 @@ const UserProfile = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [filteredTrips, setFilteredTrips] = useState([]);
+  const [acceptedTrips, setAcceptedTrips] = useState([]);
+  const [rejectedTrips, setRejectedTrips] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSection, setCurrentSection] = useState("profile");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -71,9 +74,17 @@ const UserProfile = () => {
         })
         .then((response) => {
           const userBookings = response.data.filter(
-            (booking) => booking.user === userId && booking.status === "Pending"
+            (booking) => booking.user === userId
           );
-          setFilteredTrips(userBookings);
+          setFilteredTrips(
+            userBookings.filter((booking) => booking.status === "Pending")
+          );
+          setAcceptedTrips(
+            userBookings.filter((booking) => booking.status === "Confirmed")
+          );
+          setRejectedTrips(
+            userBookings.filter((booking) => booking.status === "Rejected")
+          );
         })
         .catch((error) => {
           console.error("Error fetching bookings:", error);
@@ -134,9 +145,45 @@ const UserProfile = () => {
     }
   };
 
-  // تحديد الرحلة الحالية بناءً على الصفحة الحالية
   const currentTripIndex = (currentPage - 1) * tripsPerPage;
   const currentTrip = filteredTrips[currentTripIndex];
+
+  // Pagination for accepted and rejected trips
+  const [acceptedPage, setAcceptedPage] = useState(1);
+  const [rejectedPage, setRejectedPage] = useState(1);
+
+  const handleNextAcceptedPage = () => {
+    if (acceptedPage < Math.ceil(acceptedTrips.length / tripsPerPage)) {
+      setAcceptedPage(acceptedPage + 1);
+    }
+  };
+
+  const handlePrevAcceptedPage = () => {
+    if (acceptedPage > 1) {
+      setAcceptedPage(acceptedPage - 1);
+    }
+  };
+
+  const handleNextRejectedPage = () => {
+    if (rejectedPage < Math.ceil(rejectedTrips.length / tripsPerPage)) {
+      setRejectedPage(rejectedPage + 1);
+    }
+  };
+
+  const handlePrevRejectedPage = () => {
+    if (rejectedPage > 1) {
+      setRejectedPage(rejectedPage - 1);
+    }
+  };
+
+  const currentAcceptedTrip = acceptedTrips[(acceptedPage - 1) * tripsPerPage];
+  const currentRejectedTrip = rejectedTrips[(rejectedPage - 1) * tripsPerPage];
+
+  const handleEditAccount = () => {
+    navigate("/client", {
+      state: { name, email, profilePic, isEditMode: true },
+    });
+  };
 
   return (
     <Container
@@ -159,12 +206,6 @@ const UserProfile = () => {
                       currentSection === "profile" ? "#d9d9d9" : "transparent",
                     transition: "background-color 0.3s",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor = "#d9d9d9")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = "transparent")
-                  }
                 >
                   My Profile
                 </Nav.Link>
@@ -179,12 +220,6 @@ const UserProfile = () => {
                         : "transparent",
                     transition: "background-color 0.3s",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor = "#d9d9d9")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = "transparent")
-                  }
                 >
                   Pending Trips
                 </Nav.Link>
@@ -199,12 +234,6 @@ const UserProfile = () => {
                         : "transparent",
                     transition: "background-color 0.3s",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor = "#d9d9d9")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = "transparent")
-                  }
                 >
                   Rejected Trips
                 </Nav.Link>
@@ -219,12 +248,6 @@ const UserProfile = () => {
                         : "transparent",
                     transition: "background-color 0.3s",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor = "#d9d9d9")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = "transparent")
-                  }
                 >
                   Accepted Trips
                 </Nav.Link>
@@ -273,7 +296,11 @@ const UserProfile = () => {
                         >
                           Change Profile Picture
                         </Button>
-                        <Button variant="primary" style={{ marginTop: "3vh" }}>
+                        <Button
+                          variant="primary"
+                          onClick={handleEditAccount}
+                          style={{ marginTop: "3vh" }}
+                        >
                           Edit My Profile
                         </Button>
                       </Form>
@@ -282,13 +309,13 @@ const UserProfile = () => {
                 </div>
               ) : currentSection === "pending-trips" ? (
                 <div>
-                  <h3 style={{ color: "red" }}>Pending Trips</h3>
+                  <h3 style={{ color: "#003366" }}>Pending Trips</h3>
                   {currentTrip ? (
                     <Card
                       key={currentTrip.id}
                       className="mb-3"
                       style={{
-                        border: "1px solid #003366", // لون الإطار كحلي
+                        border: "1px solid #003366",
                         borderRadius: "10px",
                         padding: "20px",
                       }}
@@ -379,25 +406,6 @@ const UserProfile = () => {
                             <span>{currentTrip.totalFare} EGP</span>
                           </div>
                         </Card.Text>
-                        <Card.Text
-                          style={{
-                            fontSize: "1.1rem",
-                            color:
-                              currentTrip.status === "Confirmed"
-                                ? "#28a745"
-                                : "#dc3545",
-                          }}
-                        >
-                          {/* <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            <strong>Status:</strong>
-                            <span>{currentTrip.status}</span>
-                          </div> */}
-                        </Card.Text>
                       </Card.Body>
                     </Card>
                   ) : (
@@ -410,9 +418,9 @@ const UserProfile = () => {
                       style={{
                         backgroundColor: "#003366",
                         borderColor: "#003366",
-                      }} // لون الزر كحلي
+                      }}
                     >
-                      Previous
+                      <FaChevronLeft />
                     </Button>
                     <Button
                       onClick={handleNextPage}
@@ -424,14 +432,162 @@ const UserProfile = () => {
                         backgroundColor: "#003366",
                         borderColor: "#003366",
                         color: "white",
-                      }} // لون الزر كحلي
+                      }}
                     >
-                      Next
+                      <FaChevronRight /> {}
+                    </Button>
+                  </div>
+                </div>
+              ) : currentSection === "rejected-trips" ? (
+                <div>
+                  <h3 style={{ color: "red" }}>Rejected Trips</h3>
+                  {currentRejectedTrip ? (
+                    <Card
+                      key={currentRejectedTrip.id}
+                      className="mb-3"
+                      style={{
+                        border: "1px solid #dc3545",
+                        borderRadius: "10px",
+                        padding: "20px",
+                      }}
+                    >
+                      <Card.Body>
+                        <Card.Title
+                          style={{
+                            fontWeight: "bold",
+                            fontSize: "1.5rem",
+                            color: "#dc3545",
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <span>Trip Number:</span>
+                            <span>{currentRejectedTrip.id}</span>
+                          </div>
+                        </Card.Title>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong>Status:</strong>
+                            <span>{currentRejectedTrip.status}</span>
+                          </div>
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  ) : (
+                    <p>No rejected trips found.</p>
+                  )}
+                  <div className="d-flex justify-content-between">
+                    <Button
+                      onClick={handlePrevRejectedPage}
+                      disabled={rejectedPage === 1}
+                      style={{
+                        backgroundColor: "#dc3545",
+                        borderColor: "#dc3545",
+                      }}
+                    >
+                      <FaChevronLeft /> {}
+                    </Button>
+                    <Button
+                      onClick={handleNextRejectedPage}
+                      disabled={
+                        rejectedPage >=
+                        Math.ceil(rejectedTrips.length / tripsPerPage)
+                      }
+                      style={{
+                        backgroundColor: "#dc3545",
+                        borderColor: "#dc3545",
+                        color: "white",
+                      }}
+                    >
+                      <FaChevronRight /> {}
+                    </Button>
+                  </div>
+                </div>
+              ) : currentSection === "accepted-trips" ? (
+                <div>
+                  <h3 style={{ color: "green" }}>Accepted Trips</h3>
+                  {currentAcceptedTrip ? (
+                    <Card
+                      key={currentAcceptedTrip.id}
+                      className="mb-3"
+                      style={{
+                        border: "1px solid #28a745",
+                        borderRadius: "10px",
+                        padding: "20px",
+                      }}
+                    >
+                      <Card.Body>
+                        <Card.Title
+                          style={{
+                            fontWeight: "bold",
+                            fontSize: "1.5rem",
+                            color: "#28a745",
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <span>Trip Number:</span>
+                            <span>{currentAcceptedTrip.id}</span>
+                          </div>
+                        </Card.Title>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong>Status:</strong>
+                            <span>{currentAcceptedTrip.status}</span>
+                          </div>
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  ) : (
+                    <p>No accepted trips found.</p>
+                  )}
+                  <div className="d-flex justify-content-between">
+                    <Button
+                      onClick={handlePrevAcceptedPage}
+                      disabled={acceptedPage === 1}
+                      style={{
+                        backgroundColor: "#28a745",
+                        borderColor: "#28a745",
+                      }}
+                    >
+                      <FaChevronLeft />
+                    </Button>
+                    <Button
+                      onClick={handleNextAcceptedPage}
+                      disabled={
+                        acceptedPage >=
+                        Math.ceil(acceptedTrips.length / tripsPerPage)
+                      }
+                      style={{
+                        backgroundColor: "#28a745",
+                        borderColor: "#28a745",
+                        color: "white",
+                      }}
+                    >
+                      <FaChevronRight />
                     </Button>
                   </div>
                 </div>
               ) : (
-                <div>{/* يمكنك إضافة أقسام أخرى هنا */}</div>
+                <div>{}</div>
               )}
             </Card.Body>
           </Card>
