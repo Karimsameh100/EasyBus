@@ -28,6 +28,7 @@ import CompanyLogin from "./Pages/CompanyLogin.js";
 import DisplayTrips from "./Pages/DisplayTrips/DisplayTrips.js";
 import TripTrackLogin from "./Pages/TripTrackLogin.js";
 import Login1 from "./Pages/login1.js";
+import PrivateRoutes from "./Componants/PrivateRoutes.js";
 
 function App() {
   
@@ -53,27 +54,36 @@ function App() {
         <Route path="/" exact element={<Home />} />
         <Route path="/listtrips" exact element={<TripList />} />
         <Route path="/CompanyLogin" exact element={<CompanyLogin setLoggedIn={setLoggedIn} />} />
-        <Route path="/DisplayTrips" exact element={<DisplayTrips />} />
         <Route path="/City/:id"  exact element={<CityDetailes />} />
         {/* <CityDetailes addToFavorites={addToFavorites} /> */}
-        <Route path="/favorites"  exact element={<FavoritesPage />} />
         {/* <FavoritesPage favorites={favorites} removeFromFavorites={removeFromFavorites} /> */}
-        <Route path="/Login" exact element={<Login />} />
+        {/* <Route path="/Login" exact element={<Login />} /> */}
         <Route path="/TripTrackSignup" exact element={<TripTrackSignup />} />
         <Route path="/CompanySignup" exact element={<CompanySignup />} />
         <Route path="/CompleteComReg" exact element={<CompleteComReg />} />
         <Route path="/client" exact element={<ClientSignup />} />
-        <Route path="/CompanyManag" exact element={<CompanyManagement />} />
         <Route path="/about" exact element={<About />} />
-        <Route path="/userprofile" exact element={<UserProfile />} />
-        <Route path="/booking/:tripnumber" exact element={<BookingPage />} />
-        <Route path="/create/:id" exact element={<ReviewForm />} />
-        <Route path="/edit/:id/:reviewId" exact element={<ReviewForm />} />
-        <Route path="/AddTrip" exact element={<AddTrip />} />
-        <Route path="/search-results" exact element={<SearchResults />} />
-        <Route path="/TripTrackLogin" exact element={<TripTrackLogin/>}/>
+        {/* <Route path="/TripTrackLogin" exact element={<TripTrackLogin/>}/> */}
         <Route path="/Login1" exact element={<Login1/>}/>
+
+
+
+        {/* Protecting private routes */}
+        <Route element={<PrivateRoutes />}>
+          <Route path="/DisplayTrips" exact element={<DisplayTrips />} />
+          <Route path="/userprofile" exact element={<UserProfile />} />
+          <Route path="/favorites"  exact element={<FavoritesPage />} />
+          <Route path="/booking/:tripnumber" exact element={<BookingPage />} />
+          <Route path="/create/:id" exact element={<ReviewForm />} />
+          <Route path="/edit/:id/:reviewId" exact element={<ReviewForm />} />
+          <Route path="/AddTrip" exact element={<AddTrip />} />
+          <Route path="/CompanyManag" exact element={<CompanyManagement />} />
+          <Route path="/search-results" exact element={<SearchResults />} />
+        </Route>
+
       </Routes>
+
+
       <Footer />
     </BrowserRouter>
   );

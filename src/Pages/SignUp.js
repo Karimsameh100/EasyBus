@@ -82,7 +82,7 @@ function TripTrackSignup() {
       </Form>
 
       <p className="text-center mt-3">
-        Already have an account? <Link to={"/TripTrackLogin"}>Log In</Link>
+        Already have an account? <Link to={"/Login1"}>Log In</Link>
       </p>
     </div>
   );

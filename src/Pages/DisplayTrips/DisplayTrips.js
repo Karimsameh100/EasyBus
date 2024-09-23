@@ -29,6 +29,7 @@ const DisplayTrips = () => {
   const currentBookingsPageItems = userBookings.slice(bookingsStartIndex, bookingsEndIndex);
   const params = useParams();
   const [editTrip, setEditTrip] = useState(null);
+  const [validationErrors, setValidationErrors] = useState({});
 
     //--------------------------------Add new Trip-------------------------
   const [newTrip, setNewTrip] = useState({
@@ -186,12 +187,29 @@ const DisplayTrips = () => {
     setSelectedTrip(trip);
     setShowDeleteModal(true);
   };
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (new Date(`1970-01-01T${newTrip.departuerTime}:00`) >= new Date(`1970-01-01T${newTrip.destinationTime}:00`)) {
+      errors.departuerTime = 'Departure time must be before destination time';
+    }
+
+    if (!newTrip.avilabalPlaces || isNaN(newTrip.avilabalPlaces) || newTrip.avilabalPlaces <= 0) {
+      errors.avilabalPlaces = 'Number of available places must be a positive integer';
+    }
+
+    return errors;
+  };
+
   const handleAddTrip = (event) => {
     event.preventDefault(); // Prevent default form submission behavior
     console.log("Adding trip with data:", newTrip); // Log the trip data
   
     // Open the modal first
     setShowAddModal(true);
+    const errors = validateForm();
+    if (Object.keys(errors).length === 0) {
   
     // Make the POST request to add the new trip
     axios
@@ -218,6 +236,10 @@ const DisplayTrips = () => {
         console.error("Error adding trip:",  err.response ? err.response.data : err.message); // Log the error
         setShowAddModal(false); // Close the modal even if there's an error
       });
+    } else {
+      // Set validation errors to display under the fields
+      setValidationErrors(errors);
+    }
   };
   
 
@@ -465,6 +487,9 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
+                {validationErrors.avilabalPlaces && (
+                  <div className="error">{validationErrors.avilabalPlaces}</div>
+                )}
               </div>
               <div className="form-group">
                 <label>Departure Station:</label>
@@ -475,6 +500,9 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
+                {validationErrors.departuerTime && (
+                  <div className="error">{validationErrors.departuerTime}</div>
+                )}
               </div>
               <div className="form-group">
                 <label>Arrived Station:</label>
@@ -485,6 +513,10 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
+                {validationErrors.destinationTime && (
+                  <div className="error">{validationErrors.destinationTime}</div>
+                )}
+
               </div>
               <div className="form-group">
                 <label>Departure Time:</label>
@@ -574,6 +606,9 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
+                {validationErrors.avilabalPlaces && (
+                  <div className="error">{validationErrors.avilabalPlaces}</div>
+                )}
               </div>
               <div className="form-group">
                 <label>Departure Station:</label>
@@ -604,6 +639,9 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
+                 {validationErrors.departuerTime && (
+                  <div className="error">{validationErrors.departuerTime}</div>
+                )}
               </div>
               <div className="form-group">
                 <label>Arrived Time:</label>
@@ -614,6 +652,9 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
+                {validationErrors.destinationTime && (
+                  <div className="error">{validationErrors.destinationTime}</div>
+                )}
               </div>
               <div className="form-group">
                 <label>Price:</label>
@@ -635,16 +676,6 @@ const DisplayTrips = () => {
                   className="form-control"
                 />
               </div>
-              {/* <div className="form-group">
-                <label>User</label>
-                <input
-                  type="number"
-                  name="user"
-                  value={formData.user}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-              </div> */}
               <div className="form-group">
                 <label>Bus</label>
                 <input
@@ -655,16 +686,6 @@ const DisplayTrips = () => {
                   className="form-control"
                 />
               </div>
-              {/* <div className="form-group">
-                <label>Book</label>
-                <input
-                  type="number"
-                  name="book"
-                  value={formData.book}
-                  onChange={handleChange}
-                  className="form-control"
-                />
-              </div> */}
               <button type="submit" className="btn btn-primary">
                 Save Changes
               </button>
