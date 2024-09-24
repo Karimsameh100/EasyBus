@@ -124,37 +124,36 @@ const DisplayTrips = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const errors = validateForm(formData);
+  
+    const errors = validateForm(formData); // Validate the form data
     if (Object.keys(errors).length === 0) {
-
       const updatedFormData = {
         ...formData,
         company: companyId, 
       };
-    
-    console.log("Form submitted with data:", updatedFormData);
   
-    axios.put(` http://127.0.0.1:8000/selected/trip/${formData.id}`, updatedFormData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        console.log("Updated trip data:", res.data);
-        // Update the trips state with the newly updated trip data
-        setTrips((prevTrips) => 
-            prevTrips.map((trip) => 
-                trip.id === formData.id ? { ...trip, ...res.data } : trip
-            )
-        );
-        setShowEditModal(false);
-        setFormData({});
-      })
-      .catch((err) => console.error("Error updating trip:", err));
+      console.log("Form submitted with data:", updatedFormData);
+      axios.put(`http://127.0.0.1:8000/selected/trip/${formData.id}`, updatedFormData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log("Updated trip data:", res.data);
+          setTrips((prevTrips) => 
+              prevTrips.map((trip) => 
+                  trip.id === formData.id ? { ...trip, ...res.data } : trip
+              )
+          );
+          setShowEditModal(false);
+          setFormData({});
+        })
+        .catch((err) => console.error("Error updating trip:", err));
+    } else {
+      setValidationErrors(errors); // Set validation errors to display under the fields
     }
-    setValidationErrors(errors);
   };
+  
   
   const handleBookingsPageChange = (pageNumber) => {
     setCurrentBookingsPage(pageNumber);
@@ -201,7 +200,7 @@ const DisplayTrips = () => {
     const errors = {};
     const today = new Date().toISOString().split('T')[0];
   
-    const { tripNumber, date: tripDate, avilabalPlaces: availablePlaces, departuerStation: departureStation, destinationStation, departuerTime: departureTime, destinationTime: arrivedTime, price, status, bus } = tripData;
+    const { tripNumber, date: tripDate, avilabalPlaces: avilabalPlaces, departuerStation: departuerStation, destinationStation, departuerTime: departuerTime, destinationTime: arrivedTime, price, status, bus } = tripData;
   
     // Validate tripNumber
     if (!tripNumber || isNaN(tripNumber) || tripNumber <= 0) {
@@ -210,19 +209,19 @@ const DisplayTrips = () => {
   
     // Validate tripDate
     if (!tripDate) {
-      errors.tripDate = "Trip date is required.";
+      errors.date = "Trip date is required.";
     } else if (tripDate < today) {
-      errors.tripDate = "Trip date cannot be in the past.";
+      errors.date = "Trip date cannot be in the past.";
     }
   
     // Validate availablePlaces
-    if (!availablePlaces || isNaN(availablePlaces) || availablePlaces <= 0) {
-      errors.availablePlaces = "Available places must be a positive number.";
+    if (!avilabalPlaces || isNaN(avilabalPlaces) || avilabalPlaces <= 0) {
+      errors.avilabalPlaces = "Available places must be a positive number.";
     }
   
     // Validate departureStation
-    if (!departureStation || typeof departureStation !== 'string' || departureStation.trim() === '' || /\d/.test(departureStation) || departureStation.split(' ').some(word => word.length < 3)) {
-      errors.departureStation = "Departure station must be a non-empty string with each word having more than 3 characters and no numbers.";
+    if (!departuerStation || typeof departuerStation !== 'string' || departuerStation.trim() === '' || /\d/.test(departuerStation) || departuerStation.split(' ').some(word => word.length < 3)) {
+      errors.departuerStation = "Departure station must be a non-empty string with each word having more than 3 characters and no numbers.";
     }
   
     // Validate destinationStation
@@ -231,14 +230,14 @@ const DisplayTrips = () => {
     }
   
     // Validate departureTime
-    if (!departureTime) {
-      errors.departureTime = "Departure time is required.";
+    if (!departuerTime) {
+      errors.departuerTime = "Departure time is required.";
     }
   
     // Validate arrivedTime
     if (!arrivedTime) {
       errors.arrivedTime = "Arrival time is required.";
-    } else if (arrivedTime && departureTime && arrivedTime <= departureTime) {
+    } else if (arrivedTime && departuerTime && arrivedTime <= departuerTime) {
       errors.arrivedTime = "Arrival time must be after departure time.";
     }
   
@@ -248,9 +247,9 @@ const DisplayTrips = () => {
     }
   
     // Validate status (optional but required for edit)
-    if (!status || typeof status !== 'string' || status.trim() === '') {
+/*     if (!status || typeof status !== 'string' || status.trim() === '') {
       errors.status = "Status is required.";
-    }
+    } */
   
     // Validate bus
     if (!bus || isNaN(bus) || bus <= 0) {
@@ -266,45 +265,44 @@ const DisplayTrips = () => {
     event.preventDefault(); // Prevent default form submission behavior
     console.log("Adding trip with data:", newTrip); // Log the trip data
   
-    // Open the modal first
-    setShowAddModal(true);
-    const errors = validateForm();
+    const errors = validateForm(newTrip); // Validate the new trip data
+    console.log("Validation Errors:", errors);
     if (Object.keys(errors).length === 0) {
-
       const tripData = {
         ...newTrip,
         company: companyId, // Add the company ID from the token
       };
   
-    // Make the POST request to add the new trip
-    axios.post("http://localhost:8000/all/trips/", tripData, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => {
-        console.log("Trip added:", res.data);
-        setTrips((prevTrips) => [...prevTrips, res.data]); // Update the trips state with the new trip
-        setNewTrip({
-          tripNumber: "",
-          date: "",
-          avilabalPlaces: "",
-          departuerStation: "",
-          destinationStation: "",
-          departuerTime: "",
-          destinationTime: "",
-          price: "",
-          bus: "",
-        }); // Reset newTrip state
-        setShowAddModal(false); // Close the modal
-      })
-      .catch((err) => {
-        console.error("Error adding trip:",  err.response ? err.response.data : err.message); // Log the error
-        setShowAddModal(false); // Close the modal even if there's an error
-      });
+      // Make the POST request to add the new trip
+      axios.post("http://localhost:8000/all/trips/", tripData, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          console.log("Trip added:", res.data);
+          setTrips((prevTrips) => [...prevTrips, res.data]); // Update the trips state with the new trip
+          setNewTrip({
+            tripNumber: "",
+            date: "",
+            avilabalPlaces: "",
+            departuerStation: "",
+            destinationStation: "",
+            departuerTime: "",
+            destinationTime: "",
+            price: "",
+            bus: "",
+          }); // Reset newTrip state
+          setShowAddModal(false); // Close the modal
+        })
+        .catch((err) => {
+          console.error("Error adding trip:",  err.response ? err.response.data : err.message); // Log the error
+          setShowAddModal(false); // Close the modal even if there's an error
+        });
     } else {
       // Set validation errors to display under the fields
       setValidationErrors(errors);
     }
   };
+  
   
   const confirmDelete = () => {
     axios.delete(`http://127.0.0.1:8000/selected/trip/${selectedTrip.id}`, {
@@ -323,7 +321,7 @@ const DisplayTrips = () => {
 
   return (
     <div className="container mt-2 ">
-      <div className="row" class='main'>
+      <div className="row main" >
 
         <div className="col-md-9 my-2">
           <h2 className="text-center my-3 text-bold ">{view === 'trips' ? `Trips of ${companyName}` : `Bookings for ${companyName}`}</h2>
@@ -711,8 +709,9 @@ const DisplayTrips = () => {
                   value={formData.status}
                   onChange={handleChange}
                   className="form-control"
+                  disabled
                 />
-                 {validationErrors.status && <p className="text-danger">{validationErrors.status}</p>}
+                 {/* {validationErrors.status && <p className="text-danger">{validationErrors.status}</p>} */}
               </div>
               <div className="form-group">
                 <label>Bus</label>
