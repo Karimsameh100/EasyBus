@@ -105,7 +105,7 @@ import { Link } from "react-router-dom";
 import aboutImg from "../logo/about.jpg";
 import img3 from "../logo/Dall1.webp";
 import img1 from "../logo/Dall2.webp";
-import img2 from "../logo/about1.jfif";
+import img2 from "../logo/third.webp";
 import { Button, Form } from "react-bootstrap";
 
 const About = () => {

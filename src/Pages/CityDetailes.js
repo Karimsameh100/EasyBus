@@ -5,6 +5,7 @@ import SearchComponent from "../Componants/Searh";
 import { Reviews } from "../Componants/Reviews/Review";
 import gobus from "../logo/unnamed.png";
 import axios from "axios";
+import { FaRegBookmark, FaHeart } from "react-icons/fa";
 import {
   Modal,
   ModalTitle,
@@ -49,13 +50,13 @@ export function CityDetailes() {
     axios
       .get(`http://localhost:8000/all/trips/`)
       .then((res) => {
-        console.log('API response:', res.data);
+        console.log("API response:", res.data);
         setAllTrips(res.data);
       })
-      .catch((err) => console.error('Error fetching trips:', err));
+      .catch((err) => console.error("Error fetching trips:", err));
   }, [params.id, setEditTrip, setAllTrips]);
 
-  console.log('allTrips:', allTrips);
+  console.log("allTrips:", allTrips);
 
   useEffect(() => {
     axios
@@ -99,7 +100,6 @@ export function CityDetailes() {
   };
 
   // ------------------Favourites-----------END---------------------//
-
 
   const handleChange = (event) => {
     setFormData({
@@ -302,13 +302,8 @@ export function CityDetailes() {
             >
               <h2 className="text-center m-5">Travel with {company.name}</h2>
               <div class="col-sm-6 col-md-4">
-                <img
-                  src={gobus}
-                  className="img-fluid mt-5 "
-                  alt="Image"
-                />
+                <img src={gobus} className="img-fluid mt-5 " alt="Image" />
               </div>
-
             </div>
           ))}
         <div className="table-responsive col-sm-6 col-md-8">
@@ -338,7 +333,7 @@ export function CityDetailes() {
                   <td>{trip.destinationTime}</td>
                   <td>{trip.price}</td>
                   <td>
-                    <button
+                    {/* <button
                       class="btn btn-success btn-sm mx-1"
                       style={{ width: "100%" }}
                       onClick={() =>
@@ -348,6 +343,17 @@ export function CityDetailes() {
                       }
                     >
                       Book
+                    </button> */}
+                    <button
+                      className="btn btn-success btn-sm mx-1"
+                      style={{ width: "100%" }}
+                      onClick={() =>
+                        isLoggedIn
+                          ? handleBookTrip(trip, company)
+                          : setShowLoginModal(true)
+                      }
+                    >
+                      <FaRegBookmark /> Book
                     </button>
                     {/* <button
                       className="btn btn-primary btn-sm"
@@ -369,7 +375,7 @@ export function CityDetailes() {
                     >
                       Delete
                     </button> */}
-                    <button
+                    {/* <button
                       className="btn btn-outline-warning btn-sm mx-1 my-1"
                       style={{ width: "100%" }}
                       onClick={() =>
@@ -379,6 +385,18 @@ export function CityDetailes() {
                       }
                     >
                       Favorites
+                    </button> */}
+                    <button
+                      className="btn btn-outline-warning btn-sm mx-1 my-1"
+                      style={{ width: "100%" }}
+                      onClick={() =>
+                        isLoggedIn
+                          ? handleAddToFavorites(trip, company)
+                          : setShowLoginModal(true)
+                      }
+                    >
+                      <FaHeart />
+                      Liked
                     </button>
                   </td>
                 </tr>
