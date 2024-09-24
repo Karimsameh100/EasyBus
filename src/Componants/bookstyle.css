@@ -15,3 +15,8 @@
     padding: 10px 0px 10px 0px;
     margin: 9px 0px 9px 0px;
   }
+
+
+  .equal-columns th, .equal-columns td {
+    width: 11.11%; /* 100% / 9 columns */
+  }

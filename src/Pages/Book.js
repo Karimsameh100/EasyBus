@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import React from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Form, Button, Modal } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button, Modal, FormGroup } from 'react-bootstrap';
 import "../Componants/bookstyle.css"
 import logo from "../logo/neew llogo.png"
 import axios from 'axios';
@@ -19,7 +19,7 @@ const BookingPage = () => {
     const [discount, setDiscount] = useState(0);
     const [discountAmount, setDiscountAmount] = useState(0);
     const [paymentMethod, setPaymentMethod] = useState('');
-    const [onlinePaymentMethod, setOnlinePaymentMethod] = useState('paypal');
+    const [onlinePaymentMethod, setOnlinePaymentMethod] = useState(false);
     const [agreeToPayDeposit, setAgreeToPayDeposit] = useState(false);
     const [showTicketModal, setShowTicketModal] = useState(false);
     const [bookingData, setBookingData] = useState({});
@@ -31,7 +31,8 @@ const BookingPage = () => {
     const [dropLocation, setDropLocation] = useState('');
     const [userId, setUserId] = useState(1);
     const [paypalAmount, setPaypalAmount] = useState(100);
-    const [bookingID,setBookingId] = useState();
+    const [bookingID, setBookingId] = useState();
+    const [paymentData, setPaymentData] = useState({})
 
 
     useEffect(() => {
@@ -64,7 +65,7 @@ const BookingPage = () => {
     };
 
     const handleOnlinePaymentMethodChange = (e) => {
-        setOnlinePaymentMethod(e.target.id);
+        setOnlinePaymentMethod(e.target.checked);
     };
 
     const handleAgreeToPayDepositChange = (e) => {
@@ -88,83 +89,94 @@ const BookingPage = () => {
     }, [paymentMethod]);
 
     const handleBookNow = () => {
-        if (paymentMethod && (paymentMethod === 'payOnline' && onlinePaymentMethod) || (paymentMethod === 'payCash' && agreeToPayDeposit)) {
-            const tripInfo = {
-                tripNumber: trip.tripNumber,
-                tripDate: trip.tripDate,
-                departureStation: trip.departuerStation,
-                stopStations: trip.destinationStation,
-                departureTime: trip.departuerTime,
-                arrivedTime: trip.destinationTime,
-                tripPrice: trip.price,
-                company: "go bus",
-                userName: userName,
-                totalCost: totalCost,
-                numPlaces: numberOfPlaces,
-            };
-    
-            const newBookedTrips = [...bookedTrips, tripInfo];
-            setBookedTrips(tripInfo);
-    
-            // localStorage.setItem('bookedTrips', JSON.stringify(newBookedTrips));
-            setPaymentMethod('');
-            // setBookingData(tripInfo);
-            setOnlinePaymentMethod('');
-            setAgreeToPayDeposit(false);
-            setShowTicketModal(true)
-    
-            const token = localStorage.getItem('authToken');
-            if (!token) {
-                console.error('No authentication token found');
-                return;
-            }
-    
-            const headers = {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            };
-    
-            axios.get('http://127.0.0.1:8000/currant-user/', { headers })
-                .then((response) => {
-                    const userId = response.data.user_id;
-                    setUserId(userId)
-                    const bookingData = {
-                        time: new Date(),
-                        numberOfPlaces: numberOfPlaces,
-                        totalFare: totalCost,
-                        pickupLocation: pickupLocation,
-                        dropLocation: dropLocation,
-                        user: userId,
-                        trip_id: trip.id,
-                    };
-                    setBookingData(bookingData)
-                    console.log(bookingData);
-    
-                    return new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
+            if (paymentMethod && (paymentMethod === 'payOnline' && onlinePaymentMethod) || (paymentMethod === 'payCash' && agreeToPayDeposit)) {
+                const tripInfo = {
+                    tripNumber: trip.tripNumber,
+                    tripDate: trip.tripDate,
+                    departureStation: trip.departuerStation,
+                    stopStations: trip.destinationStation,
+                    departureTime: trip.departuerTime,
+                    arrivedTime: trip.destinationTime,
+                    tripPrice: trip.price,
+                    company: "go bus",
+                    userName: userName,
+                    totalCost: totalCost,
+                    numPlaces: numberOfPlaces,
+                };
+
+                let newBookedTrips;
+                if (Array.isArray(bookedTrips)) {
+                    newBookedTrips = [...bookedTrips, tripInfo];
+                } else {
+                    newBookedTrips = [tripInfo];
+                }
+
+                setBookedTrips(newBookedTrips);
+
+                // localStorage.setItem('bookedTrips', JSON.stringify(newBookedTrips));
+                setPaymentMethod('');
+                // setBookingData(tripInfo);
+                // setOnlinePaymentMethod('');
+                setAgreeToPayDeposit(false);
+                setShowTicketModal(true)
+
+                const token = localStorage.getItem('authToken');
+                if (!token) {
+                    console.error('No authentication token found');
+                    reject(new Error('No authentication token found'));
+                    return;
+                }
+
+                const headers = {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                };
+
+                axios.get('http://127.0.0.1:8000/currant-user/', { headers })
+                    .then((response) => {
+                        const userId = response.data.user_id;
+                        setUserId(userId)
+                        const bookingData = {
+                            time: new Date(),
+                            numberOfPlaces: numberOfPlaces,
+                            totalFare: totalCost,
+                            pickupLocation: pickupLocation,
+                            dropLocation: dropLocation,
+                            user: userId,
+                            trip_id: trip.id,
+                        };
+                        setBookingData(bookingData)
+                        console.log(bookingData);
+
                         axios.post('http://127.0.0.1:8000/booking/data/', bookingData, {
-                          headers: {
-                            'Authorization': `Bearer ${token}`,
-                            'Content-Type': 'application/json'
-                          }
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            }
                         })
-                          .then((response) => {
-                            const bookingId = response.data.id;
-                            setBookingId(bookingId);
-                            resolve(bookingId); // Resolve the promise with the booking ID
-                          })
-                          .catch((error) => {
-                            console.error(error);
-                            reject(error); // Reject the promise with the error
-                          });
-                      });
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
+                            .then((response) => {
+                                const bookingId = response.data.id;
+                                setBookingId(bookingId);
+                                resolve(bookingId); // Resolve the promise with the booking ID
+                            })
+                            .catch((error) => {
+                                console.error(error);
+                                reject(error); // Reject the promise with the error
+                            });
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        reject(error); // Reject the promise with the error
+                    });
+            } else {
+                reject(new Error('Invalid payment method or deposit'));
+            }
+        });
     };
-    const handelPayment=(bookingId)=>{
-       
+
+    const handelPayment = (bookingId) => {
+
         const token = localStorage.getItem('authToken');
         if (!token) {
             console.error('No authentication token found');
@@ -176,26 +188,55 @@ const BookingPage = () => {
             'Content-Type': 'application/json'
         };
 
-        const paymentData = {
-            date: new Date(),
-            amount: paypalAmount,
-            payment_method: paymentMethod,
-            booking_id : bookingId,
-            trip_id: trip.id,
-            user: userId , // Add the user object with ID
-            trip: trip.id ,
-            booking : bookingId,
-            
-        };
-
-        axios.post('http://127.0.0.1:8000/payments/', paymentData, {headers})
+        axios.get('http://127.0.0.1:8000/currant-user/', { headers })
             .then((response) => {
-                console.log(response.data);
-            })
-            .catch((error) => {
-                console.error(error);
+                const userId = response.data.user_id;
+                setUserId(userId)
+                const paymentData = {
+                    date: new Date(),
+                    amount: paypalAmount,
+                    payment_method: paymentMethod,
+                    booking_id: bookingId,
+                    trip_id: trip.id,
+                    user: userId,
+                    trip: trip.id,
+                    booking: bookingId,
+                }
+                setPaymentData(paymentData)
+                console.log(paymentData);
+
+
+
+
+
+                axios.post('http://127.0.0.1:8000/payments/', paymentData, { headers })
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
             });
     }
+
+    const [paypalLoaded, setPaypalLoaded] = useState(false);
+
+    useEffect(() => {
+        const loadPayPalScript = async () => {
+            try {
+                const paypalScript = await import('@paypal/react-paypal-js');
+                setPaypalLoaded(true);
+            } catch (error) {
+                console.error('Error loading PayPal script:', error);
+            }
+        };
+        loadPayPalScript();
+    }, []);
+
+    if (!paypalLoaded) {
+        return <div>Loading PayPal...</div>;
+    }
+
 
     return (
         <Container>
@@ -205,7 +246,7 @@ const BookingPage = () => {
                     <Card className="shadow-sm">
                         <Card.Header className="text-center">
                             <img src={logo} className="img-fluid mb-3" />
-                            <h2 className="text-center mb-4">Your Trip with {"go bus"}</h2>
+                            <h2 className="text-center mb-4">Your Trip with {company.name}</h2>
                         </Card.Header>
 
                         <Card.Body className="px-4 py-3">
@@ -321,16 +362,12 @@ const BookingPage = () => {
                                 {paymentMethod === 'payOnline' && (
                                     <div className=" p-3">
                                         <h5 className="">Online Payment Methods:</h5>
-                                        <ul className="list-unstyled">
-                                           
-                                            <li>
-                                                <Form.Check type="checkbox" label="PayPal" id="paypal"
-                                                    onChange={(e) => {
-                                                        handleOnlinePaymentMethodChange(e);
-                                                        setOnlinePaymentMethod(e.target.id);
-                                                    }} />
-                                            </li>
-                                        </ul>
+                                        <Form.Group controlId='paypal'>
+                                              <Form.Check type="checkbox" label="PayPal" id="paypal" onChange={ handleOnlinePaymentMethodChange } />
+                                        </Form.Group>
+                                        <p className="fs-5 text-primary">Total that you pay on Paypal is amount: {totalCost}</p>
+
+                                            
                                     </div>
                                 )}
 
@@ -345,46 +382,59 @@ const BookingPage = () => {
                                     </div>
                                 )}
 
-                                {(paymentMethod && (paymentMethod === 'payOnline' && onlinePaymentMethod === 'paypal') || (paymentMethod === 'payCash' && agreeToPayDeposit)) && (
-                                    <PayPalScriptProvider
-                                        src="https://www.paypal.com/sdk/js"
-                                        options={{
-                                            'client-id': 'ASqEJBR1uVuEmIcx5WxO26SQMcW9DKTNy090VaVbCczbnEvsV2Lz5xSV2oc1dIErzoIy8ldjBUZqY4M5',
-                                            currency: "USD",
-                                            intent: 'capture',
-
-                                        }}
-                                        deferLoading={false}
-                                    >
-                                        <PayPalButtons
-                                            amount={Math.round(paypalAmount * 100) / 100}
-                                            currency="USD"
-                                            style={{ layout: 'horizontal' }}
-                                            createOrder={(data, actions) => {
-                                                const paymentIntent = actions.order.create({
-                                                    purchase_units: [
-                                                        {
-                                                            amount: {
-                                                                value: Math.round(paypalAmount * 100) / 100,
-                                                            },
-                                                        },
-                                                    ],
-                                                });
-                                                console.log('Payment intent:', paymentIntent);
-                                                return paymentIntent;
-                                            }}
-                                            onApprove={(data, actions) => {
-                                                const authorization = actions.order.capture({
-                                                    paymentIntentId: data.paymentIntentId,
-                                                });
-                                                console.log('Authorization:', authorization);
-                                                return authorization.then((details) => {
-                                                    handleBookNow().then((bookingId) => {
-                                                        handelPayment(bookingId);
-                                                      });
-                                                });
-                                            }}
-                                        />
+                                {(paymentMethod && (paymentMethod === 'payOnline' && onlinePaymentMethod) || (paymentMethod === 'payCash' && agreeToPayDeposit)) && (
+                                   <PayPalScriptProvider
+                                   src="https://www.paypal.com/sdk/js"
+                                   options={{
+                                       'client-id': 'ASqEJBR1uVuEmIcx5WxO26SQMcW9DKTNy090VaVbCczbnEvsV2Lz5xSV2oc1dIErzoIy8ldjBUZqY4M5',
+                                       currency: "USD",
+                                       intent: 'capture',
+                                   }}
+                                   deferLoading={false}
+                               >
+                                   <PayPalButtons
+                                       amount={Math.round(paypalAmount * 100) / 100}
+                                       currency="USD"
+                                       style={{ layout: 'horizontal' }}
+                                       createOrder={(data, actions) => {
+                                           try {
+                                               const paymentIntent = actions.order.create({
+                                                   purchase_units: [
+                                                       {
+                                                           amount: {
+                                                               value: Math.round(paypalAmount * 100) / 100,
+                                                           },
+                                                       },
+                                                   ],
+                                               });
+                                               console.log('Payment intent:', paymentIntent);
+                                               return paymentIntent;
+                                           } catch (error) {
+                                               console.error('Error creating payment intent:', error);
+                                               // Handle the error
+                                           }
+                                       }}
+                                       onApprove={(data, actions) => {
+                                           try {
+                                               const authorization = actions.order.capture({
+                                                   paymentIntentId: data.paymentIntentId,
+                                               });
+                                               console.log('Authorization:', authorization);
+                                               return authorization.then((details) => {
+                                                   handleBookNow().then((bookingId) => {
+                                                       handelPayment(bookingId);
+                                                   });
+                                               });
+                                           } catch (error) {
+                                               console.error('Error capturing payment:', error);
+                                               // Handle the error
+                                           }
+                                       }}
+                                       onError={(error) => {
+                                           console.error('Error with PayPal payment:', error);
+                                           // Handle the error
+                                       }}
+                                   />
                                     </PayPalScriptProvider>
                                 )}
                             </Form>
@@ -407,7 +457,7 @@ const BookingPage = () => {
                                         <strong>Trip Number:</strong> {trip.tripNumber}
                                     </div>
                                     <div>
-                                        <h4 className='text-end'>{"go bus"}</h4>
+                                        <h4 className='text-end'>{company.name}</h4>
                                         <strong>Trip Date:</strong> {trip.date}
 
                                     </div>
