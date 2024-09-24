@@ -18,6 +18,9 @@ const DisplayTrips = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7; // Adjust this number based on how many items you want per page
   const [view, setView] = useState('trips'); // New state for view toggle
+<<<<<<< HEAD
+  const loggedInCompany = JSON.parse(localStorage.getItem('loggedInCompany'));
+=======
   // State for pagination of bookings
   const [currentBookingsPage, setCurrentBookingsPage] = useState(1);
   const bookingsPerPage = 4; // Adjust this number based on how many items you want per page for bookings
@@ -27,8 +30,12 @@ const DisplayTrips = () => {
   const bookingsStartIndex = (currentBookingsPage - 1) * bookingsPerPage;
   const bookingsEndIndex = bookingsStartIndex + bookingsPerPage;
   const currentBookingsPageItems = userBookings.slice(bookingsStartIndex, bookingsEndIndex);
+<<<<<<< HEAD
   const params = useParams();
   const [editTrip, setEditTrip] = useState(null);
+=======
+>>>>>>> d52f44c3626a95062b8997ce13f6c9ba759feabe
+>>>>>>> tripsOfCompanies
 
     //--------------------------------Add new Trip-------------------------
   const [newTrip, setNewTrip] = useState({
