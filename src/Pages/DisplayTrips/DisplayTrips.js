@@ -53,9 +53,6 @@ const DisplayTrips = () => {
       });
     };
   
-    //---------------------------------------------------------------------
-  
-
   const token = localStorage.getItem('authToken');
   const decodedToken = jwtDecode(token); // Decode token to get company info
   console.log(decodedToken)
@@ -64,15 +61,12 @@ const DisplayTrips = () => {
 
     
   useEffect(() => {
-
-     
       if (!token) {
         console.warn('No token found');
         return;
       }
 
-      axios
-      .get(`http://127.0.0.1:8000/mixinuser_pk/${companyId}?user_type=company`, {
+      axios.get(`http://127.0.0.1:8000/mixinuser_pk/${companyId}?user_type=company`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -129,22 +123,36 @@ const DisplayTrips = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form submitted with data:", formData);
+
+    const errors = validateForm(formData);
+    if (Object.keys(errors).length === 0) {
+
+      const updatedFormData = {
+        ...formData,
+        company: companyId, 
+      };
+    
+    console.log("Form submitted with data:", updatedFormData);
   
-    axios
-      .put(` http://127.0.0.1:8000/selected/trip/${formData.id}`, formData, {
+    axios.put(` http://127.0.0.1:8000/selected/trip/${formData.id}`, updatedFormData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
-        setTrips((prevTrips) =>
-          prevTrips.map((trip) => (trip.id === formData.id ? res.data : trip))
+        console.log("Updated trip data:", res.data);
+        // Update the trips state with the newly updated trip data
+        setTrips((prevTrips) => 
+            prevTrips.map((trip) => 
+                trip.id === formData.id ? { ...trip, ...res.data } : trip
+            )
         );
         setShowEditModal(false);
         setFormData({});
       })
       .catch((err) => console.error("Error updating trip:", err));
+    }
+    setValidationErrors(errors);
   };
   
   const handleBookingsPageChange = (pageNumber) => {
@@ -188,19 +196,70 @@ const DisplayTrips = () => {
     setShowDeleteModal(true);
   };
 
-  const validateForm = () => {
+  const validateForm = (tripData) => {
     const errors = {};
-
-    if (new Date(`1970-01-01T${newTrip.departuerTime}:00`) >= new Date(`1970-01-01T${newTrip.destinationTime}:00`)) {
-      errors.departuerTime = 'Departure time must be before destination time';
+    const today = new Date().toISOString().split('T')[0];
+  
+    const { tripNumber, date: tripDate, avilabalPlaces: availablePlaces, departuerStation: departureStation, destinationStation, departuerTime: departureTime, destinationTime: arrivedTime, price, status, bus } = tripData;
+  
+    // Validate tripNumber
+    if (!tripNumber || isNaN(tripNumber) || tripNumber <= 0) {
+      errors.tripNumber = "Trip number must be a positive number.";
     }
-
-    if (!newTrip.avilabalPlaces || isNaN(newTrip.avilabalPlaces) || newTrip.avilabalPlaces <= 0) {
-      errors.avilabalPlaces = 'Number of available places must be a positive integer';
+  
+    // Validate tripDate
+    if (!tripDate) {
+      errors.tripDate = "Trip date is required.";
+    } else if (tripDate < today) {
+      errors.tripDate = "Trip date cannot be in the past.";
     }
-
+  
+    // Validate availablePlaces
+    if (!availablePlaces || isNaN(availablePlaces) || availablePlaces <= 0) {
+      errors.availablePlaces = "Available places must be a positive number.";
+    }
+  
+    // Validate departureStation
+    if (!departureStation || typeof departureStation !== 'string' || departureStation.trim() === '' || /\d/.test(departureStation) || departureStation.split(' ').some(word => word.length < 3)) {
+      errors.departureStation = "Departure station must be a non-empty string with each word having more than 3 characters and no numbers.";
+    }
+  
+    // Validate destinationStation
+    if (!destinationStation || typeof destinationStation !== 'string' || destinationStation.trim() === '') {
+      errors.destinationStation = "Destination station is required.";
+    }
+  
+    // Validate departureTime
+    if (!departureTime) {
+      errors.departureTime = "Departure time is required.";
+    }
+  
+    // Validate arrivedTime
+    if (!arrivedTime) {
+      errors.arrivedTime = "Arrival time is required.";
+    } else if (arrivedTime && departureTime && arrivedTime <= departureTime) {
+      errors.arrivedTime = "Arrival time must be after departure time.";
+    }
+  
+    // Validate price
+    if (!price || isNaN(price) || price <= 0) {
+      errors.price = "Price must be a positive number.";
+    }
+  
+    // Validate status (optional but required for edit)
+    if (!status || typeof status !== 'string' || status.trim() === '') {
+      errors.status = "Status is required.";
+    }
+  
+    // Validate bus
+    if (!bus || isNaN(bus) || bus <= 0) {
+      errors.bus = "Bus must be a valid number.";
+    }
+  
     return errors;
   };
+  
+  
 
   const handleAddTrip = (event) => {
     event.preventDefault(); // Prevent default form submission behavior
@@ -210,10 +269,14 @@ const DisplayTrips = () => {
     setShowAddModal(true);
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
+
+      const tripData = {
+        ...newTrip,
+        company: companyId, // Add the company ID from the token
+      };
   
     // Make the POST request to add the new trip
-    axios
-      .post("http://localhost:8000/all/trips/", newTrip, {
+    axios.post("http://localhost:8000/all/trips/", tripData, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -242,36 +305,8 @@ const DisplayTrips = () => {
     }
   };
   
-
-  const handleEditTrip = (trip, company) => {
-    setEditTrip(trip);
-   /*  setCompany(company); */
-    setFormData({
-      tripNumber: trip.tripNumber,
-      date: trip.date,
-      avilabalPlaces: trip.avilabalPlaces,
-      departuerStation: trip.departuerStation,
-      destinationStation: trip.destinationStation,
-      departuerTime: trip.departuerTime,
-      destinationTime: trip.destinationTime,
-      status: trip.status,
-      price: trip.price,
-      user: trip.user,
-      bus: trip.bus,
-      book: trip.book,
-    });
-    setShowEditModal(true);
-  };
-
-  const handleDeleteTrip = (trip, company) => {
-    setEditTrip(trip);
-    /* setCompany(company); */
-    setShowDeleteModal(true);
-  };
-
   const confirmDelete = () => {
-    axios
-      .delete(`http://127.0.0.1:8000/selected/trip/${selectedTrip.id}`, {
+    axios.delete(`http://127.0.0.1:8000/selected/trip/${selectedTrip.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => {
@@ -291,26 +326,23 @@ const DisplayTrips = () => {
 
         <div className="col-md-9 my-2">
           <h2 className="text-center my-3 text-bold ">{view === 'trips' ? `Trips of ${companyName}` : `Bookings for ${companyName}`}</h2>
-          <ul class="nav justify-content-center py-2">
-            <li class="nav-item">
+          <ul className="nav justify-content-center py-2">
+            <li className="nav-item">
               <button
                 className={`list-group-item list-group-item-action p-2 ${view === 'trips' ? 'active' : ''}`}
                 onClick={() => setView('trips')}
               >
                 List Trips
-              </button>          </li>
-            <li class="nav-item">
+              </button></li>
+            <li className="nav-item">
               <button
                 className={`list-group-item list-group-item-action  p-2  ${view === 'bookings' ? 'active' : ''}`}
                 onClick={() => setView('bookings')}
               >
                 List Bookings
-              </button>          </li>
-            <li class="nav-item">
-              <button className="list-group-item list-group-item-action p-2" onClick={() => setShowAddModal(true)}>Add Trip</button>
-            </li>
-
+              </button></li>
           </ul>
+
           {view === 'trips' && (
             <>
               {currentPageItems.length ? (
@@ -357,6 +389,12 @@ const DisplayTrips = () => {
               ) : (
                 <p className="text-center">No trips found for this company.</p>
               )}
+              {/* Add Trip Button Section */}
+              <div className="text-end mt-3 mb-3">
+                <span>Want to add a new trip ? </span>
+                <button className="btn btn-primary" onClick={() => setShowAddModal(true)}>Add Trip</button>
+              </div>
+                  
               <nav aria-label="Page navigation example">
                 <ul className="pagination justify-content-center">
                   <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
@@ -377,8 +415,8 @@ const DisplayTrips = () => {
           {view === 'bookings' && (
             <>
               {currentBookingsPageItems.length ? (
-                <div className="table-responsive col-sm-6 col-md-12">
-                  <table className="table table-striped">
+                <div className="table-responsive">
+                  <table className="table table-striped table-bordered w-100">
                     <thead>
                       <tr>
                         <th>Trip Number</th>
@@ -421,6 +459,7 @@ const DisplayTrips = () => {
                       ))}
                     </tbody>
                   </table>
+
                   {/* Pagination Controls for Bookings */}
                   <nav aria-label="Bookings page navigation example">
                     <ul className="pagination justify-content-center">
@@ -467,6 +506,7 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
+                {validationErrors.tripNumber && <p className="text-danger">{validationErrors.tripNumber}</p>}
               </div>
               <div className="form-group">
                 <label>Trip Date:</label>
@@ -477,6 +517,7 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
+                {validationErrors.date && <p className="text-danger">{validationErrors.date}</p>}
               </div>
               <div className="form-group">
                 <label>Available Places:</label>
@@ -487,9 +528,7 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-                {validationErrors.avilabalPlaces && (
-                  <div className="error">{validationErrors.avilabalPlaces}</div>
-                )}
+                {validationErrors.avilabalPlaces && <p className="text-danger">{validationErrors.avilabalPlaces}</p>}
               </div>
               <div className="form-group">
                 <label>Departure Station:</label>
@@ -500,9 +539,7 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-                {validationErrors.departuerTime && (
-                  <div className="error">{validationErrors.departuerTime}</div>
-                )}
+                {validationErrors.departuerStation && <p className="text-danger">{validationErrors.departuerStation}</p>}
               </div>
               <div className="form-group">
                 <label>Arrived Station:</label>
@@ -513,10 +550,7 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-                {validationErrors.destinationTime && (
-                  <div className="error">{validationErrors.destinationTime}</div>
-                )}
-
+                {validationErrors.destinationStation && <p className="text-danger">{validationErrors.destinationStation}</p>}
               </div>
               <div className="form-group">
                 <label>Departure Time:</label>
@@ -527,6 +561,7 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
+                {validationErrors.departuerTime && <p className="text-danger">{validationErrors.departuerTime}</p>}
               </div>
               <div className="form-group">
                 <label>Arrived Time:</label>
@@ -537,6 +572,7 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
+                {validationErrors.destinationTime && <p className="text-danger">{validationErrors.destinationTime}</p>}
               </div>
               <div className="form-group">
                 <label>Price:</label>
@@ -547,6 +583,7 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
+                 {validationErrors.price && <p className="text-danger">{validationErrors.price}</p>}
               </div>
               <div className="form-group">
                 <label>Bus</label>
@@ -586,6 +623,7 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
+                {validationErrors.tripNumber && <p className="text-danger">{validationErrors.tripNumber}</p>}
               </div>
               <div className="form-group">
                 <label>Trip Date:</label>
@@ -596,6 +634,7 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
+                 {validationErrors.date && <p className="text-danger">{validationErrors.date}</p>}
               </div>
               <div className="form-group">
                 <label>Available Places:</label>
@@ -606,9 +645,7 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
-                {validationErrors.avilabalPlaces && (
-                  <div className="error">{validationErrors.avilabalPlaces}</div>
-                )}
+                 {validationErrors.avilabalPlaces && <p className="text-danger">{validationErrors.avilabalPlaces}</p>}
               </div>
               <div className="form-group">
                 <label>Departure Station:</label>
@@ -619,6 +656,7 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
+                 {validationErrors.departuerStation && <p className="text-danger">{validationErrors.departuerStation}</p>}
               </div>
               <div className="form-group">
                 <label>Arrived Station:</label>
@@ -629,6 +667,7 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
+                 {validationErrors.destinationStation && <p className="text-danger">{validationErrors.destinationStation}</p>}
               </div>
               <div className="form-group">
                 <label>Departure Time:</label>
@@ -639,9 +678,7 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
-                 {validationErrors.departuerTime && (
-                  <div className="error">{validationErrors.departuerTime}</div>
-                )}
+                 {validationErrors.departuerTime && <p className="text-danger">{validationErrors.departuerTime}</p>}
               </div>
               <div className="form-group">
                 <label>Arrived Time:</label>
@@ -652,9 +689,7 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
-                {validationErrors.destinationTime && (
-                  <div className="error">{validationErrors.destinationTime}</div>
-                )}
+                 {validationErrors.destinationTime && <p className="text-danger">{validationErrors.destinationTime}</p>}
               </div>
               <div className="form-group">
                 <label>Price:</label>
@@ -665,6 +700,7 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
+                 {validationErrors.price && <p className="text-danger">{validationErrors.price}</p>}
               </div>
               <div className="form-group">
                 <label>Status</label>
@@ -675,6 +711,7 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
+                 {validationErrors.status && <p className="text-danger">{validationErrors.status}</p>}
               </div>
               <div className="form-group">
                 <label>Bus</label>
@@ -685,6 +722,7 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
+                 {validationErrors.bus && <p className="text-danger">{validationErrors.bus}</p>}
               </div>
               <button type="submit" className="btn btn-primary">
                 Save Changes
