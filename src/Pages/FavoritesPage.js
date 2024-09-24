@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from "react";
 
 export function FavoritesPage() {
@@ -15,8 +17,8 @@ export function FavoritesPage() {
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
 
-    // Dispatch a storage event to notify other components
-    window.dispatchEvent(new Event("storage"));
+    // Dispatch a custom event to notify the NavBar component
+    window.dispatchEvent(new CustomEvent("favoritesUpdated"));
   };
 
   return (
@@ -37,7 +39,6 @@ export function FavoritesPage() {
                 <th>Go In</th>
                 <th>Arrive At</th>
                 <th>Price</th>
-                <th>Company Name</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -45,14 +46,13 @@ export function FavoritesPage() {
               {favorites.map((trip, index) => (
                 <tr key={index}>
                   <td>{trip.tripNumber}</td>
-                  <td>{trip.tripDate}</td>
-                  <td>{trip.availablePlaces}</td>
-                  <td>{trip.departureStation}</td>
-                  <td>{trip.stopStations}</td>
-                  <td>{trip.departureTime}</td>
-                  <td>{trip.arrivedTime}</td>
+                  <td>{trip.date}</td>
+                  <td>{trip.avilabalPlaces}</td>
+                  <td>{trip.departuerStation}</td>
+                  <td>{trip.destinationStation}</td>
+                  <td>{trip.departuerTime}</td>
+                  <td>{trip.destinationTime}</td>
                   <td>{trip.price}</td>
-                  <td>{trip.companyName}</td>
                   <td>
                     <button
                       className="btn btn-danger btn-sm"
@@ -70,5 +70,8 @@ export function FavoritesPage() {
     </div>
   );
 }
+
+
+
 
 export default FavoritesPage;
