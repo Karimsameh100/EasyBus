@@ -10,7 +10,7 @@ import axios from 'axios';
 const BookingPage = () => {
     const location = useLocation();
     const trip = location.state?.trip;
-    const company = location.state.company;
+    const company = location.state.company || {};
 
     const [showModal, setShowModal] = useState(false);
     const [totalCost, setTotalCost] = useState(0);
@@ -32,6 +32,7 @@ const BookingPage = () => {
     const [userId, setUserId] = useState(1);
     const [paypalAmount, setPaypalAmount] = useState(100);
     const [bookingID,setBookingId] = useState();
+
 
     useEffect(() => {
         const tripPrice = parseFloat(trip.price.replace(/[^\d\.]/g, '')); // extract numeric value from string
@@ -96,72 +97,72 @@ const BookingPage = () => {
                 departureTime: trip.departuerTime,
                 arrivedTime: trip.destinationTime,
                 tripPrice: trip.price,
-                company: company.name,
+                company: "go bus",
                 userName: userName,
                 totalCost: totalCost,
                 numPlaces: numberOfPlaces,
             };
-
+    
             const newBookedTrips = [...bookedTrips, tripInfo];
-            setBookedTrips(newBookedTrips);
-
+            setBookedTrips(tripInfo);
+    
             // localStorage.setItem('bookedTrips', JSON.stringify(newBookedTrips));
             setPaymentMethod('');
-            setBookingData(tripInfo);
+            // setBookingData(tripInfo);
             setOnlinePaymentMethod('');
             setAgreeToPayDeposit(false);
             setShowTicketModal(true)
-
+    
             const token = localStorage.getItem('authToken');
             if (!token) {
                 console.error('No authentication token found');
                 return;
             }
-
+    
             const headers = {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             };
-
+    
             axios.get('http://127.0.0.1:8000/currant-user/', { headers })
                 .then((response) => {
-                    setUserId(response.data.user_id);
+                    const userId = response.data.user_id;
+                    setUserId(userId)
+                    const bookingData = {
+                        time: new Date(),
+                        numberOfPlaces: numberOfPlaces,
+                        totalFare: totalCost,
+                        pickupLocation: pickupLocation,
+                        dropLocation: dropLocation,
+                        user: userId,
+                        trip_id: trip.id,
+                    };
+                    setBookingData(bookingData)
+                    console.log(bookingData);
+    
+                    return new Promise((resolve, reject) => {
+                        axios.post('http://127.0.0.1:8000/booking/data/', bookingData, {
+                          headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                          }
+                        })
+                          .then((response) => {
+                            const bookingId = response.data.id;
+                            setBookingId(bookingId);
+                            resolve(bookingId); // Resolve the promise with the booking ID
+                          })
+                          .catch((error) => {
+                            console.error(error);
+                            reject(error); // Reject the promise with the error
+                          });
+                      });
                 })
                 .catch((error) => {
                     console.error(error);
                 });
-
-            const bookingData = {
-                time: new Date(),
-                numberOfPlaces: numberOfPlaces,
-                totalFare: totalCost,
-                pickupLocation: pickupLocation,
-                dropLocation: dropLocation,
-                user: userId,
-                trip_id: trip.id,
-            };
-
-            return new Promise((resolve, reject) => {
-                axios.post('http://127.0.0.1:8000/booking/data/', bookingData, {
-                  headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                  }
-                })
-                  .then((response) => {
-                    const bookingId = response.data.id;
-                    setBookingId(bookingId);
-                    resolve(bookingId); // Resolve the promise with the booking ID
-                  })
-                  .catch((error) => {
-                    console.error(error);
-                    reject(error); // Reject the promise with the error
-                  });
-              });
-            }
-          
+        }
     };
-
     const handelPayment=(bookingId)=>{
        
         const token = localStorage.getItem('authToken');
@@ -180,7 +181,6 @@ const BookingPage = () => {
             amount: paypalAmount,
             payment_method: paymentMethod,
             booking_id : bookingId,
-            user: userId,
             trip_id: trip.id,
             user: userId , // Add the user object with ID
             trip: trip.id ,
@@ -352,6 +352,7 @@ const BookingPage = () => {
                                             'client-id': 'ASqEJBR1uVuEmIcx5WxO26SQMcW9DKTNy090VaVbCczbnEvsV2Lz5xSV2oc1dIErzoIy8ldjBUZqY4M5',
                                             currency: "USD",
                                             intent: 'capture',
+
                                         }}
                                         deferLoading={false}
                                     >
@@ -403,11 +404,11 @@ const BookingPage = () => {
                                 <div className="ticket-header d-flex justify-content-between">
                                     <div>
                                         <h4>Mr/Ms.{userName}</h4>
-                                        <strong>Trip Number:</strong> {bookingData.tripNumber}
+                                        <strong>Trip Number:</strong> {trip.tripNumber}
                                     </div>
                                     <div>
                                         <h4 className='text-end'>{"go bus"}</h4>
-                                        <strong>Trip Date:</strong> {bookingData.tripDate}
+                                        <strong>Trip Date:</strong> {trip.date}
 
                                     </div>
                                 </div>
@@ -416,27 +417,31 @@ const BookingPage = () => {
                                     <ul className="list-unstyled">
                                         <li className="d-flex justify-content-between">
                                             <strong className="font-weight-bold fs-5">Departure Station:</strong>
-                                            <span className='fs-5'>{bookingData.departuerStation}</span>
+                                            <span className='fs-5'>{bookingData.pickupLocation}</span>
                                         </li>
                                         <li className="d-flex justify-content-between">
                                             <strong className="font-weight-bold fs-5">Stop Stations:</strong>
-                                            <span className='fs-5'>{bookingData.destinationStation}</span>
+                                            <span className='fs-5'>{bookingData.dropLocation}</span>
                                         </li>
                                         <li className="d-flex justify-content-between">
                                             <strong className="font-weight-bold fs-5">Departure Time:</strong>
-                                            <span className='fs-5'>{bookingData.departuerTime}</span>
+                                            <span className='fs-5'>{trip.departuerTime}</span>
                                         </li>
                                         <li className="d-flex justify-content-between">
                                             <strong className="font-weight-bold fs-5">Arrival Time:</strong>
-                                            <span className='fs-5'>{bookingData.destinationTime}</span>
+                                            <span className='fs-5'>{trip.destinationTime}</span>
                                         </li>
                                         <li className="d-flex justify-content-between">
                                             <strong className="font-weight-bold fs-5">Number of places:</strong>
-                                            <span className='fs-5'>{bookingData.numPlaces}</span>
+                                            <span className='fs-5'>{bookedTrips.numPlaces}</span>
+                                        </li>
+                                        <li className="d-flex justify-content-between">
+                                            <strong className="font-weight-bold fs-5">Amount you pay:</strong>
+                                            <span className='fs-5'>{paypalAmount}</span>
                                         </li>
                                         <li className="d-flex justify-content-between">
                                             <strong className="font-weight-bold fs-5">Trip Cost:</strong>
-                                            <span className='fs-5'>{bookingData.totalCost}</span>
+                                            <span className='fs-5'>{bookedTrips.totalCost}</span>
                                         </li>
                                     </ul>
                                 </div>
