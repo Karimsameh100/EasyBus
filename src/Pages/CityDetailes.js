@@ -1,4 +1,4 @@
-      
+
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import SearchComponent from "../Componants/Searh";
@@ -6,6 +6,7 @@ import { Reviews } from "../Componants/Reviews/Review";
 import gobus from "../logo/unnamed.png";
 import axios from "axios";
 import { FaRegBookmark, FaHeart } from "react-icons/fa";
+import "../Componants/bookstyle.css"
 import {
   Modal,
   ModalTitle,
@@ -34,14 +35,13 @@ export function CityDetailes() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [formData, setFormData] = useState({}); // Initialize formData state
   const [editTrip, setEditTrip] = useState(null); // Initialize editTrip state
-  const [company, setCompany] = useState(null); // Initialize company state
   const [showModal, setShowModal] = useState(false);
   const [reviewToDelete, setReviewToDelete] = useState(null);
   const [showReviewForm, setShowReviewForm] = useState(false); // State to control the ReviewForm modal
   const [editReviewId, setEditReviewId] = useState(null); // State to control edit mode
   const [favorites, setFavorites] = useState([]);
 
-  
+
   // ------------------Favourites-----------START---------------------//
   useEffect(() => {
     axios
@@ -66,9 +66,30 @@ export function CityDetailes() {
     }
 
   }, [params.id, setAllTrips, setEditTrip]);
+
+  useEffect(() => {
+    axios
+      .get('http://127.0.0.1:8000/register/company/')
+      .then(response => {
+        const cityName = city.city;
+        const filteredCompanies = response.data.filter(company => {
+          const trips = company.company_trips.filter(trip => {
+            return trip.departuerStation == cityName || trip.destinationStation == cityName;
+          });
+          return trips.length > 0;
+        });
+        setCompanies(filteredCompanies);
+      })
+      .catch(error => console.error(error));
+  }, [params.id]);
+
+  console.log(companiess)
+
+
+
   const handleAddToFavorites = (trip) => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const newFavorite = { ...trip};
+    const newFavorite = { ...trip };
 
     storedFavorites.push(newFavorite);
     localStorage.setItem("favorites", JSON.stringify(storedFavorites));
@@ -161,7 +182,7 @@ export function CityDetailes() {
   };
 
   if (!city) {
-    return <div>Loading...</div>;
+    return <div className="text-center fs-2 text-bg-primary h-75">Loading...</div>;
   }
 
   const confirmDeleteReview = (reviewId) => {
@@ -274,126 +295,77 @@ export function CityDetailes() {
         {/* Display the updated favorites count */}
       </div>
       <div class="container-fluid">
-        {city &&
-          city.companies.map((company) => (
-            <div
-              key={company.id}
-              class="row d-flex justify-content-center mb-5"
-            >
-              <h2 className="text-center m-5">Travel with {company.name}</h2>
-              <div class="col-sm-6 col-md-4">
-                <img src={gobus} className="img-fluid mt-5 " alt="Image" />
-              </div>
+        {companiess && companiess.map((company) => (
+          <div
+            key={company.id}
+            class="row d-flex justify-content-center mb-5"
+          >
+            <h2 className="text-center m-5">Travel with {company.name}</h2>
+            <div class="col-sm-6 col-md-4">
+              <img src={company.image} className="img-fluid mt-5 " alt="Image" />
             </div>
-          ))}
-        <div className="table-responsive col-sm-6 col-md-8">
-          <table className="table table-striped table-bordered-bold">
-            <thead>
-              <tr>
-                <th>Trip Number</th>
-                <th>Trip Date</th>
-                <th>Available Places</th>
-                <th>Departure Station</th>
-                <th>Stop Stations</th>
-                <th>Go In</th>
-                <th>Arrive At</th>
-                <th>Price</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allTrips.map((trip) => (
-                <tr key={trip.tripNumber}>
-                  <td>{trip.tripNumber}</td>
-                  <td>{trip.date}</td>
-                  <td>{trip.avilabalPlaces}</td>
-                  <td>{trip.departuerStation}</td>
-                  <td>{trip.destinationStation}</td>
-                  <td>{trip.departuerTime}</td>
-                  <td>{trip.destinationTime}</td>
-                  <td>{trip.price}</td>
-                  <td>
-                    {/* <button
-                      class="btn btn-success btn-sm mx-1"
-                      style={{ width: "100%" }}
-                      onClick={() =>
-                        isLoggedIn
-                          ? handleBookTrip(trip, company)
-                          : setShowLoginModal(true)
-                      }
-                    >
-                      Book
-                    </button> */}
-                    <button
-                      className="btn btn-success btn-sm mx-1"
-                      style={{ width: "100%" }}
-                      onClick={() =>
-                        isLoggedIn
-                          ? handleBookTrip(trip, company)
-                          : setShowLoginModal(true)
-                      }
-                    >
-                      <FaRegBookmark /> Book
-                    </button>
-                    {/* <button
-                      className="btn btn-primary btn-sm"
-                      style={{ width: "45%" }}
-                      onClick={() => {
-                        handleEditTrip(trip, company);
-                        setShowEditModal(true);
-                      }}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="btn btn-danger btn-sm mx-1 "
-                      style={{ width: "47%" }}
-                      onClick={() => {
-                        handleDeleteTrip(trip, company);
-                        setShowDeleteModal(true);
-                      }}
-                    >
-                      Delete
-                    </button> */}
-                    {/* <button
-                      className="btn btn-outline-warning btn-sm mx-1 my-1"
-                      style={{ width: "100%" }}
-                      onClick={() =>
-                        isLoggedIn
-                          ? handleAddToFavorites(trip, company)
-                          : setShowLoginModal(true)
-                      }
-                    >
-                      Favorites
-                    </button> */}
-                    <button
-                      className="btn btn-outline-warning btn-sm mx-1 my-1"
-                      style={{ width: "100%" }}
-                      onClick={() =>
-                        isLoggedIn
-                          ? handleAddToFavorites(trip, company)
-                          : setShowLoginModal(true)
-                      }
-                    >
-                      <FaHeart />
-                      Liked
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {/*   <button
-                  className="btn btn-md btn-success  w-100 fs-3 my-2"
-                  onClick={() => {
-                    setShowAddModal(true);
-                  }}
-                >
-                  {" "}
-                  <b>+</b>{" "}
-                </button> */}
-        </div>
+            <div className="table-responsive col-sm-6 col-md-8">
+              <table className="table table-striped table-bordered-bold w-100">
+                <thead>
+                  <tr>
+                    <th>Trip Number</th>
+                    <th>Trip Date</th>
+                    <th>Available Places</th>
+                    <th>Departure Station</th>
+                    <th>Stop Stations</th>
+                    <th>Go In</th>
+                    <th>Arrive At</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {company.company_trips.filter(trip => {
+                    return trip.departuerStation === city.city || trip.destinationStation === city.city;
+                  }).map(trip => (
+                    <tr key={trip.id}>
+                      <td>{trip.tripNumber}</td>
+                      <td>{trip.date}</td>
+                      <td>{trip.avilabalPlaces}</td>
+                      <td>{trip.departuerStation}</td>
+                      <td>{trip.destinationStation}</td>
+                      <td>{trip.departuerTime}</td>
+                      <td>{trip.destinationTime}</td>
+                      <td>{trip.price}</td>
+                      <td>
+                        <button
+                          className="btn btn-success btn-sm mx-1"
+                          style={{ width: "100%" }}
+                          onClick={() =>
+                            isLoggedIn
+                              ? handleBookTrip(trip, company)
+                              : setShowLoginModal(true)
+                          }
+                        >
+                          <FaRegBookmark /> Book
+                        </button>
+                        <button
+                          className="btn btn-outline-warning btn-sm mx-1 my-1"
+                          style={{ width: "100%" }}
+                          onClick={() =>
+                            isLoggedIn
+                              ? handleAddToFavorites(trip, company)
+                              : setShowLoginModal(true)
+                          }
+                        >
+                          <FaHeart />
+                          Liked
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))}
       </div>
+
       <section className="bg-light py-3 py-md-5">
         <div className="container">
           <div className="row gy-5 gy-lg-0 align-items-center">
