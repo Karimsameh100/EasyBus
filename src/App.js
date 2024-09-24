@@ -49,11 +49,7 @@ function App() {
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/listtrips" exact element={<TripList />} />
-        <Route
-          path="/CompanyLogin"
-          exact
-          element={<CompanyLogin setLoggedIn={setLoggedIn} />}
-        />
+        <Route path="/CompanyLogin" exact element={<CompanyLogin setLoggedIn={setLoggedIn} />}/>
         <Route path="/City/:id" exact element={<CityDetailes />} />
         {/* <CityDetailes addToFavorites={addToFavorites} /> */}
         {/* <FavoritesPage favorites={favorites} removeFromFavorites={removeFromFavorites} /> */}
