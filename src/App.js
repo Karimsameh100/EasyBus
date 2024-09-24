@@ -1,6 +1,3 @@
-
-
-
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,28 +19,27 @@ import About from "./Pages/About";
 import UserProfile from "./Pages/UserProfile.js";
 import AddTrip from "./Pages/addtrip.js";
 import SearchResults from "./Pages/SearchPage.js";
-import FavoritesPage from './Pages/FavoritesPage.js'
+import FavoritesPage from "./Pages/FavoritesPage.js";
 import BookingPage from "./Pages/Book.js";
 import CompanyLogin from "./Pages/CompanyLogin.js";
 import DisplayTrips from "./Pages/DisplayTrips/DisplayTrips.js";
 import TripTrackLogin from "./Pages/TripTrackLogin.js";
 import Login1 from "./Pages/login1.js";
+import AdminDashboard from "./Pages/AdminDashboard";
 import PrivateRoutes from "./Componants/PrivateRoutes.js";
 
 function App() {
-  
-
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    const storedCompany = JSON.parse(localStorage.getItem('loggedInCompany'));
+    const storedCompany = JSON.parse(localStorage.getItem("loggedInCompany"));
     if (storedCompany) {
       setLoggedIn(true);
     }
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('loggedInCompany');
+    localStorage.removeItem("loggedInCompany");
     setLoggedIn(false);
   };
 
@@ -53,8 +49,12 @@ function App() {
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/listtrips" exact element={<TripList />} />
-        <Route path="/CompanyLogin" exact element={<CompanyLogin setLoggedIn={setLoggedIn} />} />
-        <Route path="/City/:id"  exact element={<CityDetailes />} />
+        <Route
+          path="/CompanyLogin"
+          exact
+          element={<CompanyLogin setLoggedIn={setLoggedIn} />}
+        />
+        <Route path="/City/:id" exact element={<CityDetailes />} />
         {/* <CityDetailes addToFavorites={addToFavorites} /> */}
         {/* <FavoritesPage favorites={favorites} removeFromFavorites={removeFromFavorites} /> */}
         {/* <Route path="/Login" exact element={<Login />} /> */}
@@ -79,6 +79,7 @@ function App() {
           <Route path="/AddTrip" exact element={<AddTrip />} />
           <Route path="/CompanyManag" exact element={<CompanyManagement />} />
           <Route path="/search-results" exact element={<SearchResults />} />
+          <Route path="/admin-dashboard" exact element={<AdminDashboard />} />
         </Route>
 
       </Routes>

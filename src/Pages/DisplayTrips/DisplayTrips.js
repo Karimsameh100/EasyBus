@@ -18,6 +18,7 @@ const DisplayTrips = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7; // Adjust this number based on how many items you want per page
   const [view, setView] = useState('trips'); // New state for view toggle
+
   // State for pagination of bookings
   const [currentBookingsPage, setCurrentBookingsPage] = useState(1);
   const bookingsPerPage = 4; // Adjust this number based on how many items you want per page for bookings
