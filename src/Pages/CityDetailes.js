@@ -41,10 +41,7 @@ export function CityDetailes() {
   const [editReviewId, setEditReviewId] = useState(null); // State to control edit mode
   const [favorites, setFavorites] = useState([]);
 
-<<<<<<< HEAD
-=======
   
->>>>>>> tripsOfCompanies
   // ------------------Favourites-----------START---------------------//
   useEffect(() => {
     axios
@@ -61,35 +58,18 @@ export function CityDetailes() {
   useEffect(() => {
     axios
       .get(`http://localhost:8000/cities/${params.id}/`)
-<<<<<<< HEAD
-      .then((res) => {
-        console.log("resssssss:", res.data);
-        setCity(res.data);
-      })
-=======
       .then((res) => { setCity(res.data); })
->>>>>>> tripsOfCompanies
       .catch((err) => console.error("Error fetching city:", err));
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (isLoggedIn === "true") {
       setIsLoggedIn(true);
     }
 
-<<<<<<< HEAD
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites);
-  }, [params.id, setAllTrips, setEditTrip]);
-
-  const handleAddToFavorites = (trip, company) => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const newFavorite = { ...trip, companyName: company.name };
-=======
   }, [params.id, setAllTrips, setEditTrip]);
   const handleAddToFavorites = (trip) => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const newFavorite = { ...trip};
 
->>>>>>> tripsOfCompanies
     storedFavorites.push(newFavorite);
     localStorage.setItem("favorites", JSON.stringify(storedFavorites));
 
