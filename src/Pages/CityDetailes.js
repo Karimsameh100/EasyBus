@@ -14,6 +14,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Alert,
 } from "react-bootstrap";
 import ReviewForm from "./CreateReview";
 
@@ -41,6 +42,8 @@ export function CityDetailes() {
   const [editReviewId, setEditReviewId] = useState(null); // State to control edit mode
   const [favorites, setFavorites] = useState([]);
 
+   // State to control the visibility of the success alert
+   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
 
   // ------------------Favourites-----------START---------------------//
   useEffect(() => {
@@ -101,6 +104,14 @@ export function CityDetailes() {
   
       // Set favorites state and update badge count immediately
       setFavorites(storedFavorites);
+
+        // Show success alert
+        setShowSuccessAlert(true);
+      
+        // Automatically hide alert after 3 seconds
+        setTimeout(() => {
+          setShowSuccessAlert(false);
+        }, 3000);
     }
   };
 
@@ -244,6 +255,21 @@ export function CityDetailes() {
 
   return (
     <>
+      {showSuccessAlert && (
+        <Alert
+          variant="success"
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "fit-content",
+            zIndex: 1000,
+          }}
+        >
+          This trip was added successfully to favorites! 
+        </Alert>
+      )}
       <div style={{ position: "relative" }}>
         <img
           src={city.image}
