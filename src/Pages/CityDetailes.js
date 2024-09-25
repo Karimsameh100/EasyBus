@@ -89,15 +89,19 @@ export function CityDetailes() {
 
   const handleAddToFavorites = (trip) => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const newFavorite = { ...trip };
-
-    storedFavorites.push(newFavorite);
-    localStorage.setItem("favorites", JSON.stringify(storedFavorites));
-
-    // Dispatch a storage event to notify other components
-    window.dispatchEvent(new Event("storage"));
-
-    setFavorites(storedFavorites.length);
+    const isAlreadyFavorite = storedFavorites.some(fav => fav.tripNumber === trip.tripNumber);
+  
+    if (!isAlreadyFavorite) {
+      const newFavorite = { ...trip };
+      storedFavorites.push(newFavorite);
+      localStorage.setItem("favorites", JSON.stringify(storedFavorites));
+  
+      // Dispatch a storage event to notify other components
+      window.dispatchEvent(new Event("storage"));
+  
+      // Set favorites state and update badge count immediately
+      setFavorites(storedFavorites);
+    }
   };
 
   // ------------------Favourites-----------END---------------------//

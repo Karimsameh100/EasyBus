@@ -10,16 +10,18 @@ export function FavoritesPage() {
     setFavorites(storedFavorites);
   }, []);
 
-  const removeFromFavorites = (tripNumber) => {
-    const updatedFavorites = favorites.filter(
-      (trip) => trip.tripNumber !== tripNumber
-    );
-    setFavorites(updatedFavorites);
+  const handleRemoveFromFavorites = (tripNumber) => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const updatedFavorites = storedFavorites.filter(fav => fav.tripNumber !== tripNumber);
+  
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-
-    // Dispatch a custom event to notify the NavBar component
-    window.dispatchEvent(new CustomEvent("favoritesUpdated"));
+  
+    // Dispatch a storage event to notify other components
+    window.dispatchEvent(new Event("storage"));
+  
+    setFavorites(updatedFavorites); // Update local favorites state
   };
+  
 
   return (
     <div className="container">
@@ -56,7 +58,7 @@ export function FavoritesPage() {
                   <td>
                     <button
                       className="btn btn-danger btn-sm"
-                      onClick={() => removeFromFavorites(trip.tripNumber)}
+                      onClick={() => handleRemoveFromFavorites(trip.tripNumber)}
                     >
                       Remove from Favorites
                     </button>
