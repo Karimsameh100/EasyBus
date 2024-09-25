@@ -14,7 +14,7 @@ export function NavBar() {
   const [favorites, setFavorites] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
-  const [isCompany, setIsCompany] = useState(false);
+  const [favoritesCount, setFavoritesCount] = useState(0);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("authToken");
@@ -86,6 +86,25 @@ export function NavBar() {
 
   const isUserProfile = location.pathname === "/UserProfile";
 
+  // ===========================
+  useEffect(() => {
+    const updateFavoritesCount = () => {
+      const storedFavorites =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+      setFavoritesCount(storedFavorites.length);
+    };
+
+    // Initial load
+    updateFavoritesCount();
+
+    // Listen for changes in the localStorage 'favorites'
+    window.addEventListener("storage", updateFavoritesCount);
+
+    // Cleanup the event listener
+    return () => {
+      window.removeEventListener("storage", updateFavoritesCount);
+    };
+  }, []);
   return (
     <nav
       className="navbar navbar-expand-lg custom-navbar"
@@ -124,13 +143,11 @@ export function NavBar() {
                 Buses
               </Link>
             </li>
-            {isLoggedIn && !isCompany && (
+            {isLoggedIn && (
               <li className="nav-item">
                 <Link className="nav-link" to="/favorites">
-                  Favorites{" "}
-                  <span className="badge badge-pill badge-danger">
-                    {favorites}
-                  </span>
+                  Favorites
+                  <span className="badge bg-danger ms-1">{favoritesCount}</span>
                 </Link>
               </li>
             )}
