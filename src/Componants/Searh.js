@@ -49,6 +49,9 @@ const Search = () => {
                     <Form.Control as="select" value={arrivalStation} onChange={(event) => setArrivalStation(event.target.value)}>
                         <option value="">Select a city</option>
                         <option value="Sohag">Sohag</option>
+                        <option value="Alex">Alexandria</option>
+                        <option value="Fayoum">Fayoum</option>
+
 
                     </Form.Control>
                 </Form.Group>
