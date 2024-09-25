@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import axios from "axios";
+import axios from "axios"; // استيراد Axios
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../logo/neew llogo.png";
 import "./navbar.css";
@@ -14,7 +14,7 @@ export function NavBar() {
   const [favorites, setFavorites] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
-  const [favoritesCount, setFavoritesCount] = useState(0);
+  const [isCompany, setIsCompany] = useState(false);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("authToken");
@@ -28,11 +28,12 @@ export function NavBar() {
         const decodedToken = jwtDecode(accessToken);
         const userId = decodedToken.user_id;
 
+        // جلب جميع المستخدمين
         axios
           .get(`http://127.0.0.1:8000/Mixinuser_list/`)
           .then((response) => {
             const userData = response.data;
-
+            // البحث عن المستخدم بناءً على الـ userId
             const currentUser = userData.find((user) => user.id === userId);
 
             if (currentUser) {
@@ -86,25 +87,6 @@ export function NavBar() {
 
   const isUserProfile = location.pathname === "/UserProfile";
 
-  // ===========================
-  useEffect(() => {
-    const updateFavoritesCount = () => {
-      const storedFavorites =
-        JSON.parse(localStorage.getItem("favorites")) || [];
-      setFavoritesCount(storedFavorites.length);
-    };
-
-    // Initial load
-    updateFavoritesCount();
-
-    // Listen for changes in the localStorage 'favorites'
-    window.addEventListener("storage", updateFavoritesCount);
-
-    // Cleanup the event listener
-    return () => {
-      window.removeEventListener("storage", updateFavoritesCount);
-    };
-  }, []);
   return (
     <nav
       className="navbar navbar-expand-lg custom-navbar"
@@ -143,21 +125,29 @@ export function NavBar() {
                 Buses
               </Link>
             </li>
-            {isLoggedIn && (
-              <li className="nav-item">
-                <Link className="nav-link" to="/favorites">
-                  Favorites
-                  <span className="badge bg-danger ms-1">{favoritesCount}</span>
-                </Link>
-              </li>
-            )}
+            {isLoggedIn &&
+              !isCompany && ( // إخفاء Favorites عند تسجيل الدخول كـ شركة
+                <li className="nav-item">
+                  <Link className="nav-link" to="/favorites">
+                    Favorites{" "}
+                    <span className="badge badge-pill badge-danger">
+                      {favorites}
+                    </span>
+                  </Link>
+                </li>
+              )}
             <li className="nav-item">
               <Link to="/About" className="nav-link me-3">
                 About
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={isCompany ? "/DisplayTrips" : "/listtrips"}>Trips</Link>
+              <Link
+                to={isCompany ? "/DisplayTrips" : "/listtrips"} // تغيير الرابط حسب نوع المستخدم
+                className="nav-link me-3"
+              >
+                Trips
+              </Link>
             </li>
           </ul>
 
