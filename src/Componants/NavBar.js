@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../logo/neew llogo.png";
 import "./navbar.css";
@@ -12,39 +14,52 @@ export function NavBar() {
   const [favorites, setFavorites] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
+  const [isCompany, setIsCompany] = useState(false);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("authToken");
-    const storedProfilePic = localStorage.getItem("profilePic");
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     setIsLoggedIn(!!accessToken);
-    setProfilePic(storedProfilePic || "https://via.placeholder.com/150");
     setFavorites(storedFavorites.length);
 
-    const handleLoginStatusChange = () => {
-      const accessToken = localStorage.getItem("authToken");
-      setIsLoggedIn(!!accessToken);
-      setProfilePic(
-        localStorage.getItem("profilePic") || "https://via.placeholder.com/150"
-      );
-      setFavorites(
-        (JSON.parse(localStorage.getItem("favorites")) || []).length
-      );
-    };
+    if (accessToken) {
+      try {
+        const decodedToken = jwtDecode(accessToken);
+        const userId = decodedToken.user_id;
 
-    window.addEventListener("loginStatusChanged", handleLoginStatusChange);
+        axios
+          .get(`http://127.0.0.1:8000/Mixinuser_list/`)
+          .then((response) => {
+            const userData = response.data;
 
-    return () => {
-      window.removeEventListener("loginStatusChanged", handleLoginStatusChange);
-    };
-  }, []);
+            const currentUser = userData.find((user) => user.id === userId);
 
-  const handleLogin = (token, profilePic) => {
-    localStorage.setItem("authToken", token);
-    localStorage.setItem("profilePic", profilePic);
-    window.dispatchEvent(new Event("loginStatusChanged")); // ------------------------
-  };
+            if (currentUser) {
+              if (currentUser.user_type === "company") {
+                setIsCompany(true);
+                setProfilePic(null);
+              } else {
+                const storedProfilePic =
+                  localStorage.getItem("profilePic") ||
+                  "https://via.placeholder.com/150";
+                setProfilePic(storedProfilePic); // صورة خليها
+              }
+            } else {
+              console.error("User not found");
+              navigate("/login");
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching user data:", error);
+            navigate("/login");
+          });
+      } catch (error) {
+        console.error("Invalid token:", error);
+        navigate("/login");
+      }
+    }
+  }, [navigate]);
 
   const handleLogout = () => {
     confirmAlert({
@@ -59,7 +74,7 @@ export function NavBar() {
             localStorage.removeItem("favorites");
             setIsLoggedIn(false);
             navigate("/");
-            window.dispatchEvent(new Event("loginStatusChanged")); //-----------------------
+            window.dispatchEvent(new Event("loginStatusChanged"));
           },
         },
         {
@@ -109,7 +124,7 @@ export function NavBar() {
                 Buses
               </Link>
             </li>
-            {isLoggedIn && (
+            {isLoggedIn && !isCompany && (
               <li className="nav-item">
                 <Link className="nav-link" to="/favorites">
                   Favorites{" "}
@@ -125,23 +140,23 @@ export function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/listtrips" className="nav-link me-3">
-                Trips
-              </Link>
+              <Link to={isCompany ? "/DisplayTrips" : "/listtrips"}>Trips</Link>
             </li>
           </ul>
 
           {isLoggedIn ? (
             <ul className="navbar-nav ms-auto d-flex align-items-center">
-              <li className="nav-item me-3">
-                <img
-                  src={profilePic}
-                  alt="Profile"
-                  className="rounded-circle"
-                  style={{ width: "50px", height: "50px", cursor: "pointer" }}
-                  onClick={() => navigate("/UserProfile")}
-                />
-              </li>
+              {!isCompany && (
+                <li className="nav-item me-3">
+                  <img
+                    src={profilePic}
+                    alt="Profile"
+                    className="rounded-circle"
+                    style={{ width: "50px", height: "50px", cursor: "pointer" }}
+                    onClick={() => navigate("/UserProfile")}
+                  />
+                </li>
+              )}
               <li className="nav-item">
                 <button
                   id="navBTN"

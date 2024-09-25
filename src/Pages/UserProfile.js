@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { jwtDecode } from "jwt-decode";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+// import { Button } from 'react-bootstrap';  // Assuming you're using react-bootstrap
+import { FaUserEdit } from "react-icons/fa";
 
 const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -31,6 +33,7 @@ const UserProfile = () => {
     try {
       const decodedToken = jwtDecode(access_token);
       const userId = decodedToken.user_id;
+      console.log(decodedToken);
 
       axios
         .get(`http://127.0.0.1:8000/user/${userId}`, {
@@ -80,7 +83,7 @@ const UserProfile = () => {
             userBookings.filter((booking) => booking.status === "Pending")
           );
           setAcceptedTrips(
-            userBookings.filter((booking) => booking.status === "Confirmed")
+            userBookings.filter((booking) => booking.status === "Accepted")
           );
           setRejectedTrips(
             userBookings.filter((booking) => booking.status === "Rejected")
@@ -296,11 +299,13 @@ const UserProfile = () => {
                         >
                           Change Profile Picture
                         </Button>
+
                         <Button
                           variant="primary"
                           onClick={handleEditAccount}
                           style={{ marginTop: "3vh" }}
                         >
+                          <FaUserEdit style={{ marginRight: "8px" }} />
                           Edit My Profile
                         </Button>
                       </Form>
