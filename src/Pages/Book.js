@@ -27,12 +27,13 @@ const BookingPage = () => {
     const [bookedTrips, setBookedTrips] = useState([]);
     const [time, setTime] = useState('');
     const [numberOfPlaces, setNumberOfPlaces] = useState(1);
-    const [pickupLocation, setPickupLocation] = useState('');
-    const [dropLocation, setDropLocation] = useState('');
     const [userId, setUserId] = useState(1);
     const [paypalAmount, setPaypalAmount] = useState(100);
     const [bookingID, setBookingId] = useState();
     const [paymentData, setPaymentData] = useState({})
+    const [pickupLocation, setPickupLocation] = useState(trip.departuerStation);
+    const [dropLocation, setDropLocation] = useState(trip.destinationStation);
+    const [checkedLocation, setCheckedLocation] = useState(false)
 
 
     useEffect(() => {
@@ -60,6 +61,7 @@ const BookingPage = () => {
         }
     };
 
+
     const handleModalClose = () => {
         setShowModal(false);
     };
@@ -83,6 +85,11 @@ const BookingPage = () => {
             setPaypalAmount((totalCost * 0.20).toFixed(2)); // 20% deposit
         }
     };
+
+    useEffect(() => {
+        console.log('dropLocation:', dropLocation);
+        console.log('pickupLocation:', pickupLocation);
+    }, [dropLocation, pickupLocation]);
 
     useEffect(() => {
         handlePaypalAmountChange();
@@ -159,6 +166,38 @@ const BookingPage = () => {
                                 const bookingId = response.data.id;
                                 setBookingId(bookingId);
                                 resolve(bookingId); // Resolve the promise with the booking ID
+
+                                const updatedTripData = {
+                                    tripNumber: trip.tripNumber,
+                                    date: trip.date,
+                                    avilabalPlaces: trip.avilabalPlaces - numberOfPlaces,
+                                    departuerStation: trip.departuerStation,
+                                    destinationStation: trip.destinationStation,
+                                    departuerTime: trip.departuerTime,
+                                    destinationTime: trip.destinationTime,
+                                    price: trip.price,
+                                    status: trip.status,
+                                    bus: trip.bus,
+                                    company: trip.company,
+                                };
+
+                                // const updatedTripData = {
+                                //     availablePlaces: trip.availablePlaces - numberOfPlaces,
+                                //   };
+
+                                axios.put(`http://127.0.0.1:8000/selected/trip/${trip.id}`, updatedTripData, {
+                                    headers: {
+                                        'Authorization': `Bearer ${token}`,
+                                        'Content-Type': 'application/json'
+                                    }
+                                })
+                                    .then((response) => {
+                                        console.log('Trip data updated successfully');
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error updating trip data:', error);
+                                    });
+
                             })
                             .catch((error) => {
                                 console.error(error);
@@ -218,6 +257,12 @@ const BookingPage = () => {
                     });
             });
     }
+
+    const handleLocationChange = (e) => {
+        const location = e.target.value;
+        const isValid = location.trim() !== '' && pickupLocation.trim() !== '' && dropLocation.trim() !== '';
+        setCheckedLocation(isValid);
+    };
 
     const [paypalLoaded, setPaypalLoaded] = useState(false);
 
@@ -325,13 +370,37 @@ const BookingPage = () => {
 
                                 <Form.Group controlId="pickupLocation">
                                     <Form.Label>Pickup Location:</Form.Label>
-                                    <Form.Control type="text" value={pickupLocation} onChange={(e) => setPickupLocation(e.target.value)} />
+                                    <Form.Control
+                                        type="text"
+                                        value={pickupLocation}
+                                        onChange={(e) => {
+                                            setPickupLocation(e.target.value);
+                                            handleLocationChange(e);
+                                        }}
+                                        required
+                                    />
+                                    {pickupLocation === '' && (
+                                        <Form.Text className="text-danger" onPlay={setCheckedLocation(false)}>Pickup location is required</Form.Text>
+
+                                    )}
                                 </Form.Group>
 
                                 <Form.Group controlId="dropLocation">
                                     <Form.Label>Drop Location:</Form.Label>
-                                    <Form.Control type="text" value={dropLocation} onChange={(e) => setDropLocation(e.target.value)} />
+                                    <Form.Control
+                                        type="text"
+                                        value={dropLocation}
+                                        onChange={(e) => {
+                                            setDropLocation(e.target.value);
+                                            handleLocationChange(e);
+                                        }}
+                                        required
+                                    />
+                                    {dropLocation === '' && (
+                                        <Form.Text className="text-danger">Drop location is required</Form.Text>
+                                    )}
                                 </Form.Group>
+
                                 <Form.Group controlId="paymentMethod" className="text-center">
                                     <Form.Label className='fs-5'>Payment Method:</Form.Label>
                                     <div className="d-flex justify-content-between">
@@ -363,11 +432,11 @@ const BookingPage = () => {
                                     <div className=" p-3">
                                         <h5 className="">Online Payment Methods:</h5>
                                         <Form.Group controlId='paypal'>
-                                              <Form.Check type="checkbox" label="PayPal" id="paypal" onChange={ handleOnlinePaymentMethodChange } />
+                                            <Form.Check type="checkbox" label="PayPal" id="paypal" onChange={handleOnlinePaymentMethodChange} />
                                         </Form.Group>
                                         <p className="fs-5 text-primary">Total that you pay on Paypal is amount: {totalCost}</p>
 
-                                            
+
                                     </div>
                                 )}
 
@@ -382,59 +451,59 @@ const BookingPage = () => {
                                     </div>
                                 )}
 
-                                {(paymentMethod && (paymentMethod === 'payOnline' && onlinePaymentMethod) || (paymentMethod === 'payCash' && agreeToPayDeposit)) && (
-                                   <PayPalScriptProvider
-                                   src="https://www.paypal.com/sdk/js"
-                                   options={{
-                                       'client-id': 'ASqEJBR1uVuEmIcx5WxO26SQMcW9DKTNy090VaVbCczbnEvsV2Lz5xSV2oc1dIErzoIy8ldjBUZqY4M5',
-                                       currency: "USD",
-                                       intent: 'capture',
-                                   }}
-                                   deferLoading={false}
-                               >
-                                   <PayPalButtons
-                                       amount={Math.round(paypalAmount * 100) / 100}
-                                       currency="USD"
-                                       style={{ layout: 'horizontal' }}
-                                       createOrder={(data, actions) => {
-                                           try {
-                                               const paymentIntent = actions.order.create({
-                                                   purchase_units: [
-                                                       {
-                                                           amount: {
-                                                               value: Math.round(paypalAmount * 100) / 100,
-                                                           },
-                                                       },
-                                                   ],
-                                               });
-                                               console.log('Payment intent:', paymentIntent);
-                                               return paymentIntent;
-                                           } catch (error) {
-                                               console.error('Error creating payment intent:', error);
-                                               // Handle the error
-                                           }
-                                       }}
-                                       onApprove={(data, actions) => {
-                                           try {
-                                               const authorization = actions.order.capture({
-                                                   paymentIntentId: data.paymentIntentId,
-                                               });
-                                               console.log('Authorization:', authorization);
-                                               return authorization.then((details) => {
-                                                   handleBookNow().then((bookingId) => {
-                                                       handelPayment(bookingId);
-                                                   });
-                                               });
-                                           } catch (error) {
-                                               console.error('Error capturing payment:', error);
-                                               // Handle the error
-                                           }
-                                       }}
-                                       onError={(error) => {
-                                           console.error('Error with PayPal payment:', error);
-                                           // Handle the error
-                                       }}
-                                   />
+                                {(checkedLocation && (paymentMethod === 'payOnline' && onlinePaymentMethod) || (paymentMethod === 'payCash' && agreeToPayDeposit)) && (
+                                    <PayPalScriptProvider
+                                        src="https://www.paypal.com/sdk/js"
+                                        options={{
+                                            'client-id': 'ASqEJBR1uVuEmIcx5WxO26SQMcW9DKTNy090VaVbCczbnEvsV2Lz5xSV2oc1dIErzoIy8ldjBUZqY4M5',
+                                            currency: "USD",
+                                            intent: 'capture',
+                                        }}
+                                        deferLoading={false}
+                                    >
+                                        <PayPalButtons
+                                            amount={Math.round(paypalAmount * 100) / 100}
+                                            currency="USD"
+                                            style={{ layout: 'horizontal' }}
+                                            createOrder={(data, actions) => {
+                                                try {
+                                                    const paymentIntent = actions.order.create({
+                                                        purchase_units: [
+                                                            {
+                                                                amount: {
+                                                                    value: Math.round(paypalAmount * 100) / 100,
+                                                                },
+                                                            },
+                                                        ],
+                                                    });
+                                                    console.log('Payment intent:', paymentIntent);
+                                                    return paymentIntent;
+                                                } catch (error) {
+                                                    console.error('Error creating payment intent:', error);
+                                                    // Handle the error
+                                                }
+                                            }}
+                                            onApprove={(data, actions) => {
+                                                try {
+                                                    const authorization = actions.order.capture({
+                                                        paymentIntentId: data.paymentIntentId,
+                                                    });
+                                                    console.log('Authorization:', authorization);
+                                                    return authorization.then((details) => {
+                                                        handleBookNow().then((bookingId) => {
+                                                            handelPayment(bookingId);
+                                                        });
+                                                    });
+                                                } catch (error) {
+                                                    console.error('Error capturing payment:', error);
+                                                    // Handle the error
+                                                }
+                                            }}
+                                            onError={(error) => {
+                                                console.error('Error with PayPal payment:', error);
+                                                // Handle the error
+                                            }}
+                                        />
                                     </PayPalScriptProvider>
                                 )}
                             </Form>

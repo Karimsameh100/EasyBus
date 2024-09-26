@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { jwtDecode } from "jwt-decode";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+// import { Button } from 'react-bootstrap';  // Assuming you're using react-bootstrap
+import { FaUserEdit } from "react-icons/fa";
 
 const UserProfile = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -31,6 +33,7 @@ const UserProfile = () => {
     try {
       const decodedToken = jwtDecode(access_token);
       const userId = decodedToken.user_id;
+      console.log(decodedToken);
 
       axios
         .get(`http://127.0.0.1:8000/user/${userId}`, {
@@ -81,7 +84,7 @@ const UserProfile = () => {
             userBookings.filter((booking) => booking.status === "Pending")
           );
           setAcceptedTrips(
-            userBookings.filter((booking) => booking.status === "Confirmed")
+            userBookings.filter((booking) => booking.status === "Accepted")
           );
           setRejectedTrips(
             userBookings.filter((booking) => booking.status === "Rejected")
@@ -297,11 +300,13 @@ const UserProfile = () => {
                         >
                           Change Profile Picture
                         </Button>
+
                         <Button
                           variant="primary"
                           onClick={handleEditAccount}
                           style={{ marginTop: "3vh" }}
                         >
+                          <FaUserEdit style={{ marginRight: "8px" }} />
                           Edit My Profile
                         </Button>
                       </Form>
@@ -336,7 +341,7 @@ const UserProfile = () => {
                             }}
                           >
                             <span>Trip Number:</span>
-                            <span>{currentTrip.id}</span>
+                            <span>{currentTrip.trip}</span>
                           </div>
                         </Card.Title>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -467,7 +472,7 @@ const UserProfile = () => {
                             }}
                           >
                             <span>Trip Number:</span>
-                            <span>{currentRejectedTrip.id}</span>
+                            <span>{currentRejectedTrip.trip}</span>
                           </div>
                         </Card.Title>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -477,35 +482,92 @@ const UserProfile = () => {
                               justifyContent: "space-between",
                             }}
                           >
-                            <strong>Status:</strong>
-                            <span>{currentRejectedTrip.status}</span>
+                            <strong>Pickup Location:</strong>
+                            <span>{currentTrip.pickupLocation}</span>
+                          </div>
+                        </Card.Text>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong>Drop Location:</strong>
+                            <span>{currentTrip.dropLocation}</span>
+                          </div>
+                        </Card.Text>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong>Date:</strong>
+                            <span>{currentTrip.date}</span>
+                          </div>
+                        </Card.Text>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong>Time:</strong>
+                            <span>{currentTrip.time}</span>
+                          </div>
+                        </Card.Text>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong>Number of Places:</strong>
+                            <span>{currentTrip.numberOfPlaces}</span>
+                          </div>
+                        </Card.Text>
+                        <Card.Text
+                          style={{ fontSize: "1.1rem", color: "#28a745" }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong>Total Fare:</strong>
+                            <span>{currentTrip.totalFare} EGP</span>
                           </div>
                         </Card.Text>
                       </Card.Body>
                     </Card>
                   ) : (
-                    <p>No rejected trips found.</p>
+                    <p>No pending trips found.</p>
                   )}
                   <div className="d-flex justify-content-between">
                     <Button
-                      onClick={handlePrevRejectedPage}
-                      disabled={rejectedPage === 1}
+                      onClick={handlePrevPage}
+                      disabled={currentPage === 1}
                       style={{
-                        backgroundColor: "#dc3545",
-                        borderColor: "#dc3545",
+                        backgroundColor: "#003366",
+                        borderColor: "#003366",
                       }}
                     >
-                      <FaChevronLeft /> {}
+                      <FaChevronLeft />
                     </Button>
                     <Button
-                      onClick={handleNextRejectedPage}
+                      onClick={handleNextPage}
                       disabled={
-                        rejectedPage >=
-                        Math.ceil(rejectedTrips.length / tripsPerPage)
+                        currentPage >=
+                        Math.ceil(filteredTrips.length / tripsPerPage)
                       }
                       style={{
-                        backgroundColor: "#dc3545",
-                        borderColor: "#dc3545",
+                        backgroundColor: "#003366",
+                        borderColor: "#003366",
                         color: "white",
                       }}
                     >
@@ -541,7 +603,7 @@ const UserProfile = () => {
                             }}
                           >
                             <span>Trip Number:</span>
-                            <span>{currentAcceptedTrip.id}</span>
+                            <span>{currentAcceptedTrip.filteredTrips}</span>
                           </div>
                         </Card.Title>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -551,39 +613,96 @@ const UserProfile = () => {
                               justifyContent: "space-between",
                             }}
                           >
-                            <strong>Status:</strong>
-                            <span>{currentAcceptedTrip.status}</span>
+                            <strong>Pickup Location:</strong>
+                            <span>{currentTrip.pickupLocation}</span>
+                          </div>
+                        </Card.Text>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong>Drop Location:</strong>
+                            <span>{currentTrip.dropLocation}</span>
+                          </div>
+                        </Card.Text>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong>Date:</strong>
+                            <span>{currentTrip.date}</span>
+                          </div>
+                        </Card.Text>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong>Time:</strong>
+                            <span>{currentTrip.time}</span>
+                          </div>
+                        </Card.Text>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong>Number of Places:</strong>
+                            <span>{currentTrip.numberOfPlaces}</span>
+                          </div>
+                        </Card.Text>
+                        <Card.Text
+                          style={{ fontSize: "1.1rem", color: "#28a745" }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong>Total Fare:</strong>
+                            <span>{currentTrip.totalFare} EGP</span>
                           </div>
                         </Card.Text>
                       </Card.Body>
                     </Card>
                   ) : (
-                    <p>No accepted trips found.</p>
+                    <p>No pending trips found.</p>
                   )}
                   <div className="d-flex justify-content-between">
                     <Button
-                      onClick={handlePrevAcceptedPage}
-                      disabled={acceptedPage === 1}
+                      onClick={handlePrevPage}
+                      disabled={currentPage === 1}
                       style={{
-                        backgroundColor: "#28a745",
-                        borderColor: "#28a745",
+                        backgroundColor: "#003366",
+                        borderColor: "#003366",
                       }}
                     >
                       <FaChevronLeft />
                     </Button>
                     <Button
-                      onClick={handleNextAcceptedPage}
+                      onClick={handleNextPage}
                       disabled={
-                        acceptedPage >=
-                        Math.ceil(acceptedTrips.length / tripsPerPage)
+                        currentPage >=
+                        Math.ceil(filteredTrips.length / tripsPerPage)
                       }
                       style={{
-                        backgroundColor: "#28a745",
-                        borderColor: "#28a745",
+                        backgroundColor: "#003366",
+                        borderColor: "#003366",
                         color: "white",
                       }}
                     >
-                      <FaChevronRight />
+                      <FaChevronRight /> {}
                     </Button>
                   </div>
                 </div>
