@@ -375,7 +375,7 @@ const BookingPage = () => {
                                         value={pickupLocation}
                                         onChange={(e) => {
                                             setPickupLocation(e.target.value);
-                                            handleLocationChange(e);
+                                            // handleLocationChange(e);
                                         }}
                                         required
                                     />
@@ -392,7 +392,7 @@ const BookingPage = () => {
                                         value={dropLocation}
                                         onChange={(e) => {
                                             setDropLocation(e.target.value);
-                                            handleLocationChange(e);
+                                            // handleLocationChange(e);
                                         }}
                                         required
                                     />
