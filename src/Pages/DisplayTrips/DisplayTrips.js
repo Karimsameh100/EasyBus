@@ -31,6 +31,7 @@ const DisplayTrips = () => {
   const params = useParams();
   const [editTrip, setEditTrip] = useState(null);
   const [validationErrors, setValidationErrors] = useState({});
+  const [userNames, setUserNames] = useState({});
 
     //--------------------------------Add new Trip-------------------------
   const [newTrip, setNewTrip] = useState({
@@ -45,7 +46,8 @@ const DisplayTrips = () => {
       bus: "",
     });
   
-  
+    const token = localStorage.getItem('authToken');
+    const decodedToken = jwtDecode(token);
     // Handle the change of the new trip data
   const handleNewTripChange = (event) => {
       setNewTrip({
@@ -54,8 +56,7 @@ const DisplayTrips = () => {
       });
     };
   
-  const token = localStorage.getItem('authToken');
-  const decodedToken = jwtDecode(token); // Decode token to get company info
+ // Decode token to get company info
   console.log(decodedToken)
   const companyId = decodedToken.user_id;
   console.log("companyy:",companyId)
@@ -76,32 +77,76 @@ const DisplayTrips = () => {
           const { name ,company_trips } = res.data
           setName(name);
           setTrips(company_trips);
+
+          // Extract the trip IDs associated with the company
+          const tripIds = company_trips.map((trip) => trip.id);
+          // Fetch all bookings
+          axios.get('http://127.0.0.1:8000/booking/data/', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((bookingRes) => {
+            const allBookings = bookingRes.data;
+
+            // Filter bookings for trips that belong to the logged-in company
+            const filteredBookings = allBookings.filter((booking) =>
+              tripIds.includes(booking.trip)
+            );
+            setUserBookings(filteredBookings);
+            // For each booking, fetch the user name based on user ID
+            const userNameMap = {};
+        
+            // For each booking, fetch the user name based on user ID
+            const userFetchPromises = filteredBookings.map((booking) => {
+              return fetchUserName(booking.user).then(userName => {
+                userNameMap[booking.user] = userName; // Store in mapping
+              });
+            });
+
+            Promise.all(userFetchPromises).then(() => {
+              setUserNames(userNameMap); // Set the user names mapping state
+            });
+      })
+          .catch((err) => console.error("Error fetching bookings:", err));
         })
         .catch((err) => console.error("Error fetching trips:", err));
-    }, [params.id, setEditTrip]);
+      }, [params.id, setEditTrip]);
 
-
-/*   const fetchUserBookings = (companyName) => {
-    const bookings = JSON.parse(localStorage.getItem('bookedTrips')) || [];
-    const companyBookings = bookings.filter((booking) => booking.company === companyName);
-    setUserBookings(companyBookings);
-  }; */
+      const fetchUserName = async (userId) => {
+        try {
+          const response = await axios.get(`http://127.0.0.1:8000/mixinuser_pk/${userId}?user_type=user`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          return response.data.name; // Return the user name
+        } catch (err) {
+          console.error("Error fetching user name:", err);
+          return ""; // Return an empty string if there's an error
+        }
+      };
 
   // handle accept/reject status
-  const handleBookingStatus = (booking, status) => {
-    const updatedBooking = { ...booking, status };
-    const updatedBookings = userBookings.map((b) =>
-      b.tripNumber === booking.tripNumber ? updatedBooking : b
-    );
-    setUserBookings(updatedBookings);
-
-    // Save the updated bookings to local storage
-    const allBookings = JSON.parse(localStorage.getItem('bookedTrips')) || [];
-    const newBookings = allBookings.map((b) =>
-      b.tripNumber === booking.tripNumber ? updatedBooking : b
-    );
-    localStorage.setItem('bookedTrips', JSON.stringify(newBookings));
+  const handleBookingStatus = (bookingId, status) => {
+    
+    // Send the status update to the backend
+    axios.patch(`http://127.0.0.1:8000/booking/${bookingId}/update-status/`, { status }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        // Update the UI with the new status
+        setUserBookings((prevBookings) =>
+          prevBookings.map((booking) =>
+            booking.id === bookingId ? { ...booking, status: response.data.status } : booking
+          )
+        );
+      })
+      .catch((error) => {
+        console.error("Error updating booking status:", error);
+      });
   };
+  
 
 
   // Pagination logic
@@ -160,11 +205,15 @@ const DisplayTrips = () => {
   };
 
   const handleBookingsNext = () => {
-    setCurrentBookingsPage((prev) => Math.min(prev + 1, totalBookingsPages));
+    if (currentBookingsPage < totalBookingsPages) {
+      setCurrentBookingsPage((prev) => prev + 1);
+    }
   };
 
   const handleBookingsPrevious = () => {
-    setCurrentBookingsPage((prev) => Math.max(prev - 1, 1));
+    if (currentBookingsPage > 1) {
+      setCurrentBookingsPage((prev) => prev - 1);
+    }
   };
 
   const handleEditClick = (trip) => {
@@ -421,8 +470,8 @@ const DisplayTrips = () => {
                         <th>Trip Number</th>
                         <th>User Name</th>
                         <th>Trip Date</th>
-                        <th>Departure Station</th>
-                        <th>Arrival Station</th>
+                        <th>Pickup Location</th>
+                        <th>Drop Location</th>
                         <th>Seats Booked</th>
                         <th>Price</th>
                         <th>Status</th>
@@ -432,24 +481,26 @@ const DisplayTrips = () => {
                     <tbody>
                       {currentBookingsPageItems.map((booking, index) => (
                         <tr key={index}>
-                          <td>{booking.tripNumber}</td>
-                          <td>{booking.userName}</td>
-                          <td>{booking.tripDate}</td>
-                          <td>{booking.departureStation}</td>
-                          <td>{booking.stopStations}</td>
-                          <td>{booking.numPlaces}</td>
-                          <td>{booking.tripPrice}</td>
+                          <td>{booking.trip}</td>
+                          <td>{userNames[booking.user]}</td>
+                          <td>{booking.date}</td>
+                          <td>{booking.pickupLocation}</td>
+                          <td>{booking.dropLocation}</td>
+                          <td>{booking.numberOfPlaces}</td>
+                          <td>{booking.totalFare}</td>
                           <td>{booking.status || 'Pending'}</td>
                           <td>
                             <button
                               className="btn btn-success btn-sm mx-1"
-                              onClick={() => handleBookingStatus(booking, 'Accepted')}
+                              onClick={() => handleBookingStatus(booking.id, 'Accepted')}
+                              disabled={booking.status === 'Accepted'}
                             >
                               Accept
                             </button>
                             <button
                               className="btn btn-danger btn-sm mx-1"
-                              onClick={() => handleBookingStatus(booking, 'Rejected')}
+                              onClick={() => handleBookingStatus(booking.id, 'Rejected')}
+                              disabled={booking.status === 'Rejected'}
                             >
                               Reject
                             </button>

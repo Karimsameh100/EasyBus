@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import React from 'react';
+/* import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'; */
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Form, Button, Modal, FormGroup } from 'react-bootstrap';

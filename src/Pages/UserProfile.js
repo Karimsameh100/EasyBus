@@ -73,8 +73,9 @@ const UserProfile = () => {
           },
         })
         .then((response) => {
+          console.log("tttttt",response.data)
           const userBookings = response.data.filter(
-            (booking) => booking.user === userId
+            (booking) => booking.user === userId 
           );
           setFilteredTrips(
             userBookings.filter((booking) => booking.status === "Pending")
