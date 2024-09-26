@@ -32,6 +32,9 @@ const DisplayTrips = () => {
   const [editTrip, setEditTrip] = useState(null);
   const [validationErrors, setValidationErrors] = useState({});
   const [userNames, setUserNames] = useState({});
+  const [disabledButtons, setDisabledButtons] = useState({}); // State to keep track of disabled buttons
+  const [confirmationMessage, setConfirmationMessage] = useState('');
+  const [actionType, setActionType] = useState('');
 
     //--------------------------------Add new Trip-------------------------
   const [newTrip, setNewTrip] = useState({
@@ -94,7 +97,7 @@ const DisplayTrips = () => {
               tripIds.includes(booking.trip)
             );
             setUserBookings(filteredBookings);
-            // For each booking, fetch the user name based on user ID
+  
             const userNameMap = {};
         
             // For each booking, fetch the user name based on user ID
@@ -105,7 +108,7 @@ const DisplayTrips = () => {
             });
 
             Promise.all(userFetchPromises).then(() => {
-              setUserNames(userNameMap); // Set the user names mapping state
+              setUserNames(userNameMap); 
             });
       })
           .catch((err) => console.error("Error fetching bookings:", err));
@@ -126,7 +129,7 @@ const DisplayTrips = () => {
       };
 
   // handle accept/reject status
-  const handleBookingStatus = (bookingId, status) => {
+  const handleBookingStatus = (bookingId, status, userName) => {
     
     // Send the status update to the backend
     axios.patch(`http://127.0.0.1:8000/booking/${bookingId}/update-status/`, { status }, {
@@ -141,12 +144,19 @@ const DisplayTrips = () => {
             booking.id === bookingId ? { ...booking, status: response.data.status } : booking
           )
         );
+        if (status === 'Rejected') {
+          // Show confirmation message when rejected
+          setConfirmationMessage(`Rejection email successfully sent to user: ${userName}`);
+        }
       })
       .catch((error) => {
         console.error("Error updating booking status:", error);
       });
   };
-  
+  const getTripNumber = (tripId) => {
+  const trip = trips.find(t => t.id === tripId);
+  return trip ? trip.tripNumber : 'N/A'; // Fallback in case the trip is not found
+};
 
 
   // Pagination logic
@@ -481,7 +491,7 @@ const DisplayTrips = () => {
                     <tbody>
                       {currentBookingsPageItems.map((booking, index) => (
                         <tr key={index}>
-                          <td>{booking.trip}</td>
+                          <td>{getTripNumber(booking.trip)}</td>
                           <td>{userNames[booking.user]}</td>
                           <td>{booking.date}</td>
                           <td>{booking.pickupLocation}</td>
@@ -492,15 +502,15 @@ const DisplayTrips = () => {
                           <td>
                             <button
                               className="btn btn-success btn-sm mx-1"
-                              onClick={() => handleBookingStatus(booking.id, 'Accepted')}
-                              disabled={booking.status === 'Accepted'}
+                              onClick={() => handleBookingStatus(booking.id, 'Accepted', userNames[booking.user])}
+                              disabled={disabledButtons[booking.id]}
                             >
                               Accept
                             </button>
                             <button
                               className="btn btn-danger btn-sm mx-1"
-                              onClick={() => handleBookingStatus(booking.id, 'Rejected')}
-                              disabled={booking.status === 'Rejected'}
+                              disabled={disabledButtons[booking.id]} 
+                              onClick={() => handleBookingStatus(booking.id, 'Rejected', userNames[booking.user])}
                             >
                               Reject
                             </button>
@@ -509,6 +519,7 @@ const DisplayTrips = () => {
                       ))}
                     </tbody>
                   </table>
+                  {confirmationMessage && <p>{confirmationMessage}</p>}
 
                   {/* Pagination Controls for Bookings */}
                   <nav aria-label="Bookings page navigation example">
