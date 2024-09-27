@@ -465,12 +465,12 @@ const DisplayTrips = () => {
                 <button
                   className="btn"
                   style={{
-                    backgroundColor: "#28a745", // لون أخضر أنيق
+                    backgroundColor: "#28a745",
                     color: "white",
                     border: "none",
                     padding: "10px 20px",
                     borderRadius: "5px",
-                    transition: "background-color 0.3s ease", // تأثير الانتقال عند التغيير
+                    transition: "background-color 0.3s ease",
                   }}
                   onMouseDown={(e) =>
                     (e.target.style.backgroundColor = "#218838")
@@ -520,7 +520,7 @@ const DisplayTrips = () => {
                     </button> */}
                     {/* -------------------------------------------------------------------------------- */}
                     <button className="page-link" onClick={handlePrevious}>
-                      <FaArrowLeft /> {/* سهم لليسار */}
+                      <FaArrowLeft /> {}
                     </button>
                   </li>
                   {[...Array(totalPages).keys()].map((pageNumber) => (
@@ -544,7 +544,7 @@ const DisplayTrips = () => {
                     }`}
                   >
                     <button className="page-link" onClick={handleNext}>
-                      <FaArrowRight /> {/* سهم لليمين */}
+                      <FaArrowRight /> {}
                     </button>
                   </li>
                 </ul>
