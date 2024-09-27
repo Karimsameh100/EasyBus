@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import SearchComponent from "../Componants/Searh";
@@ -6,7 +5,7 @@ import { Reviews } from "../Componants/Reviews/Review";
 import gobus from "../logo/unnamed.png";
 import axios from "axios";
 import { FaRegBookmark, FaHeart } from "react-icons/fa";
-import "../Componants/bookstyle.css"
+import "../Componants/bookstyle.css";
 import {
   Modal,
   ModalTitle,
@@ -41,6 +40,8 @@ export function CityDetailes() {
   const [editReviewId, setEditReviewId] = useState(null); // State to control edit mode
   const [favorites, setFavorites] = useState([]);
 
+  // State to control the visibility of the success alert
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
 
   // ------------------Favourites-----------START---------------------//
   useEffect(() => {
@@ -58,46 +59,60 @@ export function CityDetailes() {
   useEffect(() => {
     axios
       .get(`http://localhost:8000/cities/${params.id}/`)
-      .then((res) => { setCity(res.data); })
+      .then((res) => {
+        setCity(res.data);
+      })
       .catch((err) => console.error("Error fetching city:", err));
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (isLoggedIn === "true") {
       setIsLoggedIn(true);
     }
-
   }, [params.id, setAllTrips, setEditTrip]);
 
   useEffect(() => {
     axios
-      .get('http://127.0.0.1:8000/register/company/')
-      .then(response => {
+      .get("http://127.0.0.1:8000/register/company/")
+      .then((response) => {
         const cityName = city.city;
-        const filteredCompanies = response.data.filter(company => {
-          const trips = company.company_trips.filter(trip => {
-            return trip.departuerStation == cityName || trip.destinationStation == cityName;
+        const filteredCompanies = response.data.filter((company) => {
+          const trips = company.company_trips.filter((trip) => {
+            return (
+              trip.departuerStation == cityName ||
+              trip.destinationStation == cityName
+            );
           });
           return trips.length > 0;
         });
         setCompanies(filteredCompanies);
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   }, [params.id]);
 
-  console.log(companiess)
-
-
+  console.log(companiess);
 
   const handleAddToFavorites = (trip) => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const newFavorite = { ...trip };
+    const isAlreadyFavorite = storedFavorites.some(fav => fav.tripNumber === trip.tripNumber);
+  
+    if (!isAlreadyFavorite) {
+      const newFavorite = { ...trip };
+      storedFavorites.push(newFavorite);
+      localStorage.setItem("favorites", JSON.stringify(storedFavorites));
+  
+      // Dispatch a storage event to notify other components
+      window.dispatchEvent(new Event("storage"));
+  
+      // Set favorites state and update badge count immediately
+      setFavorites(storedFavorites);
 
-    storedFavorites.push(newFavorite);
-    localStorage.setItem("favorites", JSON.stringify(storedFavorites));
-
-    // Dispatch a storage event to notify other components
-    window.dispatchEvent(new Event("storage"));
-
-    setFavorites(storedFavorites.length);
+        // Show success alert
+        setShowSuccessAlert(true);
+      
+        // Automatically hide alert after 3 seconds
+        setTimeout(() => {
+          setShowSuccessAlert(false);
+        }, 3000);
+    }
   };
 
   // ------------------Favourites-----------END---------------------//
@@ -182,7 +197,9 @@ export function CityDetailes() {
   };
 
   if (!city) {
-    return <div className="text-center fs-2 text-bg-primary h-75">Loading...</div>;
+    return (
+      <div className="text-center fs-2 text-bg-primary h-75">Loading...</div>
+    );
   }
 
   const confirmDeleteReview = (reviewId) => {
@@ -240,6 +257,21 @@ export function CityDetailes() {
 
   return (
     <>
+      {showSuccessAlert && (
+        <Alert
+          variant="success"
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "fit-content",
+            zIndex: 1000,
+          }}
+        >
+          This trip was added successfully to favorites! 
+        </Alert>
+      )}
       <div style={{ position: "relative" }}>
         <img
           src={city.image}
@@ -295,75 +327,87 @@ export function CityDetailes() {
         {/* Display the updated favorites count */}
       </div>
       <div class="container-fluid">
-        {companiess && companiess.map((company) => (
-          <div
-            key={company.id}
-            class="row d-flex justify-content-center mb-5"
-          >
-            <h2 className="text-center m-5">Travel with {company.name}</h2>
-            <div class="col-sm-6 col-md-4">
-              <img src={company.image} className="img-fluid mt-5 " alt="Image" />
-            </div>
-            <div className="table-responsive col-sm-6 col-md-8">
-              <table className="table table-striped table-bordered-bold w-100">
-                <thead>
-                  <tr>
-                    <th>Trip Number</th>
-                    <th>Trip Date</th>
-                    <th>Available Places</th>
-                    <th>Departure Station</th>
-                    <th>Stop Stations</th>
-                    <th>Go In</th>
-                    <th>Arrive At</th>
-                    <th>Price</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {company.company_trips.filter(trip => {
-                    return trip.departuerStation === city.city || trip.destinationStation === city.city;
-                  }).map(trip => (
-                    <tr key={trip.id}>
-                      <td>{trip.tripNumber}</td>
-                      <td>{trip.date}</td>
-                      <td>{trip.avilabalPlaces}</td>
-                      <td>{trip.departuerStation}</td>
-                      <td>{trip.destinationStation}</td>
-                      <td>{trip.departuerTime}</td>
-                      <td>{trip.destinationTime}</td>
-                      <td>{trip.price}</td>
-                      <td>
-                        <button
-                          className="btn btn-success btn-sm mx-1"
-                          style={{ width: "100%" }}
-                          onClick={() =>
-                            isLoggedIn
-                              ? handleBookTrip(trip, company)
-                              : setShowLoginModal(true)
-                          }
-                        >
-                          <FaRegBookmark /> Book
-                        </button>
-                        <button
-                          className="btn btn-outline-warning btn-sm mx-1 my-1"
-                          style={{ width: "100%" }}
-                          onClick={() =>
-                            isLoggedIn
-                              ? handleAddToFavorites(trip, company)
-                              : setShowLoginModal(true)
-                          }
-                        >
-                          <FaHeart />
-                          Liked
-                        </button>
-                      </td>
+        {companiess &&
+          companiess.map((company) => (
+            <div
+              key={company.id}
+              class="row d-flex justify-content-center mb-5"
+            >
+              <h2 className="text-center m-5">Travel with {company.name}</h2>
+              <div class="col-sm-6 col-md-4">
+                <img
+                  src={ // {company.image}
+                    gobus
+                  }
+                  className="img-fluid mt-5 "
+                  alt="Image"
+                />
+              </div>
+              <div className="table-responsive col-sm-6 col-md-8">
+                <table className="table table-striped table-bordered-bold w-100">
+                  <thead>
+                    <tr>
+                      <th>Trip Number</th>
+                      <th>Trip Date</th>
+                      <th>Available Places</th>
+                      <th>Departure Station</th>
+                      <th>Stop Stations</th>
+                      <th>Go In</th>
+                      <th>Arrive At</th>
+                      <th>Price</th>
+                      <th>Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {company.company_trips
+                      .filter((trip) => {
+                        return (
+                          trip.departuerStation === city.city ||
+                          trip.destinationStation === city.city
+                        );
+                      })
+                      .map((trip) => (
+                        <tr key={trip.id}>
+                          <td>{trip.tripNumber}</td>
+                          <td>{trip.date}</td>
+                          <td>{trip.avilabalPlaces}</td>
+                          <td>{trip.departuerStation}</td>
+                          <td>{trip.destinationStation}</td>
+                          <td>{trip.departuerTime}</td>
+                          <td>{trip.destinationTime}</td>
+                          <td>{trip.price}</td>
+                          <td>
+                            <button
+                              className="btn btn-success btn-sm mx-1"
+                              style={{ width: "100%" }}
+                              onClick={() =>
+                                isLoggedIn
+                                  ? handleBookTrip(trip, company)
+                                  : setShowLoginModal(true)
+                              }
+                            >
+                              <FaRegBookmark /> Book
+                            </button>
+                            <button
+                              className="btn btn-outline-warning btn-sm mx-1 my-1"
+                              style={{ width: "100%" }}
+                              onClick={() =>
+                                isLoggedIn
+                                  ? handleAddToFavorites(trip, company)
+                                  : setShowLoginModal(true)
+                              }
+                            >
+                              <FaHeart />
+                              {/* Liked */}
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       <section className="bg-light py-3 py-md-5">
