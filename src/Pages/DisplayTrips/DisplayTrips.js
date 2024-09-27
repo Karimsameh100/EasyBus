@@ -8,7 +8,7 @@ import {
   ModalFooter,
   Button,
 } from "react-bootstrap";
-import "./DisplayTrips.css"; // Import the CSS file for styling
+import "./DisplayTrips.css"; 
 import AddTripForm from "../addtrip";
 import { useParams } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
@@ -23,14 +23,10 @@ const DisplayTrips = () => {
   const [selectedTrip, setSelectedTrip] = useState(null);
   const [formData, setFormData] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 7; // Adjust this number based on how many items you want per page
-  const [view, setView] = useState("trips"); // New state for view toggle
-
-  // State for pagination of bookings
+  const itemsPerPage = 4; 
+  const [view, setView] = useState("trips");
   const [currentBookingsPage, setCurrentBookingsPage] = useState(1);
-  const bookingsPerPage = 4; // Adjust this number based on how many items you want per page for bookings
-
-  // Pagination logic for bookings
+  const bookingsPerPage = 4; 
   const totalBookingsPages = Math.ceil(userBookings.length / bookingsPerPage);
   const bookingsStartIndex = (currentBookingsPage - 1) * bookingsPerPage;
   const bookingsEndIndex = bookingsStartIndex + bookingsPerPage;
@@ -40,13 +36,13 @@ const DisplayTrips = () => {
   );
   const params = useParams();
   const [editTrip, setEditTrip] = useState(null);
-  const [validationErrors, setValidationErrors] = useState({});
+  const [addValidationErrors, setAddValidationErrors] = useState({});
+  const [editValidationErrors, setEditValidationErrors] = useState({});
   const [userNames, setUserNames] = useState({});
-  const [disabledButtons, setDisabledButtons] = useState({}); // State to keep track of disabled buttons
+  const [disabledButtons, setDisabledButtons] = useState({}); 
   const [confirmationMessage, setConfirmationMessage] = useState('');
   const [actionType, setActionType] = useState('');
-
-  //--------------------------------Add new Trip-------------------------
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false); 
   const [newTrip, setNewTrip] = useState({
     tripNumber: "",
     date: "",
@@ -59,8 +55,7 @@ const DisplayTrips = () => {
     bus: "",
   });
   const token = localStorage.getItem('authToken');
-    const decodedToken = jwtDecode(token);
-  // Handle the change of the new trip data
+  const decodedToken = jwtDecode(token);
   const handleNewTripChange = (event) => {
       setNewTrip({
         ...newTrip,
@@ -70,8 +65,7 @@ const DisplayTrips = () => {
   
  // Decode token to get company info
   console.log(decodedToken)
-  const companyId = decodedToken.user_id;
-  // console.log("companyy:", companyId);
+  const companyId = decodedToken.user_id;;
 
   useEffect(() => {
     if (!token) {
@@ -95,7 +89,6 @@ const DisplayTrips = () => {
 
           // Extract the trip IDs associated with the company
           const tripIds = company_trips.map((trip) => trip.id);
-          // Fetch all bookings
           axios.get('http://127.0.0.1:8000/booking/data/', {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -136,14 +129,18 @@ const DisplayTrips = () => {
           return response.data.name; // Return the user name
         } catch (err) {
           console.error("Error fetching user name:", err);
-          return ""; // Return an empty string if there's an error
+          return "";
         }
       };
 
+
+    const handleCloseModal = () => {
+      setShowConfirmationModal(false);
+      setConfirmationMessage('');
+    };
   // handle accept/reject status
   const handleBookingStatus = (bookingId, status, userName) => {
     
-    // Send the status update to the backend
     axios.patch(`http://127.0.0.1:8000/booking/${bookingId}/update-status/`, { status }, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -158,8 +155,11 @@ const DisplayTrips = () => {
         );
         if (status === 'Rejected') {
           // Show confirmation message when rejected
-          setConfirmationMessage(`Rejection email successfully sent to user: ${userName}`);
+          setConfirmationMessage(`Rejection Email Successfully sent to: ${userName}`);
+        }else if (status === 'Accepted') {
+          setConfirmationMessage(`Confirmation Email Successfully sent to: ${userName}`);
         }
+        setShowConfirmationModal(true); 
       })
       .catch((error) => {
         console.error("Error updating booking status:", error);
@@ -192,7 +192,7 @@ const DisplayTrips = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const errors = validateForm(formData); // Validate the form data
+    const errors = validateForm(formData,true); // Validate the form data
     if (Object.keys(errors).length === 0) {
       const updatedFormData = {
         ...formData,
@@ -219,10 +219,11 @@ const DisplayTrips = () => {
           );
           setShowEditModal(false);
           setFormData({});
+          setEditValidationErrors({});
         })
         .catch((err) => console.error("Error updating trip:", err));
     } else {
-      setValidationErrors(errors); // Set validation errors to display under the fields
+      setEditValidationErrors(errors); 
     }
   };
 
@@ -254,7 +255,7 @@ const DisplayTrips = () => {
       price: trip.price,
       status: trip.status,
       bus: trip.bus,
-      id: trip.id, // Ensure to capture the trip ID for the update
+      id: trip.id, 
     });
     setShowEditModal(true);
   };
@@ -271,41 +272,39 @@ const DisplayTrips = () => {
     setShowDeleteModal(true);
   };
 
-  const validateForm = (tripData) => {
+  const validateForm = (tripData, isEditing = false) => {
     const errors = {};
     const today = new Date().toISOString().split("T")[0];
-
+  
     const {
       tripNumber,
       date: tripDate,
-      avilabalPlaces: avilabalPlaces,
-      departuerStation: departuerStation,
+      avilabalPlaces,
+      departuerStation,
       destinationStation,
-      departuerTime: departuerTime,
-      destinationTime: arrivedTime,
+      departuerTime,
+      destinationTime,
       price,
-      status,
       bus,
     } = tripData;
-
-    // Validate tripNumber
-    if (!tripNumber || isNaN(tripNumber) || tripNumber <= 0) {
-      errors.tripNumber = "Trip number must be a positive number.";
+  
+    if (!isEditing) {
+      if (!tripNumber || isNaN(tripNumber) || tripNumber <= 0) {
+        errors.tripNumber = "Trip number must be a positive number.";
+      } else if (trips.some((trip) => trip.tripNumber === tripNumber)) {
+        errors.tripNumber = "Trip number already exists.";
+      }
     }
-
-    // Validate tripDate
     if (!tripDate) {
       errors.date = "Trip date is required.";
     } else if (tripDate < today) {
       errors.date = "Trip date cannot be in the past.";
     }
 
-    // Validate availablePlaces
     if (!avilabalPlaces || isNaN(avilabalPlaces) || avilabalPlaces <= 0) {
       errors.avilabalPlaces = "Available places must be a positive number.";
     }
-
-    // Validate departureStation
+  
     if (
       !departuerStation ||
       typeof departuerStation !== "string" ||
@@ -316,8 +315,6 @@ const DisplayTrips = () => {
       errors.departuerStation =
         "Departure station must be a non-empty string with each word having more than 3 characters and no numbers.";
     }
-
-    // Validate destinationStation
     if (
       !destinationStation ||
       typeof destinationStation !== "string" ||
@@ -325,57 +322,48 @@ const DisplayTrips = () => {
     ) {
       errors.destinationStation = "Destination station is required.";
     }
-
-    // Validate departureTime
+  
     if (!departuerTime) {
       errors.departuerTime = "Departure time is required.";
     }
-
-    // Validate arrivedTime
-    if (!arrivedTime) {
-      errors.arrivedTime = "Arrival time is required.";
-    } else if (arrivedTime && departuerTime && arrivedTime <= departuerTime) {
-      errors.arrivedTime = "Arrival time must be after departure time.";
+   
+    if (!destinationTime) {
+      errors.destinationTime = "Arrival time is required.";
+    } else if (destinationTime && departuerTime && destinationTime <= departuerTime) {
+      errors.destinationTime = "Arrival time must be after departure time.";
     }
 
-    // Validate price
     if (!price || isNaN(price) || price <= 0) {
       errors.price = "Price must be a positive number.";
     }
-
-    // Validate status (optional but required for edit)
-    /*     if (!status || typeof status !== 'string' || status.trim() === '') {
-      errors.status = "Status is required.";
-    } */
-
-    // Validate bus
+  
     if (!bus || isNaN(bus) || bus <= 0) {
       errors.bus = "Bus must be a valid number.";
     }
-
+  
     return errors;
   };
-
+  
   const handleAddTrip = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-    console.log("Adding trip with data:", newTrip); // Log the trip data
+    event.preventDefault(); 
+    console.log("Adding trip with data:", newTrip); 
 
-    const errors = validateForm(newTrip); // Validate the new trip data
+    const errors = validateForm(newTrip);
+    setAddValidationErrors(errors);
     console.log("Validation Errors:", errors);
     if (Object.keys(errors).length === 0) {
       const tripData = {
         ...newTrip,
-        company: companyId, // Add the company ID from the token
+        company: companyId, 
       };
 
-      // Make the POST request to add the new trip
       axios
         .post("http://localhost:8000/all/trips/", tripData, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
           console.log("Trip added:", res.data);
-          setTrips((prevTrips) => [...prevTrips, res.data]); // Update the trips state with the new trip
+          setTrips((prevTrips) => [...prevTrips, res.data]); 
           setNewTrip({
             tripNumber: "",
             date: "",
@@ -386,19 +374,26 @@ const DisplayTrips = () => {
             destinationTime: "",
             price: "",
             bus: "",
-          }); // Reset newTrip state
-          setShowAddModal(false); // Close the modal
+          }); 
+          setAddValidationErrors({}); 
+          setShowAddModal(false); 
         })
         .catch((err) => {
-          console.error(
-            "Error adding trip:",
-            err.response ? err.response.data : err.message
-          ); // Log the error
-          setShowAddModal(false); // Close the modal even if there's an error
+          console.error("Error adding trip:", err.response ? err.response.data : err.message);
+          if (err.response && err.response.data) {
+              // Check if there are backend validation errors
+              const backendErrors = err.response.data;
+              const validationErrors = {};
+    
+              // Map backend errors to validationErrors state
+              if (backendErrors.tripNumber) {
+                validationErrors.tripNumber = backendErrors.tripNumber.join(', '); 
+              }
+              setAddValidationErrors(validationErrors); 
+            }
         });
     } else {
-      // Set validation errors to display under the fields
-      setValidationErrors(errors);
+      setAddValidationErrors(errors);
     }
   };
 
@@ -417,7 +412,7 @@ const DisplayTrips = () => {
   };
 
   const cancelDelete = () => {
-    setShowDeleteModal(false); // Hide the modal without deleting
+    setShowDeleteModal(false);
   };
 
   return (
@@ -591,13 +586,13 @@ const DisplayTrips = () => {
                             <button
                               className="btn btn-success btn-sm mx-1"
                               onClick={() => handleBookingStatus(booking.id, 'Accepted', userNames[booking.user])}
-                              disabled={disabledButtons[booking.id]}
+                              disabled={booking.status === "Accepted" || booking.status === "Rejected"}
                             >
                               Accept
                             </button>
                             <button
                               className="btn btn-danger btn-sm mx-1"
-                              disabled={disabledButtons[booking.id]} 
+                              disabled={booking.status === "Accepted" || booking.status === "Rejected"}
                               onClick={() => handleBookingStatus(booking.id, 'Rejected', userNames[booking.user])}
                             >
                               Reject
@@ -607,10 +602,16 @@ const DisplayTrips = () => {
                       ))}
                     </tbody>
                   </table>
-                  {confirmationMessage && <p>{confirmationMessage}</p>}
+                </div>
+                
+              ) : (
+                <p className="text-center">
+                  No bookings found for this company.
+                </p>
+              )}
 
-                  {/* Pagination Controls for Bookings */}
-                  <nav aria-label="Bookings page navigation example">
+              {/* Pagination Controls for Bookings */}
+              <nav aria-label="Bookings page navigation example">
                     <ul className="pagination justify-content-center">
                       <li
                         className={`page-item ${
@@ -660,15 +661,21 @@ const DisplayTrips = () => {
                         </button>
                       </li>
                     </ul>
-                  </nav>
-                </div>
-              ) : (
-                <p className="text-center">
-                  No bookings found for this company.
-                </p>
-              )}
+               </nav>
             </>
           )}
+           {/* Inline Confirmation Modal */}
+          <Modal show={showConfirmationModal} onHide={handleCloseModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Confirmation</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>{confirmationMessage}</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseModal}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </div>
       {showAddModal && (
@@ -691,8 +698,8 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-                {validationErrors.tripNumber && (
-                  <p className="text-danger">{validationErrors.tripNumber}</p>
+                {addValidationErrors.tripNumber && (
+                  <p className="text-danger">{addValidationErrors.tripNumber}</p>
                 )}
               </div>
               <div className="form-group">
@@ -704,8 +711,8 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-                {validationErrors.date && (
-                  <p className="text-danger">{validationErrors.date}</p>
+                {addValidationErrors.date && (
+                  <p className="text-danger">{addValidationErrors.date}</p>
                 )}
               </div>
               <div className="form-group">
@@ -717,9 +724,9 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-                {validationErrors.avilabalPlaces && (
+                {addValidationErrors.avilabalPlaces && (
                   <p className="text-danger">
-                    {validationErrors.avilabalPlaces}
+                    {addValidationErrors.avilabalPlaces}
                   </p>
                 )}
               </div>
@@ -732,9 +739,9 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-                {validationErrors.departuerStation && (
+                {addValidationErrors.departuerStation && (
                   <p className="text-danger">
-                    {validationErrors.departuerStation}
+                    {addValidationErrors.departuerStation}
                   </p>
                 )}
               </div>
@@ -747,9 +754,9 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-                {validationErrors.destinationStation && (
+                {addValidationErrors.destinationStation && (
                   <p className="text-danger">
-                    {validationErrors.destinationStation}
+                    {addValidationErrors.destinationStation}
                   </p>
                 )}
               </div>
@@ -762,9 +769,9 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-                {validationErrors.departuerTime && (
+                {addValidationErrors.departuerTime && (
                   <p className="text-danger">
-                    {validationErrors.departuerTime}
+                    {addValidationErrors.departuerTime}
                   </p>
                 )}
               </div>
@@ -777,9 +784,9 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-                {validationErrors.destinationTime && (
+                {addValidationErrors.destinationTime && (
                   <p className="text-danger">
-                    {validationErrors.destinationTime}
+                    {addValidationErrors.destinationTime}
                   </p>
                 )}
               </div>
@@ -792,8 +799,8 @@ const DisplayTrips = () => {
                   onChange={handleNewTripChange}
                   className="form-control"
                 />
-                {validationErrors.price && (
-                  <p className="text-danger">{validationErrors.price}</p>
+                {addValidationErrors.price && (
+                  <p className="text-danger">{addValidationErrors.price}</p>
                 )}
               </div>
               <div className="form-group">
@@ -833,10 +840,8 @@ const DisplayTrips = () => {
                   value={formData.tripNumber}
                   onChange={handleChange}
                   className="form-control"
+                  disabled
                 />
-                {validationErrors.tripNumber && (
-                  <p className="text-danger">{validationErrors.tripNumber}</p>
-                )}
               </div>
               <div className="form-group">
                 <label>Trip Date:</label>
@@ -847,8 +852,8 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
-                {validationErrors.date && (
-                  <p className="text-danger">{validationErrors.date}</p>
+                {editValidationErrors.date && (
+                  <p className="text-danger">{editValidationErrors.date}</p>
                 )}
               </div>
               <div className="form-group">
@@ -860,9 +865,9 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
-                {validationErrors.avilabalPlaces && (
+                {editValidationErrors.avilabalPlaces && (
                   <p className="text-danger">
-                    {validationErrors.avilabalPlaces}
+                    {editValidationErrors.avilabalPlaces}
                   </p>
                 )}
               </div>
@@ -875,9 +880,9 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
-                {validationErrors.departuerStation && (
+                {editValidationErrors.departuerStation && (
                   <p className="text-danger">
-                    {validationErrors.departuerStation}
+                    {editValidationErrors.departuerStation}
                   </p>
                 )}
               </div>
@@ -890,9 +895,9 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
-                {validationErrors.destinationStation && (
+                {editValidationErrors.destinationStation && (
                   <p className="text-danger">
-                    {validationErrors.destinationStation}
+                    {editValidationErrors.destinationStation}
                   </p>
                 )}
               </div>
@@ -905,9 +910,9 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
-                {validationErrors.departuerTime && (
+                {editValidationErrors.departuerTime && (
                   <p className="text-danger">
-                    {validationErrors.departuerTime}
+                    {editValidationErrors.departuerTime}
                   </p>
                 )}
               </div>
@@ -920,9 +925,9 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
-                {validationErrors.destinationTime && (
+                {editValidationErrors.destinationTime && (
                   <p className="text-danger">
-                    {validationErrors.destinationTime}
+                    {editValidationErrors.destinationTime}
                   </p>
                 )}
               </div>
@@ -935,8 +940,8 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
-                {validationErrors.price && (
-                  <p className="text-danger">{validationErrors.price}</p>
+                {editValidationErrors.price && (
+                  <p className="text-danger">{editValidationErrors.price}</p>
                 )}
               </div>
               <div className="form-group">
@@ -960,8 +965,8 @@ const DisplayTrips = () => {
                   onChange={handleChange}
                   className="form-control"
                 />
-                {validationErrors.bus && (
-                  <p className="text-danger">{validationErrors.bus}</p>
+                {editValidationErrors.bus && (
+                  <p className="text-danger">{editValidationErrors.bus}</p>
                 )}
               </div>
               <button type="submit" className="btn btn-primary">
