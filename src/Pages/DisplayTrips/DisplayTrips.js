@@ -8,10 +8,14 @@ import {
   ModalFooter,
   Button,
 } from "react-bootstrap";
-import "./DisplayTrips.css"; 
+import "./DisplayTrips.css";
+// import "./test.css";
+
 import AddTripForm from "../addtrip";
 import { useParams } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const DisplayTrips = () => {
   const [trips, setTrips] = useState([]);
@@ -417,19 +421,21 @@ const DisplayTrips = () => {
 
   return (
     <div className="container mt-2 ">
-      <div className="row main">
+      <div
+        className="row main d-flex justify-content-center align-items-center"
+        style={{ minHeight: "80vh" }}
+      >
         <div className="col-md-9 my-2">
-          <h2 className="text-center my-3 text-bold ">
+          <h2 className="text-center my-3 text-bold">
             {view === "trips"
               ? `Trips of ${companyName}`
               : `Bookings for ${companyName}`}
           </h2>
+
           <ul className="nav justify-content-center py-2">
             <li className="nav-item">
               <button
-                className={`list-group-item list-group-item-action p-2 ${
-                  view === "trips" ? "active" : ""
-                }`}
+                className="list-group-item list-group-item-action p-2"
                 onClick={() => setView("trips")}
               >
                 List Trips
@@ -437,9 +443,7 @@ const DisplayTrips = () => {
             </li>
             <li className="nav-item">
               <button
-                className={`list-group-item list-group-item-action  p-2  ${
-                  view === "bookings" ? "active" : ""
-                }`}
+                className="list-group-item list-group-item-action p-2"
                 onClick={() => setView("bookings")}
               >
                 List Bookings
@@ -450,9 +454,9 @@ const DisplayTrips = () => {
           {view === "trips" && (
             <>
               {currentPageItems.length ? (
-                <div className="table-responsive col-sm-6 col-md-12">
-                  <table className="table table-striped">
-                    <thead className="">
+                <div className="table-responsive d-flex justify-content-center">
+                  <table className="table table-striped table-bordered">
+                    <thead>
                       <tr>
                         <th>Trip Number</th>
                         <th>Trip Date</th>
@@ -484,7 +488,7 @@ const DisplayTrips = () => {
                               className="btn btn-outline-primary btn-sm mx-1"
                               onClick={() => handleEditClick(trip)}
                             >
-                              Edit
+                              <FaEdit />
                             </button>
                           </td>
                           <td>
@@ -492,7 +496,7 @@ const DisplayTrips = () => {
                               className="btn btn-outline-danger btn-sm mx-1"
                               onClick={() => handleDeleteClick(trip)}
                             >
-                              Delete
+                              <FaTrash />
                             </button>
                           </td>
                         </tr>
@@ -501,16 +505,38 @@ const DisplayTrips = () => {
                   </table>
                 </div>
               ) : (
-                <p className="text-center">No trips found for this company.</p>
+                <p className="text-center">No trips available</p>
               )}
+
               {/* Add Trip Button Section */}
               <div className="text-end mt-3 mb-3">
                 <span>Want to add a new trip ? </span>
-                <button
-                  className="btn btn-primary"
+                {/* <button
+                  className="btn "
+                  style={{ color: "#003366" }}
                   onClick={() => setShowAddModal(true)}
                 >
                   Add Trip
+                </button> */}
+                <button
+                  className="btn"
+                  style={{
+                    backgroundColor: "#28a745",
+                    color: "white",
+                    border: "none",
+                    padding: "10px 20px",
+                    borderRadius: "5px",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  onMouseDown={(e) =>
+                    (e.target.style.backgroundColor = "#218838")
+                  } // لون أغمق عند الضغط
+                  onMouseUp={(e) =>
+                    (e.target.style.backgroundColor = "#28a745")
+                  } // إعادة اللون عند رفع الضغط
+                  onClick={() => setShowAddModal(true)}
+                >
+                  <FaPlus style={{ marginRight: "5px" }} /> Add Trip
                 </button>
               </div>
 
@@ -521,7 +547,7 @@ const DisplayTrips = () => {
                       currentPage === 1 ? "disabled" : ""
                     }`}
                   >
-                    <button className="page-link" onClick={handlePrevious}>
+                    {/* <button className="page-link" onClick={handlePrevious}>
                       Previous
                     </button>
                   </li>
@@ -547,6 +573,34 @@ const DisplayTrips = () => {
                   >
                     <button className="page-link" onClick={handleNext}>
                       Next
+                    </button> */}
+                    {/* -------------------------------------------------------------------------------- */}
+                    <button className="page-link" onClick={handlePrevious}>
+                      <FaArrowLeft /> {}
+                    </button>
+                  </li>
+                  {[...Array(totalPages).keys()].map((pageNumber) => (
+                    <li
+                      key={pageNumber}
+                      className={`page-item ${
+                        currentPage === pageNumber + 1 ? "active" : ""
+                      }`}
+                    >
+                      <button
+                        className="page-link"
+                        onClick={() => handlePageChange(pageNumber + 1)}
+                      >
+                        {pageNumber + 1}
+                      </button>
+                    </li>
+                  ))}
+                  <li
+                    className={`page-item ${
+                      currentPage === totalPages ? "disabled" : ""
+                    }`}
+                  >
+                    <button className="page-link" onClick={handleNext}>
+                      <FaArrowRight /> {}
                     </button>
                   </li>
                 </ul>

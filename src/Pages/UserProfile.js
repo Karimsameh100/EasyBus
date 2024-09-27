@@ -28,10 +28,9 @@ const UserProfile = () => {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [onlinePaymentMethod, setOnlinePaymentMethod] = useState(false);
   const [agreeToPayDeposit, setAgreeToPayDeposit] = useState(false);
-  // const [userEmail , setUserEmail] = useState();
-  // const [userName , setUser] = useState();
-  
-  // const [paymentData , setPaymentData] = ([{}]);
+  const [paymentExists , setPaymentExist] = useState();
+
+
 
   useEffect(() => {
     const access_token = localStorage.getItem("authToken");
@@ -248,8 +247,11 @@ if (Array.isArray(response.data)) {
     }
   };
 
-  const currentAcceptedTrip = acceptedTrips[(acceptedPage - 1) * tripsPerPage];
+  // const currentAcceptedTrip = acceptedTrips[(acceptedPage - 1) * tripsPerPage];
   const currentRejectedTrip = rejectedTrips[(rejectedPage - 1) * tripsPerPage];
+  const currentAcceptedTripIndex = currentPage-1;
+  const currentAcceptedTrip = acceptedTrips[currentAcceptedTripIndex];
+
 
   const handleEditAccount = () => {
     navigate("/client", {
@@ -321,6 +323,40 @@ useEffect(() => {
         });
     });
 }
+
+useEffect(() => {
+  const access_token = localStorage.getItem("authToken");
+  if (!access_token) {
+    navigate("/Login1");
+    return;
+  }
+
+  axios
+    .get(`http://127.0.0.1:8000/payments/`, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    })
+    .then((response) => {
+      const paymentData = response.data;
+      const bookingId = acceptedTrips[currentPage-1].id;
+      console.log("payment check,",bookingId)
+      const paymentExists = paymentData.some((payment) => payment.booking === bookingId);
+      if (paymentExists) {
+        // Hide the payment section
+        setPaymentMethod('');
+        setOnlinePaymentMethod(false);
+        setAgreeToPayDeposit(false);
+        setPaymentExist(paymentExists)
+      }else{
+        setPaymentExist('')
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching payments:", error);
+    });
+}, [acceptedTrips, currentPage]);
+
 
 const sendConfirmationEmailToUser = () => {
   const userEmail = {email}; // Replace with the user's email address
@@ -766,9 +802,9 @@ const [paypalLoaded, setPaypalLoaded] = useState(false);
               ) : currentSection === "accepted-trips" ? (
                 <div>
                   <h3 style={{ color: "green" }}>Accepted Trips</h3>
-                  {acceptedTrips[currentPage-1] ? (
+                  {currentAcceptedTrip ? (
                     <Card
-                      key={acceptedTrips[currentPage-1].id}
+                      key={currentAcceptedTrip.id}
                       className="mb-3"
                       style={{
                         border: "1px solid #28a745",
@@ -791,7 +827,7 @@ const [paypalLoaded, setPaypalLoaded] = useState(false);
                             }}
                           >
                             <span>Trip Number:</span>
-                            <span>{acceptedTrips[currentPage-1].filteredTrips}</span>
+                            <span>{currentAcceptedTrip.filteredTrips}</span>
                           </div>
                         </Card.Title>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -802,7 +838,7 @@ const [paypalLoaded, setPaypalLoaded] = useState(false);
                             }}
                           >
                             <strong>Pickup Location:</strong>
-                            <span>{acceptedTrips[currentPage-1].pickupLocation}</span>
+                            <span>{currentAcceptedTrip.pickupLocation}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -813,7 +849,7 @@ const [paypalLoaded, setPaypalLoaded] = useState(false);
                             }}
                           >
                             <strong>Drop Location:</strong>
-                            <span>{acceptedTrips[currentPage-1].dropLocation}</span>
+                            <span>{currentAcceptedTrip.dropLocation}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -824,7 +860,7 @@ const [paypalLoaded, setPaypalLoaded] = useState(false);
                             }}
                           >
                             <strong>Date:</strong>
-                            <span>{acceptedTrips[currentPage-1].date}</span>
+                            <span>{currentAcceptedTrip.date}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -835,7 +871,7 @@ const [paypalLoaded, setPaypalLoaded] = useState(false);
                             }}
                           >
                             <strong>Time:</strong>
-                            <span>{acceptedTrips[currentPage-1].time}</span>
+                            <span>{currentAcceptedTrip.time}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -846,7 +882,7 @@ const [paypalLoaded, setPaypalLoaded] = useState(false);
                             }}
                           >
                             <strong>Number of Places:</strong>
-                            <span>{acceptedTrips[currentPage-1].numberOfPlaces}</span>
+                            <span>{currentAcceptedTrip.numberOfPlaces}</span>
                           </div>
                         </Card.Text>
                         <Card.Text
@@ -859,10 +895,22 @@ const [paypalLoaded, setPaypalLoaded] = useState(false);
                             }}
                           >
                             <strong>Total Fare:</strong>
-                            <span>{acceptedTrips[currentPage-1].totalFare} EGP</span>
+                            <span>{currentAcceptedTrip.totalFare} EGP</span>
                           </div>
                           <hr className="fw-bold"/>
                         </Card.Text>
+                        {paymentExists && (
+                          <div className="alert alert-success" role="alert">
+                            <h4 className="alert-heading">Booking Confrmation</h4>
+                            <p className="fs-5">your booking confirmed successfully getrady for your trip, nice trip</p>
+                          </div>
+                        )}
+                        {!paymentExists && (
+                          <div>
+                            <div className="alert alert-warning" role="alert">
+                          <h4 className="alert-heading">Booking Confrmation</h4>
+                          <p className="fs-5">you need to confirm your booking by containue payment process to be on trip board !!</p>
+                          </div>
                         <Form> 
                         <Form.Group controlId="paymentMethod" className="text-center">
                                     <Form.Label className='fs-5 fw-semibold'>Payment Method:</Form.Label>
@@ -972,6 +1020,8 @@ const [paypalLoaded, setPaypalLoaded] = useState(false);
                                 )}                       
 
                         </Form>
+                        </div>
+                       )}
                       </Card.Body>
                     </Card>
                   ) : (
