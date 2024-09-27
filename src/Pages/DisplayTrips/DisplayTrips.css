@@ -1,5 +1,5 @@
-/* DisplayTrips.css */
-.list-group-item.active {
+
+/* .list-group-item.active {
   background-color: #007bff;
   color: white;
   border-radius: 10%;
@@ -11,10 +11,10 @@
 }
 
 .table th, .table td {
-  white-space: nowrap; /* Prevent text wrapping */
-}
+  white-space: nowrap; 
+ } 
 
-.table th:nth-child(1),
+ .table th:nth-child(1),
 .table td:nth-child(1) {
   width: 10%; 
 }
@@ -64,4 +64,56 @@
   background-color: rgb(141, 141, 141);
   border-top-left-radius:5px ;
   border-top-right-radius:5px ;
+}    */
+
+/* ----------------------------------------------------------- */
+
+
+.list-group-item-action:hover {
+  background-color: #007bff; /* لون الخلفية عند تمرير الماوس */
+  color: white; /* لون النص عند تمرير الماوس */
 }
+
+
+
+
+ /* .table-responsive {
+  overflow-x: unset; 
+  width: 100%; 
+}
+
+.table {
+  table-layout: fixed; 
+  width: 100%; 
+  max-width: 100%; 
+}
+
+.table th, .table td {
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden; 
+}
+
+.container {
+  max-width: 100%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.pagination {
+  margin-top: 1rem;
+}
+
+.nav{
+  background-color: rgb(141, 141, 141);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}  */
