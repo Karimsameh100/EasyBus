@@ -339,7 +339,8 @@ export function CityDetailes() {
               <h2 className="text-center m-5">Travel with {company.name}</h2>
               <div class="col-sm-6 col-md-4">
                 <img
-                  src={ // {company.image}
+                  src={
+                    // {company.image}----------------------------الصوره مش بتيجى من الباك ايند
                     gobus
                   }
                   className="img-fluid mt-5 "
