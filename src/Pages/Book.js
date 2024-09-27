@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 import React from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { useState, useEffect } from 'react';
@@ -9,8 +9,12 @@ import axios from 'axios';
 
 const BookingPage = () => {
     const location = useLocation();
-    const trip = location.state?.trip;
-    const company = location.state.company || {};
+    const [trip, setTrip] = useState(location.state?.trip);
+    const company = location.state?.company;
+
+    useEffect(() => {
+        setTrip(location.state?.trip);
+    }, [location.state]);
 
     const [showModal, setShowModal] = useState(false);
     const [totalCost, setTotalCost] = useState(0);
@@ -31,13 +35,13 @@ const BookingPage = () => {
     const [paypalAmount, setPaypalAmount] = useState(100);
     const [bookingID, setBookingId] = useState();
     const [paymentData, setPaymentData] = useState({})
-    const [pickupLocation, setPickupLocation] = useState(trip.departuerStation);
-    const [dropLocation, setDropLocation] = useState(trip.destinationStation);
-    const [checkedLocation, setCheckedLocation] = useState(false)
+    const [pickupLocation, setPickupLocation] = useState(trip?.departuerStation);
+    const [dropLocation, setDropLocation] = useState(trip?.destinationStation);
+
 
 
     useEffect(() => {
-        const tripPrice = parseFloat(trip.price.replace(/[^\d\.]/g, '')); // extract numeric value from string
+        const tripPrice = parseFloat(trip?.price.replace(/[^\d\.]/g, '')); // extract numeric value from string
         const subTotal = numberOfPlaces * tripPrice;
         const discountAmount = subTotal * 0.10; // 10% discount
         const tax = (subTotal - discountAmount) * 0.14;
@@ -45,10 +49,10 @@ const BookingPage = () => {
         setDiscountAmount(discountAmount);
         setTax(tax);
         setTotalCost(subTotal - discountAmount + tax);
-    }, [numberOfPlaces, trip.price]);
+    }, [numberOfPlaces, trip?.price]);
 
     const handleIncrement = () => {
-        if (numberOfPlaces < trip.availablePlaces) {
+        if (numberOfPlaces < trip?.avilabalPlaces) {
             setNumberOfPlaces(numberOfPlaces + 1);
         } else {
             setShowModal(true);
@@ -236,9 +240,9 @@ const BookingPage = () => {
                     amount: paypalAmount,
                     payment_method: paymentMethod,
                     booking_id: bookingId,
-                    trip_id: trip.id,
+                    trip_id: trip?.id,
                     user: userId,
-                    trip: trip.id,
+                    trip: trip?.id,
                     booking: bookingId,
                 }
                 setPaymentData(paymentData)
@@ -258,10 +262,12 @@ const BookingPage = () => {
             });
     }
 
-    const handleLocationChange = (e) => {
-        const location = e.target.value;
-        const isValid = location.trim() !== '' && pickupLocation.trim() !== '' && dropLocation.trim() !== '';
-        setCheckedLocation(isValid);
+    const handlePickupLocationChange = (e) => {
+        setPickupLocation(e.target.value);
+    };
+
+    const handleDropLocationChange = (e) => {
+        setDropLocation(e.target.value);
     };
 
     const [paypalLoaded, setPaypalLoaded] = useState(false);
@@ -279,7 +285,7 @@ const BookingPage = () => {
     }, []);
 
     if (!paypalLoaded) {
-        return <div>Loading PayPal...</div>;
+        return <div className='text-center fs-4 text-bg-primary'>Loading PayPal...</div>;
     }
 
 
@@ -291,7 +297,7 @@ const BookingPage = () => {
                     <Card className="shadow-sm">
                         <Card.Header className="text-center">
                             <img src={logo} className="img-fluid mb-3" />
-                            <h2 className="text-center mb-4">Your Trip with {company.name}</h2>
+                            <h2 className="text-center mb-4">Your Trip with {company?.name}</h2>
                         </Card.Header>
 
                         <Card.Body className="px-4 py-3">
@@ -299,31 +305,31 @@ const BookingPage = () => {
                             <ul className="list-unstyled">
                                 <li className="d-flex justify-content-between">
                                     <strong className='fs-5'>Your Trip Number:</strong>
-                                    <span className='fs-5'>{trip.tripNumber}</span>
+                                    <span className='fs-5'>{trip?.tripNumber}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <span className="font-weight-bold fs-5">Trip Date:</span>
-                                    <span className='fs-5'>{trip.date}</span>
+                                    <span className='fs-5'>{trip?.date}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <span className="font-weight-bold fs-5">Departure Station:</span>
-                                    <span className='fs-5'>{trip.departuerStation}</span>
+                                    <span className='fs-5'>{trip?.departuerStation}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <span className="font-weight-bold fs-5">Stop Stations:</span>
-                                    <span className='fs-5'>{trip.destinationStation}</span>
+                                    <span className='fs-5'>{trip?.destinationStation}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <span className="font-weight-bold fs-5">Departure Time:</span>
-                                    <span className='fs-5'>{trip.departuerTime}</span>
+                                    <span className='fs-5'>{trip?.departuerTime}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <span className="font-weight-bold fs-5">Arrival Time:</span>
-                                    <span className='fs-5'>{trip.destinationTime}</span>
+                                    <span className='fs-5'>{trip?.destinationTime}</span>
                                 </li>
                                 <li className="d-flex justify-content-between">
                                     <span className="font-weight-bold fs-5">Trip Price:</span>
-                                    <span className='fs-5'>{trip.price}</span>
+                                    <span className='fs-5'>{trip?.price}</span>
                                 </li>
                             </ul>
                         </Card.Body>
@@ -341,8 +347,8 @@ const BookingPage = () => {
                                         <Button variant="secondary" className='w-25' onClick={handleDecrement} disabled={numberOfPlaces === 1}>
                                             -
                                         </Button>
-                                        <Form.Control type="number" value={numberOfPlaces} onChange={(e) => setNumberOfPlaces(e.target.value)} />
-                                        <Button variant="secondary" className='w-25 btn btn-lg' onClick={handleIncrement} disabled={numberOfPlaces === trip.availablePlaces}>
+                                        <Form.Control type="number" value={numberOfPlaces} className='text-center text-dark fs-3 fw-semibold' readOnly onChange={(e) => setNumberOfPlaces(e.target.value)} />
+                                        <Button variant="secondary" className='w-25 btn btn-lg' onClick={handleIncrement} disabled={numberOfPlaces === trip?.avilabalPlaces}>
                                             +
                                         </Button>
                                     </div>
@@ -373,14 +379,11 @@ const BookingPage = () => {
                                     <Form.Control
                                         type="text"
                                         value={pickupLocation}
-                                        onChange={(e) => {
-                                            setPickupLocation(e.target.value);
-                                            // handleLocationChange(e);
-                                        }}
+                                        onChange={handlePickupLocationChange}
                                         required
                                     />
                                     {pickupLocation === '' && (
-                                        <Form.Text className="text-danger" onPlay={setCheckedLocation(false)}>Pickup location is required</Form.Text>
+                                        <Form.Text className="text-danger" >Pickup location is required</Form.Text>
 
                                     )}
                                 </Form.Group>
@@ -390,10 +393,7 @@ const BookingPage = () => {
                                     <Form.Control
                                         type="text"
                                         value={dropLocation}
-                                        onChange={(e) => {
-                                            setDropLocation(e.target.value);
-                                            // handleLocationChange(e);
-                                        }}
+                                        onChange={handleDropLocationChange}
                                         required
                                     />
                                     {dropLocation === '' && (
@@ -451,7 +451,13 @@ const BookingPage = () => {
                                     </div>
                                 )}
 
-                                {(checkedLocation && (paymentMethod === 'payOnline' && onlinePaymentMethod) || (paymentMethod === 'payCash' && agreeToPayDeposit)) && (
+                                {(pickupLocation && dropLocation && (onlinePaymentMethod || agreeToPayDeposit)) && (
+                                    <button onClick={handleBookNow} className='btn btn-primary btn-md d-flex justify-content-center fs-5 ' style={{ width: "85%", margin: "auto" }}>
+                                        Book now
+                                    </button>
+                                )}
+
+                                {/* {(checkedLocation && (paymentMethod === 'payOnline' && onlinePaymentMethod) || (paymentMethod === 'payCash' && agreeToPayDeposit)) && (
                                     <PayPalScriptProvider
                                         src="https://www.paypal.com/sdk/js"
                                         options={{
@@ -505,7 +511,7 @@ const BookingPage = () => {
                                             }}
                                         />
                                     </PayPalScriptProvider>
-                                )}
+                                )} */}
                             </Form>
                         </Card.Body>
                     </Card>
@@ -523,11 +529,11 @@ const BookingPage = () => {
                                 <div className="ticket-header d-flex justify-content-between">
                                     <div>
                                         <h4>Mr/Ms.{userName}</h4>
-                                        <strong>Trip Number:</strong> {trip.tripNumber}
+                                        <strong>Trip Number:</strong> {trip?.tripNumber}
                                     </div>
                                     <div>
-                                        <h4 className='text-end'>{company.name}</h4>
-                                        <strong>Trip Date:</strong> {trip.date}
+                                        <h4 className='text-end'>{company?.name}</h4>
+                                        <strong>Trip Date:</strong> {trip?.date}
 
                                     </div>
                                 </div>
@@ -544,23 +550,23 @@ const BookingPage = () => {
                                         </li>
                                         <li className="d-flex justify-content-between">
                                             <strong className="font-weight-bold fs-5">Departure Time:</strong>
-                                            <span className='fs-5'>{trip.departuerTime}</span>
+                                            <span className='fs-5'>{trip?.departuerTime}</span>
                                         </li>
                                         <li className="d-flex justify-content-between">
                                             <strong className="font-weight-bold fs-5">Arrival Time:</strong>
-                                            <span className='fs-5'>{trip.destinationTime}</span>
+                                            <span className='fs-5'>{trip?.destinationTime}</span>
                                         </li>
                                         <li className="d-flex justify-content-between">
                                             <strong className="font-weight-bold fs-5">Number of places:</strong>
-                                            <span className='fs-5'>{bookedTrips.numPlaces}</span>
+                                            <span className='fs-5'>{numberOfPlaces}</span>
                                         </li>
                                         <li className="d-flex justify-content-between">
-                                            <strong className="font-weight-bold fs-5">Amount you pay:</strong>
+                                            <strong className="font-weight-bold fs-5">Amount you agree to pay:</strong>
                                             <span className='fs-5'>{paypalAmount}</span>
                                         </li>
                                         <li className="d-flex justify-content-between">
                                             <strong className="font-weight-bold fs-5">Trip Cost:</strong>
-                                            <span className='fs-5'>{bookedTrips.totalCost}</span>
+                                            <span className='fs-5'>{totalCost}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -591,5 +597,6 @@ const BookingPage = () => {
         </Container>
     );
 };
+
 
 export default BookingPage;
