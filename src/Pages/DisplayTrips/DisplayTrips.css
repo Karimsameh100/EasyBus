@@ -70,8 +70,8 @@
 
 
 .list-group-item-action:hover {
-  background-color: #007bff; /* لون الخلفية عند تمرير الماوس */
-  color: white; /* لون النص عند تمرير الماوس */
+  background-color: #007bff; 
+  color: white; 
 }
 
 

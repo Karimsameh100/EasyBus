@@ -398,7 +398,7 @@ const DisplayTrips = () => {
           {view === "trips" && (
             <>
               {currentPageItems.length ? (
-                <div className="table-responsive d-flex justify-content-center">
+                <div className="table-responsive ">
                   <table className="table table-striped table-bordered">
                     <thead>
                       <tr>
