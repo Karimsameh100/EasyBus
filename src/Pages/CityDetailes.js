@@ -13,7 +13,6 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  Alert,
 } from "react-bootstrap";
 import ReviewForm from "./CreateReview";
 import { jwtDecode } from "jwt-decode";
@@ -93,32 +92,52 @@ export function CityDetailes() {
 
   console.log(companiess);
 
-  const handleAddToFavorites = (trip) => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const isAlreadyFavorite = storedFavorites.some(
-      (fav) => fav.tripNumber === trip.tripNumber
-    );
-
-    if (!isAlreadyFavorite) {
-      const newFavorite = { ...trip };
-      storedFavorites.push(newFavorite);
-      localStorage.setItem("favorites", JSON.stringify(storedFavorites));
-
-      // Dispatch a storage event to notify other components
-      window.dispatchEvent(new Event("storage"));
-
-      // Set favorites state and update badge count immediately
-      setFavorites(storedFavorites);
-
-      // Show success alert
-      setShowSuccessAlert(true);
-
-      // Automatically hide alert after 3 seconds
-      setTimeout(() => {
-        setShowSuccessAlert(false);
-      }, 3000);
+  const fetchFavorites = async () => {
+    try {
+      const response = await fetch('/api/favorites'); // Replace with the correct API endpoint
+      if (response.ok) {
+        const data = await response.json();
+        // Do something with the data, for example, update the state
+        setFavorites(data);
+      } else {
+        console.error('Failed to fetch favorites');
+      }
+    } catch (error) {
+      console.error('Error fetching favorites:', error);
     }
   };
+
+  useEffect(() => {
+    fetchFavorites();  // Ensure this is called on component load or where needed
+  }, []);
+
+
+
+
+  const handleAddToFavorites = async (trip) => {
+    try {
+      const authToken = localStorage.getItem("authToken");
+  
+      // Ensure the data structure matches what your backend expects
+      const data = { trip_id: trip };
+  
+      // Send the request to add the trip to favorites
+      await axios.post("http://localhost:8000/favorites/", data, {
+        headers: { Authorization: `Bearer ${authToken}` },
+      });
+  
+      console.log("Trip added to favorites");
+    } catch (error) {
+      if (error.response) {
+        // Log detailed server error for troubleshooting
+        console.error("Error response:", error.response.data);
+      } else {
+        console.error("Error adding to favorites", error);
+      }
+    }
+  };
+  
+
 
   // ------------------Favourites-----------END---------------------//
 
@@ -303,7 +322,7 @@ export function CityDetailes() {
             zIndex: 1000,
           }}
         >
-          This trip was added successfully to favorites!
+          This trip was added successfully to favorites! 
         </Alert>
       )}
       <div style={{ position: "relative" }}>
@@ -370,7 +389,8 @@ export function CityDetailes() {
               <h2 className="text-center m-5">Travel with {company.name}</h2>
               <div class="col-sm-6 col-md-4">
                 <img
-                  src={ // {company.image}
+                  src={
+                    // {company.image}----------------------------الصوره مش بتيجى من الباك ايند
                     gobus
                   }
                   className="img-fluid mt-5 "
@@ -569,3 +589,5 @@ export function CityDetailes() {
     </>
   );
 }
+
+export default CityDetailes
