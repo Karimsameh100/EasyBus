@@ -53,7 +53,8 @@ const UserProfile = () => {
           setName(name);
           setEmail(email);
           setPhoneNumber(phone_number);
-          setProfilePic(image);
+          const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+          setProfilePic(image ? `${backendUrl}${image}` : "https://via.placeholder.com/150");
         })
         .catch((error) => {
           console.error("Error fetching user profile:", error);
@@ -175,6 +176,7 @@ const UserProfile = () => {
       setSelectedFile(file);
       const imageUrl = URL.createObjectURL(file);
       setProfilePic(imageUrl);
+      setSelectedFile(file);
     }
   };
 
@@ -188,16 +190,20 @@ const UserProfile = () => {
       const userId = decodedToken.user_id;
 
       axios
-        .put(`http://localhost:8000/register/user/${userId}/`, formData, {
+        .patch(`http://localhost:8000/user/${userId}`, formData, {
           headers: {
             Authorization: `Bearer ${access_token}`,
             "Content-Type": "multipart/form-data",
           },
         })
         .then((response) => {
-          setProfilePic(response.data.image);
-          setSelectedFile(null);
+          const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+
+          const updatedImageUrl = `${backendUrl}${response.data.image}?${new Date().getTime()}`;
+          console.log("Updated Image URL:", updatedImageUrl); 
+          setProfilePic(updatedImageUrl);
           alert("Profile picture updated successfully!");
+          setSelectedFile(null);
         })
         .catch((error) => {
           console.error("Error updating profile picture:", error);
