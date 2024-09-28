@@ -16,6 +16,7 @@ import {
   Alert,
 } from "react-bootstrap";
 import ReviewForm from "./CreateReview";
+import { jwtDecode } from "jwt-decode";
 
 export function CityDetailes() {
   const params = useParams();
@@ -26,7 +27,7 @@ export function CityDetailes() {
   const [hasMoreReviews, setHasMoreReviews] = useState(true);
   const [companiess, setCompanies] = useState([]);
   const [trips, setTrips] = useState([]);
-  const currentUserId = 1;
+  const [currentUserId, setCurrentUserId] = useState(null);
   const [allTrips, setAllTrips] = useState([]);
 
   const [showEditModal, setShowEditModal] = useState(false);
@@ -40,6 +41,7 @@ export function CityDetailes() {
   const [showReviewForm, setShowReviewForm] = useState(false); // State to control the ReviewForm modal
   const [editReviewId, setEditReviewId] = useState(null); // State to control edit mode
   const [favorites, setFavorites] = useState([]);
+  const imageBaseURL = 'http://localhost:8000/';
 
   // State to control the visibility of the success alert
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
@@ -185,6 +187,25 @@ export function CityDetailes() {
     }
   }, [localStorage.getItem("authToken")]);
 
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+  
+    if (authToken) {
+      setIsLoggedIn(true);
+      
+      // Decode the JWT token to get the user_id
+      const decodedToken = jwtDecode(authToken);
+      
+      if (decodedToken && decodedToken.user_id) {
+        setCurrentUserId(decodedToken.user_id);
+        console.log("print user:",decodedToken.user_id)
+      } else {
+        console.error("User ID not found in token");
+      }
+    }
+  }, [localStorage.getItem("authToken")]);
+  
+
   const handleBookTrip = (trip, company) => {
     if (!isLoggedIn) {
       setShowLoginModal(true);
@@ -210,54 +231,64 @@ export function CityDetailes() {
     setShowModal(true);
   };
 
-  const handleDeleteReview = () => {
+  const handleDeleteReview = async () => {
     if (!reviewToDelete) return;
 
-    // Optimistically update the UI
+    const token = localStorage.getItem("authToken");
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    };
+
     const updatedReviews = city.Reviews.filter(
-      (r) => r.ReviewId !== reviewToDelete
+      (r) => r.id !== reviewToDelete
     );
+
     setCity((prevCity) => ({
       ...prevCity,
       Reviews: updatedReviews,
     }));
 
-    // Make the API call to update the server
-    axios
-      .put(`http://localhost:8000/cities/${params.id}/`, {
-        ...city,
-        Reviews: updatedReviews,
-      })
-      .then(() => {
-        // Reset modal and state after successful deletion
-        setShowModal(false);
-        setReviewToDelete(null);
-      })
-      .catch((err) => {
-        console.error("Error deleting review:", err);
-        // If the API call fails, revert the optimistic update
-        setCity((prevCity) => ({
-          ...prevCity,
-          Reviews: [...prevCity.Reviews, reviewToDelete], // Add back the deleted review
-        }));
-        // Show an error message or handle the error appropriately
-      });
+    try {
+      await axios.delete(`http://localhost:8000/reviews/${reviewToDelete}/`, { headers });
+      setShowModal(false);
+      setReviewToDelete(null);
+    } catch (error) {
+      console.error("Error deleting review:", error);
+      setCity((prevCity) => ({
+        ...prevCity,
+        Reviews: prevCity.Reviews, 
+      }));
+    }
   };
+
 
   const handleEditReview = (reviewId) => {
     setEditReviewId(reviewId);
-    setShowReviewForm(true); // Open the modal in edit mode
+    setShowReviewForm(true); 
   };
 
   const handleOpenReviewForm = () => {
-    setEditReviewId(null); // Reset the edit mode
-    setShowReviewForm(true); // Open the modal for a new review
+    setEditReviewId(null); 
+    setShowReviewForm(true);
   };
 
-  const handleReviewSubmit = (updatedReviews) => {
-    setCity((prevCity) => ({ ...prevCity, Reviews: updatedReviews }));
+  const handleReviewSubmit = (newReview) => {
+    setCity((prevCity) => {
+      const existingReviewIndex = prevCity.Reviews.findIndex((review) => review.id === newReview.id);
+  
+      if (existingReviewIndex !== -1) {
+        // Update existing review
+        const updatedReviews = [...prevCity.Reviews];
+        updatedReviews[existingReviewIndex] = newReview;
+        return { ...prevCity, Reviews: updatedReviews };
+      } else {
+        // Add new review
+        return { ...prevCity, Reviews: [...prevCity.Reviews, newReview] };
+      }
+    });
   };
-
+  
   return (
     <>
       {showSuccessAlert && (
@@ -444,15 +475,15 @@ export function CityDetailes() {
             <div className="col-12 col-lg-8">
               <div className="row">
                 {currentReviews.map((review) => (
-                  <div key={review.ReviewId} className="col-12 col-md-6 mb-4">
+                  <div key={review.id} className="col-12 col-md-6 mb-4">
                     <Reviews
-                      customerImg={review.ReviewCustomerDetails.image}
+                      customerImg={`${imageBaseURL}${review.ReviewCustomerDetails.image}`}
                       customerReview={review.Review}
                       customerName={review.ReviewCustomerDetails.name}
                       customerRate={review.ReviewCustomerRate}
-                      onEdit={() => handleEditReview(review.ReviewId)}
-                      onDelete={() => confirmDeleteReview(review.ReviewId)}
-                      isAuthor={review.UserId === currentUserId}
+                      onEdit={() => handleEditReview(review.id)}
+                      onDelete={() => confirmDeleteReview(review.id)}
+                      isAuthor={review.ReviewCustomerDetails.id === currentUserId}
                     />
                   </div>
                 ))}
