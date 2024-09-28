@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { jwtDecode } from "jwt-decode";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 // import { Button } from 'react-bootstrap';  // Assuming you're using react-bootstrap
-import { FaUserEdit } from "react-icons/fa";
+import { FaUserEdit, FaImage } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 
 const UserProfile = () => {
@@ -53,8 +53,11 @@ const UserProfile = () => {
           setName(name);
           setEmail(email);
           setPhoneNumber(phone_number);
-          const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
-          setProfilePic(image ? `${backendUrl}${image}` : "https://via.placeholder.com/150");
+          const backendUrl =
+            process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
+          setProfilePic(
+            image ? `${backendUrl}${image}` : "https://via.placeholder.com/150"
+          );
         })
         .catch((error) => {
           console.error("Error fetching user profile:", error);
@@ -197,10 +200,13 @@ const UserProfile = () => {
           },
         })
         .then((response) => {
-          const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+          const backendUrl =
+            process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 
-          const updatedImageUrl = `${backendUrl}${response.data.image}?${new Date().getTime()}`;
-          console.log("Updated Image URL:", updatedImageUrl); 
+          const updatedImageUrl = `${backendUrl}${
+            response.data.image
+          }?${new Date().getTime()}`;
+          console.log("Updated Image URL:", updatedImageUrl);
           setProfilePic(updatedImageUrl);
           alert("Profile picture updated successfully!");
           setSelectedFile(null);
@@ -526,23 +532,29 @@ const UserProfile = () => {
                             onChange={handleImageUpload}
                           />
                         </Form.Group>
-                        <Button
-                          variant="primary"
-                          onClick={handleProfilePictureChange}
-                          style={{ marginTop: "3vh" }}
-                          disabled={!selectedFile}
-                        >
-                          Change Profile Picture
-                        </Button>
 
-                        <Button
-                          variant="primary"
-                          onClick={handleEditAccount}
-                          style={{ marginTop: "3vh" }}
-                        >
-                          <FaUserEdit style={{ marginRight: "8px" }} />
-                          Edit My Profile
-                        </Button>
+                        <div className="d-inline-flex">
+                          <Button
+                            variant="primary"
+                            onClick={handleProfilePictureChange}
+                            style={{ marginTop: "3vh" }}
+                            disabled={!selectedFile}
+                            className="mx-2"
+                          >
+                            <FaImage style={{ marginRight: "8px" }} />
+                            Change Profile Picture
+                          </Button>
+
+                          <Button
+                            variant="primary"
+                            onClick={handleEditAccount}
+                            style={{ marginTop: "3vh" }}
+                            className="mx-2"
+                          >
+                            <FaUserEdit style={{ marginRight: "8px" }} />
+                            Edit My Profile
+                          </Button>
+                        </div>
                       </Form>
                     </Col>
                   </Row>

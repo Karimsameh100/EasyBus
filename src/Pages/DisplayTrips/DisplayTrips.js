@@ -14,8 +14,15 @@ import "./DisplayTrips.css";
 import AddTripForm from "../addtrip";
 import { useParams } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import {
+  FaEdit,
+  FaTrash,
+  FaPlus,
+  FaCheck,
+  FaTimes,
+  FaArrowLeft,
+  FaArrowRight,
+} from "react-icons/fa";
 
 const DisplayTrips = () => {
   const [trips, setTrips] = useState([]);
@@ -27,10 +34,10 @@ const DisplayTrips = () => {
   const [selectedTrip, setSelectedTrip] = useState(null);
   const [formData, setFormData] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4; 
+  const itemsPerPage = 4;
   const [view, setView] = useState("trips");
   const [currentBookingsPage, setCurrentBookingsPage] = useState(1);
-  const bookingsPerPage = 4; 
+  const bookingsPerPage = 4;
   const totalBookingsPages = Math.ceil(userBookings.length / bookingsPerPage);
   const bookingsStartIndex = (currentBookingsPage - 1) * bookingsPerPage;
   const bookingsEndIndex = bookingsStartIndex + bookingsPerPage;
@@ -43,10 +50,10 @@ const DisplayTrips = () => {
   const [addValidationErrors, setAddValidationErrors] = useState({});
   const [editValidationErrors, setEditValidationErrors] = useState({});
   const [userNames, setUserNames] = useState({});
-  const [disabledButtons, setDisabledButtons] = useState({}); 
-  const [confirmationMessage, setConfirmationMessage] = useState('');
-  const [actionType, setActionType] = useState('');
-  const [showConfirmationModal, setShowConfirmationModal] = useState(false); 
+  const [disabledButtons, setDisabledButtons] = useState({});
+  const [confirmationMessage, setConfirmationMessage] = useState("");
+  const [actionType, setActionType] = useState("");
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [newTrip, setNewTrip] = useState({
     tripNumber: "",
     date: "",
@@ -58,18 +65,18 @@ const DisplayTrips = () => {
     price: "",
     bus: "",
   });
-  const token = localStorage.getItem('authToken');
+  const token = localStorage.getItem("authToken");
   const decodedToken = jwtDecode(token);
   const handleNewTripChange = (event) => {
-      setNewTrip({
-        ...newTrip,
-        [event.target.name]: event.target.value,
-      });
-    };
-  
- // Decode token to get company info
-  console.log(decodedToken)
-  const companyId = decodedToken.user_id;;
+    setNewTrip({
+      ...newTrip,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  // Decode token to get company info
+  console.log(decodedToken);
+  const companyId = decodedToken.user_id;
 
   useEffect(() => {
     if (!token) {
@@ -91,9 +98,10 @@ const DisplayTrips = () => {
         setName(name);
         setTrips(company_trips);
 
-          // Extract the trip IDs associated with the company
-          const tripIds = company_trips.map((trip) => trip.id);
-          axios.get('http://127.0.0.1:8000/booking/data/', {
+        // Extract the trip IDs associated with the company
+        const tripIds = company_trips.map((trip) => trip.id);
+        axios
+          .get("http://127.0.0.1:8000/booking/data/", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -106,74 +114,85 @@ const DisplayTrips = () => {
               tripIds.includes(booking.trip)
             );
             setUserBookings(filteredBookings);
-  
+
             const userNameMap = {};
-        
+
             // For each booking, fetch the user name based on user ID
             const userFetchPromises = filteredBookings.map((booking) => {
-              return fetchUserName(booking.user).then(userName => {
+              return fetchUserName(booking.user).then((userName) => {
                 userNameMap[booking.user] = userName; // Store in mapping
               });
             });
 
             Promise.all(userFetchPromises).then(() => {
-              setUserNames(userNameMap); 
+              setUserNames(userNameMap);
             });
-      })
+          })
           .catch((err) => console.error("Error fetching bookings:", err));
       })
       .catch((err) => console.error("Error fetching trips:", err));
-    }, [params.id, setEditTrip]);
+  }, [params.id, setEditTrip]);
 
-      const fetchUserName = async (userId) => {
-        try {
-          const response = await axios.get(`http://127.0.0.1:8000/mixinuser_pk/${userId}?user_type=user`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-          return response.data.name; // Return the user name
-        } catch (err) {
-          console.error("Error fetching user name:", err);
-          return "";
+  const fetchUserName = async (userId) => {
+    try {
+      const response = await axios.get(
+        `http://127.0.0.1:8000/mixinuser_pk/${userId}?user_type=user`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
         }
-      };
+      );
+      return response.data.name; // Return the user name
+    } catch (err) {
+      console.error("Error fetching user name:", err);
+      return "";
+    }
+  };
 
-
-    const handleCloseModal = () => {
-      setShowConfirmationModal(false);
-      setConfirmationMessage('');
-    };
+  const handleCloseModal = () => {
+    setShowConfirmationModal(false);
+    setConfirmationMessage("");
+  };
   // handle accept/reject status
   const handleBookingStatus = (bookingId, status, userName) => {
-    
-    axios.patch(`http://127.0.0.1:8000/booking/${bookingId}/update-status/`, { status }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    axios
+      .patch(
+        `http://127.0.0.1:8000/booking/${bookingId}/update-status/`,
+        { status },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => {
         // Update the UI with the new status
         setUserBookings((prevBookings) =>
           prevBookings.map((booking) =>
-            booking.id === bookingId ? { ...booking, status: response.data.status } : booking
+            booking.id === bookingId
+              ? { ...booking, status: response.data.status }
+              : booking
           )
         );
-        if (status === 'Rejected') {
+        if (status === "Rejected") {
           // Show confirmation message when rejected
-          setConfirmationMessage(`Rejection Email Successfully sent to: ${userName}`);
-        }else if (status === 'Accepted') {
-          setConfirmationMessage(`Confirmation Email Successfully sent to: ${userName}`);
+          setConfirmationMessage(
+            `Rejection Email Successfully sent to: ${userName}`
+          );
+        } else if (status === "Accepted") {
+          setConfirmationMessage(
+            `Confirmation Email Successfully sent to: ${userName}`
+          );
         }
-        setShowConfirmationModal(true); 
+        setShowConfirmationModal(true);
       })
       .catch((error) => {
         console.error("Error updating booking status:", error);
       });
   };
   const getTripNumber = (tripId) => {
-  const trip = trips.find(t => t.id === tripId);
-  return trip ? trip.tripNumber : 'N/A'; // Fallback in case the trip is not found
-};
-
+    const trip = trips.find((t) => t.id === tripId);
+    return trip ? trip.tripNumber : "N/A"; // Fallback in case the trip is not found
+  };
 
   // Pagination logic
   const totalPages = Math.ceil(trips.length / itemsPerPage);
@@ -196,7 +215,7 @@ const DisplayTrips = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const errors = validateForm(formData,true); // Validate the form data
+    const errors = validateForm(formData, true); // Validate the form data
     if (Object.keys(errors).length === 0) {
       const updatedFormData = {
         ...formData,
@@ -227,7 +246,7 @@ const DisplayTrips = () => {
         })
         .catch((err) => console.error("Error updating trip:", err));
     } else {
-      setEditValidationErrors(errors); 
+      setEditValidationErrors(errors);
     }
   };
 
@@ -259,7 +278,7 @@ const DisplayTrips = () => {
       price: trip.price,
       status: trip.status,
       bus: trip.bus,
-      id: trip.id, 
+      id: trip.id,
     });
     setShowEditModal(true);
   };
@@ -279,7 +298,7 @@ const DisplayTrips = () => {
   const validateForm = (tripData, isEditing = false) => {
     const errors = {};
     const today = new Date().toISOString().split("T")[0];
-  
+
     const {
       tripNumber,
       date: tripDate,
@@ -291,7 +310,7 @@ const DisplayTrips = () => {
       price,
       bus,
     } = tripData;
-  
+
     if (!isEditing) {
       if (!tripNumber || isNaN(tripNumber) || tripNumber <= 0) {
         errors.tripNumber = "Trip number must be a positive number.";
@@ -308,7 +327,7 @@ const DisplayTrips = () => {
     if (!avilabalPlaces || isNaN(avilabalPlaces) || avilabalPlaces <= 0) {
       errors.avilabalPlaces = "Available places must be a positive number.";
     }
-  
+
     if (
       !departuerStation ||
       typeof departuerStation !== "string" ||
@@ -326,31 +345,35 @@ const DisplayTrips = () => {
     ) {
       errors.destinationStation = "Destination station is required.";
     }
-  
+
     if (!departuerTime) {
       errors.departuerTime = "Departure time is required.";
     }
-   
+
     if (!destinationTime) {
       errors.destinationTime = "Arrival time is required.";
-    } else if (destinationTime && departuerTime && destinationTime <= departuerTime) {
+    } else if (
+      destinationTime &&
+      departuerTime &&
+      destinationTime <= departuerTime
+    ) {
       errors.destinationTime = "Arrival time must be after departure time.";
     }
 
     if (!price || isNaN(price) || price <= 0) {
       errors.price = "Price must be a positive number.";
     }
-  
+
     if (!bus || isNaN(bus) || bus <= 0) {
       errors.bus = "Bus must be a valid number.";
     }
-  
+
     return errors;
   };
-  
+
   const handleAddTrip = (event) => {
-    event.preventDefault(); 
-    console.log("Adding trip with data:", newTrip); 
+    event.preventDefault();
+    console.log("Adding trip with data:", newTrip);
 
     const errors = validateForm(newTrip);
     setAddValidationErrors(errors);
@@ -358,7 +381,7 @@ const DisplayTrips = () => {
     if (Object.keys(errors).length === 0) {
       const tripData = {
         ...newTrip,
-        company: companyId, 
+        company: companyId,
       };
 
       axios
@@ -367,7 +390,7 @@ const DisplayTrips = () => {
         })
         .then((res) => {
           console.log("Trip added:", res.data);
-          setTrips((prevTrips) => [...prevTrips, res.data]); 
+          setTrips((prevTrips) => [...prevTrips, res.data]);
           setNewTrip({
             tripNumber: "",
             date: "",
@@ -378,23 +401,26 @@ const DisplayTrips = () => {
             destinationTime: "",
             price: "",
             bus: "",
-          }); 
-          setAddValidationErrors({}); 
-          setShowAddModal(false); 
+          });
+          setAddValidationErrors({});
+          setShowAddModal(false);
         })
         .catch((err) => {
-          console.error("Error adding trip:", err.response ? err.response.data : err.message);
+          console.error(
+            "Error adding trip:",
+            err.response ? err.response.data : err.message
+          );
           if (err.response && err.response.data) {
-              // Check if there are backend validation errors
-              const backendErrors = err.response.data;
-              const validationErrors = {};
-    
-              // Map backend errors to validationErrors state
-              if (backendErrors.tripNumber) {
-                validationErrors.tripNumber = backendErrors.tripNumber.join(', '); 
-              }
-              setAddValidationErrors(validationErrors); 
+            // Check if there are backend validatio n errors
+            const backendErrors = err.response.data;
+            const validationErrors = {};
+
+            // Map backend errors to validationErrors state
+            if (backendErrors.tripNumber) {
+              validationErrors.tripNumber = backendErrors.tripNumber.join(", ");
             }
+            setAddValidationErrors(validationErrors);
+          }
         });
     } else {
       setAddValidationErrors(errors);
@@ -420,7 +446,7 @@ const DisplayTrips = () => {
   };
 
   return (
-    <div className="container mt-2 ">
+    <div className="container mt-2 table-responsive ">
       <div
         className="row main d-flex justify-content-center align-items-center"
         style={{ minHeight: "80vh" }}
@@ -455,7 +481,7 @@ const DisplayTrips = () => {
             <>
               {currentPageItems.length ? (
                 <div className="table-responsive ">
-                  <table className="table table-striped table-bordered">
+                  <table className="table table-striped table-bordered w-100">
                     <thead>
                       <tr>
                         <th>Trip Number</th>
@@ -635,21 +661,40 @@ const DisplayTrips = () => {
                           <td>{booking.dropLocation}</td>
                           <td>{booking.numberOfPlaces}</td>
                           <td>{booking.totalFare}</td>
-                          <td>{booking.status || 'Pending'}</td>
+                          <td>{booking.status || "Pending"}</td>
                           <td>
                             <button
-                              className="btn btn-success btn-sm mx-1"
-                              onClick={() => handleBookingStatus(booking.id, 'Accepted', userNames[booking.user])}
-                              disabled={booking.status === "Accepted" || booking.status === "Rejected"}
+                              className="btn btn-success btn-sm mx-1  d-inline-flex"
+                              onClick={() =>
+                                handleBookingStatus(
+                                  booking.id,
+                                  "Accepted",
+                                  userNames[booking.user]
+                                )
+                              }
+                              disabled={
+                                booking.status === "Accepted" ||
+                                booking.status === "Rejected"
+                              }
                             >
-                              Accept
+                              {/* // Accept  */}
+                              <FaCheck />
                             </button>
                             <button
-                              className="btn btn-danger btn-sm mx-1"
-                              disabled={booking.status === "Accepted" || booking.status === "Rejected"}
-                              onClick={() => handleBookingStatus(booking.id, 'Rejected', userNames[booking.user])}
+                              className="btn btn-danger btn-sm mx-1  d-inline-flex"
+                              disabled={
+                                booking.status === "Accepted" ||
+                                booking.status === "Rejected"
+                              }
+                              onClick={() =>
+                                handleBookingStatus(
+                                  booking.id,
+                                  "Rejected",
+                                  userNames[booking.user]
+                                )
+                              }
                             >
-                              Reject
+                              <FaTimes />
                             </button>
                           </td>
                         </tr>
@@ -657,7 +702,6 @@ const DisplayTrips = () => {
                     </tbody>
                   </table>
                 </div>
-                
               ) : (
                 <p className="text-center">
                   No bookings found for this company.
@@ -666,59 +710,52 @@ const DisplayTrips = () => {
 
               {/* Pagination Controls for Bookings */}
               <nav aria-label="Bookings page navigation example">
-                    <ul className="pagination justify-content-center">
-                      <li
-                        className={`page-item ${
-                          currentBookingsPage === 1 ? "disabled" : ""
-                        }`}
+                <ul className="pagination justify-content-center">
+                  <li
+                    className={`page-item ${
+                      currentBookingsPage === 1 ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={handleBookingsPrevious}
+                    >
+                      <FaArrowLeft />
+                    </button>
+                  </li>
+                  {[...Array(totalBookingsPages).keys()].map((pageNumber) => (
+                    <li
+                      key={pageNumber}
+                      className={`page-item ${
+                        currentBookingsPage === pageNumber + 1 ? "active" : ""
+                      }`}
+                    >
+                      <button
+                        className="page-link"
+                        onClick={() => handleBookingsPageChange(pageNumber + 1)}
                       >
-                        <button
-                          className="page-link"
-                          onClick={handleBookingsPrevious}
-                        >
-                          Previous
-                        </button>
-                      </li>
-                      {[...Array(totalBookingsPages).keys()].map(
-                        (pageNumber) => (
-                          <li
-                            key={pageNumber}
-                            className={`page-item ${
-                              currentBookingsPage === pageNumber + 1
-                                ? "active"
-                                : ""
-                            }`}
-                          >
-                            <button
-                              className="page-link"
-                              onClick={() =>
-                                handleBookingsPageChange(pageNumber + 1)
-                              }
-                            >
-                              {pageNumber + 1}
-                            </button>
-                          </li>
-                        )
-                      )}
-                      <li
-                        className={`page-item ${
-                          currentBookingsPage === totalBookingsPages
-                            ? "disabled"
-                            : ""
-                        }`}
-                      >
-                        <button
-                          className="page-link"
-                          onClick={handleBookingsNext}
-                        >
-                          Next
-                        </button>
-                      </li>
-                    </ul>
-               </nav>
+                        {pageNumber + 1}
+                      </button>
+                    </li>
+                  ))}
+                  <li
+                    className={`page-item ${
+                      currentBookingsPage === totalBookingsPages
+                        ? "disabled"
+                        : ""
+                    }`}
+                  >
+                    <button className="page-link" onClick={handleBookingsNext}>
+                      {/* Next*/}
+
+                      <FaArrowRight />
+                    </button>
+                  </li>
+                </ul>
+              </nav>
             </>
           )}
-           {/* Inline Confirmation Modal */}
+          {/* Inline Confirmation Modal */}
           <Modal show={showConfirmationModal} onHide={handleCloseModal}>
             <Modal.Header closeButton>
               <Modal.Title>Confirmation</Modal.Title>
@@ -753,7 +790,9 @@ const DisplayTrips = () => {
                   className="form-control"
                 />
                 {addValidationErrors.tripNumber && (
-                  <p className="text-danger">{addValidationErrors.tripNumber}</p>
+                  <p className="text-danger">
+                    {addValidationErrors.tripNumber}
+                  </p>
                 )}
               </div>
               <div className="form-group">
