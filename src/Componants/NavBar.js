@@ -41,10 +41,7 @@ export function NavBar() {
                 setIsCompany(true);
                 setProfilePic(null);
               } else {
-                const storedProfilePic =
-                  localStorage.getItem("profilePic") ||
-                  "https://via.placeholder.com/150";
-                setProfilePic(storedProfilePic); // صورة خليها
+                setProfilePic(currentUser.image || "https://via.placeholder.com/150");
               }
             } else {
               console.error("User not found");
