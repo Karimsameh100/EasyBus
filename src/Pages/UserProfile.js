@@ -208,7 +208,6 @@ const UserProfile = () => {
           }?${new Date().getTime()}`;
           console.log("Updated Image URL:", updatedImageUrl);
           setProfilePic(updatedImageUrl);
-          alert("Profile picture updated successfully!");
           setSelectedFile(null);
         })
         .catch((error) => {

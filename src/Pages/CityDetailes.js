@@ -16,6 +16,7 @@ import {
 } from "react-bootstrap";
 import ReviewForm from "./CreateReview";
 import { jwtDecode } from "jwt-decode";
+import { Alert } from 'react-bootstrap';
 
 export function CityDetailes() {
   const params = useParams();
@@ -507,12 +508,11 @@ export function CityDetailes() {
                     />
                   </div>
                 ))}
-                <Button
-                  className="btn btn-success rounded-pill"
-                  onClick={handleOpenReviewForm}
-                >
-                  Share Your Review
-                </Button>
+                 {isLoggedIn && (
+                  <Button className="btn btn-success rounded-pill" onClick={handleOpenReviewForm}>
+                    Share Your Review
+                  </Button>
+                )}
               </div>
 
               {/* Review Form Modal */}
