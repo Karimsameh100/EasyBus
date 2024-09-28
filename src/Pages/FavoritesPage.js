@@ -1,6 +1,7 @@
 
 
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
@@ -10,17 +11,23 @@ export function FavoritesPage() {
     setFavorites(storedFavorites);
   }, []);
 
-  const handleRemoveFromFavorites = (tripNumber) => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const updatedFavorites = storedFavorites.filter(fav => fav.tripNumber !== tripNumber);
+  const handleRemoveFavorite = async (favoriteId) => {
+    try {
+      const authToken = localStorage.getItem("authToken");
+      await axios.delete(`http://localhost:8000/favorites/${favoriteId}/`, {
+        headers: { Authorization: `Bearer ${authToken}` },
+      });
   
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-  
-    // Dispatch a storage event to notify other components
-    window.dispatchEvent(new Event("storage"));
-  
-    setFavorites(updatedFavorites); // Update local favorites state
+      // Directly update favorites after removing the trip
+      const updatedFavorites = favorites.filter(trip => trip.tripNumber !== favoriteId);
+      setFavorites(updatedFavorites);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites)); // Update local storage
+    } catch (error) {
+      console.error("Error removing from favorites", error);
+    }
   };
+  
+  
   
 
   return (
@@ -58,7 +65,7 @@ export function FavoritesPage() {
                   <td>
                     <button
                       className="btn btn-danger btn-sm"
-                      onClick={() => handleRemoveFromFavorites(trip.tripNumber)}
+                      onClick={() => handleRemoveFavorite(trip.tripNumber)}
                     >
                       Remove from Favorites
                     </button>
