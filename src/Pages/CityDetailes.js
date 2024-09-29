@@ -528,6 +528,7 @@ export function CityDetailes() {
                 <Modal.Body>
                   <ReviewForm
                     id={params.id}
+                    cityId={city.id}
                     reviewId={editReviewId}
                     onClose={() => setShowReviewForm(false)}
                     onSubmit={handleReviewSubmit}

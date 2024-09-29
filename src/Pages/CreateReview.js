@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-function ReviewForm({ id, reviewId, onClose, onSubmit }) {
+function ReviewForm({ id,cityId, reviewId, onClose, onSubmit }) {
   const [review, setReview] = useState({
     RevCustomerImage: "",
     Review: "",
@@ -116,7 +116,9 @@ function ReviewForm({ id, reviewId, onClose, onSubmit }) {
       Review: review.Review,
       ReviewCustomerRate: review.ReviewCustomerRate,
       ReviewCustomerDetails_id: userDetails.id,
+      city_id: cityId,
     };
+    console.log("City ID:", cityId);
 
     const apiCall = reviewId
       ? axios.put(`http://localhost:8000/reviews/${reviewId}/`, reviewData, { headers })
