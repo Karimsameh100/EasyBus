@@ -4,6 +4,8 @@ import SearchComponent from "../Componants/Searh";
 import { Reviews } from "../Componants/Reviews/Review";
 import gobus from "../logo/unnamed.png";
 import axios from "axios";
+import { Alert } from "react-bootstrap";
+
 import { FaRegBookmark, FaHeart } from "react-icons/fa";
 import "../Componants/bookstyle.css";
 import {
@@ -92,38 +94,35 @@ export function CityDetailes() {
 
   const fetchFavorites = async () => {
     try {
-      const response = await fetch('/api/favorites'); // Replace with the correct API endpoint
+      const response = await fetch("/api/favorites"); // Replace with the correct API endpoint
       if (response.ok) {
         const data = await response.json();
         // Do something with the data, for example, update the state
         setFavorites(data);
       } else {
-        console.error('Failed to fetch favorites');
+        console.error("Failed to fetch favorites");
       }
     } catch (error) {
-      console.error('Error fetching favorites:', error);
+      console.error("Error fetching favorites:", error);
     }
   };
 
   useEffect(() => {
-    fetchFavorites();  // Ensure this is called on component load or where needed
+    fetchFavorites(); // Ensure this is called on component load or where needed
   }, []);
-
-
-
 
   const handleAddToFavorites = async (trip) => {
     try {
       const authToken = localStorage.getItem("authToken");
-  
+
       // Ensure the data structure matches what your backend expects
       const data = { trip_id: trip };
-  
+
       // Send the request to add the trip to favorites
       await axios.post("http://localhost:8000/favorites/", data, {
         headers: { Authorization: `Bearer ${authToken}` },
       });
-  
+
       console.log("Trip added to favorites");
     } catch (error) {
       if (error.response) {
@@ -134,8 +133,6 @@ export function CityDetailes() {
       }
     }
   };
-  
-
 
   // ------------------Favourites-----------END---------------------//
 
@@ -291,7 +288,7 @@ export function CityDetailes() {
             zIndex: 1000,
           }}
         >
-          This trip was added successfully to favorites! 
+          This trip was added successfully to favorites!
         </Alert>
       )}
       <div style={{ position: "relative" }}>
@@ -559,4 +556,4 @@ export function CityDetailes() {
   );
 }
 
-export default CityDetailes
+export default CityDetailes;
