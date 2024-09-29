@@ -642,7 +642,7 @@ const DisplayTrips = () => {
                       <tr>
                         <th>Trip Number</th>
                         <th>User Name</th>
-                        <th>Trip Date</th>
+                        <th>Booking Date</th>
                         <th>Pickup Location</th>
                         <th>Drop Location</th>
                         <th>Seats Booked</th>

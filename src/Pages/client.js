@@ -141,7 +141,13 @@ function ClientSignup() {
       !errors.passwordErr &&
       !errors.confirm_passwordErr
     ) {
-      const user = { name, email, phone_number, password, confirm_password, user_type };
+      const formData = new FormData();
+        formData.append("name", name);
+        formData.append("phone_number", phone_number);
+        formData.append("email", email);
+        formData.append("password", password);
+        formData.append("confirm_password", confirm_password);
+        formData.append("user_type", user_type);
   
       try {
         const url = isEditMode ? `http://127.0.0.1:8000/user/${currentUserIndex}` : "http://127.0.0.1:8000/register/user/";
@@ -149,17 +155,14 @@ function ClientSignup() {
   
         const response = await fetch(url, {
           method: method,
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(user),
+          body: formData,
         });
   
         if (response.ok) {
           console.log(`User ${isEditMode ? "updated" : "registered"} successfully`);
           // Redirect to the user profile page after successful update
           navigate(`/userprofile`, {
-            state: { updatedUser: user }
+            state: { updatedUser: userInputs }
           });
         } else {
           // Handle response errors
