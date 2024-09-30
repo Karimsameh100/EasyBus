@@ -80,29 +80,6 @@ const Search = () => {
           />
         </Form.Group>
 
-        <Form.Group className="form-groub mr-3" controlId="arrivalStation">
-          <Form.Label>Arrival Station:</Form.Label>
-          <Form.Control
-            as="select"
-            value={arrivalStation}
-            onChange={(event) => setArrivalStation(event.target.value)}
-          >
-            <option value="">Select a city</option>
-            <option value="Sohag">Sohag</option>
-            <option value="ALexabdria">Alexandria</option>
-            <option value="Fayoum">Fayoum</option>
-          </Form.Control>
-        </Form.Group>
-
-        <Form.Group className="form-groub mr-3" controlId="tripDate">
-          <Form.Label>Trip Date:</Form.Label>
-          <Form.Control
-            type="date"
-            value={tripDate}
-            onChange={(event) => setTripDate(event.target.value)}
-          />
-        </Form.Group>
-
         <Button
           variant="primary"
           className="d-inline-block buttn1 flex-wrap"
