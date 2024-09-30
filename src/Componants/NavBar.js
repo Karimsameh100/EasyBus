@@ -41,7 +41,9 @@ export function NavBar() {
                 setIsCompany(true);
                 setProfilePic(null);
               } else {
-                setProfilePic(currentUser.image || "https://via.placeholder.com/150");
+                setProfilePic(
+                  currentUser.image || "https://via.placeholder.com/150"
+                );
               }
             } else {
               console.error("User not found");
@@ -117,11 +119,7 @@ export function NavBar() {
                 Home
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link me-3" to="#">
-                Buses
-              </Link>
-            </li>
+
             {isLoggedIn &&
               !isCompany && ( // إخفاء Favorites عند تسجيل الدخول كـ شركة
                 <li className="nav-item">

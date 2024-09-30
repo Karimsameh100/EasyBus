@@ -4,7 +4,7 @@ import SearchComponent from "../Componants/Searh";
 import { Reviews } from "../Componants/Reviews/Review";
 import gobus from "../logo/unnamed.png";
 import axios from "axios";
-import { Alert } from "react-bootstrap";
+// import { Alert } from "react-bootstrap";
 
 import { FaRegBookmark, FaHeart } from "react-icons/fa";
 import "../Componants/bookstyle.css";
@@ -18,7 +18,7 @@ import {
 } from "react-bootstrap";
 import ReviewForm from "./CreateReview";
 import { jwtDecode } from "jwt-decode";
-import { Alert } from 'react-bootstrap';
+import { Alert } from "react-bootstrap";
 
 export function CityDetailes() {
   const params = useParams();
@@ -43,7 +43,7 @@ export function CityDetailes() {
   const [showReviewForm, setShowReviewForm] = useState(false); // State to control the ReviewForm modal
   const [editReviewId, setEditReviewId] = useState(null); // State to control edit mode
   const [favorites, setFavorites] = useState([]);
-  const imageBaseURL = 'http://localhost:8000/';
+  const imageBaseURL = "http://localhost:8000/";
 
   // State to control the visibility of the success alert
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
@@ -206,22 +206,21 @@ export function CityDetailes() {
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
-  
+
     if (authToken) {
       setIsLoggedIn(true);
-      
+
       // Decode the JWT token to get the user_id
       const decodedToken = jwtDecode(authToken);
-      
+
       if (decodedToken && decodedToken.user_id) {
         setCurrentUserId(decodedToken.user_id);
-        console.log("print user:",decodedToken.user_id)
+        console.log("print user:", decodedToken.user_id);
       } else {
         console.error("User ID not found in token");
       }
     }
   }, [localStorage.getItem("authToken")]);
-  
 
   const handleBookTrip = (trip, company) => {
     if (!isLoggedIn) {
@@ -257,9 +256,7 @@ export function CityDetailes() {
       "Content-Type": "application/json",
     };
 
-    const updatedReviews = city.Reviews.filter(
-      (r) => r.id !== reviewToDelete
-    );
+    const updatedReviews = city.Reviews.filter((r) => r.id !== reviewToDelete);
 
     setCity((prevCity) => ({
       ...prevCity,
@@ -267,33 +264,36 @@ export function CityDetailes() {
     }));
 
     try {
-      await axios.delete(`http://localhost:8000/reviews/${reviewToDelete}/`, { headers });
+      await axios.delete(`http://localhost:8000/reviews/${reviewToDelete}/`, {
+        headers,
+      });
       setShowModal(false);
       setReviewToDelete(null);
     } catch (error) {
       console.error("Error deleting review:", error);
       setCity((prevCity) => ({
         ...prevCity,
-        Reviews: prevCity.Reviews, 
+        Reviews: prevCity.Reviews,
       }));
     }
   };
 
-
   const handleEditReview = (reviewId) => {
     setEditReviewId(reviewId);
-    setShowReviewForm(true); 
+    setShowReviewForm(true);
   };
 
   const handleOpenReviewForm = () => {
-    setEditReviewId(null); 
+    setEditReviewId(null);
     setShowReviewForm(true);
   };
 
   const handleReviewSubmit = (newReview) => {
     setCity((prevCity) => {
-      const existingReviewIndex = prevCity.Reviews.findIndex((review) => review.id === newReview.id);
-  
+      const existingReviewIndex = prevCity.Reviews.findIndex(
+        (review) => review.id === newReview.id
+      );
+
       if (existingReviewIndex !== -1) {
         // Update existing review
         const updatedReviews = [...prevCity.Reviews];
@@ -305,7 +305,7 @@ export function CityDetailes() {
       }
     });
   };
-  
+
   return (
     <>
       {showSuccessAlert && (
@@ -501,12 +501,17 @@ export function CityDetailes() {
                       customerRate={review.ReviewCustomerRate}
                       onEdit={() => handleEditReview(review.id)}
                       onDelete={() => confirmDeleteReview(review.id)}
-                      isAuthor={review.ReviewCustomerDetails.id === currentUserId}
+                      isAuthor={
+                        review.ReviewCustomerDetails.id === currentUserId
+                      }
                     />
                   </div>
                 ))}
-                 {isLoggedIn && (
-                  <Button className="btn btn-success rounded-pill" onClick={handleOpenReviewForm}>
+                {isLoggedIn && (
+                  <Button
+                    className="btn btn-success rounded-pill"
+                    onClick={handleOpenReviewForm}
+                  >
                     Share Your Review
                   </Button>
                 )}

@@ -1,12 +1,10 @@
 import React from "react";
-import p1 from "../logo/aman.jpg";
-import p2 from "../logo/مصاري.jpg";
-import p3 from "../logo/fawry.jfif";
-import p4 from "../logo/vodafon.jfif";
+import p1 from "../logo/enas.jpeg";
+import p2 from "../logo/p2.jfif";
+import p3 from "../logo/icon.png";
+// import p4 from "../logo/;
 import p5 from "../logo/payment.jfif";
-import p6 from "../logo/visa.jfif";
-import p7 from "../logo/khales.jfif";
-import "./navbar.css"; // تأكد من أن هذا الملف يحتوي على الأنماط الإضافية إذا لزم الأمر
+import "./navbar.css";
 
 const Payment = () => {
   return (
@@ -17,10 +15,10 @@ const Payment = () => {
             height: "90vh",
             backgroundColor: "white",
             marginTop: "30px",
-            marginLeft: "5%", // استخدام النسب المئوية لتسهيل الاستجابة
+            marginLeft: "5%",
             marginRight: "5%",
             borderRadius: "15px",
-            padding: "20px", // إضافة padding لتوسيع المساحة الداخلية
+            padding: "20px",
           }}
         >
           <h1
@@ -30,81 +28,113 @@ const Payment = () => {
               paddingTop: "80px",
             }}
           >
-            Secure and Convenient Payment Methods
+            You Can Keep in Touch With Our Development Team
           </h1>
-          <h4
-            className="text-center"
-            style={{ color: "#003366", marginTop: "5vh" }}
-          >
-            You can pay using
-          </h4>
 
           <div
             style={{
               display: "flex",
-              flexWrap: "wrap",
-              gap: "20px", // space between words
-              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "20px",
               paddingTop: "20px",
             }}
           >
-            <img
-              src={p1}
-              style={{ width: "120px", height: "auto" }}
-              alt="Payment method 1"
-            />
-            <img
-              src={p2}
-              style={{ width: "120px", height: "auto" }}
-              alt="Payment method 2"
-            />
-            <img
-              src={p3}
-              style={{ width: "120px", height: "auto" }}
-              alt="Payment method 3"
-            />
-            <img
-              src={p4}
-              style={{ width: "120px", height: "auto" }}
-              alt="Payment method 4"
-            />
-            <img
-              src={p5}
-              style={{ width: "120px", height: "auto" }}
-              alt="Payment method 5"
-            />
-            <img
-              src={p6}
-              style={{ width: "120px", height: "auto" }}
-              alt="Payment method 6"
-            />
-            <img
-              src={p7}
-              style={{ width: "120px", height: "auto" }}
-              alt="Payment method 7"
-            />
-          </div>
-
-          <h1
-            className="text-center"
-            style={{ color: "#003366", marginTop: "8vh" }}
-          >
-            OR
-          </h1>
-          <h3
-            className="text-center"
-            style={{ color: "#003366", marginTop: "5vh" }}
-          >
-            Reserve your ticket at one of our stations
-            <br />
-            <button
-              id="paymentBTN"
-              type="button"
-              className="btn btn-outline-light btn-center"
+            {/* Row 1 with 3 images */}
+            <div
+              style={{
+                display: "flex",
+                gap: "20px",
+                justifyContent: "center",
+              }}
             >
-              Find Station
-            </button>
-          </h3>
+              <div style={{ textAlign: "center" }}>
+                <img
+                  src={p1}
+                  style={{ width: "35vh", height: "auto" }}
+                  alt="Payment method 1"
+                />
+                <br />
+                <a
+                  href="https://github.com/user1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  "https://github.com/3EnasMelad"
+                </a>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <img
+                  src={p2}
+                  style={{ width: "30vh", height: "30vh" }}
+                  alt="Payment method 2"
+                />
+                <br />
+                <a
+                  href="https://github.com/user2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub Link
+                </a>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <img
+                  src={p3}
+                  style={{ width: "30vh", height: "30vh" }}
+                  alt="Payment method 3"
+                />
+                <br />
+                <a
+                  href="https://github.com/user3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub Link
+                </a>
+              </div>
+            </div>
+
+            {/* Row 2 with 2 larger images */}
+            <div
+              style={{
+                display: "flex",
+                gap: "20px", // space between images
+                justifyContent: "center",
+              }}
+            >
+              <div style={{ textAlign: "center" }}>
+                <img
+                  src={p2}
+                  style={{ width: "30vh", height: "30vh" }}
+                  alt="Payment method 4"
+                />
+                <br />
+                <a
+                  href="https://github.com/user4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub Link
+                </a>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <img
+                  src={p2}
+                  style={{ width: "30vh", height: "30vh" }}
+                  alt="Payment method 5"
+                />
+                <br />
+                <a
+                  href="https://github.com/user5"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub Link
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

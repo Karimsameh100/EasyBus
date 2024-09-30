@@ -62,7 +62,7 @@ function Login1() {
         if (data.user_type === "company") {
           navigate("/DisplayTrips");
         } else if (data.user_type === "user") {
-          navigate("/UserProfile");
+          navigate("/");
         }
       } else {
         setLoginError("Invalid email or password");

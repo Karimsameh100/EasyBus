@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+// import { FaEdit } from "react-icons/fa";
 import {
   Modal,
   ModalTitle,
@@ -26,7 +27,14 @@ import {
 
 const DisplayTrips = () => {
   const [trips, setTrips] = useState([]);
+
   const [companyName, setName] = useState("");
+  const [companyEmail, setCompanyEmail] = useState(""); // لإضافة البريد الإلكتروني
+
+  const [showProfileEditModal, setShowProfileEditModal] = useState(false); // حالة لإظهار المودال
+
+  const [password, setPassword] = useState(""); // لإضافة كلمة المرور
+  // const [showEditModal, setShowEditModal] = useState(false); // حالة لإظهار المودال
   const [userBookings, setUserBookings] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -94,8 +102,11 @@ const DisplayTrips = () => {
         }
       )
       .then((res) => {
-        const { name, company_trips } = res.data;
+        const { name, email, password, company_trips } = res.data;
         setName(name);
+        setCompanyEmail(email);
+
+        setPassword(password); // تعيين كلمة المرور
         setTrips(company_trips);
 
         // Extract the trip IDs associated with the company
@@ -445,6 +456,32 @@ const DisplayTrips = () => {
     setShowDeleteModal(false);
   };
 
+  // const handleButtonClick = (view) => {
+  //   setActiveButton(view);// };
+
+  const handleSaveChanges = () => {
+    const companyId = decodedToken.user_id;
+    axios
+      .put(
+        `http://127.0.0.1:8000/mixinuser_pk/${companyId}/?user_type=company`,
+        {
+          name: companyName,
+          email: companyEmail,
+          password: password,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Changes saved:", response.data);
+        setShowProfileEditModal(false);
+      })
+      .catch((error) => console.error("Error saving changes:", error));
+  };
+
   return (
     <div className="container mt-2 table-responsive ">
       <div
@@ -452,12 +489,6 @@ const DisplayTrips = () => {
         style={{ minHeight: "80vh" }}
       >
         <div className="col-md-9 my-2">
-          <h2 className="text-center my-3 text-bold">
-            {view === "trips"
-              ? `Trips of ${companyName}`
-              : `Bookings for ${companyName}`}
-          </h2>
-
           <ul className="nav justify-content-center py-2">
             <li className="nav-item">
               <button
@@ -475,8 +506,98 @@ const DisplayTrips = () => {
                 List Bookings
               </button>
             </li>
+            <li className="nav-item">
+              <button
+                className="list-group-item list-group-item-action p-2"
+                onClick={() => setView("profile")}
+              >
+                Profile
+              </button>
+            </li>
           </ul>
 
+          {view === "profile" && (
+            <div className="profile-details text-center">
+              <h3 style={{ color: "#4b4b4b", marginBottom: "20px" }}>
+                Company Profile
+              </h3>
+              <table className="table table-bordered w-50 mx-auto">
+                <tbody>
+                  <tr>
+                    <td>
+                      <strong>Company Name:</strong>
+                    </td>
+                    <td>{companyName}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Email:</strong>
+                    </td>
+                    <td>{companyEmail}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <button
+                className="btn btn-primary mt-3"
+                style={{ display: "inline-flex", alignItems: "center" }}
+                onClick={() => setShowProfileEditModal(true)}
+              >
+                <FaEdit style={{ marginRight: "5px" }} /> Edit
+              </button>
+            </div>
+          )}
+
+          <Modal
+            show={showProfileEditModal}
+            onHide={() => setShowProfileEditModal(false)}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>Edit Company Profile</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <form>
+                <div className="form-group">
+                  <label>Company Name:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={companyName}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    value={companyEmail}
+                    onChange={(e) => setCompanyEmail(e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Password:</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+              </form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="secondary"
+                onClick={() => setShowProfileEditModal(false)}
+              >
+                Close
+              </Button>
+              <Button variant="primary" onClick={handleSaveChanges}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
           {view === "trips" && (
             <>
               {currentPageItems.length ? (
@@ -573,34 +694,6 @@ const DisplayTrips = () => {
                       currentPage === 1 ? "disabled" : ""
                     }`}
                   >
-                    {/* <button className="page-link" onClick={handlePrevious}>
-                      Previous
-                    </button>
-                  </li>
-                  {[...Array(totalPages).keys()].map((pageNumber) => (
-                    <li
-                      key={pageNumber}
-                      className={`page-item ${
-                        currentPage === pageNumber + 1 ? "active" : ""
-                      }`}
-                    >
-                      <button
-                        className="page-link"
-                        onClick={() => handlePageChange(pageNumber + 1)}
-                      >
-                        {pageNumber + 1}
-                      </button>
-                    </li>
-                  ))}
-                  <li
-                    className={`page-item ${
-                      currentPage === totalPages ? "disabled" : ""
-                    }`}
-                  >
-                    <button className="page-link" onClick={handleNext}>
-                      Next
-                    </button> */}
-                    {/* -------------------------------------------------------------------------------- */}
                     <button className="page-link" onClick={handlePrevious}>
                       <FaArrowLeft /> {}
                     </button>

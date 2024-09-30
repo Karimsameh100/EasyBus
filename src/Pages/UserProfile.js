@@ -29,6 +29,8 @@ const UserProfile = () => {
   const [onlinePaymentMethod, setOnlinePaymentMethod] = useState(false);
   const [agreeToPayDeposit, setAgreeToPayDeposit] = useState(false);
   const [paymentExists, setPaymentExist] = useState();
+  const [userBookings, setUserBookings] = useState([]);
+  const [trips, setTrips] = useState([]);
 
   useEffect(() => {
     const access_token = localStorage.getItem("authToken");
@@ -172,7 +174,97 @@ const UserProfile = () => {
 
     fetchBookings();
   }, [navigate]);
+  // 666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
+  //       if (response.data && Array.isArray(response.data)) {
+  //         const userBookings = response.data.filter(
+  //           (booking) => booking.user === userId
+  //         );
 
+  //         if (userBookings.length > 0) {
+  //           setFilteredTrips(
+  //             userBookings
+  //               .filter((booking) => booking.status === "Pending")
+  //               .map((booking) => ({
+  //                 ...booking,
+  //                 bookingDate: booking.date, // إضافة تاريخ الحجز
+  //                 tripNumber: booking.trip, // استخدام tripNumber بدلاً من bookingNumber
+  //               }))
+  //           );
+  //           setAcceptedTrips(
+  //             userBookings
+  //               .filter((booking) => booking.status === "Accepted")
+  //               .map((booking) => ({
+  //                 ...booking,
+  //                 bookingDate: booking.date, // إضافة تاريخ الحجز
+  //                 tripNumber: booking.trip, // استخدام tripNumber بدلاً من bookingNumber
+  //               }))
+  //           );
+  //           setRejectedTrips(
+  //             userBookings
+  //               .filter((booking) => booking.status === "Rejected")
+  //               .map((booking) => ({
+  //                 ...booking,
+  //                 bookingDate: booking.date, // إضافة تاريخ الحجز
+  //                 tripNumber: booking.trip, // استخدام tripNumber بدلاً من bookingNumber
+  //               }))
+  //           );
+  //         } else {
+  //           setFilteredTrips([]);
+  //           setAcceptedTrips([]);
+  //           setRejectedTrips([]);
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching bookings:", error);
+  //       navigate("/login1");
+  //     }
+  //   }
+
+  //   fetchBookings();
+  // }, [navigate]);
+  // // 6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
+  // useEffect(() => {
+  //   const access_token = localStorage.getItem("authToken");
+  //   if (!access_token) {
+  //     navigate("/Login1");
+  //     return;
+  //   }
+
+  //   async function fetchTrips() {
+  //     try {
+  //       const response = await axios.get(`http://127.0.0.1:8000/all/trips/`, {
+  //         headers: {
+  //           Authorization: `Bearer ${access_token}`,
+  //         },
+  //       });
+
+  //       const tripsData = response.data.map((trip) => ({
+  //         ...trip,
+  //         tripDate: trip.date, // تخزين تاريخ الرحلة
+  //       }));
+
+  //       // تخزين بيانات الرحلات في الحالة لاستخدامها لاحقًا
+  //       setTrips(tripsData);
+  //     } catch (error) {
+  //       console.error("Error fetching trips:", error);
+  //       navigate("/login1");
+  //     }
+  //   }
+
+  //   fetchTrips();
+  // }, [navigate]);
+
+  // const bookingsWithTripDetails = userBookings.map((booking) => {
+  //   const tripDetails = trips.find(
+  //     (trip) => trip.tripNumber === booking.tripNumber
+  //   );
+  //   return {
+  //     ...booking,
+  //     tripDate: tripDetails ? tripDetails.tripDate : null, // ربط تاريخ الرحلة بالحجز
+  //   };
+  // });
+
+  // 666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
