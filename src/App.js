@@ -59,6 +59,7 @@ function App() {
         <Route path="/CompleteComReg" exact element={<CompleteComReg />} />
         <Route path="/client" exact element={<ClientSignup />} />
         <Route path="/about" exact element={<About />} />
+        <Route path="/search-results" exact element={<SearchResults />} />
         {/* <Route path="/TripTrackLogin" exact element={<TripTrackLogin/>}/> */}
         <Route path="/Login1" exact element={<Login1/>}/>
 
@@ -74,7 +75,6 @@ function App() {
           <Route path="/edit/:id/:reviewId" exact element={<ReviewForm />} />
           <Route path="/AddTrip" exact element={<AddTrip />} />
           <Route path="/CompanyManag" exact element={<CompanyManagement />} />
-          <Route path="/search-results" exact element={<SearchResults />} />
           <Route path="/admin-dashboard" exact element={<AdminDashboard />} />
         </Route>
 

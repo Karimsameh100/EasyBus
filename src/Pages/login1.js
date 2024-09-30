@@ -49,20 +49,28 @@ function Login1() {
       });
 
       const data = response.data;
-      console.log("view user details", data);
+      console.log("Login response:", data);
+
+      console.log(response.data.user_type);
+
       if (response.status === 200) {
+        console.log("Login successful");
         localStorage.setItem("authToken", data.token);
         localStorage.setItem(
           "profilePic",
-          data.profilePic || "https://via.placeholder.com/150" //---------------------------------
+          data.profilePic || "https://via.placeholder.com/150"
         );
 
-        window.dispatchEvent(new Event("loginStatusChanged")); //-----------------
+        window.dispatchEvent(new Event("loginStatusChanged"));
 
+        console.log("User type:", data.user_type);
         if (data.user_type === "company") {
           navigate("/DisplayTrips");
         } else if (data.user_type === "user") {
           navigate("/");
+        } else if (data.user_type === "admin") {
+          console.log("Navigating to admin dashboard");
+          navigate("/admin-dashboard");
         }
       } else {
         setLoginError("Invalid email or password");
