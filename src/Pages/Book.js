@@ -1,4 +1,4 @@
-import { useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import React from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { useState, useEffect } from 'react';
@@ -40,6 +40,7 @@ const BookingPage = () => {
 
 
 
+
     useEffect(() => {
         const tripPrice = parseFloat(trip?.price.replace(/[^\d\.]/g, '')); // extract numeric value from string
         const subTotal = numberOfPlaces * tripPrice;
@@ -70,155 +71,38 @@ const BookingPage = () => {
         setShowModal(false);
     };
 
-    const handleOnlinePaymentMethodChange = (e) => {
-        setOnlinePaymentMethod(e.target.checked);
-    };
-
-    const handleAgreeToPayDepositChange = (e) => {
-        setAgreeToPayDeposit(e.target.checked);
-    };
-
-    const handlePaymentMethodChange = (event) => {
-        setPaymentMethod(event.target.value);
-    };
-
-    const handlePaypalAmountChange = () => {
-        if (paymentMethod === 'payOnline') {
-            setPaypalAmount(totalCost.toFixed(2));
-        } else if (paymentMethod === 'payCash') {
-            setPaypalAmount((totalCost * 0.20).toFixed(2)); // 20% deposit
-        }
-    };
 
     useEffect(() => {
         console.log('dropLocation:', dropLocation);
         console.log('pickupLocation:', pickupLocation);
     }, [dropLocation, pickupLocation]);
 
-    useEffect(() => {
-        handlePaypalAmountChange();
-    }, [paymentMethod]);
 
-    const handleBookNow = () => {
-        return new Promise((resolve, reject) => {
-            if (paymentMethod && (paymentMethod === 'payOnline' && onlinePaymentMethod) || (paymentMethod === 'payCash' && agreeToPayDeposit)) {
-                const tripInfo = {
-                    tripNumber: trip.tripNumber,
-                    tripDate: trip.tripDate,
-                    departureStation: trip.departuerStation,
-                    stopStations: trip.destinationStation,
-                    departureTime: trip.departuerTime,
-                    arrivedTime: trip.destinationTime,
-                    tripPrice: trip.price,
-                    company: "go bus",
-                    userName: userName,
-                    totalCost: totalCost,
-                    numPlaces: numberOfPlaces,
-                };
+    const handleBookNow = (e) => {
+        e.preventDefault();
+        const tripInfo = {
+            tripNumber: trip.tripNumber,
+            tripDate: trip.tripDate,
+            departureStation: trip.departuerStation,
+            stopStations: trip.destinationStation,
+            departureTime: trip.departuerTime,
+            arrivedTime: trip.destinationTime,
+            tripPrice: trip.price,
+            company: company.name,
+            userName: userName,
+            totalCost: totalCost,
+            numPlaces: numberOfPlaces,
+        };
 
-                let newBookedTrips;
-                if (Array.isArray(bookedTrips)) {
-                    newBookedTrips = [...bookedTrips, tripInfo];
-                } else {
-                    newBookedTrips = [tripInfo];
-                }
+        let newBookedTrips;
+        if (Array.isArray(bookedTrips)) {
+            newBookedTrips = [...bookedTrips, tripInfo];
+        } else {
+            newBookedTrips = [tripInfo];
+        }
 
-                setBookedTrips(newBookedTrips);
-
-                // localStorage.setItem('bookedTrips', JSON.stringify(newBookedTrips));
-                setPaymentMethod('');
-                // setBookingData(tripInfo);
-                // setOnlinePaymentMethod('');
-                setAgreeToPayDeposit(false);
-                setShowTicketModal(true)
-
-                const token = localStorage.getItem('authToken');
-                if (!token) {
-                    console.error('No authentication token found');
-                    reject(new Error('No authentication token found'));
-                    return;
-                }
-
-                const headers = {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                };
-
-                axios.get('http://127.0.0.1:8000/currant-user/', { headers })
-                    .then((response) => {
-                        const userId = response.data.user_id;
-                        setUserId(userId)
-                        const bookingData = {
-                            time: new Date(),
-                            numberOfPlaces: numberOfPlaces,
-                            totalFare: totalCost,
-                            pickupLocation: pickupLocation,
-                            dropLocation: dropLocation,
-                            user: userId,
-                            trip_id: trip.id,
-                        };
-                        setBookingData(bookingData)
-                        console.log(bookingData);
-
-                        axios.post('http://127.0.0.1:8000/booking/data/', bookingData, {
-                            headers: {
-                                'Authorization': `Bearer ${token}`,
-                                'Content-Type': 'application/json'
-                            }
-                        })
-                            .then((response) => {
-                                const bookingId = response.data.id;
-                                setBookingId(bookingId);
-                                resolve(bookingId); // Resolve the promise with the booking ID
-
-                                const updatedTripData = {
-                                    tripNumber: trip.tripNumber,
-                                    date: trip.date,
-                                    avilabalPlaces: trip.avilabalPlaces - numberOfPlaces,
-                                    departuerStation: trip.departuerStation,
-                                    destinationStation: trip.destinationStation,
-                                    departuerTime: trip.departuerTime,
-                                    destinationTime: trip.destinationTime,
-                                    price: trip.price,
-                                    status: trip.status,
-                                    bus: trip.bus,
-                                    company: trip.company,
-                                };
-
-                                // const updatedTripData = {
-                                //     availablePlaces: trip.availablePlaces - numberOfPlaces,
-                                //   };
-
-                                axios.put(`http://127.0.0.1:8000/selected/trip/${trip.id}`, updatedTripData, {
-                                    headers: {
-                                        'Authorization': `Bearer ${token}`,
-                                        'Content-Type': 'application/json'
-                                    }
-                                })
-                                    .then((response) => {
-                                        console.log('Trip data updated successfully');
-                                    })
-                                    .catch((error) => {
-                                        console.error('Error updating trip data:', error);
-                                    });
-
-                            })
-                            .catch((error) => {
-                                console.error(error);
-                                reject(error); // Reject the promise with the error
-                            });
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                        reject(error); // Reject the promise with the error
-                    });
-            } else {
-                reject(new Error('Invalid payment method or deposit'));
-            }
-        });
-    };
-
-    const handelPayment = (bookingId) => {
+        setBookedTrips(newBookedTrips);
+        setShowTicketModal(true)
 
         const token = localStorage.getItem('authToken');
         if (!token) {
@@ -234,33 +118,71 @@ const BookingPage = () => {
         axios.get('http://127.0.0.1:8000/currant-user/', { headers })
             .then((response) => {
                 const userId = response.data.user_id;
+                const userNam = response.data.username;
                 setUserId(userId)
-                const paymentData = {
-                    date: new Date(),
-                    amount: paypalAmount,
-                    payment_method: paymentMethod,
-                    booking_id: bookingId,
-                    trip_id: trip?.id,
+                setUserName(userNam)
+                const bookingData = {
+                    time: new Date(),
+                    numberOfPlaces: numberOfPlaces,
+                    totalFare: totalCost,
+                    pickupLocation: pickupLocation,
+                    dropLocation: dropLocation,
                     user: userId,
-                    trip: trip?.id,
-                    booking: bookingId,
-                }
-                setPaymentData(paymentData)
-                console.log(paymentData);
+                    trip_id: trip.id,
+                };
+                setBookingData(bookingData)
+                console.log(bookingData);
 
-
-
-
-
-                axios.post('http://127.0.0.1:8000/payments/', paymentData, { headers })
+                axios.post('http://127.0.0.1:8000/booking/data/', bookingData, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                })
                     .then((response) => {
-                        console.log(response.data);
+                        const bookingId = response.data.id;
+                        setBookingId(bookingId);
+
+                        const updatedTripData = {
+                            tripNumber: trip.tripNumber,
+                            date: trip.date,
+                            avilabalPlaces: trip.avilabalPlaces - numberOfPlaces,
+                            departuerStation: trip.departuerStation,
+                            destinationStation: trip.destinationStation,
+                            departuerTime: trip.departuerTime,
+                            destinationTime: trip.destinationTime,
+                            price: trip.price,
+                            status: trip.status,
+                            bus: trip.bus,
+                            company: trip.company,
+                        };
+
+                        // const updatedTripData = {
+                        //     availablePlaces: trip.availablePlaces - numberOfPlaces,
+                        //   };
+
+                        axios.put(`http://127.0.0.1:8000/selected/trip/${trip.id}`, updatedTripData, {
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                            .then((response) => {
+                                console.log('Trip data updated successfully');
+                            })
+                            .catch((error) => {
+                                console.error('Error updating trip data:', error);
+                            });
+
                     })
                     .catch((error) => {
                         console.error(error);
                     });
+
             });
-    }
+    };
+
+
 
     const handlePickupLocationChange = (e) => {
         setPickupLocation(e.target.value);
@@ -269,24 +191,6 @@ const BookingPage = () => {
     const handleDropLocationChange = (e) => {
         setDropLocation(e.target.value);
     };
-
-    const [paypalLoaded, setPaypalLoaded] = useState(false);
-
-    useEffect(() => {
-        const loadPayPalScript = async () => {
-            try {
-                const paypalScript = await import('@paypal/react-paypal-js');
-                setPaypalLoaded(true);
-            } catch (error) {
-                console.error('Error loading PayPal script:', error);
-            }
-        };
-        loadPayPalScript();
-    }, []);
-
-    if (!paypalLoaded) {
-        return <div className='text-center fs-4 text-bg-primary'>Loading PayPal...</div>;
-    }
 
 
     return (
@@ -401,117 +305,11 @@ const BookingPage = () => {
                                     )}
                                 </Form.Group>
 
-                                <Form.Group controlId="paymentMethod" className="text-center">
-                                    <Form.Label className='fs-5'>Payment Method:</Form.Label>
-                                    <div className="d-flex justify-content-between">
-                                        <div className='d-flex flex-column justify-content-center w-50'>
-                                            <div className="px-auto py-2 ">
-                                                <Form.Check type="radio" className='border-primary' name="paymentMethod" id="payOnline" value="payOnline" onChange={(e) => {
-                                                    handlePaymentMethodChange(e);
-                                                    handlePaypalAmountChange(e);
-                                                }} />
-                                            </div>
-                                            <div className='px-auto py-3'>
-                                                <b className='fs-5'>Pay Online</b>
-                                            </div>
-                                        </div>
-                                        <div className='d-flex flex-column justify-content-center w-50 border-2'>
-                                            <div className='px-auto py-2'>
-                                                <Form.Check type="radio" name="paymentMethod" id="payCash" value="payCash" onChange={(e) => {
-                                                    handlePaymentMethodChange(e);
-                                                    handlePaypalAmountChange(e);
-                                                }} />
-                                            </div>
-                                            <div className='px-auto py-3'>
-                                                <b className='fs-5'>Pay Cash</b>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Form.Group>
-                                {paymentMethod === 'payOnline' && (
-                                    <div className=" p-3">
-                                        <h5 className="">Online Payment Methods:</h5>
-                                        <Form.Group controlId='paypal'>
-                                            <Form.Check type="checkbox" label="PayPal" id="paypal" onChange={handleOnlinePaymentMethodChange} />
-                                        </Form.Group>
-                                        <p className="fs-5 text-primary">Total that you pay on Paypal is amount: {totalCost}</p>
-
-
-                                    </div>
-                                )}
-
-                                {paymentMethod === 'payCash' && (
-                                    <div className=" p-3">
-                                        <h5 className=" fs-5">Pay Cash:</h5>
-                                        <p className="">You need to pay a deposit of 20% of the total cost.</p>
-                                        <Form.Group controlId="deposit">
-                                            <Form.Check type="checkbox" label="I agree to pay the deposit" id="deposit" onChange={handleAgreeToPayDepositChange} />
-                                        </Form.Group>
-                                        <p className="fs-5 text-danger">Deposit amount: {totalCost * 0.20}</p>
-                                    </div>
-                                )}
-
-                                {(pickupLocation && dropLocation && (onlinePaymentMethod || agreeToPayDeposit)) && (
-                                    <button onClick={handleBookNow} className='btn btn-primary btn-md d-flex justify-content-center fs-5 ' style={{ width: "85%", margin: "auto" }}>
+                                {pickupLocation && dropLocation && (
+                                    <button onClick={handleBookNow} className='btn btn-primary btn-md mt-5 d-flex justify-content-center fs-5 ' style={{ width: "95%", margin: "auto" }}>
                                         Book now
                                     </button>
                                 )}
-
-                                {/* {(checkedLocation && (paymentMethod === 'payOnline' && onlinePaymentMethod) || (paymentMethod === 'payCash' && agreeToPayDeposit)) && (
-                                    <PayPalScriptProvider
-                                        src="https://www.paypal.com/sdk/js"
-                                        options={{
-                                            'client-id': 'ASqEJBR1uVuEmIcx5WxO26SQMcW9DKTNy090VaVbCczbnEvsV2Lz5xSV2oc1dIErzoIy8ldjBUZqY4M5',
-                                            currency: "USD",
-                                            intent: 'capture',
-                                        }}
-                                        deferLoading={false}
-                                    >
-                                        <PayPalButtons
-                                            amount={Math.round(paypalAmount * 100) / 100}
-                                            currency="USD"
-                                            style={{ layout: 'horizontal' }}
-                                            createOrder={(data, actions) => {
-                                                try {
-                                                    const paymentIntent = actions.order.create({
-                                                        purchase_units: [
-                                                            {
-                                                                amount: {
-                                                                    value: Math.round(paypalAmount * 100) / 100,
-                                                                },
-                                                            },
-                                                        ],
-                                                    });
-                                                    console.log('Payment intent:', paymentIntent);
-                                                    return paymentIntent;
-                                                } catch (error) {
-                                                    console.error('Error creating payment intent:', error);
-                                                    // Handle the error
-                                                }
-                                            }}
-                                            onApprove={(data, actions) => {
-                                                try {
-                                                    const authorization = actions.order.capture({
-                                                        paymentIntentId: data.paymentIntentId,
-                                                    });
-                                                    console.log('Authorization:', authorization);
-                                                    return authorization.then((details) => {
-                                                        handleBookNow().then((bookingId) => {
-                                                            handelPayment(bookingId);
-                                                        });
-                                                    });
-                                                } catch (error) {
-                                                    console.error('Error capturing payment:', error);
-                                                    // Handle the error
-                                                }
-                                            }}
-                                            onError={(error) => {
-                                                console.error('Error with PayPal payment:', error);
-                                                // Handle the error
-                                            }}
-                                        />
-                                    </PayPalScriptProvider>
-                                )} */}
                             </Form>
                         </Card.Body>
                     </Card>
@@ -559,10 +357,6 @@ const BookingPage = () => {
                                         <li className="d-flex justify-content-between">
                                             <strong className="font-weight-bold fs-5">Number of places:</strong>
                                             <span className='fs-5'>{numberOfPlaces}</span>
-                                        </li>
-                                        <li className="d-flex justify-content-between">
-                                            <strong className="font-weight-bold fs-5">Amount you agree to pay:</strong>
-                                            <span className='fs-5'>{paypalAmount}</span>
                                         </li>
                                         <li className="d-flex justify-content-between">
                                             <strong className="font-weight-bold fs-5">Trip Cost:</strong>

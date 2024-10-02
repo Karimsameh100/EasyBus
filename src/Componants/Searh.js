@@ -66,7 +66,7 @@ const Search = () => {
           >
             <option value="">Select a city</option>
             <option value="Sohag">Sohag</option>
-            <option value="Alex">Alexandria</option>
+            <option value="ALexabdria">Alexandria</option>
             <option value="Fayoum">Fayoum</option>
           </Form.Control>
         </Form.Group>
