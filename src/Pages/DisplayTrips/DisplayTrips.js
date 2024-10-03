@@ -483,14 +483,14 @@ const DisplayTrips = () => {
       )
       .then((response) => {
         console.log("Changes saved:", response.data);
-        false;
+        setShowProfileEditModal(false);
       })
       .catch((error) => console.error("Error saving changes:", error));
   };
 
   const handleItemClick = (item) => {
     setActiveItem(item);
-    setView(item);
+    setView(item); // تحديث العرض
   };
   return (
     <div className="container mt-2 table-responsive">

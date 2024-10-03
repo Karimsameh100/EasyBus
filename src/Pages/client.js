@@ -28,8 +28,6 @@ function ClientSignup() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  
-
   const emailReg = /^[a-z0-9]+@(gmail|yahoo)\.(com)$/;
   const phoneReg = /^(\+201|01|00201)[0-2,5]{1}[0-9]{8}$/;
   const passReg = /^[0-9]{8,}/;
@@ -80,7 +78,7 @@ function ClientSignup() {
         const response = await fetch("http://127.0.0.1:8000/register/user/");
         if (response.ok) {
           const data = await response.json();
-          
+
           if (location.state && location.state.isEditMode) {
             const { email } = location.state;
             const existingUser = data.find((user) => user.email === email);
@@ -104,10 +102,10 @@ function ClientSignup() {
         console.error("Error fetching data:", error);
       }
     };
-  
+
     fetchData();
   }, [location.state]);
-  
+
   const setData = (e) => {
     const { name, value } = e.target;
 
@@ -122,12 +120,12 @@ function ClientSignup() {
     });
   };
 
-
   const submitForm = async (e) => {
     e.preventDefault();
-  
-    const { name, phone_number, email, password, confirm_password, user_type } = userInputs;
-  
+
+    const { name, phone_number, email, password, confirm_password, user_type } =
+      userInputs;
+
     if (
       name &&
       phone_number &&
@@ -142,36 +140,48 @@ function ClientSignup() {
       !errors.confirm_passwordErr
     ) {
       const formData = new FormData();
-        formData.append("name", name);
-        formData.append("phone_number", phone_number);
-        formData.append("email", email);
-        formData.append("password", password);
-        formData.append("confirm_password", confirm_password);
-        formData.append("user_type", user_type);
-  
+      formData.append("name", name);
+      formData.append("phone_number", phone_number);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("confirm_password", confirm_password);
+      formData.append("user_type", user_type);
+
       try {
-        const url = isEditMode ? `http://127.0.0.1:8000/user/${currentUserIndex}` : "http://127.0.0.1:8000/register/user/";
+        const url = isEditMode
+          ? `http://127.0.0.1:8000/user/${currentUserIndex}`
+          : "http://127.0.0.1:8000/register/user/";
         const method = isEditMode ? "PUT" : "POST";
-  
+
         const response = await fetch(url, {
           method: method,
           body: formData,
         });
-  
+
         if (response.ok) {
-          console.log(`User ${isEditMode ? "updated" : "registered"} successfully`);
+          console.log(
+            `User ${isEditMode ? "updated" : "registered"} successfully`
+          );
           // Redirect to the user profile page after successful update
           navigate(`/userprofile`, {
-            state: { updatedUser: userInputs }
+            state: { updatedUser: userInputs },
           });
         } else {
           // Handle response errors
           try {
             const errorData = await response.json();
-            console.error(`Failed to ${isEditMode ? "update" : "register"} user:`, errorData);
+            console.error(
+              `Failed to ${isEditMode ? "update" : "register"} user:`,
+              errorData
+            );
           } catch (jsonError) {
             const errorText = await response.text();
-            console.error(`Failed to ${isEditMode ? "update" : "register"} user (non-JSON response):`, errorText);
+            console.error(
+              `Failed to ${
+                isEditMode ? "update" : "register"
+              } user (non-JSON response):`,
+              errorText
+            );
           }
         }
       } catch (error) {
@@ -179,7 +189,7 @@ function ClientSignup() {
       }
     }
   };
-  
+
   const handleLogout = () => {
     confirmAlert({
       title: "Confirm to Logout",
@@ -246,20 +256,25 @@ function ClientSignup() {
               <label htmlFor="floatingInputPhone">Phone Number</label>
               <p className="text-danger">{errors.phone_numberErr}</p>
             </div>
+
             <div className="form-floating mb-3">
-              <input
-                type="email"
-                className={`form-control ${
-                  errors.emailErr ? "border-danger" : ""
-                }`}
-                id="floatingInputEmail"
-                placeholder="Enter your email address"
-                name="email"
-                value={userInputs.email}
-                onChange={setData}
-              />
-              <label htmlFor="floatingInputEmail">Email Address</label>
-              <p className="text-danger">{errors.emailErr}</p>
+              {!isEditMode && ( //-----------------------------------edit onlyyyyyy
+                <>
+                  <input
+                    type="email"
+                    className={`form-control ${
+                      errors.emailErr ? "border-danger" : ""
+                    }`}
+                    id="floatingInputEmail"
+                    placeholder="Enter your email address"
+                    name="email"
+                    value={userInputs.email}
+                    onChange={setData}
+                  />
+                  <label htmlFor="floatingInputEmail">Email Address</label>
+                  <p className="text-danger">{errors.emailErr}</p>
+                </>
+              )}
             </div>
 
             <div className="form-floating mb-3">
@@ -320,6 +335,6 @@ function ClientSignup() {
       </div>
     </div>
   );
-}    
+}
 
 export default ClientSignup;

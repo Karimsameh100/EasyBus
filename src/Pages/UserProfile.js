@@ -32,7 +32,6 @@ const UserProfile = () => {
   const [userBookings, setUserBookings] = useState([]);
   const [trips, setTrips] = useState([]);
 
-
   useEffect(() => {
     const access_token = localStorage.getItem("authToken");
     if (!access_token) {
@@ -296,8 +295,9 @@ const UserProfile = () => {
           const backendUrl =
             process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 
-          const updatedImageUrl = `${backendUrl}${response.data.image
-            }?${new Date().getTime()}`;
+          const updatedImageUrl = `${backendUrl}${
+            response.data.image
+          }?${new Date().getTime()}`;
           console.log("Updated Image URL:", updatedImageUrl);
           setProfilePic(updatedImageUrl);
           setSelectedFile(null);
@@ -433,30 +433,32 @@ const UserProfile = () => {
       });
   };
 
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/all/trips/")
+      .then((response) => {
+        setTrips(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
-  useEffect(()=> {
-    axios.get('http://127.0.0.1:8000/all/trips/')
-    .then(response => {
-      setTrips(response.data);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}, []);
+  const [tripDate, setTripDate] = useState(null);
+  const [tripNumber, setTripNumber] = useState(null);
 
-const [tripDate, setTripDate] = useState(null);
-const [tripNumber, setTripNumber] = useState(null);
-
-useEffect(() => {
-  if (acceptedTrips.length > 0) {
-    const currentAcceptedTrip = acceptedTrips[currentAcceptedTripIndex];
-    const tripDetails = trips.find(trip => trip.id === currentAcceptedTrip.trip);
-    if (tripDetails) {
-      setTripDate(tripDetails.date);
-      setTripNumber(tripDetails.tripNumber);
+  useEffect(() => {
+    if (acceptedTrips.length > 0) {
+      const currentAcceptedTrip = acceptedTrips[currentAcceptedTripIndex];
+      const tripDetails = trips.find(
+        (trip) => trip.id === currentAcceptedTrip.trip
+      );
+      if (tripDetails) {
+        setTripDate(tripDetails.date);
+        setTripNumber(tripDetails.tripNumber);
+      }
     }
-  }
-}, [currentPage, acceptedPage, acceptedTrips, trips]);
+  }, [currentPage, acceptedPage, acceptedTrips, trips]);
 
   useEffect(() => {
     const access_token = localStorage.getItem("authToken");
@@ -491,7 +493,7 @@ useEffect(() => {
       .catch((error) => {
         console.error("Error fetching payments:", error);
       });
-  }, [acceptedTrips, currentPage,acceptedPage, handelPayment]);
+  }, [acceptedTrips, currentPage, acceptedPage, handelPayment]);
 
   const sendConfirmationEmailToUser = () => {
     const userEmail = { email }; // Replace with the user's email address
@@ -759,7 +761,7 @@ useEffect(() => {
                             }}
                           >
                             <strong>Time:</strong>
-                            <span>{currentTrip.time}</span>
+                            <span>{currentTrip.time.slice(0, 5)}</span>{" "}
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -814,7 +816,7 @@ useEffect(() => {
                         color: "white",
                       }}
                     >
-                      <FaChevronRight /> { }
+                      <FaChevronRight /> {}
                     </Button>
                   </div>
                 </div>
@@ -902,7 +904,7 @@ useEffect(() => {
                             }}
                           >
                             <strong>Time:</strong>
-                            <span>{currentTrip.time}</span>
+                            <span>{currentTrip.time.slice(0, 5)}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -957,7 +959,7 @@ useEffect(() => {
                         color: "white",
                       }}
                     >
-                      <FaChevronRight /> { }
+                      <FaChevronRight /> {}
                     </Button>
                   </div>
                 </div>
@@ -1045,7 +1047,7 @@ useEffect(() => {
                             }}
                           >
                             <strong>Time:</strong>
-                            <span>{currentAcceptedTrip.time}</span>
+                            <span>{currentTrip.time.slice(0, 5)}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -1287,7 +1289,8 @@ useEffect(() => {
                     <Button
                       onClick={handleNextAcceptedPage}
                       disabled={
-                        acceptedPage >= Math.ceil(acceptedTrips.length / tripsPerPage)
+                        acceptedPage >=
+                        Math.ceil(acceptedTrips.length / tripsPerPage)
                       }
                       style={{
                         backgroundColor: "#003366",
@@ -1295,12 +1298,12 @@ useEffect(() => {
                         color: "white",
                       }}
                     >
-                      <FaChevronRight /> { }
+                      <FaChevronRight /> {}
                     </Button>
                   </div>
                 </div>
               ) : (
-                <div>{ }</div>
+                <div>{}</div>
               )}
             </Card.Body>
           </Card>
