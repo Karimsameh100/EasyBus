@@ -1,7 +1,7 @@
 import React from "react";
 import p1 from "../logo/enas.jpeg";
-import p2 from "../logo/p2.jfif";
-import p3 from "../logo/icon.png";
+import p2 from "../logo/onna.jpeg";
+import p3 from "../logo/mina.jpeg";
 // import p4 from "../logo/;
 import p5 from "../logo/payment.jfif";
 import "./navbar.css";
@@ -22,10 +22,11 @@ const Payment = () => {
           }}
         >
           <h1
-            className="text-center"
+            className="text-center "
             style={{
               color: "#003366",
               paddingTop: "80px",
+              marginBottom: "50px",
             }}
           >
             You Can Keep in Touch With Our Development Team
@@ -50,8 +51,8 @@ const Payment = () => {
             >
               <div style={{ textAlign: "center" }}>
                 <img
-                  src={p1}
-                  style={{ width: "35vh", height: "auto" }}
+                  src={p2}
+                  style={{ width: "30vh", height: "30vh" }}
                   alt="Payment method 1"
                 />
                 <br />
@@ -60,13 +61,13 @@ const Payment = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  "https://github.com/3EnasMelad"
+                  https://github.com/3EnasMelad
                 </a>
               </div>
               <div style={{ textAlign: "center" }}>
                 <img
-                  src={p2}
-                  style={{ width: "30vh", height: "30vh" }}
+                  src={p1}
+                  style={{ width: "35vh", height: "auto" }}
                   alt="Payment method 2"
                 />
                 <br />
@@ -75,7 +76,7 @@ const Payment = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  GitHub Link
+                  https://github.com/Afnan7120
                 </a>
               </div>
               <div style={{ textAlign: "center" }}>
@@ -90,7 +91,7 @@ const Payment = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  GitHub Link
+                  https://github.com/minanaser1
                 </a>
               </div>
             </div>
@@ -105,7 +106,7 @@ const Payment = () => {
             >
               <div style={{ textAlign: "center" }}>
                 <img
-                  src={p2}
+                  src={p5}
                   style={{ width: "30vh", height: "30vh" }}
                   alt="Payment method 4"
                 />
@@ -115,12 +116,12 @@ const Payment = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  GitHub Link
+                  https://github.com/Karimsameh100
                 </a>
               </div>
               <div style={{ textAlign: "center" }}>
                 <img
-                  src={p2}
+                  src={p5}
                   style={{ width: "30vh", height: "30vh" }}
                   alt="Payment method 5"
                 />
