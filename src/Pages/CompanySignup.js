@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';  // Import Axios
-import logo from "../logo/bus.png";
+import logo from "../logo/trip.jpeg";
 
 function CompanySignup() {
     const [userInputs, setUserInputs] = useState({
