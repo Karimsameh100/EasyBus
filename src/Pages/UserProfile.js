@@ -461,6 +461,20 @@ const UserProfile = () => {
   }, [currentPage, acceptedPage, acceptedTrips, trips]);
 
   useEffect(() => {
+    if (filteredTrips.length > 0) {
+      const currentPenddingTrip = filteredTrips[currentPage - 1 ];
+      const tripDetails = trips.find(
+        (trip) => trip?.id === currentPenddingTrip?.trip
+      );
+      if (tripDetails) {
+        setTripDate(tripDetails.date);
+        setTripNumber(tripDetails.tripNumber);
+      }
+    }
+  }, [currentPage,currentTrip, filteredTrips]);
+
+
+  useEffect(() => {
     const access_token = localStorage.getItem("authToken");
     if (!access_token) {
       navigate("/Login1");
@@ -1047,7 +1061,7 @@ const UserProfile = () => {
                             }}
                           >
                             <strong>Time:</strong>
-                            <span>{currentTrip.time ? currentTrip.time.slice(0, 5) : "N/A"}</span>
+                            <span>{currentTrip.time.slice(0, 5)}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>

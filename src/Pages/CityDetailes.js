@@ -3,7 +3,10 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import SearchComponent from "../Componants/Searh";
 import { Reviews } from "../Componants/Reviews/Review";
 import gobus from "../logo/unnamed.png";
+import egbus from "../logo/egbus.png";
+import amwag from "../logo/amwag.png"
 import axios from "axios";
+
 // import { Alert } from "react-bootstrap";
 
 import { FaRegBookmark, FaHeart } from "react-icons/fa";
@@ -308,6 +311,12 @@ export function CityDetailes() {
       }
     });
   };
+
+  // const companyImages = {
+  //   'Go Bus': gobus,
+  //   'EG bus': egbus,
+  //   "Amwag": amwag,
+  // };
 
   return (
     <>
