@@ -862,7 +862,7 @@ const UserProfile = () => {
                             }}
                           >
                             <span>Trip Number:</span>
-                            <span>{currentTrip.filteredTrips}</span>
+                            <span>{currentRejectedTrip.filteredTrips}</span>
                             <span>{tripNumber}</span>
                           </div>
                         </Card.Title>
@@ -885,7 +885,7 @@ const UserProfile = () => {
                             }}
                           >
                             <strong>Pickup Location:</strong>
-                            <span>{currentTrip.pickupLocation}</span>
+                            <span>{currentRejectedTrip.pickupLocation}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -896,7 +896,7 @@ const UserProfile = () => {
                             }}
                           >
                             <strong>Drop Location:</strong>
-                            <span>{currentTrip.dropLocation}</span>
+                            <span>{currentRejectedTrip.dropLocation}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -907,7 +907,7 @@ const UserProfile = () => {
                             }}
                           >
                             <strong>Date:</strong>
-                            <span>{currentTrip.date}</span>
+                            <span>{currentRejectedTrip.date}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -918,7 +918,7 @@ const UserProfile = () => {
                             }}
                           >
                             <strong>Time:</strong>
-                            <span>{currentTrip.time.slice(0, 5)}</span>
+                            <span>{currentRejectedTrip.time.slice(0, 5)}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -929,7 +929,7 @@ const UserProfile = () => {
                             }}
                           >
                             <strong>Number of Places:</strong>
-                            <span>{currentTrip.numberOfPlaces}</span>
+                            <span>{currentRejectedTrip.numberOfPlaces}</span>
                           </div>
                         </Card.Text>
                         <Card.Text
@@ -942,7 +942,7 @@ const UserProfile = () => {
                             }}
                           >
                             <strong>Total Fare:</strong>
-                            <span>{currentTrip.totalFare} EGP</span>
+                            <span>{currentRejectedTrip.totalFare} EGP</span>
                           </div>
                         </Card.Text>
                       </Card.Body>
@@ -952,8 +952,8 @@ const UserProfile = () => {
                   )}
                   <div className="d-flex justify-content-between">
                     <Button
-                      onClick={handlePrevPage}
-                      disabled={currentPage === 1}
+                      onClick={handlePrevRejectedPage}
+                      disabled={rejectedPage === 1}
                       style={{
                         backgroundColor: "#003366",
                         borderColor: "#003366",
@@ -962,10 +962,10 @@ const UserProfile = () => {
                       <FaChevronLeft />
                     </Button>
                     <Button
-                      onClick={handleNextPage}
+                      onClick={handleNextRejectedPage}
                       disabled={
-                        currentPage >=
-                        Math.ceil(filteredTrips.length / tripsPerPage)
+                        rejectedPage >=
+                        Math.ceil(rejectedTrips.length / tripsPerPage)
                       }
                       style={{
                         backgroundColor: "#003366",
