@@ -47,21 +47,21 @@ function ClientSignup() {
       }
     } else if (name === "phone_number") {
       if (value.length === 0) {
-        return "Please enter your phone number";
+        return "Please enter your egyptain phone number";
       } else if (!phoneReg.test(value)) {
-        return "Enter a valid 11-digit phone number";
+        return "Enter a valid 11-digit egyptain phone number ";
       }
     } else if (name === "email") {
       if (value.length === 0) {
-        return "Please enter your email";
+        return "Please enter your email (xxxxx@xxxx.com)";
       } else if (!emailReg.test(value)) {
         return "Enter a valid email (xxxxx@xxxx.com)";
       }
     } else if (name === "password") {
       if (value.length === 0) {
-        return "Please enter a password";
+        return "Please enter a password must be numbers not less than 8";
       } else if (!passReg.test(value)) {
-        return "Enter a valid password";
+        return "Enter a valid password numbers only not less than 8";
       }
     } else if (name === "confirm_password") {
       if (value.length === 0) {
@@ -166,23 +166,17 @@ function ClientSignup() {
           navigate(`/userprofile`, {
             state: { updatedUser: userInputs },
           });
-        } else {
-          // Handle response errors
-          try {
-            const errorData = await response.json();
-            console.error(
-              `Failed to ${isEditMode ? "update" : "register"} user:`,
-              errorData
-            );
-          } catch (jsonError) {
-            const errorText = await response.text();
-            console.error(
-              `Failed to ${
-                isEditMode ? "update" : "register"
-              } user (non-JSON response):`,
-              errorText
-            );
+        }  else if (response.status === 400) {
+          const errorData = await response.json();
+          if (errorData.email) {
+            setErrors((prevErrors) => ({
+              ...prevErrors,
+              emailErr: "This email is already registered ",
+            }));
           }
+        } else {
+          const errorText = await response.text();
+          console.error(`Failed to ${isEditMode ? "update" : "register"} user:`, errorText);
         }
       } catch (error) {
         console.error(`Error:`, error);

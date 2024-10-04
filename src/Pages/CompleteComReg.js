@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate,useLocation } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'; // Import axios for making HTTP requests
-import logo from "../logo/bus.png";
+import logo from "../logo/trip.jpeg";
 
 function CompleteComReg() {
     const location = useLocation();

@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import React from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Form, Button, Modal, FormGroup } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button, Modal, FormGroup, ModalBody } from 'react-bootstrap';
 import "../Componants/bookstyle.css"
 import logo from "../logo/neew llogo.png"
 import axios from 'axios';
@@ -38,6 +38,8 @@ const BookingPage = () => {
     const [pickupLocation, setPickupLocation] = useState(trip?.departuerStation);
     const [dropLocation, setDropLocation] = useState(trip?.destinationStation);
 
+    const [isBooking, setIsBooking] = useState(false);
+
 
 
 
@@ -53,12 +55,23 @@ const BookingPage = () => {
     }, [numberOfPlaces, trip?.price]);
 
     const handleIncrement = () => {
-        if (numberOfPlaces < trip?.avilabalPlaces) {
-            setNumberOfPlaces(numberOfPlaces + 1);
-        } else {
+        if (numberOfPlaces === trip?.avilabalPlaces) {
             setShowModal(true);
+            console.log(showModal)
+        } else {
+            setNumberOfPlaces(numberOfPlaces + 1);
         }
     };
+
+    useEffect(() => {
+        if (numberOfPlaces === trip?.avilabalPlaces) {
+            setShowModal(true);
+        } else {
+            setShowModal(false);
+        }
+    }, [numberOfPlaces, trip?.avilabalPlaces]);
+
+    console.log(showModal)
 
     const handleDecrement = () => {
         if (numberOfPlaces > 1) {
@@ -142,6 +155,7 @@ const BookingPage = () => {
                     .then((response) => {
                         const bookingId = response.data.id;
                         setBookingId(bookingId);
+                        setIsBooking(true);
 
                         const updatedTripData = {
                             tripNumber: trip.tripNumber,
@@ -301,14 +315,18 @@ const BookingPage = () => {
                                         required
                                     />
                                     {dropLocation === '' && (
-                                        <Form.Text className="text-danger">Drop location is required</Form.Text>
+                                        <Form.Text className="text-danger ">Drop location is required</Form.Text>
                                     )}
                                 </Form.Group>
 
                                 {pickupLocation && dropLocation && (
-                                    <button onClick={handleBookNow} className='btn btn-primary btn-md mt-5 d-flex justify-content-center fs-5 ' style={{ width: "95%", margin: "auto" }}>
-                                        Book now
-                                    </button>
+                                    isBooking ? (
+                                        <div className="text-center mt-5 fs-5 fw-semibold bg-warning text-dark p-3">Waiting for company approval...</div>
+                                    ) : (
+                                        <button onClick={handleBookNow} className='btn btn-primary btn-md mt-5 d-flex justify-content-center fs-5 ' style={{ width: "95%", margin: "auto" }}>
+                                            Book now
+                                        </button>
+                                    )
                                 )}
                             </Form>
                         </Card.Body>
@@ -373,12 +391,14 @@ const BookingPage = () => {
                         </Modal.Footer>
                     </Modal>
 
+
+
                     <Modal show={showModal} onHide={handleModalClose}>
                         <Modal.Header closeButton>
                             <Modal.Title>Out of Places</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            Sorry, you have exceeded the available places. Please try again.
+                            Sorry, you have exceeded the available places for this trip. check again.
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleModalClose}>
@@ -386,6 +406,7 @@ const BookingPage = () => {
                             </Button>
                         </Modal.Footer>
                     </Modal>
+
                 </Col>
             </Row>
         </Container>

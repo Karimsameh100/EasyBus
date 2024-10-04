@@ -140,7 +140,7 @@ function ReviewForm({ id,cityId, reviewId, onClose, onSubmit }) {
       <div className="mb-3 text-center">
         <div className="rating">{getStarRating(review.ReviewCustomerRate)}</div>
       </div>
-      <div className="mb-3">
+      {/* <div className="mb-3">
         <label htmlFor="ReviewCustomerName" className="form-label">
           Your Name
         </label>
@@ -153,7 +153,7 @@ function ReviewForm({ id,cityId, reviewId, onClose, onSubmit }) {
           onChange={handleChange}
           readOnly
         />
-      </div>
+      </div> */}
       <div className="mb-3">
         <label htmlFor="Review" className="form-label">
           Your Review
@@ -168,7 +168,7 @@ function ReviewForm({ id,cityId, reviewId, onClose, onSubmit }) {
         ></textarea>
       </div>
       <button type="submit" className="btn btn-success rounded-pill w-100">
-        {reviewId ? "Update Review" : "Submit Review"}
+        {reviewId ? "Update Review" : "Share Your Review"}
       </button>
     </form>
   );
