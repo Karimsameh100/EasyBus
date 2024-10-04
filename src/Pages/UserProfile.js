@@ -355,7 +355,7 @@ const UserProfile = () => {
 
   // const currentAcceptedTrip = acceptedTrips[(acceptedPage - 1) * tripsPerPage];
   const currentRejectedTrip = rejectedTrips[(rejectedPage - 1) * tripsPerPage];
-  const currentAcceptedTripIndex = currentPage - 1;
+  const currentAcceptedTripIndex = acceptedPage - 1;
   const currentAcceptedTrip = acceptedTrips[currentAcceptedTripIndex];
 
   const handleEditAccount = () => {
@@ -379,10 +379,10 @@ const UserProfile = () => {
 
   const handlePaypalAmountChange = () => {
     if (paymentMethod === "payOnline") {
-      setPaypalAmount(acceptedTrips[currentPage - 1].totalFare.toFixed(2));
+      setPaypalAmount(acceptedTrips[acceptedPage - 1].totalFare.toFixed(2));
     } else if (paymentMethod === "payCash") {
       setPaypalAmount(
-        (acceptedTrips[currentPage - 1].totalFare * 0.2).toFixed(2)
+        (acceptedTrips[acceptedPage - 1].totalFare * 0.2).toFixed(2)
       ); // 20% deposit
     }
   };
@@ -412,11 +412,11 @@ const UserProfile = () => {
           date: new Date(),
           amount: paypalAmount,
           payment_method: paymentMethod,
-          booking_id: acceptedTrips[currentPage - 1].id,
-          trip_id: acceptedTrips[currentPage - 1].trip,
-          user: acceptedTrips[currentPage - 1].user,
-          trip: acceptedTrips[currentPage - 1].trip,
-          booking: acceptedTrips[currentPage - 1].id,
+          booking_id: acceptedTrips[acceptedPage - 1].id,
+          trip_id: acceptedTrips[acceptedPage - 1].trip,
+          user: acceptedTrips[acceptedPage - 1].user,
+          trip: acceptedTrips[acceptedPage - 1].trip,
+          booking: acceptedTrips[acceptedPage - 1].id,
         };
 
         // setPaymentData(paymentData)
@@ -434,6 +434,33 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/all/trips/")
+      .then((response) => {
+        setTrips(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const [tripDate, setTripDate] = useState(null);
+  const [tripNumber, setTripNumber] = useState(null);
+
+  useEffect(() => {
+    if (acceptedTrips.length > 0) {
+      const currentAcceptedTrip = acceptedTrips[currentAcceptedTripIndex];
+      const tripDetails = trips.find(
+        (trip) => trip.id === currentAcceptedTrip.trip
+      );
+      if (tripDetails) {
+        setTripDate(tripDetails.date);
+        setTripNumber(tripDetails.tripNumber);
+      }
+    }
+  }, [currentPage, acceptedPage, acceptedTrips, trips]);
+
+  useEffect(() => {
     const access_token = localStorage.getItem("authToken");
     if (!access_token) {
       navigate("/Login1");
@@ -448,7 +475,7 @@ const UserProfile = () => {
       })
       .then((response) => {
         const paymentData = response.data;
-        const bookingId = acceptedTrips[currentPage - 1].id;
+        const bookingId = acceptedTrips[acceptedPage - 1].id;
         console.log("payment check,", bookingId);
         const paymentExists = paymentData.some(
           (payment) => payment.booking === bookingId
@@ -466,7 +493,7 @@ const UserProfile = () => {
       .catch((error) => {
         console.error("Error fetching payments:", error);
       });
-  }, [acceptedTrips, currentPage]);
+  }, [acceptedTrips, currentPage, acceptedPage, handelPayment]);
 
   const sendConfirmationEmailToUser = () => {
     const userEmail = { email }; // Replace with the user's email address
@@ -678,9 +705,21 @@ const UserProfile = () => {
                             }}
                           >
                             <span>Trip Number:</span>
-                            <span>{currentTrip.trip}</span>
+                            <span>{currentAcceptedTrip.filteredTrips}</span>
+                            <span>{tripNumber}</span>
                           </div>
                         </Card.Title>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong> Trip Date:</strong>
+                            <span>{tripDate}</span>
+                          </div>
+                        </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
                           <div
                             style={{
@@ -722,7 +761,7 @@ const UserProfile = () => {
                             }}
                           >
                             <strong>Time:</strong>
-                            <span>{currentTrip.time}</span>
+                            <span>{currentTrip.time.slice(0, 5)}</span>{" "}
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -809,9 +848,21 @@ const UserProfile = () => {
                             }}
                           >
                             <span>Trip Number:</span>
-                            <span>{currentRejectedTrip.trip}</span>
+                            <span>{currentAcceptedTrip.filteredTrips}</span>
+                            <span>{tripNumber}</span>
                           </div>
                         </Card.Title>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong> Trip Date:</strong>
+                            <span>{tripDate}</span>
+                          </div>
+                        </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
                           <div
                             style={{
@@ -853,7 +904,7 @@ const UserProfile = () => {
                             }}
                           >
                             <strong>Time:</strong>
-                            <span>{currentTrip.time}</span>
+                            <span>{currentTrip.time.slice(0, 5)}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -941,8 +992,20 @@ const UserProfile = () => {
                           >
                             <span>Trip Number:</span>
                             <span>{currentAcceptedTrip.filteredTrips}</span>
+                            <span>{tripNumber}</span>
                           </div>
                         </Card.Title>
+                        <Card.Text style={{ fontSize: "1.1rem" }}>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <strong> Trip Date:</strong>
+                            <span>{tripDate}</span>
+                          </div>
+                        </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
                           <div
                             style={{
@@ -972,7 +1035,7 @@ const UserProfile = () => {
                               justifyContent: "space-between",
                             }}
                           >
-                            <strong>Date:</strong>
+                            <strong> Booking Date:</strong>
                             <span>{currentAcceptedTrip.date}</span>
                           </div>
                         </Card.Text>
@@ -984,7 +1047,7 @@ const UserProfile = () => {
                             }}
                           >
                             <strong>Time:</strong>
-                            <span>{currentAcceptedTrip.time}</span>
+                            <span>{currentTrip.time.slice(0, 5)}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
@@ -1211,10 +1274,11 @@ const UserProfile = () => {
                   ) : (
                     <p>No Accepted trips found.</p>
                   )}
+
                   <div className="d-flex justify-content-between">
                     <Button
-                      onClick={handlePrevPage}
-                      disabled={currentPage === 1}
+                      onClick={handlePrevAcceptedPage}
+                      disabled={acceptedPage === 1}
                       style={{
                         backgroundColor: "#003366",
                         borderColor: "#003366",
@@ -1223,10 +1287,10 @@ const UserProfile = () => {
                       <FaChevronLeft />
                     </Button>
                     <Button
-                      onClick={handleNextPage}
+                      onClick={handleNextAcceptedPage}
                       disabled={
-                        currentPage >=
-                        Math.ceil(filteredTrips.length / tripsPerPage)
+                        acceptedPage >=
+                        Math.ceil(acceptedTrips.length / tripsPerPage)
                       }
                       style={{
                         backgroundColor: "#003366",

@@ -71,12 +71,41 @@
 
 .list-group-item-action:hover {
   background-color: #007bff; 
-  color: white; 
+  color: rgb(24, 23, 24); 
 }
 
 
+/* .nav-item-custom {
+  border: none;
+  background-color: white;
  
+  transition: background-color 0.3s ease;
+}
 
+.nav-item-custom:hover {
+  background-color: #007bff; ;
+  cursor: pointer;
+}
+
+.nav-item-custom:focus {
+  outline: none;
+  box-shadow: none;
+} */
+
+.nav-item-custom {
+  border: none;
+  background-color: #f8f9fa; 
+  transition: background-color 0.3s ease;
+}
+
+.nav-item-custom:hover {
+  background-color: #007bff; 
+  cursor: pointer;
+}
+
+.nav-item-custom.active {
+  background-color: #007bff; 
+}
 
 
  /* .table-responsive {

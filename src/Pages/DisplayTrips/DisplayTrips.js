@@ -8,6 +8,11 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  Nav,
+  Form,
+  Col,
+  Row,
+  Card,
 } from "react-bootstrap";
 import "./DisplayTrips.css";
 // import "./test.css";
@@ -35,6 +40,7 @@ const DisplayTrips = () => {
 
   const [password, setPassword] = useState(""); // لإضافة كلمة المرور
   // const [showEditModal, setShowEditModal] = useState(false); // حالة لإظهار المودال
+  const [activeItem, setActiveItem] = useState("profile"); // حالة لتتبع العنصر النشط
   const [userBookings, setUserBookings] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -482,72 +488,116 @@ const DisplayTrips = () => {
       .catch((error) => console.error("Error saving changes:", error));
   };
 
+  const handleItemClick = (item) => {
+    setActiveItem(item);
+    setView(item); // تحديث العرض
+  };
   return (
-    <div className="container mt-2 table-responsive ">
+    <div className="container mt-2 table-responsive">
       <div
-        className="row main d-flex justify-content-center align-items-center"
-        style={{ minHeight: "80vh" }}
+        className="row main d-flex justify-content-start align-items-start"
+        style={{ minHeight: "5vh" }}
       >
-        <div className="col-md-9 my-2">
-          <ul className="nav justify-content-center py-2">
-            <li className="nav-item">
+        <div className="col-md-3 my-2">
+          <Nav
+            className="flex-column py-2"
+            style={{ border: "1px solid #ccc", borderRadius: "5px" }}
+          >
+            <Nav.Item>
               <button
-                className="list-group-item list-group-item-action p-2"
-                onClick={() => setView("trips")}
-              >
-                List Trips
-              </button>
-            </li>
-            <li className="nav-item">
-              <button
-                className="list-group-item list-group-item-action p-2"
-                onClick={() => setView("bookings")}
-              >
-                List Bookings
-              </button>
-            </li>
-            <li className="nav-item">
-              <button
-                className="list-group-item list-group-item-action p-2"
-                onClick={() => setView("profile")}
+                className={`list-group-item list-group-item-action p-2 nav-item-custom ${
+                  activeItem === "profile" ? "active" : ""
+                }`}
+                onClick={() => handleItemClick("profile")}
               >
                 Profile
               </button>
-            </li>
-          </ul>
-
-          {view === "profile" && (
-            <div className="profile-details text-center">
-              <h3 style={{ color: "#4b4b4b", marginBottom: "20px" }}>
-                Company Profile
-              </h3>
-              <table className="table table-bordered w-50 mx-auto">
-                <tbody>
-                  <tr>
-                    <td>
-                      <strong>Company Name:</strong>
-                    </td>
-                    <td>{companyName}</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>Email:</strong>
-                    </td>
-                    <td>{companyEmail}</td>
-                  </tr>
-                </tbody>
-              </table>
-
+            </Nav.Item>
+            <Nav.Item>
               <button
-                className="btn btn-primary mt-3"
-                style={{ display: "inline-flex", alignItems: "center" }}
-                onClick={() => setShowProfileEditModal(true)}
+                className={`list-group-item list-group-item-action p-2 nav-item-custom ${
+                  activeItem === "trips" ? "active" : ""
+                }`}
+                onClick={() => handleItemClick("trips")}
               >
-                <FaEdit style={{ marginRight: "5px" }} /> Edit
+                List Trips
               </button>
+            </Nav.Item>
+            <Nav.Item>
+              <button
+                className={`list-group-item list-group-item-action p-2 nav-item-custom ${
+                  activeItem === "bookings" ? "active" : ""
+                }`}
+                onClick={() => handleItemClick("bookings")}
+              >
+                List Bookings
+              </button>
+            </Nav.Item>
+          </Nav>
+        </div>
+      </div>
+      {/* // ----------------------------------------------------------------- */}
+      <div className="container mt-2 table-responsive ">
+        <div
+          className="row main d-flex justify-content-center align-items-center"
+          style={{ minHeight: "5vh" }}
+        >
+          {view === "profile" && (
+            <div className="profile-details">
+              <Row className="align-items-center">
+                <Col md={4} className="d-flex justify-content-center"></Col>
+                <Col md={8}>
+                  <Card className="shadow-sm p-3 mb-5 bg-white rounded">
+                    <Card.Body>
+                      <h2
+                        style={{
+                          color: "#003366",
+                          marginBottom: "20px",
+                          textAlign: "center",
+                        }}
+                      >
+                        Company Profile
+                      </h2>
+                      <Card.Text
+                        style={{ color: "#003366" }}
+                        className="text-center"
+                      >
+                        <h4>
+                          {" "}
+                          <strong> Welcome :</strong> {companyName}
+                        </h4>
+                      </Card.Text>
+                      <Card.Text
+                        style={{ color: "#003366" }}
+                        className="text-center"
+                      >
+                        <h4>
+                          <strong> Your Email:</strong> {companyEmail}
+                        </h4>
+                      </Card.Text>
+
+                      <Form>
+                        <div className="text-center mt-3">
+                          <Button
+                            variant="primary"
+                            onClick={() => setShowProfileEditModal(true)}
+                            style={{
+                              display: "inline-flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            <FaEdit style={{ marginRight: "5px" }} /> Edit
+                          </Button>
+                        </div>
+                      </Form>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
             </div>
           )}
 
+          {/* ----------------------------------------------------- */}
           <Modal
             show={showProfileEditModal}
             onHide={() => setShowProfileEditModal(false)}
