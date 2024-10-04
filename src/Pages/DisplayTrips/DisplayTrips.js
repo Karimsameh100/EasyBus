@@ -544,12 +544,21 @@ const DisplayTrips = () => {
         >
           {view === "profile" && (
             <div className="profile-details">
+              <h1
+                style={{
+                  textAlign: "right",
+                  color: "#003366",
+                  marginRight: "30vh",
+                }}
+              >
+                Company Profile
+              </h1>
               <Row className="align-items-center">
                 <Col md={4} className="d-flex justify-content-center"></Col>
                 <Col md={8}>
                   <Card className="shadow-sm p-3 mb-5 bg-white rounded">
                     <Card.Body>
-                      <h2
+                      {/* <h2
                         style={{
                           color: "#003366",
                           marginBottom: "20px",
@@ -557,7 +566,8 @@ const DisplayTrips = () => {
                         }}
                       >
                         Company Profile
-                      </h2>
+                      </h2> */}
+
                       <Card.Text
                         style={{ color: "#003366" }}
                         className="text-center"
@@ -652,6 +662,9 @@ const DisplayTrips = () => {
             <>
               {currentPageItems.length ? (
                 <div className="table-responsive ">
+                  <h1 style={{ textAlign: "center", color: "#003366" }}>
+                    List Trips
+                  </h1>
                   <table className="table table-striped table-bordered w-100">
                     <thead>
                       <tr>
@@ -780,6 +793,9 @@ const DisplayTrips = () => {
             <>
               {currentBookingsPageItems.length ? (
                 <div className="table-responsive">
+                  <h1 style={{ textAlign: "center", color: "#003366" }}>
+                    Booking Trips
+                  </h1>
                   <table className="table table-striped table-bordered w-100">
                     <thead>
                       <tr>

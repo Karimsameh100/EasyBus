@@ -2,8 +2,8 @@ import React from "react";
 import p1 from "../logo/enas.jpeg";
 import p2 from "../logo/onna.jpeg";
 import p3 from "../logo/mina.jpeg";
-// import p4 from "../logo/;
-import p5 from "../logo/payment.jfif";
+import p4 from "../logo/icon.png";
+import p5 from "../logo/maged.jpeg";
 import "./navbar.css";
 
 const Payment = () => {
@@ -52,46 +52,81 @@ const Payment = () => {
               <div style={{ textAlign: "center" }}>
                 <img
                   src={p2}
-                  style={{ width: "30vh", height: "30vh" }}
+                  style={{
+                    width: "30vh",
+                    height: "30vh",
+                    marginBottom: "15px",
+                  }}
                   alt="Payment method 1"
                 />
                 <br />
                 <a
-                  href="https://github.com/user1"
+                  style={{
+                    textDecoration: "none",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    color: "#003366",
+                    fontFamily: "'Arial', sans-serif",
+                  }}
+                  href="https://github.com/Afnan7120"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  https://github.com/3EnasMelad
+                  Afnan Mohamed
                 </a>
               </div>
+
               <div style={{ textAlign: "center" }}>
                 <img
                   src={p1}
-                  style={{ width: "35vh", height: "auto" }}
+                  style={{
+                    width: "35vh",
+                    height: "auto",
+                    direction: "none",
+                    marginBottom: "15px",
+                  }}
                   alt="Payment method 2"
                 />
                 <br />
                 <a
-                  href="https://github.com/user2"
+                  href="https://github.com/3EnasMelad"
                   target="_blank"
                   rel="noopener noreferrer"
+                  style={{
+                    textDecoration: "none",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    color: "#003366",
+                    fontFamily: "'Arial', sans-serif",
+                  }}
                 >
-                  https://github.com/Afnan7120
+                  Enas Melad
                 </a>
               </div>
               <div style={{ textAlign: "center" }}>
                 <img
                   src={p3}
-                  style={{ width: "30vh", height: "30vh" }}
+                  style={{
+                    width: "30vh",
+                    height: "30vh",
+                    marginBottom: "15px",
+                  }}
                   alt="Payment method 3"
                 />
                 <br />
                 <a
-                  href="https://github.com/user3"
+                  href="  https://github.com/minanaser1"
                   target="_blank"
                   rel="noopener noreferrer"
+                  style={{
+                    textDecoration: "none",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    color: "#003366",
+                    fontFamily: "'Arial', sans-serif",
+                  }}
                 >
-                  https://github.com/minanaser1
+                  Mina Naser
                 </a>
               </div>
             </div>
@@ -106,32 +141,54 @@ const Payment = () => {
             >
               <div style={{ textAlign: "center" }}>
                 <img
-                  src={p5}
-                  style={{ width: "30vh", height: "30vh" }}
+                  src={p4}
+                  style={{
+                    width: "30vh",
+                    height: "30vh",
+                    marginBottom: "15px",
+                  }}
                   alt="Payment method 4"
                 />
                 <br />
                 <a
-                  href="https://github.com/user4"
+                  href="https://github.com/Karimsameh100"
                   target="_blank"
                   rel="noopener noreferrer"
+                  style={{
+                    textDecoration: "none",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    color: "#003366",
+                    fontFamily: "'Arial', sans-serif",
+                  }}
                 >
-                  https://github.com/Karimsameh100
+                  Karim Sameh
                 </a>
               </div>
               <div style={{ textAlign: "center" }}>
                 <img
                   src={p5}
-                  style={{ width: "30vh", height: "30vh" }}
+                  style={{
+                    width: "30vh",
+                    height: "30vh",
+                    marginBottom: "15px",
+                  }}
                   alt="Payment method 5"
                 />
                 <br />
                 <a
-                  href="https://github.com/user5"
+                  style={{
+                    textDecoration: "none",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    color: "#003366",
+                    fontFamily: "'Arial', sans-serif",
+                  }}
+                  href="https://github.com/mmetyas"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  GitHub Link
+                  Maged metyas
                 </a>
               </div>
             </div>
