@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import React from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Form, Button, Modal, FormGroup } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button, Modal, FormGroup,ModalBody } from 'react-bootstrap';
 import "../Componants/bookstyle.css"
 import logo from "../logo/neew llogo.png"
 import axios from 'axios';
@@ -53,13 +53,24 @@ const BookingPage = () => {
     }, [numberOfPlaces, trip?.price]);
 
     const handleIncrement = () => {
-        if (numberOfPlaces < trip?.avilabalPlaces) {
-            setNumberOfPlaces(numberOfPlaces + 1);
+        if (numberOfPlaces === trip?.avilabalPlaces) {
+          setShowModal(true);
+          console.log(showModal)
         } else {
-            setShowModal(true);
+          setNumberOfPlaces(numberOfPlaces + 1);
         }
-    };
+      };
 
+      useEffect(() => {
+        if (numberOfPlaces === trip?.avilabalPlaces) {
+          setShowModal(true);
+        } else {
+          setShowModal(false);
+        }
+      }, [numberOfPlaces, trip?.avilabalPlaces]);
+    
+      console.log(showModal)
+      
     const handleDecrement = () => {
         if (numberOfPlaces > 1) {
             setNumberOfPlaces(numberOfPlaces - 1);
@@ -373,12 +384,14 @@ const BookingPage = () => {
                         </Modal.Footer>
                     </Modal>
 
-                    <Modal show={showModal} onHide={handleModalClose}>
+                    
+                   
+                        <Modal show={showModal} onHide={handleModalClose}>
                         <Modal.Header closeButton>
                             <Modal.Title>Out of Places</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            Sorry, you have exceeded the available places. Please try again.
+                            Sorry, you have exceeded the available places for this trip. check again.
                         </Modal.Body>
                         <Modal.Footer>
                             <Button variant="secondary" onClick={handleModalClose}>
@@ -386,6 +399,7 @@ const BookingPage = () => {
                             </Button>
                         </Modal.Footer>
                     </Modal>
+                   
                 </Col>
             </Row>
         </Container>

@@ -3,6 +3,9 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import SearchComponent from "../Componants/Searh";
 import { Reviews } from "../Componants/Reviews/Review";
 import gobus from "../logo/unnamed.png";
+import amwag from "../logo/amwag.png";
+import egbus from "../logo/egbus.png";
+
 import axios from "axios";
 // import { Alert } from "react-bootstrap";
 
@@ -321,6 +324,19 @@ export function CityDetailes() {
     });
   };
 
+  // const companyImages = {
+  //   'Go Bus': gobus,
+  //   'EG bus': egbus,
+  //   "Amwag": amwag,
+  // };
+
+
+  const companyImages = {
+    'Go Bus': gobus,
+    'EG bus': egbus,
+    "Amwag": amwag,
+  };
+
   return (
     <>
       {showSuccessAlert && (
@@ -402,10 +418,7 @@ export function CityDetailes() {
               <h2 className="text-center m-5">Travel with {company.name}</h2>
               <div class="col-sm-6 col-md-4">
                 <img
-                  src={
-                    // {company.image}----------------------------الصوره مش بتيجى من الباك ايند
-                    gobus
-                  }
+                  src={companyImages[company.name]} 
                   className="img-fluid mt-5 "
                   alt="Image"
                 />

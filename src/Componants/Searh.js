@@ -15,10 +15,15 @@ const Search = () => {
   const [arrivalStation, setArrivalStation] = useState("");
   const [tripDate, setTripDate] = useState("");
   const [trips, setTrips] = useState([]);
+  const [cities, setCities] = useState([]); // Add a state for cities
   const navigate = useNavigate();
 
   useEffect(() => {
-    // No need to fetch data on mount, as we'll fetch data on search submit
+    axios.get(`http://127.0.0.1:8000/cities/`)
+      .then((response) => {
+        setCities(response.data);
+      })
+      .catch((error) => console.error(error));
   }, []);
 
   const handleSubmit = (event) => {
@@ -38,7 +43,9 @@ const Search = () => {
       })
       .catch((error) => console.error(error));
   };
+
   const isSearchDisabled = !departureStation || !arrivalStation || !tripDate;
+
   return (
     <Container className="search-container d-flex justify-content-center align-items-center">
       <form
@@ -53,7 +60,11 @@ const Search = () => {
             onChange={(event) => setDepartureStation(event.target.value)}
           >
             <option value="">Select a city</option>
-            <option value="Cairo">Cairo</option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.city}>
+                {city.city}
+              </option>
+            ))}
           </Form.Control>
         </Form.Group>
 
@@ -65,9 +76,11 @@ const Search = () => {
             onChange={(event) => setArrivalStation(event.target.value)}
           >
             <option value="">Select a city</option>
-            <option value="Sohag">Sohag</option>
-            <option value="ALexabdria">Alexandria</option>
-            <option value="Fayoum">Fayoum</option>
+            {cities.map((city) => (
+              <option key={city.id} value={city.city}>
+                {city.city}
+              </option>
+            ))}
           </Form.Control>
         </Form.Group>
 
