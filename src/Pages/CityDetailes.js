@@ -19,6 +19,7 @@ import {
 import ReviewForm from "./CreateReview";
 import { jwtDecode } from "jwt-decode";
 import { Alert } from "react-bootstrap";
+import { right } from "@popperjs/core";
 
 export function CityDetailes() {
   const params = useParams();
@@ -44,6 +45,9 @@ export function CityDetailes() {
   const [editReviewId, setEditReviewId] = useState(null); // State to control edit mode
   const [favorites, setFavorites] = useState([]);
   const imageBaseURL = "http://localhost:8000/";
+
+  const [tripsPerPage, setTripsPerPage] = useState(3);
+  const [currentPagetrip, setCurrentPageTrip] = useState(1);
 
   // State to control the visibility of the success alert
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
@@ -378,87 +382,124 @@ export function CityDetailes() {
       </div>
       <div class="container-fluid">
         {companiess &&
-          companiess.map((company) => (
-            <div
-              key={company.id}
-              class="row d-flex justify-content-center mb-5"
-            >
-              <h2 className="text-center m-5">Travel with {company.name}</h2>
-              <div class="col-sm-6 col-md-4">
-                <img
-                  src={
-                    // {company.image}----------------------------الصوره مش بتيجى من الباك ايند
-                    gobus
-                  }
-                  className="img-fluid mt-5 "
-                  alt="Image"
-                />
+          companiess
+            .filter((company) => {
+              const trips = company.company_trips.filter((trip) => {
+                return (
+                  trip.departuerStation === city.city ||
+                  trip.destinationStation === city.city
+                );
+              });
+              return trips.length > 0;
+            })
+            .map((company) => (
+              <div
+                key={company.id}
+                class="row d-flex justify-content-center mb-5"
+              >
+                <h2 className="text-center m-5">Travel with {company.name}</h2>
+                <div class="col-sm-6 col-md-4">
+                  <img
+                    src={companyImages[company.name]}
+                    className="img-fluid mt-5 "
+                    alt="Image"
+                  />
+                </div>
+                <div className="table-responsive col-sm-6 col-md-8 d-flex justify-content-center">
+                  <table className="table table-striped table-bordered-bold w-100">
+                    <thead>
+                      <tr>
+                        <th>Trip Number</th>
+                        <th>Trip Date</th>
+                        <th>Available Places</th>
+                        <th>Departure Station</th>
+                        <th>Stop Stations</th>
+                        <th>Go In</th>
+                        <th>Arrive At</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {company.company_trips
+                        .filter((trip) => {
+                          return (
+                            trip.departuerStation === city.city ||
+                            trip.destinationStation === city.city
+                          );
+                        }).slice((currentPagetrip - 1) * tripsPerPage, currentPagetrip * tripsPerPage)
+                        .map((trip) => (
+                          <tr key={trip.id}>
+                            <td>{trip.tripNumber}</td>
+                            <td>{trip.date}</td>
+                            <td>{trip.avilabalPlaces}</td>
+                            <td>{trip.departuerStation}</td>
+                            <td>{trip.destinationStation}</td>
+                            <td>{trip.departuerTime}</td>
+                            <td>{trip.destinationTime}</td>
+                            <td>{trip.price}</td>
+                            <td>
+                              <button
+                                className="btn btn-success btn-sm mx-1"
+                                style={{ width: "100%" }}
+                                onClick={() =>
+                                  isLoggedIn
+                                    ? handleBookTrip(trip, company)
+                                    : setShowLoginModal(true)
+                                }
+                              >
+                                <FaRegBookmark /> Book
+                              </button>
+                              <button
+                                className="btn btn-outline-warning btn-sm mx-1 my-1"
+                                style={{ width: "100%" }}
+                                onClick={() =>
+                                  isLoggedIn
+                                    ? handleAddToFavorites(trip, company)
+                                    : setShowLoginModal(true)
+                                }
+                              >
+                                <FaHeart />
+                                {/* Liked */}
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                    <tfoot>
+                <tr>
+                  <td colSpan={8}>
+                    <div className="d-flex justify-content-center m-3 gap-5">
+                      <button
+                        className="btn btn-secondary rounded-3 "
+                        onClick={() => setCurrentPageTrip(currentPagetrip - 1)}
+                        disabled={currentPagetrip === 1}
+                        style={{ marginRight: '100px' }}
+                      >
+                        Previous
+                      </button>
+                      <button
+                        className="btn btn-success rounded-3"
+                        onClick={() => setCurrentPageTrip(currentPagetrip + 1)}
+                        disabled={
+                          company.company_trips.filter((trip) => {
+                            return (
+                              trip.departuerStation === city.city ||
+                              trip.destinationStation === city.city
+                            );
+                          }).length <= currentPagetrip * tripsPerPage
+                        }
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tfoot>
+                  </table>
+                </div>
               </div>
-              <div className="table-responsive col-sm-6 col-md-8">
-                <table className="table table-striped table-bordered-bold w-100">
-                  <thead>
-                    <tr>
-                      <th>Trip Number</th>
-                      <th>Trip Date</th>
-                      <th>Available Places</th>
-                      <th>Departure Station</th>
-                      <th>Stop Stations</th>
-                      <th>Go In</th>
-                      <th>Arrive At</th>
-                      <th>Price</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {company.company_trips
-                      .filter((trip) => {
-                        return (
-                          trip.departuerStation === city.city ||
-                          trip.destinationStation === city.city
-                        );
-                      })
-                      .map((trip) => (
-                        <tr key={trip.id}>
-                          <td>{trip.tripNumber}</td>
-                          <td>{trip.date}</td>
-                          <td>{trip.avilabalPlaces}</td>
-                          <td>{trip.departuerStation}</td>
-                          <td>{trip.destinationStation}</td>
-                          <td>{trip.departuerTime}</td>
-                          <td>{trip.destinationTime}</td>
-                          <td>{trip.price}</td>
-                          <td>
-                            <button
-                              className="btn btn-success btn-sm mx-1"
-                              style={{ width: "100%" }}
-                              onClick={() =>
-                                isLoggedIn
-                                  ? handleBookTrip(trip, company)
-                                  : setShowLoginModal(true)
-                              }
-                            >
-                              <FaRegBookmark /> Book
-                            </button>
-                            <button
-                              className="btn btn-outline-warning btn-sm mx-1 my-1"
-                              style={{ width: "100%" }}
-                              onClick={() =>
-                                isLoggedIn
-                                  ? handleAddToFavorites(trip, company)
-                                  : setShowLoginModal(true)
-                              }
-                            >
-                              <FaHeart />
-                              {/* Liked */}
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          ))}
+            ))}
       </div>
 
       <section className="bg-light py-3 py-md-5">

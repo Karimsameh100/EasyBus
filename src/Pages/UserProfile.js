@@ -705,7 +705,7 @@ const UserProfile = () => {
                             }}
                           >
                             <span>Trip Number:</span>
-                            <span>{currentAcceptedTrip.filteredTrips}</span>
+                            <span>{currentTrip.filteredTrips}</span>
                             <span>{tripNumber}</span>
                           </div>
                         </Card.Title>
@@ -808,7 +808,7 @@ const UserProfile = () => {
                       onClick={handleNextPage}
                       disabled={
                         currentPage >=
-                        Math.ceil(filteredTrips.length / tripsPerPage)
+                        Math.ceil(filteredTrips?.length / tripsPerPage)
                       }
                       style={{
                         backgroundColor: "#003366",
@@ -848,7 +848,7 @@ const UserProfile = () => {
                             }}
                           >
                             <span>Trip Number:</span>
-                            <span>{currentAcceptedTrip.filteredTrips}</span>
+                            <span>{currentTrip.filteredTrips}</span>
                             <span>{tripNumber}</span>
                           </div>
                         </Card.Title>
