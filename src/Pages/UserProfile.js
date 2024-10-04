@@ -1061,7 +1061,7 @@ const UserProfile = () => {
                             }}
                           >
                             <strong>Time:</strong>
-                            <span>{currentTrip.time.slice(0, 5)}</span>
+                            <span>{currentAcceptedTrip.time.slice(0, 5)}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>
