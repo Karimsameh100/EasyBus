@@ -312,11 +312,11 @@ export function CityDetailes() {
     });
   };
 
-  // const companyImages = {
-  //   'Go Bus': gobus,
-  //   'EG bus': egbus,
-  //   "Amwag": amwag,
-  // };
+  const companyImages = {
+    'Go Bus': gobus,
+    'EG bus': egbus,
+    "Amwag": amwag,
+  };
 
   return (
     <>
