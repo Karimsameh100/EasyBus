@@ -1047,7 +1047,7 @@ const UserProfile = () => {
                             }}
                           >
                             <strong>Time:</strong>
-                            <span>{currentTrip.time.slice(0, 5)}</span>
+                            <span>{currentTrip.time ? currentTrip.time.slice(0, 5) : "N/A"}</span>
                           </div>
                         </Card.Text>
                         <Card.Text style={{ fontSize: "1.1rem" }}>

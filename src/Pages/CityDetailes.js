@@ -3,9 +3,6 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import SearchComponent from "../Componants/Searh";
 import { Reviews } from "../Componants/Reviews/Review";
 import gobus from "../logo/unnamed.png";
-import amwag from "../logo/amwag.png";
-import egbus from "../logo/egbus.png";
-
 import axios from "axios";
 // import { Alert } from "react-bootstrap";
 
@@ -30,7 +27,6 @@ export function CityDetailes() {
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 4;
   const [hasMoreReviews, setHasMoreReviews] = useState(true);
-  const [hasUserReview, setHasUserReview] = useState(false);
   const [companiess, setCompanies] = useState([]);
   const [trips, setTrips] = useState([]);
   const [currentUserId, setCurrentUserId] = useState(null);
@@ -69,19 +65,8 @@ export function CityDetailes() {
     axios
       .get(`http://localhost:8000/cities/${params.id}/`)
       .then((res) => {
-        setCity(res.data);
-
-        const authToken = localStorage.getItem("authToken");
-        if (authToken) {
-          const decodedToken = jwtDecode(authToken);
-          setCurrentUserId(decodedToken.user_id);
-
-          const userReview = res.data.Reviews.find(
-            (review) => review.user_id === decodedToken.user_id
-          );
-          setHasUserReview(!!userReview); // Set to true if the user has reviewed
-        }
-      })
+        setCity(res.data);}
+      )
       .catch((err) => console.error("Error fetching city:", err));
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (isLoggedIn === "true") {
@@ -284,7 +269,6 @@ export function CityDetailes() {
       });
       setShowModal(false);
       setReviewToDelete(null);
-      setHasUserReview(false);
     } catch (error) {
       console.error("Error deleting review:", error);
       setCity((prevCity) => ({
@@ -300,16 +284,14 @@ export function CityDetailes() {
   };
 
   const handleOpenReviewForm = () => {
-    if (!hasUserReview) {
-      setEditReviewId(null); // New review
-      setShowReviewForm(true);
-    }
+    setEditReviewId(null);
+    setShowReviewForm(true);
   };
 
   const handleReviewSubmit = (newReview) => {
     setCity((prevCity) => {
       const existingReviewIndex = prevCity.Reviews.findIndex(
-        (review) => review.ReviewCustomerDetails.id === newReview.id
+        (review) => review.id === newReview.id
       );
 
       if (existingReviewIndex !== -1) {
@@ -318,23 +300,9 @@ export function CityDetailes() {
         updatedReviews[existingReviewIndex] = newReview;
         return { ...prevCity, Reviews: updatedReviews };
       } else {
-        setHasUserReview(true);
         return { ...prevCity, Reviews: [...prevCity.Reviews, newReview] };
       }
     });
-  };
-
-  // const companyImages = {
-  //   'Go Bus': gobus,
-  //   'EG bus': egbus,
-  //   "Amwag": amwag,
-  // };
-
-
-  const companyImages = {
-    'Go Bus': gobus,
-    'EG bus': egbus,
-    "Amwag": amwag,
   };
 
   return (
@@ -418,7 +386,10 @@ export function CityDetailes() {
               <h2 className="text-center m-5">Travel with {company.name}</h2>
               <div class="col-sm-6 col-md-4">
                 <img
-                  src={companyImages[company.name]} 
+                  src={
+                    // {company.image}----------------------------الصوره مش بتيجى من الباك ايند
+                    gobus
+                  }
                   className="img-fluid mt-5 "
                   alt="Image"
                 />
@@ -535,10 +506,9 @@ export function CityDetailes() {
                     />
                   </div>
                 ))}
-                {isLoggedIn && !hasUserReview && (
+                {isLoggedIn && (
                   <Button
                     className="btn btn-success rounded-pill"
-                    disabled={hasUserReview}
                     onClick={handleOpenReviewForm}
                   >
                     Review The Trip
@@ -547,7 +517,6 @@ export function CityDetailes() {
               </div>
 
               {/* Review Form Modal */}
-              {!hasUserReview && ( 
               <Modal
                 show={showReviewForm}
                 onHide={() => setShowReviewForm(false)}
@@ -567,7 +536,6 @@ export function CityDetailes() {
                   />
                 </Modal.Body>
               </Modal>
-              )}
 
               {/* Confirmation Modal */}
               <Modal show={showModal} onHide={() => setShowModal(false)}>
