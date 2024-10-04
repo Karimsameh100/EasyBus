@@ -1018,7 +1018,7 @@ const UserProfile = () => {
                               Booking Confrmation
                             </h4>
                             <p className="fs-5">
-                              your booking confirmed successfully getrady for
+                              your booking confirmed successfully get ready for
                               your trip, nice trip
                             </p>
                           </div>

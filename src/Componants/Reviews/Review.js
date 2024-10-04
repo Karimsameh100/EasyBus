@@ -1,17 +1,18 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Review.css'; 
 
 export function Reviews({ customerImg, customerReview, customerName, customerRate, onEdit, onDelete, isAuthor }) {
     const getStarRating = (rate) => {
         let stars = '';
         for (let i = 0; i < 5; i++) {
-            stars += i < rate ? '★' : '☆'; // Full star if i < rate, empty star otherwise
+            stars += i < rate ? '★' : '☆';
         }
         return stars;
     };
 
     return (
-        <div className="card border-0 border-bottom border-primary shadow-sm">
+        <div className="card review-card border-0 border-bottom border-primary shadow-sm h-100">
             <div className="position-absolute top-0 end-0 m-3 text-warning" style={{ fontSize: '1.5rem' }}>
                 {getStarRating(parseInt(customerRate))}
             </div>
@@ -19,7 +20,9 @@ export function Reviews({ customerImg, customerReview, customerName, customerRat
                 <figure>
                     <img className="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy" width={80} src={customerImg} alt="Customer"/>
                     <figcaption>
-                        <blockquote className="bsb-blockquote-icon mb-4">{customerReview}</blockquote>
+                        <blockquote className="bsb-blockquote-icon mb-4 review-text">
+                            {customerReview}
+                        </blockquote>
                         <h4 className="mb-2">{customerName}</h4>
                     </figcaption>
                 </figure>

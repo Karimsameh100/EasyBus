@@ -27,6 +27,7 @@ export function CityDetailes() {
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 4;
   const [hasMoreReviews, setHasMoreReviews] = useState(true);
+  const [hasUserReview, setHasUserReview] = useState(false);
   const [companiess, setCompanies] = useState([]);
   const [trips, setTrips] = useState([]);
   const [currentUserId, setCurrentUserId] = useState(null);
@@ -66,6 +67,17 @@ export function CityDetailes() {
       .get(`http://localhost:8000/cities/${params.id}/`)
       .then((res) => {
         setCity(res.data);
+
+        const authToken = localStorage.getItem("authToken");
+        if (authToken) {
+          const decodedToken = jwtDecode(authToken);
+          setCurrentUserId(decodedToken.user_id);
+
+          const userReview = res.data.Reviews.find(
+            (review) => review.user_id === decodedToken.user_id
+          );
+          setHasUserReview(!!userReview); // Set to true if the user has reviewed
+        }
       })
       .catch((err) => console.error("Error fetching city:", err));
     const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -269,6 +281,7 @@ export function CityDetailes() {
       });
       setShowModal(false);
       setReviewToDelete(null);
+      setHasUserReview(false);
     } catch (error) {
       console.error("Error deleting review:", error);
       setCity((prevCity) => ({
@@ -284,14 +297,16 @@ export function CityDetailes() {
   };
 
   const handleOpenReviewForm = () => {
-    setEditReviewId(null);
-    setShowReviewForm(true);
+    if (!hasUserReview) {
+      setEditReviewId(null); // New review
+      setShowReviewForm(true);
+    }
   };
 
   const handleReviewSubmit = (newReview) => {
     setCity((prevCity) => {
       const existingReviewIndex = prevCity.Reviews.findIndex(
-        (review) => review.id === newReview.id
+        (review) => review.ReviewCustomerDetails.id === newReview.id
       );
 
       if (existingReviewIndex !== -1) {
@@ -300,7 +315,7 @@ export function CityDetailes() {
         updatedReviews[existingReviewIndex] = newReview;
         return { ...prevCity, Reviews: updatedReviews };
       } else {
-        // Add new review
+        setHasUserReview(true);
         return { ...prevCity, Reviews: [...prevCity.Reviews, newReview] };
       }
     });
@@ -507,17 +522,19 @@ export function CityDetailes() {
                     />
                   </div>
                 ))}
-                {isLoggedIn && (
+                {isLoggedIn && !hasUserReview && (
                   <Button
                     className="btn btn-success rounded-pill"
+                    disabled={hasUserReview}
                     onClick={handleOpenReviewForm}
                   >
-                    Share Your Review
+                    Review The Trip
                   </Button>
                 )}
               </div>
 
               {/* Review Form Modal */}
+              {!hasUserReview && ( 
               <Modal
                 show={showReviewForm}
                 onHide={() => setShowReviewForm(false)}
@@ -537,6 +554,7 @@ export function CityDetailes() {
                   />
                 </Modal.Body>
               </Modal>
+              )}
 
               {/* Confirmation Modal */}
               <Modal show={showModal} onHide={() => setShowModal(false)}>
