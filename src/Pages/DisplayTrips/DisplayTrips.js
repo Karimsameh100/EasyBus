@@ -549,6 +549,7 @@ const DisplayTrips = () => {
                   textAlign: "right",
                   color: "#003366",
                   marginRight: "30vh",
+                  marginBottom: "8vh",
                 }}
               >
                 Company Profile
@@ -662,7 +663,13 @@ const DisplayTrips = () => {
             <>
               {currentPageItems.length ? (
                 <div className="table-responsive ">
-                  <h1 style={{ textAlign: "center", color: "#003366" }}>
+                  <h1
+                    style={{
+                      textAlign: "center",
+                      color: "#003366",
+                      marginBottom: "8vh",
+                    }}
+                  >
                     List Trips
                   </h1>
                   <table className="table table-striped table-bordered w-100">
@@ -793,7 +800,13 @@ const DisplayTrips = () => {
             <>
               {currentBookingsPageItems.length ? (
                 <div className="table-responsive">
-                  <h1 style={{ textAlign: "center", color: "#003366" }}>
+                  <h1
+                    style={{
+                      textAlign: "center",
+                      color: "#003366",
+                      marginBottom: "8vh",
+                    }}
+                  >
                     Booking Trips
                   </h1>
                   <table className="table table-striped table-bordered w-100">
