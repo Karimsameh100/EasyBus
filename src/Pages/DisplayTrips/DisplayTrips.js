@@ -670,7 +670,7 @@ const DisplayTrips = () => {
                       marginBottom: "8vh",
                     }}
                   >
-                    List Trips
+                    List Trips For {companyName}
                   </h1>
                   <table className="table table-striped table-bordered w-100">
                     <thead>
@@ -807,7 +807,7 @@ const DisplayTrips = () => {
                       marginBottom: "8vh",
                     }}
                   >
-                    Booking Trips
+                    Booking Trips For {companyName}
                   </h1>
                   <table className="table table-striped table-bordered w-100">
                     <thead>
